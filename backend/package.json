@@ -7,7 +7,7 @@
     "dev": "tsx watch src/server.ts",
     "seed": "tsx src/db/seed.ts",
     "build:static": "tsx src/scripts/generateStaticCatalog.ts",
-    "build": "tsc",
+    "build": "tsc && mkdir -p dist/db && cp src/db/schema.sql dist/db/schema.sql",
     "start": "node dist/server.js"
   },
   "dependencies": {
