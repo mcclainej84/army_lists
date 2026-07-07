@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "ListGenerator"
+  },
+  "nav": {
+    "games": "Games"
+  },
+  "games": {
+    "title": "Choose a game",
+    "loading": "Loading games..."
+  },
+  "conflicts": {
+    "title": "Choose a conflict",
+    "back": "Back to games",
+    "comingSoon": "No conflicts loaded for this game yet. Check back soon!"
+  },
+  "factions": {
+    "title": "Choose a faction",
+    "official": "Official",
+    "custom": "Custom",
+    "includeCustom": "Include custom factions",
+    "customComingSoon": "No factions available yet.",
+    "back": "Back to conflicts"
+  },
+  "factionDetail": {
+    "commanders": "Commanders",
+    "units": "Units",
+    "back": "Back to factions",
+    "category": {
+      "COMMAND": "Command",
+      "HORSE": "Horse",
+      "FOOT": "Foot",
+      "ORDNANCE": "Ordnance"
+    },
+    "availableUnits": "Available Units",
+    "table": {
+      "unit": "Unit",
+      "type": "Type",
+      "bases": "Bases",
+      "armament": "Armament",
+      "handToHand": "Hand-to-Hand",
+      "shooting": "Shooting",
+      "morale": "Morale",
+      "stamina": "Stamina",
+      "specialRules": "Special Rules",
+      "option": "Option",
+      "points": "Points"
+    },
+    "options": "Options",
+    "commandRating": "Command Rating",
+    "add": "Add",
+    "remove": "Remove",
+    "myList": "My List",
+    "pointsLimit": "Points limit",
+    "totalPoints": "Total",
+    "remaining": "Remaining",
+    "emptyColumn": "Drag units and commanders here, or press Add with this battalia in focus.",
+    "active": "In focus",
+    "notAvailable": "Not available due to army restrictions",
+    "reasons": {
+      "maxUnitsPerArmy": "Maximum {{max}} per army",
+      "maxRatioTo": "You need more {{unitName}} in the list (max ratio {{ratioText}})",
+      "cannotOutnumber": "Cannot outnumber {{unitName}}",
+      "maxRatioToOwnLightOrdnance": "You need more Light Ordnance units first (max {{max}})"
+    },
+    "battalias": {
+      "add": "+ New Battalia",
+      "unassigned": "Unassigned",
+      "namePlaceholder": "Battalia name"
+    },
+    "warnings": {
+      "battaliaMaxUnit": "This battalia exceeds the maximum of {{max}} {{name}}",
+      "battaliaMaxOption": "This battalia exceeds the maximum of {{max}} with the {{name}} option",
+      "battaliaMaxGroup": "This battalia exceeds the maximum of {{max}} {{name}}",
+      "noUnitsAssigned": "This battalia has no units assigned yet"
+    },
+    "groups": {
+      "ordnance": "Ordnance"
+    }
+  },
+  "language": {
+    "es": "Español",
+    "en": "English"
+  }
+}

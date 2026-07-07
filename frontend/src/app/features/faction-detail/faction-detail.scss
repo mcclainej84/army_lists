@@ -1,0 +1,507 @@
+// Densidad de la interfaz inspirada en la referencia que pasó el usuario (CodexMaker):
+// fuentes pequeñas (11-13px equivalentes), paddings ajustados, controles compactos.
+// Todo el componente usa una base de ~14px en vez del 16px por defecto del navegador.
+
+.wizard-step {
+  max-width: 1700px;
+  margin: 1.5rem auto;
+  padding: 0 1.5rem 3rem;
+  font-size: 14px;
+}
+
+.wizard-step h1 {
+  font-size: 1.3rem;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.wizard-step h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7a1f1f;
+  margin: 1rem 0 0.5rem;
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(380px, 0.9fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.catalog-panel {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+@media (max-width: 900px) {
+  .detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-panel {
+    position: static;
+    max-height: none;
+  }
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: #7a1f1f;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.catalog-frame {
+  border: 1px solid #d8c8b0;
+  border-radius: 10px;
+  background: #fffdf9;
+  padding: 0.75rem 0.85rem 0.5rem;
+}
+
+h2.catalog-frame-title {
+  margin: 0 0 0.6rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7a1f1f;
+  font-weight: 700;
+  border-bottom: 1px solid #d8c8b0;
+  padding-bottom: 0.4rem;
+}
+
+.catalog-group {
+  border: 1px solid #ddd6c4;
+  border-radius: 6px;
+  margin-bottom: 0.6rem;
+  padding: 0 0.6rem;
+}
+
+.catalog-group[open] {
+  padding-bottom: 0.6rem;
+}
+
+.catalog-group summary {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7a1f1f;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.catalog-group summary:hover {
+  opacity: 0.8;
+}
+
+.commander-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.commander-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid #d8c8b0;
+  border-radius: 6px;
+  background: #fbf6ee;
+  font-size: 0.8rem;
+}
+
+.commander-name {
+  font-weight: 700;
+}
+
+.commander-meta {
+  color: #6b5b4b;
+  font-size: 0.75rem;
+}
+
+.commander-points {
+  font-weight: 600;
+  color: #7a1f1f;
+}
+
+.unit-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.unit-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #d8c8b0;
+  border-radius: 8px;
+  background: #fbf6ee;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.8rem;
+}
+
+.unit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.unit-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #2b1d14;
+}
+
+.unit-points {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #7a1f1f;
+}
+
+.unit-meta {
+  margin: 0 0 0.4rem;
+  font-size: 0.72rem;
+  color: #6b5b4b;
+  display: flex;
+  gap: 0.5rem;
+}
+
+// Armamento / Cuerpo a Cuerpo / Disparo / Moral / Aguante: siempre en una sola fila (a
+// diferencia de un auto-fill, columnas fijas nunca envuelven a una segunda fila). Armamento
+// suele llevar el texto mas largo ("Pike, Matchlock Musket"), por eso se lleva casi el doble
+// de ancho que el resto; el resto son valores muy cortos (numeros, "4+", "3-2-1"...).
+.unit-stats-main {
+  display: grid;
+  grid-template-columns: 1.8fr 0.75fr 0.85fr 0.6fr 0.65fr;
+  gap: 0.15rem;
+  margin: 0;
+  font-size: 0.68rem;
+}
+
+.unit-stats-main div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.unit-stats-main dt {
+  font-size: 0.56rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: #6b5b4b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.unit-stats-main dd {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.15;
+  overflow-wrap: break-word;
+}
+
+.special-rules-line {
+  margin: 0.4rem 0 0;
+  font-size: 0.72rem;
+  color: #4a3d2f;
+}
+
+.special-rules-line strong {
+  color: #6b5b4b;
+  font-weight: 700;
+}
+
+.unit-options {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed #d8c8b0;
+}
+
+.options-title {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #6b5b4b;
+}
+
+.option-points {
+  font-weight: 600;
+  color: #7a1f1f;
+  margin-left: 0.3rem;
+}
+
+.option-checkbox-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.85rem;
+  margin-top: 0.3rem;
+}
+
+.add-btn {
+  margin-top: 0.6rem;
+  padding: 0.35rem 0.7rem;
+  border: none;
+  border-radius: 5px;
+  background: #7a1f1f;
+  color: #fbf6ee;
+  font-weight: 600;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.unit-card .add-btn,
+.commander-card .add-btn {
+  margin-top: 1.1rem;
+  align-self: flex-start;
+}
+
+.add-btn:disabled {
+  background: #b7a591;
+  cursor: not-allowed;
+}
+
+.points-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.75rem 0 1rem;
+  padding: 0.5rem 0.75rem;
+  background: #fbf6ee;
+  border: 1px solid #d8c8b0;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+.points-bar label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+.points-bar input {
+  width: 70px;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid #d8c8b0;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.points-total {
+  font-weight: 600;
+}
+
+.points-remaining {
+  font-weight: 700;
+  color: #2f7a3f;
+}
+
+.points-remaining.over {
+  color: #b02a2a;
+}
+
+.my-list {
+  margin-bottom: 1.5rem;
+  padding: 0.6rem 0.85rem;
+  border: 2px dashed #7a1f1f;
+  border-radius: 8px;
+  background: #fffdf9;
+}
+
+.my-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.my-list-header h2 {
+  margin: 0;
+}
+
+.add-battalia-btn {
+  padding: 0.3rem 0.65rem;
+  border: 1px solid #7a1f1f;
+  border-radius: 5px;
+  background: transparent;
+  color: #7a1f1f;
+  font-weight: 600;
+  font-size: 0.75rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.empty-column {
+  color: #a89886;
+  font-style: italic;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.25rem;
+  margin: 0;
+}
+
+.commander-drop {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-height: 0.4rem;
+}
+
+.commander-entry {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0.6rem;
+  background: #fbf6ee;
+  border: 1px solid #d8c8b0;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.entry-points {
+  margin-left: auto;
+  font-weight: 600;
+  color: #7a1f1f;
+}
+
+.remove-btn {
+  border: none;
+  background: transparent;
+  color: #b02a2a;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.option-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+}
+
+.option-checkbox.disabled {
+  color: #a89886;
+}
+
+.battalia-block {
+  margin-top: 0.85rem;
+  padding: 0.5rem 0.5rem 0.65rem;
+  border: 2px solid transparent;
+  border-top: 1px solid #d8c8b0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.battalia-block:hover {
+  background: #fbf6ee;
+}
+
+.battalia-block.active {
+  border-color: #7a1f1f;
+  background: #fbf1e6;
+}
+
+.battalia-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.battalia-name {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #7a1f1f;
+}
+
+.battalia-name-input {
+  font-weight: 700;
+  color: #7a1f1f;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 0.15rem 0.3rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.battalia-name-input:hover,
+.battalia-name-input:focus {
+  border-color: #d8c8b0;
+  background: #fff;
+}
+
+.battalia-warning {
+  margin: 0.2rem 0;
+  padding: 0.3rem 0.5rem;
+  background: #fbeaea;
+  border: 1px solid #e0b3b3;
+  border-radius: 4px;
+  color: #a12b2b;
+  font-size: 0.72rem;
+}
+
+.unit-table {
+  display: flex;
+  flex-direction: column;
+  min-height: 2rem;
+  border-radius: 6px;
+}
+
+.unit-row {
+  display: grid;
+  grid-template-columns: 1.2rem 1.4fr 1fr 0.6fr 1.1fr 0.9fr 0.9fr 0.7fr 0.7fr 1.1fr 1.7fr 0.7fr 1.2rem;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.4rem;
+  font-size: 0.75rem;
+  background: #fbf6ee;
+  border-bottom: 1px solid #ece0cf;
+}
+
+.unit-row-header {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  letter-spacing: 0.02em;
+  color: #6b5b4b;
+  background: transparent;
+}
+
+.drag-col {
+  text-align: center;
+  cursor: grab;
+  color: #a89886;
+}
+
+.points-col {
+  text-align: right;
+  font-weight: 700;
+  color: #7a1f1f;
+}
+
+.cdk-drag-preview {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  background: #fff;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}
+
+.cdk-drop-list-dragging .unit-row:not(.cdk-drag-placeholder) {
+  transition: transform 0.15s ease;
+}

@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "ListGenerator"
+  },
+  "nav": {
+    "games": "Juegos"
+  },
+  "games": {
+    "title": "Elige un juego",
+    "loading": "Cargando juegos..."
+  },
+  "conflicts": {
+    "title": "Elige un conflicto",
+    "back": "Volver a juegos",
+    "comingSoon": "Todavía no hay conflictos cargados para este juego. ¡Vuelve pronto!"
+  },
+  "factions": {
+    "title": "Elige una facción",
+    "official": "Oficiales",
+    "custom": "Personalizadas",
+    "includeCustom": "Incluir facciones personalizadas",
+    "customComingSoon": "Todavía no hay facciones disponibles.",
+    "back": "Volver a conflictos"
+  },
+  "factionDetail": {
+    "commanders": "Comandantes",
+    "units": "Unidades",
+    "back": "Volver a facciones",
+    "category": {
+      "COMMAND": "Mando",
+      "HORSE": "Caballería",
+      "FOOT": "Infantería",
+      "ORDNANCE": "Artillería"
+    },
+    "availableUnits": "Unidades Disponibles",
+    "table": {
+      "unit": "Unidad",
+      "type": "Tipo",
+      "bases": "Peanas",
+      "armament": "Armamento",
+      "handToHand": "Cuerpo a Cuerpo",
+      "shooting": "Disparo",
+      "morale": "Moral",
+      "stamina": "Aguante",
+      "specialRules": "Reglas Especiales",
+      "option": "Opción",
+      "points": "Puntos"
+    },
+    "options": "Opciones",
+    "commandRating": "Valor de Mando",
+    "add": "Añadir",
+    "remove": "Quitar",
+    "myList": "Mi Lista",
+    "pointsLimit": "Límite de puntos",
+    "totalPoints": "Total",
+    "remaining": "Restantes",
+    "emptyColumn": "Arrastra aquí unidades y comandantes, o pulsa Añadir con esta battalia en foco.",
+    "active": "En foco",
+    "notAvailable": "No disponible por las restricciones del ejército",
+    "reasons": {
+      "maxUnitsPerArmy": "Máximo {{max}} por ejército",
+      "maxRatioTo": "Necesitas más {{unitName}} en la lista (proporción máxima {{ratioText}})",
+      "cannotOutnumber": "No puede superar en número a {{unitName}}",
+      "maxRatioToOwnLightOrdnance": "Necesitas más unidades de Artillería Ligera primero (máx. {{max}})"
+    },
+    "battalias": {
+      "add": "+ Nueva Battalia",
+      "unassigned": "Sin asignar",
+      "namePlaceholder": "Nombre de la battalia"
+    },
+    "warnings": {
+      "battaliaMaxUnit": "Esta battalia supera el máximo de {{max}} de {{name}}",
+      "battaliaMaxOption": "Esta battalia supera el máximo de {{max}} con la opción {{name}}",
+      "battaliaMaxGroup": "Esta battalia supera el máximo de {{max}} de {{name}}",
+      "noUnitsAssigned": "Esta battalia no tiene unidades asignadas todavía"
+    },
+    "groups": {
+      "ordnance": "Artillería"
+    }
+  },
+  "language": {
+    "es": "Español",
+    "en": "English"
+  }
+}

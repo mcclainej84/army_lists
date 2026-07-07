@@ -1,0 +1,19 @@
+<header class="app-header">
+  <a class="brand" routerLink="/">{{ 'app.title' | transloco }}</a>
+  <div class="lang-switch">
+    <button
+      type="button"
+      [class.active]="localeService.current() === 'es'"
+      (click)="setLocale('es')"
+    >
+      {{ 'language.es' | transloco }}
+    </button>
+    <button
+      type="button"
+      [class.active]="localeService.current() === 'en'"
+      (click)="setLocale('en')"
+    >
+      {{ 'language.en' | transloco }}
+    </button>
+  </div>
+</header>
