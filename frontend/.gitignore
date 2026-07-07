@@ -42,3 +42,7 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Catalogo generado por "npm run build:static" (backend). Se regenera en cada build/CI,
+# no hace falta versionarlo.
+/public/data
