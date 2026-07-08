@@ -1,8 +1,6 @@
 <header class="site-header">
-  <!-- Franja de utilidad: idioma a la izquierda, Mis Listas + sesion a la derecha. Separada
-       de la barra principal (marca + banner) para no competir en altura/peso visual con
-       ella: son acciones secundarias, no la identidad de la app. -->
-  <div class="utility-bar">
+  <!-- Fila fina arriba, solo idioma, pegada a la derecha. -->
+  <div class="lang-row">
     <div class="lang-switch">
       <button
         type="button"
@@ -34,24 +32,11 @@
         </svg>
       </button>
     </div>
-
-    @if (authService.isConfigured) {
-      <div class="account-widget">
-        <a class="my-lists-nav-btn" routerLink="/mis-listas">{{ 'nav.myLists' | transloco }}</a>
-        @if (authService.authReady()) {
-          @if (authService.currentUser(); as user) {
-            <span class="account-name" [title]="user.email || ''">{{ user.displayName || user.email }}</span>
-            <button type="button" class="account-btn" (click)="signOut()">{{ 'auth.signOut' | transloco }}</button>
-          } @else {
-            <button type="button" class="account-btn account-btn-primary" (click)="signIn()">
-              {{ 'auth.signIn' | transloco }}
-            </button>
-          }
-        }
-      </div>
-    }
   </div>
 
+  <!-- Fila principal: marca a la izquierda, banner centrado de verdad (grid de 3 columnas
+       iguales a los lados, no depende de que el texto/los botones midan lo mismo), y los
+       botones de cuenta a la derecha. -->
   <div class="app-header">
     <div class="brand-group">
       <a class="brand" routerLink="/">{{ 'app.title' | transloco }}</a>
@@ -60,5 +45,25 @@
 
     <!-- Banner ilustrado (30YW / Napoleonicas / FIW), con version @2x para pantallas retina. -->
     <div class="banner-slot" aria-hidden="true"></div>
+
+    @if (authService.isConfigured) {
+      <div class="header-actions">
+        <a class="header-action-btn header-action-btn-accent" routerLink="/mis-listas">
+          {{ 'nav.myLists' | transloco }}
+        </a>
+        @if (authService.authReady()) {
+          @if (authService.currentUser(); as user) {
+            <span class="account-name" [title]="user.email || ''">{{ user.displayName || user.email }}</span>
+            <button type="button" class="header-action-btn" (click)="signOut()">
+              {{ 'auth.signOut' | transloco }}
+            </button>
+          } @else {
+            <button type="button" class="header-action-btn header-action-btn-accent" (click)="signIn()">
+              {{ 'auth.signIn' | transloco }}
+            </button>
+          }
+        }
+      </div>
+    }
   </div>
 </header>
