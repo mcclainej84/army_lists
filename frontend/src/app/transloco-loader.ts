@@ -7,10 +7,11 @@ export class TranslocoHttpLoader implements TranslocoLoader {
   private http = inject(HttpClient);
 
   getTranslation(lang: string): Promise<Translation> {
-    // Los JSON de traduccion se sirven como estaticos desde /public/i18n, por eso la ruta empieza en /i18n
-    // (en Angular 17+ la carpeta "public" reemplaza a "assets" y su contenido se publica en la raiz).
+    // Ruta relativa (sin "/" inicial): con barra inicial se resuelve contra la raiz del
+    // dominio y rompe en GitHub Pages, donde la app vive en una subruta (/nombre-repo/).
+    // En local coincide con la raiz por casualidad, por eso ahi no se notaba el fallo.
     return new Promise((resolve, reject) => {
-      this.http.get<Translation>(`/i18n/${lang}.json`).subscribe({
+      this.http.get<Translation>(`i18n/${lang}.json`).subscribe({
         next: resolve,
         error: reject,
       });

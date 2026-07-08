@@ -4,6 +4,10 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.6 — 2026-07-08
+
+- Arreglado: los textos (i18n) no aparecían en GitHub Pages. El loader de Transloco pedía `/i18n/es.json` con barra inicial, que en una subruta de GitHub Pages se resuelve contra la raíz del dominio en vez de la carpeta del repo. Cambiado a ruta relativa, igual que ya se hizo con los datos del catálogo.
+
 ## 0.5 — 2026-07-08
 
 - Escudos nuevos para Guerra de los 30 Años (Imperio, Suecia, Francia, España), sustituyendo los SVG dibujados a mano por las imágenes subidas por el usuario.
