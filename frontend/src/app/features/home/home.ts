@@ -36,6 +36,10 @@ const FACTION_ICONS: Record<string, string> = {
   prussian_custom: 'img/factions/nap-prussia.png',
   austrian_custom: 'img/factions/nap-austria.png',
   russian_custom: 'img/factions/nap-russia.png',
+  // French Indian War: codigos con prefijo propio para no chocar con los "french"/"british"
+  // de otros conflictos.
+  fiw_british: 'img/factions/fiw-british.png',
+  fiw_french: 'img/factions/fiw-french.png',
 };
 
 // Cuando una nacion tiene tanto version oficial (de momento vacia) como version
@@ -99,6 +103,20 @@ export class Home {
   }
 
   /**
+   * En Black Powder queremos las facciones siempre en una sola fila (a diferencia del
+   * resto de conflictos, donde se deja que el grid las reparta en varias filas segun el
+   * ancho). Como el numero de tarjetas visibles cambia con el checkbox "Incluir facciones
+   * personalizadas" (5 o 6), las columnas se calculan segun cuantas haya en cada momento
+   * en vez de un numero fijo.
+   */
+  factionGridStyle(): Record<string, string> | null {
+    if (this.selectedGame()?.code !== 'black_powder') return null;
+    const count = this.visibleFactions().length;
+    if (!count) return null;
+    return { 'grid-template-columns': `repeat(${count}, minmax(0, 1fr))` };
+  }
+
+  /**
    * Codigo de faccion al que navega el click sobre esta tarjeta: si "Incluir facciones
    * personalizadas" esta activado y esta nacion tiene una version personalizada cargada,
    * vamos directos a esa; si no, a la oficial de siempre.
@@ -116,7 +134,14 @@ export class Home {
     this.selectedConflict.set(null);
     this.conflicts.set(null);
     this.factions.set(null);
-    this.catalogService.listConflicts(game.code).subscribe((conflicts) => this.conflicts.set(conflicts));
+    this.catalogService.listConflicts(game.code).subscribe((conflicts) => {
+      this.conflicts.set(conflicts);
+      // Si el juego solo tiene un conflicto (p.ej. French Indian War), no tiene sentido
+      // pedirle al usuario que lo elija: se selecciona solo y se pasa directo a facciones.
+      if (conflicts.length === 1) {
+        this.chooseConflict(conflicts[0]);
+      }
+    });
   }
 
   chooseConflict(conflict: ConflictDTO): void {

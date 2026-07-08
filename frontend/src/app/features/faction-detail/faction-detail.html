@@ -37,9 +37,11 @@
       <section class="my-list">
         <div class="my-list-header">
           <h2>{{ 'factionDetail.myList' | transloco }}</h2>
-          <button type="button" class="add-battalia-btn" (click)="addBattalia()">
-            {{ 'factionDetail.battalias.add' | transloco: { group: groupNoun(true) } }}
-          </button>
+          @if (gameCode !== 'french_indian_war') {
+            <button type="button" class="add-battalia-btn" (click)="addBattalia()">
+              {{ 'factionDetail.battalias.add' | transloco: { group: groupNoun(true) } }}
+            </button>
+          }
         </div>
 
         @for (col of columns(); track col.id) {
@@ -54,7 +56,9 @@
                   (ngModelChange)="renameBattalia(col.id, $event)"
                   (click)="$event.stopPropagation()"
                 />
-                <button type="button" class="remove-btn" (click)="removeBattalia(col.id); $event.stopPropagation()">✕</button>
+                @if (gameCode !== 'french_indian_war') {
+                  <button type="button" class="remove-btn" (click)="removeBattalia(col.id); $event.stopPropagation()">✕</button>
+                }
               } @else {
                 <span class="battalia-name">{{ 'factionDetail.battalias.unassigned' | transloco }}</span>
               }
@@ -118,16 +122,17 @@
                 </div>
 
                 @for (entry of unitsInBattalia(col.id); track entry.instanceId) {
+                  @let stats = entryStats(entry);
                   <div class="unit-row" cdkDrag [cdkDragData]="entry">
                     <span class="drag-col">⠿</span>
                     <span>{{ entry.unit.name }}</span>
                     <span>{{ entry.unit.unitType }}</span>
-                    <span>{{ entry.unit.bases }}</span>
+                    <span>{{ stats.bases }}</span>
                     <span>{{ entry.unit.armament }}</span>
-                    <span>{{ entry.unit.handToHand }}</span>
-                    <span>{{ entry.unit.shooting }}</span>
+                    <span>{{ stats.handToHand }}</span>
+                    <span>{{ stats.shooting }}</span>
                     <span>{{ entry.unit.morale }}</span>
-                    <span>{{ entry.unit.stamina }}</span>
+                    <span>{{ stats.stamina }}</span>
                     <span>{{ entry.unit.specialRules }}</span>
                     <span>{{ optionLabels(entry) }}</span>
                     <span class="points-col">{{ entryPoints(entry) }}</span>
@@ -184,29 +189,30 @@
                 <summary>{{ 'factionDetail.category.' + category | transloco }}</summary>
                 <div class="unit-list">
                   @for (unit of units; track unit.id) {
+                    @let previewStat = previewStats(unit);
                     <article class="unit-card">
                       <header class="unit-header">
                         <span class="unit-name">{{ unit.name }}</span>
                         <span class="unit-points">{{ unit.basePoints }} {{ 'factionDetail.table.points' | transloco }}</span>
                       </header>
 
-                      @if (unit.unitType || unit.bases) {
+                      @if (unit.unitType || previewStat.bases) {
                         <p class="unit-meta">
                           @if (unit.unitType) {
                             <span>{{ unit.unitType }}</span>
                           }
-                          @if (unit.bases) {
-                            <span>{{ unit.bases }} {{ 'factionDetail.table.bases' | transloco }}</span>
+                          @if (previewStat.bases) {
+                            <span>{{ previewStat.bases }} {{ 'factionDetail.table.bases' | transloco }}</span>
                           }
                         </p>
                       }
 
                       <dl class="unit-stats-main">
                         <div><dt>{{ 'factionDetail.table.armament' | transloco }}</dt><dd>{{ unit.armament || '–' }}</dd></div>
-                        <div><dt>{{ 'factionDetail.table.handToHand' | transloco }}</dt><dd>{{ unit.handToHand }}</dd></div>
-                        <div><dt>{{ 'factionDetail.table.shooting' | transloco }}</dt><dd>{{ unit.shooting }}</dd></div>
+                        <div><dt>{{ 'factionDetail.table.handToHand' | transloco }}</dt><dd>{{ previewStat.handToHand }}</dd></div>
+                        <div><dt>{{ 'factionDetail.table.shooting' | transloco }}</dt><dd>{{ previewStat.shooting }}</dd></div>
                         <div><dt>{{ 'factionDetail.table.morale' | transloco }}</dt><dd>{{ unit.morale }}</dd></div>
-                        <div><dt>{{ 'factionDetail.table.stamina' | transloco }}</dt><dd>{{ unit.stamina }}</dd></div>
+                        <div><dt>{{ 'factionDetail.table.stamina' | transloco }}</dt><dd>{{ previewStat.stamina }}</dd></div>
                       </dl>
 
                       @if (unit.specialRules) {

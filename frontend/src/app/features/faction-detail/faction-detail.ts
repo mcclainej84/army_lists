@@ -4,11 +4,19 @@ import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { CatalogService } from '../../core/catalog.service';
 import { CommanderDTO, FactionDetailDTO, UnitDTO, UnitOptionDTO } from '../../core/models';
 import { BattaliaWarning, canAddUnit, canSelectOption, getBattaliaWarnings, ValidationResult } from './constraints';
-import { Battalia, ListCommanderEntry, ListUnitEntry, nextInstanceId, UNASSIGNED_BATTALIA_ID } from './list-builder.model';
+import {
+  Battalia,
+  EffectiveUnitStats,
+  effectiveUnitStats,
+  ListCommanderEntry,
+  ListUnitEntry,
+  nextInstanceId,
+  UNASSIGNED_BATTALIA_ID,
+} from './list-builder.model';
 import { exportListToPdf } from './pdf-export';
 
 type Category = 'HORSE' | 'FOOT' | 'ORDNANCE';
@@ -38,12 +46,13 @@ export class FactionDetail {
 
   /**
    * El nombre de "battalia" cambia segun el reglamento: en Pike & Shotte (epoca de picas y
-   * mosquetes) el termino historico es "Battalia"; en Black Powder (Napoleonicas) la unidad
-   * de mando se llama "Brigada". Se resuelve por gameCode en vez de tener un unico termino
-   * fijo en las traducciones.
+   * mosquetes) el termino historico es "Battalia"; en Black Powder (Napoleonicas) y en
+   * French Indian War la unidad de mando se llama "Brigada". Se resuelve por gameCode en
+   * vez de tener un unico termino fijo en las traducciones.
    */
   groupNoun(capitalize: boolean): string {
-    const key = this.gameCode === 'black_powder' ? 'factionDetail.groupNoun.brigade' : 'factionDetail.groupNoun.battalia';
+    const brigadeGames = ['black_powder', 'french_indian_war'];
+    const key = brigadeGames.includes(this.gameCode) ? 'factionDetail.groupNoun.brigade' : 'factionDetail.groupNoun.battalia';
     const word = this.transloco.translate(key);
     return capitalize ? word : word.toLowerCase();
   }
@@ -59,7 +68,16 @@ export class FactionDetail {
       this.battalias.set([]);
       this.pendingSelections.set({});
       this.activeBattaliaId.set(UNASSIGNED_BATTALIA_ID);
-      return this.catalogService.getFactionDetail(this.gameCode, this.conflictCode, factionCode);
+      return this.catalogService.getFactionDetail(this.gameCode, this.conflictCode, factionCode).pipe(
+        tap(() => {
+          // French Indian War no tiene el concepto de "varias battalias/brigadas": es una
+          // unica fuerza. Se crea automaticamente y las unidades anadidas caen ahi directas,
+          // sin que el usuario tenga que crear ni elegir ninguna (solo pasa en este juego).
+          if (this.gameCode === 'french_indian_war' && this.battalias().length === 0) {
+            this.addBattalia();
+          }
+        })
+      );
     })
   );
 
@@ -232,31 +250,43 @@ export class FactionDetail {
     this.pendingSelections.update((map) => ({ ...map, [unit.code]: updated }));
   }
 
-  // --- Tamaño de unidad (Pequeña/Grande): selector excluyente, no checkboxes sueltos ---
-  /** Opciones de tamaño de esta unidad (puede tener solo "Pequeña", solo "Grande", ambas o ninguna). */
+  // --- Tamaño de unidad (Pequeña/Mediana/Grande): selector excluyente, no checkboxes sueltos ---
+  private static readonly SIZE_CODES = ['small', 'medium', 'large'];
+
+  /** Opciones de tamaño de esta unidad (puede tener "Pequeña", "Mediana", "Grande", varias o ninguna). */
   sizeOptions(unit: UnitDTO): UnitOptionDTO[] {
-    return unit.options.filter((o) => o.code === 'small' || o.code === 'large');
+    return unit.options.filter((o) => FactionDetail.SIZE_CODES.includes(o.code));
   }
 
   /** El resto de opciones de la unidad, excluyendo tamaño (se siguen mostrando como checkboxes). */
   nonSizeOptions(unit: UnitDTO): UnitOptionDTO[] {
-    return unit.options.filter((o) => o.code !== 'small' && o.code !== 'large');
+    return unit.options.filter((o) => !FactionDetail.SIZE_CODES.includes(o.code));
   }
 
-  /** Código de tamaño marcado ahora mismo ("small"/"large"), o null si esta en "Normal". */
+  /** Código de tamaño marcado ahora mismo ("small"/"medium"/"large"), o null si esta en "Normal". */
   selectedSizeCode(unitCode: string): string | null {
-    return this.pendingOptionsFor(unitCode).find((c) => c === 'small' || c === 'large') ?? null;
+    return this.pendingOptionsFor(unitCode).find((c) => FactionDetail.SIZE_CODES.includes(c)) ?? null;
   }
 
-  /** Selecciona un tamaño (quitando el otro si estaba marcado) o vuelve a "Normal" con null. */
+  /** Selecciona un tamaño (quitando el anterior si estaba marcado) o vuelve a "Normal" con null. */
   setSize(unit: UnitDTO, code: string | null): void {
     if (code) {
       const option = unit.options.find((o) => o.code === code);
       if (!option || !this.canSelectPendingOption(unit, option)) return;
     }
-    const withoutSize = this.pendingOptionsFor(unit.code).filter((c) => c !== 'small' && c !== 'large');
+    const withoutSize = this.pendingOptionsFor(unit.code).filter((c) => !FactionDetail.SIZE_CODES.includes(c));
     const updated = code ? [...withoutSize, code] : withoutSize;
     this.pendingSelections.update((map) => ({ ...map, [unit.code]: updated }));
+  }
+
+  /** Estadisticas efectivas de la unidad en el catalogo, segun el tamaño marcado (aun sin anadir). */
+  previewStats(unit: UnitDTO): EffectiveUnitStats {
+    return effectiveUnitStats(unit, this.pendingOptionsFor(unit.code));
+  }
+
+  /** Estadisticas efectivas de una entrada ya anadida a "Mi Lista", segun sus opciones elegidas. */
+  entryStats(entry: ListUnitEntry): EffectiveUnitStats {
+    return effectiveUnitStats(entry.unit, entry.selectedOptionCodes);
   }
 
   // --- Unidades ---
@@ -309,9 +339,9 @@ export class FactionDetail {
     }
   }
 
-  /** Rango de orden por defecto: [categoria (Infanteria/Caballeria/Artilleria), Aguante]. */
-  private sortRank(unit: UnitDTO): [number, number] {
-    return [CATEGORY_SORT_RANK[unit.category] ?? 99, unit.stamina ?? 0];
+  /** Rango de orden por defecto: [categoria (Infanteria/Caballeria/Artilleria), Aguante efectivo]. */
+  private sortRank(unit: UnitDTO, selectedOptionCodes: string[]): [number, number] {
+    return [CATEGORY_SORT_RANK[unit.category] ?? 99, effectiveUnitStats(unit, selectedOptionCodes).stamina ?? 0];
   }
 
   addUnit(unit: UnitDTO): void {
@@ -327,10 +357,10 @@ export class FactionDetail {
       const outside = list.filter((e) => e.battaliaId !== battaliaId);
       const within = list.filter((e) => e.battaliaId === battaliaId);
 
-      const [newCategoryRank, newStamina] = this.sortRank(unit);
+      const [newCategoryRank, newStamina] = this.sortRank(unit, selectedOptionCodes);
       let insertAt = within.length;
       for (let i = 0; i < within.length; i++) {
-        const [categoryRank, stamina] = this.sortRank(within[i].unit);
+        const [categoryRank, stamina] = this.sortRank(within[i].unit, within[i].selectedOptionCodes);
         if (newCategoryRank < categoryRank || (newCategoryRank === categoryRank && newStamina < stamina)) {
           insertAt = i;
           break;

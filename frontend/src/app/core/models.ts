@@ -30,12 +30,20 @@ export interface CommanderDTO {
   role: CommanderRole | null;
 }
 
+export interface UnitOptionStatOverridesDTO {
+  bases: number | null;
+  handToHand: string | null;
+  shooting: string | null;
+  stamina: number | null;
+}
+
 export interface UnitOptionDTO {
   id: number;
   code: string;
   description: string;
   pointDelta: number;
   constraints: Record<string, unknown> | null;
+  statOverrides: UnitOptionStatOverridesDTO | null;
 }
 
 export interface UnitDTO {

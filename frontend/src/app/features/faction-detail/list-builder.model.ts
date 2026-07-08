@@ -43,3 +43,28 @@ export function nextInstanceId(prefix = 'instance'): string {
   counter += 1;
   return `${prefix}-${counter}-${Date.now()}`;
 }
+
+export interface EffectiveUnitStats {
+  bases: number | null;
+  handToHand: string | null;
+  shooting: string | null;
+  stamina: number | null;
+}
+
+/**
+ * Estadisticas "reales" de una unidad segun las opciones seleccionadas: en la mayoria de
+ * juegos (p.ej. Black Powder) el tamaño solo cambia puntos y las estadisticas base se
+ * mantienen. En otros (p.ej. French Indian War) cada tamaño tiene sus propias peanas,
+ * C. a C., Disparo y Aguante (ver UnitOptionDTO.statOverrides): si una de las opciones
+ * marcadas trae overrides, se usan esos valores; si no, se mantienen los de la unidad.
+ */
+export function effectiveUnitStats(unit: UnitDTO, selectedOptionCodes: string[]): EffectiveUnitStats {
+  const overrideOption = unit.options.find((o) => selectedOptionCodes.includes(o.code) && o.statOverrides);
+  const ov = overrideOption?.statOverrides ?? null;
+  return {
+    bases: ov?.bases ?? unit.bases,
+    handToHand: ov?.handToHand ?? unit.handToHand,
+    shooting: ov?.shooting ?? unit.shooting,
+    stamina: ov?.stamina ?? unit.stamina,
+  };
+}

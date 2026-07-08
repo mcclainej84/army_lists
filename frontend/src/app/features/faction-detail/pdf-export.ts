@@ -1,6 +1,6 @@
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import { Battalia, ListCommanderEntry, ListUnitEntry, UNASSIGNED_BATTALIA_ID } from './list-builder.model';
+import { Battalia, effectiveUnitStats, ListCommanderEntry, ListUnitEntry, UNASSIGNED_BATTALIA_ID } from './list-builder.model';
 
 // Exportacion de la lista en curso a PDF, con un estilo visual inspirado en la hoja de
 // referencia que aporto el usuario: una tabla por Battalia (Unidad / Tipo / Peanas /
@@ -222,18 +222,21 @@ export function exportListToPdf(options: PdfExportOptions): void {
       continue;
     }
 
-    const body = group.units.map((entry) => [
-      entry.unit.name,
-      entry.unit.unitType ?? '–',
-      entry.unit.bases !== null ? String(entry.unit.bases) : '–',
-      entry.unit.armament ?? '–',
-      entry.unit.handToHand ?? '–',
-      entry.unit.shooting ?? '–',
-      entry.unit.morale ?? '–',
-      entry.unit.stamina !== null ? String(entry.unit.stamina) : '–',
-      specialRulesCell(entry),
-      String(entryPoints(entry)),
-    ]);
+    const body = group.units.map((entry) => {
+      const stats = effectiveUnitStats(entry.unit, entry.selectedOptionCodes);
+      return [
+        entry.unit.name,
+        entry.unit.unitType ?? '–',
+        stats.bases !== null ? String(stats.bases) : '–',
+        entry.unit.armament ?? '–',
+        stats.handToHand ?? '–',
+        stats.shooting ?? '–',
+        entry.unit.morale ?? '–',
+        stats.stamina !== null ? String(stats.stamina) : '–',
+        specialRulesCell(entry),
+        String(entryPoints(entry)),
+      ];
+    });
 
     autoTable(doc, {
       startY: y,

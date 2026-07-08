@@ -49,12 +49,20 @@ interface CommanderDTO {
   role: string | null;
 }
 
+interface UnitOptionStatOverridesDTO {
+  bases: number | null;
+  handToHand: string | null;
+  shooting: string | null;
+  stamina: number | null;
+}
+
 interface UnitOptionDTO {
   id: number;
   code: string;
   description: string;
   pointDelta: number;
   constraints: Record<string, unknown> | null;
+  statOverrides: UnitOptionStatOverridesDTO | null;
 }
 
 interface UnitDTO {
@@ -93,6 +101,14 @@ function buildOptionDTO(idFactory: () => number, opt: UnitOptionSeed, locale: Lo
     description: locale === "en" ? opt.description_en : opt.description_es,
     pointDelta: opt.point_delta,
     constraints: opt.constraints ?? null,
+    statOverrides: opt.stat_overrides
+      ? {
+          bases: opt.stat_overrides.bases ?? null,
+          handToHand: opt.stat_overrides.hand_to_hand ?? null,
+          shooting: opt.stat_overrides.shooting ?? null,
+          stamina: opt.stat_overrides.stamina ?? null,
+        }
+      : null,
   };
 }
 

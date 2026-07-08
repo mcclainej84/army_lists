@@ -90,7 +90,7 @@
         @if (factions(); as list) {
           @let visible = visibleFactions();
           @if (visible.length) {
-            <div class="card-grid faction-grid">
+            <div class="card-grid faction-grid" [style]="factionGridStyle()">
               @for (faction of visible; track faction.id) {
                 <a
                   class="card faction-card"

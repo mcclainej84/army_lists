@@ -4,7 +4,20 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
-## 0.20 — 2026-07-08
+## 0.23 — 2026-07-08
+
+- Facciones de Black Powder ahora siempre en una sola fila (antes se repartían en dos según el ancho), tanto con 5 facciones oficiales como con las 6 que aparecen al incluir personalizadas.
+
+## 0.22 — 2026-07-08
+
+- French Indian War ahora usa "Brigada" en vez de "Battalia" para su unidad de mando (igual que Black Powder).
+
+## 0.21 — 2026-07-08
+
+- French Indian War: primer contenido jugable. Guerra Franco-India cargada como conflicto único (el juego lo selecciona solo, sin pedírselo al usuario) con dos facciones independientes, Ingleses y Franceses, cada una con las 10 unidades de la tabla aportada (Infantería Regular/Ligera/de Élite, Milicia, Colonos, Hombres de Frontera, Partida de Guerra India, Caballería Regular, Milicia a Caballo, Artillería) y un Oficial genérico (Valor de Mando 8, 0 puntos) para poder liderar la fuerza.
+- Este juego no tiene "varias battalias": se crea una única automáticamente y las unidades añadidas van directas ahí, sin que haga falta crearla ni seleccionarla a mano (solo aplica a French Indian War).
+- Ampliado el selector de tamaño de unidad: ahora una unidad puede cambiar también sus estadísticas de combate (peanas, C. a C., Disparo, Aguante) al elegir un tamaño más pequeño, no solo los puntos (hasta ahora solo cambiaban los puntos, como en Black Powder). Se ve reflejado en el catálogo, en "Mi Lista" y en el PDF exportado. Añadido también un tercer tamaño "Mediana" para unidades con tres variantes.
+- Iconos de facción para Ingleses/Franceses de French Indian War añadidos al selector.
 
 - Logo principal recortado en origen (eliminado el margen transparente sobrante, sobre todo abajo) y fijado en la pantalla de inicio por altura (150px) en vez de por ancho, para que ocupe menos espacio vertical.
 - Reducido el hueco entre el logo y la frase "Elige tu juego, conflicto y facción..." y compactados los espaciados de toda la pantalla de selección (pasos, tarjetas de conflicto/facción, iconos de facción, checkbox de reglas personalizadas) para que la pantalla completa quepa mejor en 1080p.

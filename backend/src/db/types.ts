@@ -6,6 +6,19 @@ export interface UnitOptionSeed {
   description_es: string;
   point_delta: number;
   constraints?: Record<string, unknown>;
+  /**
+   * Para juegos donde el tamaño de una unidad cambia tambien sus estadisticas de combate
+   * (no solo el coste en puntos, como en Black Powder) — p.ej. French Indian War, donde
+   * cada tamaño tiene su propio numero de peanas, C. a C., Disparo y Aguante. Si un campo
+   * no se especifica aqui, se mantiene el valor base de la unidad (UnitStatsSeed) cuando
+   * esta opcion esta seleccionada.
+   */
+  stat_overrides?: {
+    bases?: number;
+    hand_to_hand?: string;
+    shooting?: string;
+    stamina?: number;
+  };
 }
 
 export interface UnitStatsSeed {
