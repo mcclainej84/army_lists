@@ -133,13 +133,14 @@
                   <span class="drag-col"></span>
                   <span>{{ 'factionDetail.table.unit' | transloco }}</span>
                   <span>{{ 'factionDetail.table.type' | transloco }}</span>
-                  <span>{{ 'factionDetail.table.move' | transloco }}</span>
-                  <span>{{ 'factionDetail.table.bases' | transloco }}</span>
+                  <span class="num-col">{{ 'factionDetail.table.move' | transloco }}</span>
+                  <span class="num-col">{{ 'factionDetail.table.bases' | transloco }}</span>
                   <span>{{ 'factionDetail.table.armament' | transloco }}</span>
-                  <span>{{ 'factionDetail.table.handToHand' | transloco }}</span>
-                  <span>{{ 'factionDetail.table.shooting' | transloco }}</span>
-                  <span>{{ 'factionDetail.table.morale' | transloco }}</span>
-                  <span>{{ 'factionDetail.table.stamina' | transloco }}</span>
+                  <span class="num-col">{{ 'factionDetail.table.weaponRange' | transloco }}</span>
+                  <span class="num-col">{{ 'factionDetail.table.handToHand' | transloco }}</span>
+                  <span class="num-col">{{ 'factionDetail.table.shooting' | transloco }}</span>
+                  <span class="num-col">{{ 'factionDetail.table.morale' | transloco }}</span>
+                  <span class="num-col">{{ 'factionDetail.table.stamina' | transloco }}</span>
                   <span>{{ 'factionDetail.table.specialRules' | transloco }}</span>
                   <span>{{ 'factionDetail.table.option' | transloco }}</span>
                   <span class="points-col">{{ 'factionDetail.table.points' | transloco }}</span>
@@ -152,13 +153,14 @@
                     <span class="drag-col" cdkDragHandle>⠿</span>
                     <span>{{ entry.unit.name }}</span>
                     <span>{{ entry.unit.unitType }}</span>
-                    <span>{{ moveRangeText(entry.unit.moveRange) }}</span>
-                    <span>{{ stats.bases }}</span>
+                    <span class="num-col">{{ moveRangeText(entry.unit.moveRange) }}</span>
+                    <span class="num-col">{{ stats.bases }}</span>
                     <span>{{ entry.unit.armament }}</span>
-                    <span>{{ stats.handToHand }}</span>
-                    <span>{{ stats.shooting }}</span>
-                    <span>{{ entry.unit.morale }}</span>
-                    <span>{{ stats.stamina }}</span>
+                    <span class="num-col">{{ moveRangeText(entry.unit.weaponRange) }}</span>
+                    <span class="num-col">{{ stats.handToHand }}</span>
+                    <span class="num-col">{{ stats.shooting }}</span>
+                    <span class="num-col">{{ entry.unit.morale }}</span>
+                    <span class="num-col">{{ stats.stamina }}</span>
                     <span>{{ entry.unit.specialRules }}</span>
                     <span>{{ optionLabels(entry) }}</span>
                     <span class="points-col">{{ entryPoints(entry) }}</span>
@@ -241,6 +243,7 @@
                       <dl class="unit-stats-main">
                         <div><dt>{{ 'factionDetail.table.move' | transloco }}</dt><dd>{{ moveRangeText(unit.moveRange) }}</dd></div>
                         <div><dt>{{ 'factionDetail.table.armament' | transloco }}</dt><dd>{{ unit.armament || '–' }}</dd></div>
+                        <div><dt>{{ 'factionDetail.table.weaponRange' | transloco }}</dt><dd>{{ moveRangeText(unit.weaponRange) }}</dd></div>
                         <div><dt>{{ 'factionDetail.table.handToHand' | transloco }}</dt><dd>{{ previewStat.handToHand }}</dd></div>
                         <div><dt>{{ 'factionDetail.table.shooting' | transloco }}</dt><dd>{{ previewStat.shooting }}</dd></div>
                         <div><dt>{{ 'factionDetail.table.morale' | transloco }}</dt><dd>{{ unit.morale }}</dd></div>

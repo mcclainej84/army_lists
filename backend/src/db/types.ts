@@ -39,6 +39,9 @@ export interface UnitStatsSeed {
   // Alcance de movimiento en pulgadas. Opcional: se va rellenando juego a juego (ver
   // CHANGELOG); si falta, el frontend simplemente no muestra la columna para esa unidad.
   move_range?: number;
+  // Alcance del arma principal en pulgadas. Mismo criterio que move_range: opcional,
+  // ausente = sin dato todavia (p.ej. unidades sin disparo, como picas o espadachines).
+  weapon_range?: number;
 }
 
 export interface FactionUnitSeed {

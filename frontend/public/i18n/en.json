@@ -49,14 +49,15 @@
       "type": "Type",
       "bases": "Bases",
       "armament": "Armament",
-      "handToHand": "Hand-to-Hand",
+      "handToHand": "H2H",
       "shooting": "Shooting",
       "morale": "Morale",
       "stamina": "Stamina",
       "specialRules": "Special Rules",
       "option": "Option",
       "points": "Points",
-      "move": "Move"
+      "move": "Move",
+      "weaponRange": "Range"
     },
     "distances": {
       "reduce": "Reduce distances (1/3)",
@@ -113,6 +114,7 @@
       "handToHandAbbr": "H2H",
       "noUnits": "No units",
       "moveAbbr": "Move",
+      "weaponRangeAbbr": "Rng",
       "generatedWith": "Generated with Army List Generator",
       "page": "Page",
       "blockedUnassigned": "Assign all units to a {{group}} before exporting"

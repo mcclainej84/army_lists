@@ -85,6 +85,7 @@ interface UnitDTO {
   constraints: Record<string, unknown> | null;
   options: UnitOptionDTO[];
   moveRange: number | null;
+  weaponRange: number | null;
 }
 
 interface FactionDetailDTO extends FactionSummaryDTO {
@@ -135,6 +136,7 @@ function buildUnitDTO(idFactory: () => number, unit: FactionUnitSeed, locale: Lo
     constraints: unit.constraints ?? null,
     options: (unit.options ?? []).map((o) => buildOptionDTO(idFactory, o, locale)),
     moveRange: s.move_range ?? null,
+    weaponRange: s.weapon_range ?? null,
   };
 }
 

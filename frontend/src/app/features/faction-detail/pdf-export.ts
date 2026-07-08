@@ -29,6 +29,7 @@ export interface PdfTableLabels {
   specialRules: string;
   points: string;
   move: string;
+  weaponRange: string;
 }
 
 export interface PdfExportLabels {
@@ -182,6 +183,7 @@ export function exportListToPdf(options: PdfExportOptions): void {
       labels.table.move,
       labels.table.bases,
       labels.table.armament,
+      labels.table.weaponRange,
       labels.table.handToHand,
       labels.table.shooting,
       labels.table.morale,
@@ -242,6 +244,7 @@ export function exportListToPdf(options: PdfExportOptions): void {
         formatDistance(scaleDistance(entry.unit.moveRange, options.reducedDistances)),
         stats.bases !== null ? String(stats.bases) : '–',
         entry.unit.armament ?? '–',
+        formatDistance(scaleDistance(entry.unit.weaponRange, options.reducedDistances)),
         stats.handToHand ?? '–',
         stats.shooting ?? '–',
         entry.unit.morale ?? '–',
@@ -278,20 +281,21 @@ export function exportListToPdf(options: PdfExportOptions): void {
       // Anchos ajustados para que las cabeceras quepan en una sola linea y para que la
       // suma coincida exactamente con contentWidth (si no, la tabla queda mas estrecha
       // que la linea/cabecera de arriba y se ve desalineada).
-      // Se inserto la columna de Movimiento (10mm) restando 3mm a Tipo y 7mm a Reglas
+      // Se inserto la columna de Alcance (arma) restando espacio a Armamento y a Reglas
       // Especiales para que la suma siga cuadrando exactamente con contentWidth (186mm).
       columnStyles: {
         0: { cellWidth: 34 }, // Unidad
         1: { cellWidth: 13 }, // Tipo
         2: { cellWidth: 10, halign: 'center' }, // Movimiento
         3: { cellWidth: 13, halign: 'center' }, // Peanas
-        4: { cellWidth: 27 }, // Armamento
-        5: { cellWidth: 10, halign: 'center' }, // CaC
-        6: { cellWidth: 13, halign: 'center' }, // Disparo
-        7: { cellWidth: 11, halign: 'center' }, // Moral
-        8: { cellWidth: 13, halign: 'center' }, // Aguante
-        9: { cellWidth: 30 }, // Reglas Especiales
-        10: { cellWidth: 12, halign: 'right', fontStyle: 'bold', textColor: COLOR_ACCENT }, // Puntos
+        4: { cellWidth: 22 }, // Armamento
+        5: { cellWidth: 10, halign: 'center' }, // Alcance (arma)
+        6: { cellWidth: 10, halign: 'center' }, // CaC
+        7: { cellWidth: 13, halign: 'center' }, // Disparo
+        8: { cellWidth: 11, halign: 'center' }, // Moral
+        9: { cellWidth: 13, halign: 'center' }, // Aguante
+        10: { cellWidth: 25 }, // Reglas Especiales
+        11: { cellWidth: 12, halign: 'right', fontStyle: 'bold', textColor: COLOR_ACCENT }, // Puntos
       },
     });
 

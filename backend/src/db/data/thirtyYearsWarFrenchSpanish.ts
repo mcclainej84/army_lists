@@ -1,11 +1,10 @@
 import { CommanderSeed, FactionSeed, UnitStatsSeed } from "../types";
 
 // Datos de las tablas de Francia y España (1618-1648) aportadas por el usuario.
-// NOTA: el movimiento (move_range) de estas unidades NO viene de la columna "M" de la
-// tabla original de Francia/España (que se ignoro a proposito en su momento): se aplica
-// la tabla generica de movimiento "Especifica para Epic" que dio el usuario despues,
-// consistente con Imperial/Suecia (ver thirtyYearsWar.ts). El alcance de las armas
-// todavia no se ha anadido (pendiente de que el usuario pase esos datos).
+// NOTA: el movimiento (move_range) y el alcance de armas (weapon_range) de estas unidades
+// NO vienen de las columnas "Alcance"/"M" de la tabla original de Francia/España (que se
+// ignoraron a proposito en su momento): se aplican las tablas genericas "Especifica para
+// Epic" que dio el usuario despues, consistentes con Imperial/Suecia (ver thirtyYearsWar.ts).
 
 const STANDARD_COMMANDERS: CommanderSeed[] = [
   { code: "army_general", name_en: "Army General", name_es: "General en Jefe", command_rating: 8, points: 40, role: "army_general", move_range: 27 },
@@ -27,6 +26,7 @@ const dragoons: UnitStatsSeed = {
   special_rules_en: "Fire & Evade, Dragoons, Marauder",
   special_rules_es: "Disparar y Evadir, Dragones, Marauder",
   move_range: 9,
+  weapon_range: 18,
 };
 
 // Las 4 piezas de artillería son idénticas en ambas listas (misma Peana, valores y puntos).
@@ -44,6 +44,7 @@ const lightOrdnance: UnitStatsSeed = {
   special_rules_en: "–",
   special_rules_es: "–",
   move_range: 6,
+  weapon_range: 24,
 };
 
 const mediumOrdnance: UnitStatsSeed = {
@@ -51,6 +52,7 @@ const mediumOrdnance: UnitStatsSeed = {
   armament_en: "Medium Cannon",
   armament_es: "Cañón Medio",
   move_range: 3,
+  weapon_range: 36,
 };
 
 const heavyOrdnance: UnitStatsSeed = {
@@ -58,6 +60,7 @@ const heavyOrdnance: UnitStatsSeed = {
   armament_en: "Heavy Cannon",
   armament_es: "Cañón Pesado",
   move_range: 0,
+  weapon_range: 48,
 };
 
 const siegeOrdnance: UnitStatsSeed = {
@@ -74,6 +77,7 @@ const siegeOrdnance: UnitStatsSeed = {
   special_rules_en: "–",
   special_rules_es: "–",
   move_range: 0,
+  weapon_range: 48,
 };
 
 // Un maximo de 2 baterias de artilleria por battalia, igual que en Imperial/Suecia
@@ -106,6 +110,7 @@ export const frenchFaction: FactionSeed = {
         special_rules_en: "Lance, Elite 4+, Caracole, Heavy Cavalry +1",
         special_rules_es: "Lanza, Élite 4+, Caracola, Caballería Pesada +1",
         move_range: 9,
+        weapon_range: 6,
       },
       base_points: 64,
       constraints: { maxUnitsPerArmy: 1 },
@@ -128,6 +133,7 @@ export const frenchFaction: FactionSeed = {
         special_rules_en: "Caracole, Heavy Cavalry +1",
         special_rules_es: "Caracola, Caballería Pesada +1",
         move_range: 9,
+        weapon_range: 6,
       },
       base_points: 53,
     },
@@ -149,6 +155,7 @@ export const frenchFaction: FactionSeed = {
         special_rules_en: "–",
         special_rules_es: "–",
         move_range: 9,
+        weapon_range: 18,
       },
       base_points: 36,
     },
@@ -170,6 +177,7 @@ export const frenchFaction: FactionSeed = {
         special_rules_en: "–",
         special_rules_es: "–",
         move_range: 12,
+        weapon_range: 6,
       },
       base_points: 39,
     },
@@ -191,6 +199,7 @@ export const frenchFaction: FactionSeed = {
         special_rules_en: "–",
         special_rules_es: "–",
         move_range: 12,
+        weapon_range: 18,
       },
       base_points: 39,
     },
@@ -212,6 +221,7 @@ export const frenchFaction: FactionSeed = {
         bases: 4,
         armament_en: "Pike, Musket",
         armament_es: "Pica, Mosquete",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "4",
         morale: "4+",
@@ -234,6 +244,7 @@ export const frenchFaction: FactionSeed = {
         bases: 4,
         armament_en: "Pike, Musket",
         armament_es: "Pica, Mosquete",
+        weapon_range: 18,
         hand_to_hand: "7",
         shooting: "3",
         morale: "4+",
@@ -255,6 +266,7 @@ export const frenchFaction: FactionSeed = {
         bases: 4,
         armament_en: "Pike, Musket",
         armament_es: "Pica, Mosquete",
+        weapon_range: 18,
         hand_to_hand: "7",
         shooting: "3",
         morale: "4+",
@@ -319,6 +331,7 @@ export const frenchFaction: FactionSeed = {
         bases: 2,
         armament_en: "Matchlock Muskets",
         armament_es: "Mosquetes de Mecha",
+        weapon_range: 18,
         hand_to_hand: "4",
         shooting: "2",
         morale: "4+",
@@ -341,6 +354,7 @@ export const frenchFaction: FactionSeed = {
         bases: 2,
         armament_en: "Matchlock Muskets",
         armament_es: "Mosquetes de Mecha",
+        weapon_range: 18,
         hand_to_hand: "3",
         shooting: "3",
         morale: "4+",
@@ -363,6 +377,7 @@ export const frenchFaction: FactionSeed = {
         bases: 2,
         armament_en: "Matchlock Muskets",
         armament_es: "Mosquetes de Mecha",
+        weapon_range: 18,
         hand_to_hand: "4",
         shooting: "2",
         morale: "4+",
@@ -384,6 +399,7 @@ export const frenchFaction: FactionSeed = {
         bases: 2,
         armament_en: "Harquebuses, Assault Weapons",
         armament_es: "Arcabuces, Armas de Asalto",
+        weapon_range: 18,
         hand_to_hand: "4",
         shooting: "2",
         morale: "4+",
@@ -410,6 +426,7 @@ export const frenchFaction: FactionSeed = {
         bases: 2,
         armament_en: "Matchlock Muskets",
         armament_es: "Mosquetes de Mecha",
+        weapon_range: 18,
         hand_to_hand: "3",
         shooting: "2",
         morale: "5+",
@@ -452,6 +469,7 @@ export const frenchFaction: FactionSeed = {
         bases: 2,
         armament_en: "Mixed Weapons",
         armament_es: "Armas Mixtas",
+        weapon_range: 6,
         hand_to_hand: "4",
         shooting: "1",
         morale: "6+",
@@ -523,6 +541,7 @@ export const spanishFaction: FactionSeed = {
         special_rules_en: "Lance, Elite 4+, Caracole, Heavy Cavalry +1",
         special_rules_es: "Lanza, Élite 4+, Caracola, Caballería Pesada +1",
         move_range: 9,
+        weapon_range: 6,
       },
       base_points: 64,
       constraints: { maxUnitsPerArmy: 1 },
@@ -545,6 +564,7 @@ export const spanishFaction: FactionSeed = {
         special_rules_en: "Caracole, Heavy Cavalry +1",
         special_rules_es: "Caracola, Caballería Pesada +1",
         move_range: 9,
+        weapon_range: 6,
       },
       base_points: 53,
     },
@@ -566,6 +586,7 @@ export const spanishFaction: FactionSeed = {
         special_rules_en: "–",
         special_rules_es: "–",
         move_range: 9,
+        weapon_range: 12,
       },
       base_points: 39,
     },
@@ -587,6 +608,7 @@ export const spanishFaction: FactionSeed = {
         special_rules_en: "–",
         special_rules_es: "–",
         move_range: 12,
+        weapon_range: 6,
       },
       base_points: 35,
     },
@@ -608,6 +630,7 @@ export const spanishFaction: FactionSeed = {
         special_rules_en: "Lance",
         special_rules_es: "Lanza",
         move_range: 12,
+        weapon_range: 6,
       },
       base_points: 39,
     },
@@ -622,6 +645,7 @@ export const spanishFaction: FactionSeed = {
         bases: 3,
         armament_en: "Sword, Crossbow",
         armament_es: "Espada, Ballesta",
+        weapon_range: 18,
         hand_to_hand: "7",
         shooting: "1",
         morale: "5+",
@@ -650,6 +674,7 @@ export const spanishFaction: FactionSeed = {
         bases: 4,
         armament_en: "Pike, Musket",
         armament_es: "Pica, Mosquete",
+        weapon_range: 18,
         hand_to_hand: "7",
         shooting: "3",
         morale: "4+",
@@ -672,6 +697,7 @@ export const spanishFaction: FactionSeed = {
         bases: 4,
         armament_en: "Pike, Musket",
         armament_es: "Pica, Mosquete",
+        weapon_range: 18,
         hand_to_hand: "7",
         shooting: "3",
         morale: "4+",
@@ -693,6 +719,7 @@ export const spanishFaction: FactionSeed = {
         bases: 4,
         armament_en: "Pike, Musket",
         armament_es: "Pica, Mosquete",
+        weapon_range: 18,
         hand_to_hand: "7",
         shooting: "3",
         morale: "4+",
@@ -756,6 +783,7 @@ export const spanishFaction: FactionSeed = {
         bases: 2,
         armament_en: "Matchlock Muskets",
         armament_es: "Mosquetes de Mecha",
+        weapon_range: 18,
         hand_to_hand: "4",
         shooting: "2",
         morale: "4+",
@@ -778,6 +806,7 @@ export const spanishFaction: FactionSeed = {
         bases: 2,
         armament_en: "Matchlock Muskets",
         armament_es: "Mosquetes de Mecha",
+        weapon_range: 18,
         hand_to_hand: "3",
         shooting: "3",
         morale: "4+",
@@ -799,6 +828,7 @@ export const spanishFaction: FactionSeed = {
         bases: 2,
         armament_en: "Matchlock Muskets",
         armament_es: "Mosquetes de Mecha",
+        weapon_range: 18,
         hand_to_hand: "3",
         shooting: "2",
         morale: "5+",
@@ -841,6 +871,7 @@ export const spanishFaction: FactionSeed = {
         bases: 2,
         armament_en: "Mixed Weapons",
         armament_es: "Armas Mixtas",
+        weapon_range: 6,
         hand_to_hand: "4",
         shooting: "1",
         morale: "6+",

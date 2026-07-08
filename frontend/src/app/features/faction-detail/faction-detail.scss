@@ -656,7 +656,7 @@ h2.catalog-frame-title {
 
 .unit-row {
   display: grid;
-  grid-template-columns: 1.2rem 1.4fr 1fr 0.6fr 0.6fr 1.1fr 0.9fr 0.9fr 0.7fr 0.7fr 1.1fr 1.7fr 0.7fr 1.2rem;
+  grid-template-columns: 1.2rem 1.4fr 0.9fr 0.7fr 0.55fr 1fr 0.55fr 0.55fr 0.6fr 0.6fr 0.6fr 1.2fr 1.7fr 0.7fr 1.2rem;
   align-items: center;
   gap: 0.35rem;
   padding: 0.3rem 0.4rem;
@@ -681,6 +681,13 @@ h2.catalog-frame-title {
   letter-spacing: 0.02em;
   color: #6b5b4b;
   background: transparent;
+}
+
+// Movimiento, Peanas, CaC, Disparo, Moral y Aguante son valores cortos (numeros o "X+"):
+// centrados en vez de pegados a la izquierda, que es lo que hacia que la fila se viera
+// amontonada al añadir la columna de Movimiento.
+.num-col {
+  text-align: center;
 }
 
 .drag-col {

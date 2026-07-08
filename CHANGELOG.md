@@ -4,6 +4,12 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.35 — 2026-07-08
+
+- Tabla de "Mi Lista" menos apretada: Movimiento, Peanas, CaC, Disparo, Moral y Aguante ahora centrados, y "Cuerpo a Cuerpo" se abrevia a "CaC" (Hand-to-Hand a "H2H" en inglés) para ganar espacio.
+- Añadido el alcance de las armas (en pulgadas) a todas las unidades con disparo de los 3 juegos, con las tablas que pasó el usuario: Pistolas/armas arrojadizas 6", Mosquetes de ánima lisa 18", Mosquetes de ánima rayada 24", Artillería a caballo/ligera 36", Artillería a pie 48" (común); y para Epic Pike & Shotte: Pistolas/arrojadizas 6", Carabinas 12", Mosquetes/Chispas/Arcos 18", Artillería Ligera 24", Media 36", Pesada y de Asedio 48". Nueva columna "Alcance" junto al Armamento, también afectada por el botón de recortar distancias.
+- Unidades sin disparo (picas, espadachines, caballería solo cuerpo a cuerpo) se quedan sin alcance de arma, como corresponde.
+
 ## 0.34 — 2026-07-08 (rama `feature/firebase-lists`)
 
 - Añadido el alcance de movimiento (en pulgadas) a todas las unidades y comandantes de los 3 juegos (French Indian War, Epic Pike & Shotte y Black Powder Napoleónicas), con la tabla de valores que pasó el usuario: 12"/18"/12" (Infantería/Caballería/Artillería) y 36"/48" (Comandante a pie/a caballo) en general, con una tabla propia y más granular para Epic Pike & Shotte (Infantería 6", Caballería 9", Caballería Ligera 12", artillería según su tipo de 0" a 6", Comandantes 18"/27"). Cuando la tabla original no aclaraba si un comandante genérico iba a pie o a caballo, se ha asumido a caballo (a pie en el caso del Oficial de French Indian War) — fácil de corregir si no es correcto.

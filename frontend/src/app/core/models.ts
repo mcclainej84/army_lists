@@ -64,6 +64,7 @@ export interface UnitDTO {
   constraints: Record<string, unknown> | null;
   options: UnitOptionDTO[];
   moveRange: number | null;
+  weaponRange: number | null;
 }
 
 export interface FactionDetailDTO extends FactionSummaryDTO {

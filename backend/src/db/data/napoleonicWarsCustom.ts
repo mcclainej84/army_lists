@@ -62,8 +62,7 @@ export const britishCustomFaction: FactionSeed = {
   name_es: "Gran Bretaña (Reglas Personalizadas)",
   is_official: false,
   commanders: commandersUpTo(8),
-  units: [
-    {
+  units: [    {
       code: "line_infantry",
       name_en: "Infantry",
       name_es: "Infantería",
@@ -74,6 +73,7 @@ export const britishCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -83,8 +83,7 @@ export const britishCustomFaction: FactionSeed = {
       },
       base_points: 36,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "light_infantry",
       name_en: "Light Infantry",
       name_es: "Infantería Ligera",
@@ -95,6 +94,7 @@ export const britishCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -104,8 +104,7 @@ export const britishCustomFaction: FactionSeed = {
       },
       base_points: 39,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "kgl_light_infantry",
       name_en: "KGL Light Infantry",
       name_es: "Infantería Ligera KGL",
@@ -116,6 +115,7 @@ export const britishCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Rifled Musket",
         armament_es: "Mosquete de Ánima Rayada",
+        weapon_range: 24,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -125,8 +125,7 @@ export const britishCustomFaction: FactionSeed = {
       },
       base_points: 42,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "riflemen",
       name_en: "Riflemen",
       name_es: "Fusileros",
@@ -137,6 +136,7 @@ export const britishCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Rifled Musket",
         armament_es: "Mosquete de Ánima Rayada",
+        weapon_range: 24,
         hand_to_hand: "6",
         shooting: "4",
         morale: "4",
@@ -146,8 +146,7 @@ export const britishCustomFaction: FactionSeed = {
       },
       base_points: 53,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "militia",
       name_en: "Militia",
       name_es: "Milicia",
@@ -158,6 +157,7 @@ export const britishCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "5",
@@ -167,8 +167,7 @@ export const britishCustomFaction: FactionSeed = {
       },
       base_points: 29,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "hanoverian_infantry",
       name_en: "Hanoverian Infantry",
       name_es: "Infantería Hannoveriana",
@@ -179,6 +178,7 @@ export const britishCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -188,8 +188,7 @@ export const britishCustomFaction: FactionSeed = {
       },
       base_points: 36,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "hanoverian_landwehr",
       name_en: "Hanoverian Landwehr",
       name_es: "Infantería Landwehr Hannoveriana",
@@ -200,6 +199,7 @@ export const britishCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -209,8 +209,7 @@ export const britishCustomFaction: FactionSeed = {
       },
       base_points: 30,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "highland_infantry",
       name_en: "Highland Infantry",
       name_es: "Infantería Highland",
@@ -221,6 +220,7 @@ export const britishCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -230,8 +230,7 @@ export const britishCustomFaction: FactionSeed = {
       },
       base_points: 40,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "guards_infantry",
       name_en: "Guards Infantry",
       name_es: "Infantería de la Guardia",
@@ -242,6 +241,7 @@ export const britishCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "7",
         shooting: "4",
         morale: "3",
@@ -251,8 +251,7 @@ export const britishCustomFaction: FactionSeed = {
       },
       base_points: 59,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "dragoons",
       name_en: "Dragoons",
       name_es: "Dragones",
@@ -272,8 +271,7 @@ export const britishCustomFaction: FactionSeed = {
       },
       base_points: 44,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "hussars",
       name_en: "Hussars",
       name_es: "Húsares",
@@ -293,8 +291,7 @@ export const britishCustomFaction: FactionSeed = {
       },
       base_points: 43,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "household_cavalry",
       name_en: "Household Cavalry",
       name_es: "Caballería Household",
@@ -314,8 +311,7 @@ export const britishCustomFaction: FactionSeed = {
       },
       base_points: 58,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "hanoverian_artillery",
       name_en: "Hanoverian Artillery",
       name_es: "Artillería Hannoveriana",
@@ -326,6 +322,7 @@ export const britishCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 48,
         hand_to_hand: "1",
         shooting: "3-2-1",
         morale: "4",
@@ -335,8 +332,7 @@ export const britishCustomFaction: FactionSeed = {
       },
       base_points: 27,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "royal_or_kgl_artillery",
       name_en: "Royal or KGL Artillery",
       name_es: "Artillería Real o KGL",
@@ -347,6 +343,7 @@ export const britishCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 48,
         hand_to_hand: "1",
         shooting: "3-2-1",
         morale: "4",
@@ -356,8 +353,7 @@ export const britishCustomFaction: FactionSeed = {
       },
       base_points: 31,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "royal_horse_artillery",
       name_en: "Royal Horse Artillery",
       name_es: "Artillería Real a Caballo",
@@ -368,6 +364,7 @@ export const britishCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 36,
         hand_to_hand: "1",
         shooting: "3-2-1",
         morale: "4",
@@ -387,8 +384,7 @@ export const frenchCustomFaction: FactionSeed = {
   name_es: "Francia (Reglas Personalizadas)",
   is_official: false,
   commanders: commandersUpTo(9),
-  units: [
-    {
+  units: [    {
       code: "line_infantry",
       name_en: "Infantry",
       name_es: "Infantería",
@@ -399,6 +395,7 @@ export const frenchCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -408,8 +405,7 @@ export const frenchCustomFaction: FactionSeed = {
       },
       base_points: 36,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "light_infantry",
       name_en: "Light Infantry",
       name_es: "Infantería Ligera",
@@ -420,6 +416,7 @@ export const frenchCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -429,8 +426,7 @@ export const frenchCustomFaction: FactionSeed = {
       },
       base_points: 39,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "recruits",
       name_en: "Recruits",
       name_es: "Reclutas",
@@ -441,6 +437,7 @@ export const frenchCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "5",
@@ -450,8 +447,7 @@ export const frenchCustomFaction: FactionSeed = {
       },
       base_points: 29,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "old_guard",
       name_en: "Old Guard",
       name_es: "Vieja Guardia",
@@ -462,6 +458,7 @@ export const frenchCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "8",
         shooting: "4",
         morale: "3",
@@ -471,8 +468,7 @@ export const frenchCustomFaction: FactionSeed = {
       },
       base_points: 59,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "middle_guard",
       name_en: "Middle Guard",
       name_es: "Media Guardia",
@@ -483,6 +479,7 @@ export const frenchCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "8",
         shooting: "4",
         morale: "3",
@@ -492,8 +489,7 @@ export const frenchCustomFaction: FactionSeed = {
       },
       base_points: 51,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "young_guard",
       name_en: "Young Guard",
       name_es: "Joven Guardia",
@@ -504,6 +500,7 @@ export const frenchCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "4",
         morale: "3",
@@ -513,8 +510,7 @@ export const frenchCustomFaction: FactionSeed = {
       },
       base_points: 40,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "dragoons",
       name_en: "Dragoons",
       name_es: "Dragones",
@@ -534,8 +530,7 @@ export const frenchCustomFaction: FactionSeed = {
       },
       base_points: 44,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "hussars",
       name_en: "Hussars",
       name_es: "Húsares",
@@ -555,8 +550,7 @@ export const frenchCustomFaction: FactionSeed = {
       },
       base_points: 41,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "lancers",
       name_en: "Lancers",
       name_es: "Lanceros",
@@ -576,8 +570,7 @@ export const frenchCustomFaction: FactionSeed = {
       },
       base_points: 48,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "cuirassiers_carabiniers",
       name_en: "Cuirassiers / Carabiniers",
       name_es: "Coraceros / Carabineros",
@@ -597,8 +590,7 @@ export const frenchCustomFaction: FactionSeed = {
       },
       base_points: 58,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "guard_lancers",
       name_en: "Guard Lancers",
       name_es: "Lanceros de la Guardia",
@@ -618,8 +610,7 @@ export const frenchCustomFaction: FactionSeed = {
       },
       base_points: 58,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "foot_artillery",
       name_en: "Foot Artillery",
       name_es: "Artillería a Pie",
@@ -630,6 +621,7 @@ export const frenchCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 48,
         hand_to_hand: "1",
         shooting: "3-2-1",
         morale: "4",
@@ -639,8 +631,7 @@ export const frenchCustomFaction: FactionSeed = {
       },
       base_points: 27,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "horse_artillery",
       name_en: "Horse Artillery",
       name_es: "Artillería a Caballo",
@@ -651,6 +642,7 @@ export const frenchCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 36,
         hand_to_hand: "1",
         shooting: "3-2-1",
         morale: "4",
@@ -660,8 +652,7 @@ export const frenchCustomFaction: FactionSeed = {
       },
       base_points: 26,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "guard_heavy_artillery",
       name_en: "Guard Heavy Artillery",
       name_es: "Artillería Pesada de la Guardia",
@@ -672,6 +663,7 @@ export const frenchCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 48,
         hand_to_hand: "1",
         shooting: "3-2-1",
         morale: "4",
@@ -681,8 +673,7 @@ export const frenchCustomFaction: FactionSeed = {
       },
       base_points: 46,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "guard_horse_artillery",
       name_en: "Guard Horse Artillery",
       name_es: "Artillería a Caballo de la Guardia",
@@ -693,6 +684,7 @@ export const frenchCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 36,
         hand_to_hand: "1",
         shooting: "3-2-1",
         morale: "4",
@@ -712,8 +704,7 @@ export const prussianCustomFaction: FactionSeed = {
   name_es: "Prusia (Reglas Personalizadas)",
   is_official: false,
   commanders: commandersUpTo(9),
-  units: [
-    {
+  units: [    {
       code: "musketeers",
       name_en: "Musketeers",
       name_es: "Mosqueteros",
@@ -724,6 +715,7 @@ export const prussianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -733,8 +725,7 @@ export const prussianCustomFaction: FactionSeed = {
       },
       base_points: 36,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "fusiliers",
       name_en: "Fusiliers",
       name_es: "Fusileros",
@@ -745,6 +736,7 @@ export const prussianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -754,8 +746,7 @@ export const prussianCustomFaction: FactionSeed = {
       },
       base_points: 39,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "jagers",
       name_en: "Jägers",
       name_es: "Jägers",
@@ -766,6 +757,7 @@ export const prussianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Rifled Musket",
         armament_es: "Mosquete de Ánima Rayada",
+        weapon_range: 24,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -775,8 +767,7 @@ export const prussianCustomFaction: FactionSeed = {
       },
       base_points: 50,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "militia",
       name_en: "Militia",
       name_es: "Milicia",
@@ -787,6 +778,7 @@ export const prussianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "5",
@@ -796,8 +788,7 @@ export const prussianCustomFaction: FactionSeed = {
       },
       base_points: 29,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "landwehr_infantry",
       name_en: "Landwehr Infantry",
       name_es: "Infantería Landwehr",
@@ -808,6 +799,7 @@ export const prussianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -817,8 +809,7 @@ export const prussianCustomFaction: FactionSeed = {
       },
       base_points: 33,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "dragoons",
       name_en: "Dragoons",
       name_es: "Dragones",
@@ -838,8 +829,7 @@ export const prussianCustomFaction: FactionSeed = {
       },
       base_points: 44,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "uhlans",
       name_en: "Uhlans",
       name_es: "Ulanos",
@@ -859,8 +849,7 @@ export const prussianCustomFaction: FactionSeed = {
       },
       base_points: 48,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "hussars",
       name_en: "Hussars",
       name_es: "Húsares",
@@ -880,8 +869,7 @@ export const prussianCustomFaction: FactionSeed = {
       },
       base_points: 41,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "landwehr_cavalry",
       name_en: "Landwehr Cavalry",
       name_es: "Caballería Landwehr",
@@ -901,8 +889,7 @@ export const prussianCustomFaction: FactionSeed = {
       },
       base_points: 32,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "foot_artillery",
       name_en: "Foot Artillery",
       name_es: "Artillería a Pie",
@@ -913,6 +900,7 @@ export const prussianCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 48,
         hand_to_hand: "1",
         shooting: "3-2-1",
         morale: "4",
@@ -922,8 +910,7 @@ export const prussianCustomFaction: FactionSeed = {
       },
       base_points: 27,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "horse_artillery",
       name_en: "Horse Artillery",
       name_es: "Artillería a Caballo",
@@ -934,6 +921,7 @@ export const prussianCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 36,
         hand_to_hand: "1",
         shooting: "3-2-1",
         morale: "4",
@@ -953,8 +941,7 @@ export const austrianCustomFaction: FactionSeed = {
   name_es: "Austria (Reglas Personalizadas)",
   is_official: false,
   commanders: commandersUpTo(8),
-  units: [
-    {
+  units: [    {
       code: "line_infantry",
       name_en: "Infantry",
       name_es: "Infantería",
@@ -965,6 +952,7 @@ export const austrianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -974,8 +962,7 @@ export const austrianCustomFaction: FactionSeed = {
       },
       base_points: 36,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "hungarian_infantry",
       name_en: "Hungarian Infantry",
       name_es: "Infantería Húngara",
@@ -986,6 +973,7 @@ export const austrianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -995,8 +983,7 @@ export const austrianCustomFaction: FactionSeed = {
       },
       base_points: 40,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "light_infantry",
       name_en: "Light Infantry",
       name_es: "Infantería Ligera",
@@ -1007,6 +994,7 @@ export const austrianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -1016,8 +1004,7 @@ export const austrianCustomFaction: FactionSeed = {
       },
       base_points: 39,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "grenz",
       name_en: "Grenz",
       name_es: "Grenz",
@@ -1028,6 +1015,7 @@ export const austrianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -1037,8 +1025,7 @@ export const austrianCustomFaction: FactionSeed = {
       },
       base_points: 39,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "jagers",
       name_en: "Jägers",
       name_es: "Jägers",
@@ -1049,6 +1036,7 @@ export const austrianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Rifled Musket",
         armament_es: "Mosquete de Ánima Rayada",
+        weapon_range: 24,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -1058,8 +1046,7 @@ export const austrianCustomFaction: FactionSeed = {
       },
       base_points: 42,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "grenadiers",
       name_en: "Grenadiers",
       name_es: "Granaderos",
@@ -1070,6 +1057,7 @@ export const austrianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "7",
         shooting: "3",
         morale: "4",
@@ -1079,8 +1067,7 @@ export const austrianCustomFaction: FactionSeed = {
       },
       base_points: 47,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "landwehr_infantry",
       name_en: "Landwehr Infantry",
       name_es: "Infantería Landwehr",
@@ -1091,6 +1078,7 @@ export const austrianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -1100,8 +1088,7 @@ export const austrianCustomFaction: FactionSeed = {
       },
       base_points: 33,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "dragoons",
       name_en: "Dragoons",
       name_es: "Dragones",
@@ -1121,8 +1108,7 @@ export const austrianCustomFaction: FactionSeed = {
       },
       base_points: 44,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "cuirassiers",
       name_en: "Cuirassiers",
       name_es: "Coraceros",
@@ -1142,8 +1128,7 @@ export const austrianCustomFaction: FactionSeed = {
       },
       base_points: 58,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "uhlans",
       name_en: "Uhlans",
       name_es: "Ulanos",
@@ -1163,8 +1148,7 @@ export const austrianCustomFaction: FactionSeed = {
       },
       base_points: 48,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "hussars",
       name_en: "Hussars",
       name_es: "Húsares",
@@ -1184,8 +1168,7 @@ export const austrianCustomFaction: FactionSeed = {
       },
       base_points: 41,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "foot_artillery",
       name_en: "Foot Artillery",
       name_es: "Artillería a Pie",
@@ -1196,6 +1179,7 @@ export const austrianCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 48,
         hand_to_hand: "1",
         shooting: "3-2-1",
         morale: "4",
@@ -1205,8 +1189,7 @@ export const austrianCustomFaction: FactionSeed = {
       },
       base_points: 27,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "horse_artillery",
       name_en: "Horse Artillery",
       name_es: "Artillería a Caballo",
@@ -1217,6 +1200,7 @@ export const austrianCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 36,
         hand_to_hand: "1",
         shooting: "3-2-1",
         morale: "4",
@@ -1239,8 +1223,7 @@ export const russianCustomFaction: FactionSeed = {
   name_es: "Rusia",
   is_official: false,
   commanders: commandersUpTo(9),
-  units: [
-    {
+  units: [    {
       code: "line_infantry",
       name_en: "Infantry",
       name_es: "Infantería",
@@ -1251,6 +1234,7 @@ export const russianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -1260,8 +1244,7 @@ export const russianCustomFaction: FactionSeed = {
       },
       base_points: 37,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "jager_rifles",
       name_en: "Jäger Rifles",
       name_es: "Jägers",
@@ -1272,6 +1255,7 @@ export const russianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -1281,8 +1265,7 @@ export const russianCustomFaction: FactionSeed = {
       },
       base_points: 40,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "jager_volunteers",
       name_en: "Volunteer Jägers",
       name_es: "Jägers Voluntarios",
@@ -1293,6 +1276,7 @@ export const russianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
@@ -1302,8 +1286,7 @@ export const russianCustomFaction: FactionSeed = {
       },
       base_points: 33,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "opolchenie",
       name_en: "Opolchenie",
       name_es: "Opolchenie",
@@ -1314,6 +1297,7 @@ export const russianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "5",
         shooting: "2",
         morale: "5",
@@ -1323,8 +1307,7 @@ export const russianCustomFaction: FactionSeed = {
       },
       base_points: 23,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "grenadiers",
       name_en: "Grenadiers",
       name_es: "Granaderos",
@@ -1335,6 +1318,7 @@ export const russianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "7",
         shooting: "3",
         morale: "4",
@@ -1344,8 +1328,7 @@ export const russianCustomFaction: FactionSeed = {
       },
       base_points: 48,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "life_guard",
       name_en: "Life Guard",
       name_es: "Life Guard",
@@ -1356,6 +1339,7 @@ export const russianCustomFaction: FactionSeed = {
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
         hand_to_hand: "7",
         shooting: "3",
         morale: "3",
@@ -1365,8 +1349,7 @@ export const russianCustomFaction: FactionSeed = {
       },
       base_points: 57,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "dragoons",
       name_en: "Dragoons",
       name_es: "Dragones",
@@ -1386,8 +1369,7 @@ export const russianCustomFaction: FactionSeed = {
       },
       base_points: 44,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "cuirassiers",
       name_en: "Cuirassiers",
       name_es: "Coraceros",
@@ -1407,8 +1389,7 @@ export const russianCustomFaction: FactionSeed = {
       },
       base_points: 58,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "uhlans",
       name_en: "Uhlans",
       name_es: "Ulanos",
@@ -1428,8 +1409,7 @@ export const russianCustomFaction: FactionSeed = {
       },
       base_points: 48,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "hussars",
       name_en: "Hussars",
       name_es: "Húsares",
@@ -1449,8 +1429,7 @@ export const russianCustomFaction: FactionSeed = {
       },
       base_points: 41,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "foot_artillery",
       name_en: "Foot Artillery",
       name_es: "Artillería a Pie",
@@ -1461,6 +1440,7 @@ export const russianCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 48,
         hand_to_hand: "1",
         shooting: "3-2-1",
         morale: "4",
@@ -1470,8 +1450,7 @@ export const russianCustomFaction: FactionSeed = {
       },
       base_points: 27,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "foot_battery_artillery",
       name_en: "Foot Battery Artillery",
       name_es: "Artillería en Batería a Pie",
@@ -1482,6 +1461,7 @@ export const russianCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 48,
         hand_to_hand: "2",
         shooting: "4-2-2",
         morale: "4",
@@ -1491,8 +1471,7 @@ export const russianCustomFaction: FactionSeed = {
       },
       base_points: 36,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "horse_artillery",
       name_en: "Horse Artillery",
       name_es: "Artillería a Caballo",
@@ -1503,6 +1482,7 @@ export const russianCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 36,
         hand_to_hand: "1",
         shooting: "3-2-1",
         morale: "4",
@@ -1512,8 +1492,7 @@ export const russianCustomFaction: FactionSeed = {
       },
       base_points: 26,
       options: [...SIZE_OPTIONS],
-    },
-    {
+    },    {
       code: "horse_battery_artillery",
       name_en: "Horse Battery Artillery",
       name_es: "Artillería en Batería a Caballo",
@@ -1524,6 +1503,7 @@ export const russianCustomFaction: FactionSeed = {
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
         armament_es: "Artillería de Ánima Lisa",
+        weapon_range: 36,
         hand_to_hand: "2",
         shooting: "4-2-2",
         morale: "4",

@@ -18,6 +18,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "Caracole, Heavy Cavalry",
     special_rules_es: "Caracola, Caballería Pesada",
     move_range: 9,
+    weapon_range: 6,
   },
   harquebusiers: {
     category: "HORSE",
@@ -33,6 +34,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "–",
     special_rules_es: "–",
     move_range: 9,
+    weapon_range: 12,
   },
   lightCavalry: {
     category: "HORSE",
@@ -48,6 +50,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "–",
     special_rules_es: "–",
     move_range: 12,
+    weapon_range: 6,
   },
   finnishCavalry: {
     category: "HORSE",
@@ -63,6 +66,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "Gallopers, Ferocious Charge",
     special_rules_es: "Gallopers, Carga Feroz",
     move_range: 12,
+    weapon_range: 6,
   },
   croatCavalry: {
     category: "HORSE",
@@ -78,6 +82,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "–",
     special_rules_es: "–",
     move_range: 12,
+    weapon_range: 6,
   },
   hussars: {
     category: "HORSE",
@@ -93,6 +98,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "–",
     special_rules_es: "–",
     move_range: 12,
+    weapon_range: 18,
   },
   cossacks: {
     category: "HORSE",
@@ -108,6 +114,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "Marauder",
     special_rules_es: "Merodeador",
     move_range: 12,
+    weapon_range: 18,
   },
   dragoons: {
     category: "HORSE",
@@ -123,6 +130,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "Fire & Evade, Marauder",
     special_rules_es: "Disparar y Replegarse, Merodeador",
     move_range: 9,
+    weapon_range: 18,
   },
   imperialPikeMusket: {
     category: "FOOT",
@@ -138,6 +146,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "Hedgehog, Mercenary",
     special_rules_es: "Erizo, Mercenario",
     move_range: 6,
+    weapon_range: 18,
   },
   imperialPikemen: {
     category: "FOOT",
@@ -168,6 +177,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "Mercenary",
     special_rules_es: "Mercenario",
     move_range: 6,
+    weapon_range: 18,
   },
   saxonPikeMusket: {
     category: "FOOT",
@@ -183,6 +193,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "Hedgehog, Mercenary",
     special_rules_es: "Erizo, Mercenario",
     move_range: 6,
+    weapon_range: 18,
   },
   saxonPikemen: {
     category: "FOOT",
@@ -213,6 +224,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "Mercenary",
     special_rules_es: "Mercenario",
     move_range: 6,
+    weapon_range: 18,
   },
   swedishGermanPikeMusket: {
     category: "FOOT",
@@ -228,6 +240,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "Hedgehog, First Fire",
     special_rules_es: "Erizo, Primer Fuego",
     move_range: 6,
+    weapon_range: 18,
   },
   swedishGermanPikemen: {
     category: "FOOT",
@@ -258,6 +271,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "First Fire",
     special_rules_es: "Primer Fuego",
     move_range: 6,
+    weapon_range: 18,
   },
   commandedMusket: {
     category: "FOOT",
@@ -273,6 +287,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "First Fire",
     special_rules_es: "Primer Fuego",
     move_range: 6,
+    weapon_range: 18,
   },
   swedishGermanCommandedMusket: {
     category: "FOOT",
@@ -288,6 +303,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "First Fire",
     special_rules_es: "Primer Fuego",
     move_range: 6,
+    weapon_range: 18,
   },
   stormingParty: {
     category: "FOOT",
@@ -303,6 +319,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "First Fire",
     special_rules_es: "Primer Fuego",
     move_range: 6,
+    weapon_range: 18,
   },
   swordsmen: {
     category: "FOOT",
@@ -333,6 +350,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "Rabble, Militia",
     special_rules_es: "Chusma, Milicia",
     move_range: 6,
+    weapon_range: 6,
   },
   lightOrdnance: {
     category: "ORDNANCE",
@@ -351,6 +369,9 @@ const STATS: Record<string, UnitStatsSeed> = {
     // 6" como "artilleria enganchada/limbered"). medium_ordnance y heavy_ordnance
     // sobreescriben este valor mas abajo con su propio move_range (3" y 0").
     move_range: 6,
+    // Alcance del arma: 24" (Light Ordnance). medium_ordnance/heavy_ordnance sobreescriben
+    // este valor mas abajo (36"/48") igual que hacen con move_range.
+    weapon_range: 24,
   },
   mortar: {
     category: "ORDNANCE",
@@ -366,6 +387,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     special_rules_en: "–",
     special_rules_es: "–",
     move_range: 0,
+    weapon_range: 48,
   },
 };
 
@@ -529,7 +551,7 @@ export const thirtyYearsWar: ConflictSeed = {
           code: "medium_ordnance",
           name_en: "Medium Ordnance",
           name_es: "Artillería Media",
-          stats: { ...STATS.lightOrdnance, move_range: 3 },
+          stats: { ...STATS.lightOrdnance, move_range: 3, weapon_range: 36 },
           base_points: 21,
           constraints: { maxPerBattaliaGroup: { key: "ordnance", max: 2 } },
         },
@@ -537,7 +559,7 @@ export const thirtyYearsWar: ConflictSeed = {
           code: "heavy_ordnance",
           name_en: "Heavy Ordnance",
           name_es: "Artillería Pesada",
-          stats: { ...STATS.lightOrdnance, move_range: 0 },
+          stats: { ...STATS.lightOrdnance, move_range: 0, weapon_range: 48 },
           base_points: 25,
           constraints: { maxPerBattaliaGroup: { key: "ordnance", max: 2 } },
         },
@@ -743,7 +765,7 @@ export const thirtyYearsWar: ConflictSeed = {
           code: "medium_ordnance",
           name_en: "Medium Ordnance",
           name_es: "Artillería Media",
-          stats: { ...STATS.lightOrdnance, move_range: 3 },
+          stats: { ...STATS.lightOrdnance, move_range: 3, weapon_range: 36 },
           base_points: 21,
           constraints: {
             maxPerBattaliaGroup: { key: "ordnance", max: 3 },

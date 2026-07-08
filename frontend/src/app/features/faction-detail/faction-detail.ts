@@ -528,6 +528,7 @@ export class FactionDetail {
           specialRules: this.transloco.translate('factionDetail.table.specialRules'),
           points: this.transloco.translate('factionDetail.table.points'),
           move: this.transloco.translate('factionDetail.export.moveAbbr'),
+          weaponRange: this.transloco.translate('factionDetail.export.weaponRangeAbbr'),
         },
         faction: this.transloco.translate('factionDetail.export.faction'),
         points: this.transloco.translate('factionDetail.table.points'),
