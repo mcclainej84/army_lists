@@ -1,9 +1,14 @@
 {
   "app": {
-    "title": "ListGenerator"
+    "title": "ListGenerator",
+    "lastUpdated": "Última actualización"
   },
   "nav": {
     "games": "Juegos"
+  },
+  "home": {
+    "tagline": "Elige tu juego, conflicto y facción para empezar a construir tu lista.",
+    "change": "Cambiar"
   },
   "games": {
     "title": "Elige un juego",
@@ -25,7 +30,7 @@
   "factionDetail": {
     "commanders": "Comandantes",
     "units": "Unidades",
-    "back": "Volver a facciones",
+    "back": "Volver al selector",
     "category": {
       "COMMAND": "Mando",
       "HORSE": "Caballería",
@@ -61,7 +66,8 @@
       "maxUnitsPerArmy": "Máximo {{max}} por ejército",
       "maxRatioTo": "Necesitas más {{unitName}} en la lista (proporción máxima {{ratioText}})",
       "cannotOutnumber": "No puede superar en número a {{unitName}}",
-      "maxRatioToOwnLightOrdnance": "Necesitas más unidades de Artillería Ligera primero (máx. {{max}})"
+      "maxRatioToOwnLightOrdnance": "Necesitas más unidades de Artillería Ligera primero (máx. {{max}})",
+      "notEnoughPoints": "No quedan puntos suficientes (cuesta {{cost}}, quedan {{remaining}})"
     },
     "battalias": {
       "add": "+ Nueva Battalia",

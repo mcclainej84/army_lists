@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { LocaleService } from '../../core/locale.service';
 import { Locale } from '../../core/models';
+import { APP_LAST_UPDATED, APP_VERSION } from '../../version';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,8 @@ import { Locale } from '../../core/models';
 })
 export class Header {
   localeService = inject(LocaleService);
+  version = APP_VERSION;
+  lastUpdated = APP_LAST_UPDATED;
 
   setLocale(locale: Locale): void {
     this.localeService.setLocale(locale);

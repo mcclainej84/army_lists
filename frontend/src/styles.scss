@@ -7,8 +7,9 @@
 body {
   margin: 0;
   font-family: 'Georgia', 'Times New Roman', serif;
-  background: #f2e6d8;
+  background: linear-gradient(180deg, #f7ecd9 0%, #f2e6d8 420px, #f2e6d8 100%);
   color: #2b1d14;
+  min-height: 100vh;
 }
 
 h1 {

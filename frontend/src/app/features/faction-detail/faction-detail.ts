@@ -116,6 +116,7 @@ export class FactionDetail {
 
   /** El Army General es unico en todo el ejercito (cuente o no en una battalia concreta). */
   canAddCommander(commander: CommanderDTO): boolean {
+    if (commander.points > this.remainingPoints()) return false;
     if (commander.code === 'army_general') {
       return !this.listCommanders().some((c) => c.commander.code === 'army_general');
     }
@@ -188,14 +189,31 @@ export class FactionDetail {
   }
 
   // --- Unidades ---
+  /** Coste de anadir esta unidad ahora mismo, contando las opciones marcadas (aun no confirmadas). */
+  costForUnit(unit: UnitDTO): number {
+    const optionPoints = this.pendingOptionsFor(unit.code).reduce((s, code) => {
+      const option = unit.options.find((o) => o.code === code);
+      return s + (option?.pointDelta ?? 0);
+    }, 0);
+    return unit.basePoints + optionPoints;
+  }
+
   canAddUnit(unit: UnitDTO): boolean {
-    return canAddUnit(unit, this.listUnits()).allowed;
+    if (!canAddUnit(unit, this.listUnits()).allowed) return false;
+    return this.costForUnit(unit) <= this.remainingPoints();
   }
 
   /** Texto explicando por que no se puede anadir la unidad ahora mismo, para el tooltip del boton. */
   addUnitBlockedReason(unit: UnitDTO, allUnits: UnitDTO[]): string {
     const result = canAddUnit(unit, this.listUnits());
-    return result.allowed ? '' : this.describeBlockedReason(result, allUnits);
+    if (!result.allowed) return this.describeBlockedReason(result, allUnits);
+    if (this.costForUnit(unit) > this.remainingPoints()) {
+      return this.transloco.translate('factionDetail.reasons.notEnoughPoints', {
+        cost: this.costForUnit(unit),
+        remaining: this.remainingPoints(),
+      });
+    }
+    return '';
   }
 
   private describeBlockedReason(result: ValidationResult, allUnits: UnitDTO[]): string {

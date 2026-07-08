@@ -1,5 +1,8 @@
 <header class="app-header">
-  <a class="brand" routerLink="/">{{ 'app.title' | transloco }}</a>
+  <div class="brand-group">
+    <a class="brand" routerLink="/">{{ 'app.title' | transloco }}</a>
+    <span class="version-tag" [title]="('app.lastUpdated' | transloco) + ': ' + lastUpdated">v{{ version }}</span>
+  </div>
   <div class="lang-switch">
     <button
       type="button"

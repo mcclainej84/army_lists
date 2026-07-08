@@ -1,9 +1,14 @@
 {
   "app": {
-    "title": "ListGenerator"
+    "title": "ListGenerator",
+    "lastUpdated": "Last updated"
   },
   "nav": {
     "games": "Games"
+  },
+  "home": {
+    "tagline": "Choose your game, conflict and faction to start building your list.",
+    "change": "Change"
   },
   "games": {
     "title": "Choose a game",
@@ -25,7 +30,7 @@
   "factionDetail": {
     "commanders": "Commanders",
     "units": "Units",
-    "back": "Back to factions",
+    "back": "Back to selector",
     "category": {
       "COMMAND": "Command",
       "HORSE": "Horse",
@@ -61,7 +66,8 @@
       "maxUnitsPerArmy": "Maximum {{max}} per army",
       "maxRatioTo": "You need more {{unitName}} in the list (max ratio {{ratioText}})",
       "cannotOutnumber": "Cannot outnumber {{unitName}}",
-      "maxRatioToOwnLightOrdnance": "You need more Light Ordnance units first (max {{max}})"
+      "maxRatioToOwnLightOrdnance": "You need more Light Ordnance units first (max {{max}})",
+      "notEnoughPoints": "Not enough points left (costs {{cost}}, {{remaining}} remaining)"
     },
     "battalias": {
       "add": "+ New Battalia",
