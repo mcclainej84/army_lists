@@ -344,8 +344,8 @@ const STATS: Record<string, UnitStatsSeed> = {
 
 export const thirtyYearsWar: ConflictSeed = {
   code: "thirty_years_war",
-  name_en: "Thirty Years War",
-  name_es: "Guerra de los Treinta Años",
+  name_en: "Thirty Years War (1618–1648)",
+  name_es: "Guerra de los Treinta Años (1618–1648)",
   factions: [
     {
       code: "imperial",

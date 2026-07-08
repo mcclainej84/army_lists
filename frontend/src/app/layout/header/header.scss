@@ -1,30 +1,50 @@
-.app-header {
+// Un unico marco (mismo fondo/borde para toda la cabecera, sin franjas de color distintas):
+// 1. .lang-row: en vez de ser una fila propia que suma altura por encima de todo lo demas,
+//    se saca del flujo normal (position:absolute) y se superpone en la esquina superior
+//    derecha, a la misma altura que el borde de arriba del banner. Asi el idioma no anade
+//    nada de alto extra a la cabecera.
+// 2. .app-header: fila principal en grid de 3 columnas iguales (1fr auto 1fr) — marca a la
+//    izquierda, banner realmente centrado (no depende de que el texto de la marca y los
+//    botones midan lo mismo, a diferencia de flexbox con justify-content:space-between),
+//    y los botones de cuenta a la derecha.
+.site-header {
+  position: relative;
+  background: #201f1e;
+  border-bottom: 3px solid #7a1f1f;
+  color: #f2e6d8;
+}
+
+.lang-row {
+  position: absolute;
+  top: 0.35rem;
+  right: 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.6rem 1.5rem;
-  background: #2b1d14;
-  color: #f2e6d8;
-  border-bottom: 3px solid #7a1f1f;
+}
+
+.app-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.15rem 1.5rem 0.2rem;
 }
 
 .brand-group {
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
-  order: 1;
+  justify-self: start;
 }
 
-// Banner ilustrado, centrado entre la marca y el selector de idioma (justify-content:
-// space-between del padre reparte el sobrante en 2 huecos iguales a cada lado). En vez
-// de escalar la imagen entera (lo que la hacia mas alta al ensancharla), se recorto una
-// franja del centro (se pierde algo de las banderas/sombreros de arriba y de abajo) para
-// poder ser mas ancho manteniendo la altura original de 100px: aspect-ratio ~7.24:1.
-// Ruta relativa: header.scss vive en src/app/layout/header/, pero el archivo fisico esta
-// en public/img/ (se sube 4 niveles hasta frontend/ y baja a public/img/) para que el
-// bundler lo encuentre y lo procese en build.
+// Banner ilustrado. En vez de escalar la imagen entera (lo que la hacia mas alta al
+// ensancharla), se recorto una franja del centro (se pierde algo de las banderas/sombreros
+// de arriba y de abajo) para poder ser mas ancho manteniendo la altura original de 100px:
+// aspect-ratio ~7.24:1. Ruta relativa: header.scss vive en src/app/layout/header/, pero el
+// archivo fisico esta en public/img/ (se sube 4 niveles hasta frontend/ y baja a
+// public/img/) para que el bundler lo encuentre y lo procese en build.
 .banner-slot {
-  order: 2;
+  justify-self: center;
   flex: 0 0 auto;
   width: 724px;
   height: 100px;
@@ -47,23 +67,32 @@
 }
 
 @media (max-width: 640px) {
-  .app-header {
-    flex-wrap: wrap;
-    row-gap: 0.4rem;
+  // En movil todo se apila igualmente (marca/banner/acciones centrados), asi que superponer
+  // el idioma en una esquina corre el riesgo de pisar el texto de la marca: aqui se vuelve
+  // a una fila normal, propia y centrada, en vez de absoluta.
+  .lang-row {
+    position: static;
+    justify-content: center;
+    padding: 0.3rem 1rem 0;
   }
 
-  .lang-switch {
-    order: 3;
-    margin-left: auto;
+  .app-header {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    padding: 0.5rem 1rem 0.6rem;
+    row-gap: 0.5rem;
+  }
+
+  .brand-group,
+  .header-actions {
+    justify-self: center;
   }
 
   .banner-slot {
-    order: 4;
-    flex: 0 0 100%;
     width: 320px;
     max-width: 100%;
     height: 89px;
-    margin: 0 auto;
     // Imagen especifica para movil (recorte distinto, no solo el mismo banner escalado).
     background-image: image-set(
       url('../../../../public/img/banner-mobile.png') 1x,
@@ -91,18 +120,25 @@
 
 .lang-switch {
   display: flex;
-  gap: 0.4rem;
-  order: 3;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.lang-label {
+  font-size: 0.68rem;
+  color: #a89886;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 // Banderas en vez de texto "ES"/"EN": ocupan menos espacio y quedan mas elegantes.
 .flag-btn {
   display: block;
   padding: 0;
-  width: 30px;
-  height: 20px;
+  width: 20px;
+  height: 13px;
   border: 1px solid #6b5b4b;
-  border-radius: 3px;
+  border-radius: 2px;
   overflow: hidden;
   cursor: pointer;
   opacity: 0.6;
@@ -122,4 +158,56 @@
 .flag-btn.active {
   opacity: 1;
   border-color: #f2e6d8;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  justify-self: end;
+}
+
+.account-name {
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #c9b79c;
+  font-size: 0.78rem;
+}
+
+// Base compartida por "Mis Listas", "Iniciar sesion" y "Cerrar sesion": mismo padding,
+// tamano de fuente y altura para los tres, sea cual sea el elemento (<a> o <button>) o el
+// texto que lleven dentro. Antes cada uno tenia su propio tamano suelto y no coincidian.
+.header-action-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 1.9rem;
+  padding: 0 0.75rem;
+  border: 1px solid #6b5b4b;
+  border-radius: 5px;
+  background: transparent;
+  color: #f2e6d8;
+  text-decoration: none;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.header-action-btn:hover {
+  border-color: #f2e6d8;
+}
+
+.header-action-btn-accent {
+  border-color: #7a1f1f;
+  background: #7a1f1f;
+}
+
+.header-action-btn-accent:hover {
+  background: #922626;
+  border-color: #922626;
 }

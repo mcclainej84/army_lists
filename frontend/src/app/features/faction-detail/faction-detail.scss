@@ -360,6 +360,44 @@ h2.catalog-frame-title {
   opacity: 1;
 }
 
+// Mismo tratamiento que el boton de exportar PDF, pero en verde (color ya usado para
+// "puntos restantes" en positivo) para diferenciarlo visualmente de la exportacion.
+.save-list-btn {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid #2f7a3f;
+  border-radius: 5px;
+  background: #2f7a3f;
+  color: #fbf6ee;
+  font-weight: 600;
+  font-size: 0.78rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.save-list-btn:hover {
+  opacity: 0.9;
+}
+
+.save-list-btn:disabled {
+  background: #b7a591;
+  border-color: #b7a591;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.guest-notice {
+  margin: -0.5rem 0 1rem;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: #6b5b4b;
+}
+
+.save-error {
+  margin: 0.5rem 0 0;
+  font-size: 0.78rem;
+  color: #b02a2a;
+}
+
 .export-modal-backdrop {
   position: fixed;
   inset: 0;

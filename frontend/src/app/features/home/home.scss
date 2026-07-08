@@ -212,6 +212,9 @@
   text-align: center;
 }
 
+// Prueba: acento distinto (bronce/dorado) solo para las facciones, para diferenciarlas
+// visualmente de las tarjetas de juego/conflicto (que se quedan con el rojo por defecto
+// de .card). Facil de revertir si no convence: basta con quitar este bloque.
 .faction-card {
   display: flex;
   flex-direction: column;
@@ -219,6 +222,13 @@
   gap: 0.5rem;
   text-align: center;
   padding: 0.9rem 1rem;
+  background: #f6efd9;
+  border-color: #b8944f;
+}
+
+.faction-card:hover {
+  border-color: #8a6a26;
+  box-shadow: 0 6px 18px rgba(138, 106, 38, 0.25);
 }
 
 // Caja fija con object-fit: los escudos (retrato) y las banderas (paisaje, wide) de las

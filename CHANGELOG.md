@@ -4,6 +4,55 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.33 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Añadidas fechas a los conflictos (igual que en Guerra Franco-India): "Guerra de los Treinta Años (1618–1648)" y "Guerras Napoleónicas (1803–1815)".
+- Las facciones de "Epic Pike & Shotte" (Español, Imperial, Francés y Sueco) son ahora todas oficiales: las 4 aparecen por defecto sin necesidad de activar "Incluir facciones personalizadas".
+
+## 0.32 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Nombre de la app cambiado de "List Generator" a "Army List Generator" (cabecera, pestaña del navegador, pie del PDF exportado).
+- Retirado de momento el juego "Pike & Shotte" (versión llana, sin Epic) del catálogo. Los datos no se han borrado, solo se ha quitado del listado.
+- Rusia tiene ahora también una entrada oficial (andamiaje vacío) en Guerras Napoleónicas, igual que el resto de naciones: aparece en la lista aunque no se active "Incluir facciones personalizadas", y ese botón lleva a la versión con reglas completas cuando el checkbox está activo.
+- Prueba: color distinto (bronce/dorado) para las tarjetas de facción en la página principal, para diferenciarlas del resto.
+
+## 0.31 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- El idioma ya no ocupa su propia fila (que sumaba altura a la cabecera): ahora se superpone en la esquina superior derecha, a la misma altura que el borde de arriba del banner, sin dejar hueco extra por encima. En móvil se mantiene como fila propia para no pisar el texto de la marca.
+
+## 0.30 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Cabecera: fondo cambiado de marrón a un gris casi negro, márgenes arriba/abajo del banner reducidos al mínimo, y la fila de idioma bajada un poco (ya no pegada al borde superior). Añadida la etiqueta "Idioma" junto a las banderas.
+
+## 0.29 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Reducida la fila de idioma de la cabecera (menos padding, banderas más pequeñas) y algo menos de aire en la fila principal: se veía demasiado grande.
+
+## 0.28 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Cabecera reorganizada en un único marco: fila fina arriba a la derecha solo con el idioma, y fila principal en grid de 3 columnas (marca a la izquierda, banner realmente centrado, botones de cuenta a la derecha) en vez de flexbox de space-between.
+- "Mis Listas", "Iniciar sesión" y "Cerrar sesión" comparten ahora exactamente el mismo tamaño de botón (mismo padding/alto/tipografía), antes no coincidían.
+
+## 0.27 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Rediseñada la cabecera en 2 franjas: una tira fina superior de "utilidad" (idioma a la izquierda, "Mis Listas" + sesión a la derecha) separada de la barra principal (marca + banner ilustrado), en vez de intentar meter todo en una sola fila. "Mis Listas" ahora tiene tratamiento de botón sólido para destacar más.
+- Arreglada "Mis Listas": la tabla usaba una fila de CSS grid independiente por fila, así que la cabecera y los datos podían desalinearse según el contenido (los botones de Cargar/Eliminar). Ahora es una tabla HTML real, con columnas siempre alineadas.
+
+## 0.26 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Arreglado "Mis Listas" al no cargar nada: la consulta a Firestore combinaba `where` + `orderBy` sobre campos distintos, lo que exige un índice compuesto que un proyecto nuevo no tiene creado. Se ordena ahora en el propio código en vez de pedírselo a Firestore.
+- `frontend/src/environments/firebase-config.ts` reescrito con la configuración real del proyecto (`army-list-generator`), con la estructura correcta (exports) en vez del snippet en bruto de la consola de Firebase.
+- `package.json` fijado en las versiones compatibles conocidas (`@angular/build` en línea con el resto de Angular 22, `jspdf`/`jspdf-autotable` en el par verificado) tras varias idas y vueltas con `npm audit fix --force`.
+
+## 0.25 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Añadido inicio de sesión con Google (Firebase Authentication) y guardado/carga/edición/borrado de listas (Firebase Firestore). Se puede seguir navegando y construyendo listas sin iniciar sesión; solo guardar requiere sesión (aviso visible en la pantalla de facción cuando no has iniciado sesión).
+- Nuevo botón "Guardar lista" junto a "Exportar a PDF" en la pantalla de facción (mismo bloqueo que el PDF si quedan unidades sin asignar a battalia/brigada). Guardar una lista ya guardada la actualiza en vez de duplicarla.
+- Nueva página "Mis Listas" (enlace en la cabecera): lista tus listas guardadas con puntos/facción/fecha, y permite cargarlas para seguir editándolas o eliminarlas.
+- Reglas de seguridad de Firestore (`firestore.rules`) para que cada usuario solo pueda leer/editar/borrar sus propias listas.
+- Requiere configuración manual de un proyecto de Firebase (no se puede hacer desde aquí): ver `FIREBASE_SETUP.md` en la raíz del repo para los pasos completos. Hasta que se complete esa configuración, la app funciona igual que antes pero sin guardado.
+- Este trabajo vive en la rama `feature/firebase-lists`, no en `main`. `main` sigue en la versión 0.24 (con etiqueta `v0.24`) para poder volver atrás sin más que cambiar de rama si esto no convence.
+
 ## 0.24 — 2026-07-08
 
 - Arreglado que en móvil las facciones de Black Powder (forzadas a una sola fila en escritorio) se amontonaran unas encima de otras: por debajo de 640px de ancho vuelven a repartirse en varias filas, igual que el resto de conflictos.

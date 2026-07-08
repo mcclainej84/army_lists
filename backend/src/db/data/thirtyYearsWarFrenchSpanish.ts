@@ -79,7 +79,7 @@ export const frenchFaction: FactionSeed = {
   code: "french",
   name_en: "French Army",
   name_es: "Ejército Francés",
-  is_official: false,
+  is_official: true,
   commanders: STANDARD_COMMANDERS,
   units: [
     {
@@ -479,7 +479,7 @@ export const spanishFaction: FactionSeed = {
   code: "spanish",
   name_en: "Spanish Army",
   name_es: "Ejército Español",
-  is_official: false,
+  is_official: true,
   commanders: STANDARD_COMMANDERS,
   units: [
     {

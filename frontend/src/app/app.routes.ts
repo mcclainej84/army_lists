@@ -11,6 +11,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/faction-detail/faction-detail').then((m) => m.FactionDetail),
   },
   {
+    path: 'mis-listas',
+    loadComponent: () => import('./features/my-lists/my-lists').then((m) => m.MyLists),
+  },
+  {
     // Cualquier enlace antiguo de un paso intermedio vuelve al selector.
     path: '**',
     redirectTo: '',

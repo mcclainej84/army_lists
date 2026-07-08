@@ -10,7 +10,6 @@ import { ConflictDTO, FactionSummaryDTO, GameDTO } from '../../core/models';
 
 const GAME_LOGOS: Record<string, string> = {
   epic_pike_and_shotte: 'img/EpicPSlogo.png',
-  pike_and_shotte: 'img/PSlogo.png',
   black_powder: 'img/BPlogo.png',
   french_indian_war: 'img/FIWLogo.png',
 };
@@ -28,9 +27,9 @@ const FACTION_ICONS: Record<string, string> = {
   prussia: 'img/factions/nap-prussia.png',
   portugal: 'img/factions/nap-portugal.png',
   austria: 'img/factions/nap-austria.png',
+  russia: 'img/factions/nap-russia.png',
   // Facciones personalizadas de Black Powder Napoleonicas: reutilizan el escudo de la
-  // nacion oficial correspondiente. Rusia no tiene oficial equivalente, asi que lleva su
-  // propio escudo.
+  // nacion oficial correspondiente.
   british_custom: 'img/factions/nap-great-britain.png',
   french_custom: 'img/factions/nap-imperial-france.png',
   prussian_custom: 'img/factions/nap-prussia.png',
@@ -47,13 +46,12 @@ const FACTION_ICONS: Record<string, string> = {
 // selector ("Francia Imperial" y "Francia (Reglas Personalizadas)"). En vez de eso se
 // muestra un unico boton (el de la faccion oficial) y, si "Incluir facciones
 // personalizadas" esta activado, el click lleva directamente a la version personalizada.
-// Rusia no tiene version oficial (solo personalizada), asi que no entra en este mapa: se
-// sigue mostrando como una entrada normal en la lista.
 const CUSTOM_FACTION_OVERRIDES: Record<string, string> = {
   imperial_france: 'french_custom',
   great_britain: 'british_custom',
   prussia: 'prussian_custom',
   austria: 'austrian_custom',
+  russia: 'russian_custom',
 };
 
 @Component({

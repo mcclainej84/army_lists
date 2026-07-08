@@ -1,0 +1,65 @@
+<section class="wizard-step my-lists-page">
+  <a class="back-link" routerLink="/">
+    ← {{ 'factionDetail.back' | transloco }}
+  </a>
+
+  <h1>{{ 'myLists.title' | transloco }}</h1>
+
+  @if (!authService.isConfigured) {
+    <p class="my-lists-hint">{{ 'myLists.notConfigured' | transloco }}</p>
+  } @else if (!authService.authReady()) {
+    <p class="my-lists-hint">{{ 'myLists.loading' | transloco }}</p>
+  } @else if (!authService.currentUser()) {
+    <p class="my-lists-hint">{{ 'myLists.signInHint' | transloco }}</p>
+    <button type="button" class="save-list-btn" (click)="signIn()">{{ 'auth.signIn' | transloco }}</button>
+  } @else {
+    @if (loadError()) {
+      <p class="my-lists-error">{{ loadError() | transloco }}</p>
+    }
+
+    @if (lists(); as list) {
+      @if (list.length === 0) {
+        <p class="my-lists-hint">{{ 'myLists.empty' | transloco }}</p>
+      } @else {
+        <div class="my-lists-table-wrap">
+          <table class="my-lists-table">
+            <thead>
+              <tr>
+                <th>{{ 'myLists.name' | transloco }}</th>
+                <th>{{ 'myLists.faction' | transloco }}</th>
+                <th>{{ 'myLists.points' | transloco }}</th>
+                <th>{{ 'myLists.updated' | transloco }}</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of list; track item.id) {
+                <tr>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.factionName }}</td>
+                  <td>{{ item.totalPoints }} / {{ item.pointsLimit }}</td>
+                  <td>{{ item.updatedAt ? (item.updatedAt | date: 'short') : '–' }}</td>
+                  <td class="my-lists-actions">
+                    <a class="my-lists-load-btn" [routerLink]="routeFor(item)" [queryParams]="{ listId: item.id }">
+                      {{ 'myLists.loadEdit' | transloco }}
+                    </a>
+                    <button
+                      type="button"
+                      class="my-lists-delete-btn"
+                      [disabled]="deletingId() === item.id"
+                      (click)="deleteList(item)"
+                    >
+                      {{ 'myLists.delete' | transloco }}
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    } @else {
+      <p class="my-lists-hint">{{ 'myLists.loading' | transloco }}</p>
+    }
+  }
+</section>

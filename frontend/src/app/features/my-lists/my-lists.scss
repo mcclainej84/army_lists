@@ -1,0 +1,114 @@
+.my-lists-page {
+  max-width: 900px;
+}
+
+.my-lists-hint {
+  color: #6b5b4b;
+  font-style: italic;
+}
+
+.my-lists-error {
+  color: #b02a2a;
+  font-weight: 600;
+}
+
+// Tabla HTML real en vez de "filas" con CSS grid independientes: con grid, cada fila era
+// su propio contenedor con sus propias columnas, asi que el ancho de cada columna se
+// calculaba por separado por fila (segun su contenido) y la cabecera no quedaba alineada
+// con los datos de abajo en cuanto una fila tenia contenido mas ancho (p.ej. los botones de
+// Cargar/Eliminar). Con <table> el navegador alinea las columnas de verdad entre todas las
+// filas, que es justamente lo que hace falta aqui.
+.my-lists-table-wrap {
+  margin-top: 1rem;
+  border: 1px solid #d8c8b0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.my-lists-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  background: #fbf6ee;
+}
+
+.my-lists-table th,
+.my-lists-table td {
+  padding: 0.6rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid #d8c8b0;
+}
+
+.my-lists-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.my-lists-table th {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  letter-spacing: 0.02em;
+  color: #6b5b4b;
+  background: #f2e6d8;
+}
+
+.my-lists-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.my-lists-load-btn {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid #7a1f1f;
+  border-radius: 5px;
+  background: transparent;
+  color: #7a1f1f;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.my-lists-load-btn:hover {
+  background: #fbf1e6;
+}
+
+.my-lists-delete-btn {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid #d8c8b0;
+  border-radius: 5px;
+  background: transparent;
+  color: #6b5b4b;
+  font-weight: 600;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.my-lists-delete-btn:hover {
+  border-color: #b02a2a;
+  color: #b02a2a;
+}
+
+.my-lists-delete-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+// En movil no hay sitio para 5 columnas: en vez de amontonar el contenido (que es lo que
+// causaba el descuadre original), se deja la tabla con su ancho natural y se permite
+// scroll horizontal dentro de su propio recuadro.
+@media (max-width: 720px) {
+  .my-lists-table-wrap {
+    overflow-x: auto;
+  }
+
+  .my-lists-table {
+    min-width: 640px;
+  }
+}
