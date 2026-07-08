@@ -5,15 +5,16 @@
 //    botones midan lo mismo, a diferencia de flexbox con justify-content:space-between),
 //    y los botones de cuenta a la derecha.
 .site-header {
-  background: #2b1d14;
+  background: #201f1e;
   border-bottom: 3px solid #7a1f1f;
   color: #f2e6d8;
 }
 
 .lang-row {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
-  padding: 0.2rem 1.5rem 0;
+  padding: 0.3rem 1.5rem 0.15rem;
 }
 
 .app-header {
@@ -21,7 +22,7 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 1rem;
-  padding: 0.3rem 1.5rem 0.6rem;
+  padding: 0.15rem 1.5rem 0.3rem;
 }
 
 .brand-group {
@@ -62,7 +63,7 @@
 
 @media (max-width: 640px) {
   .lang-row {
-    padding: 0.2rem 1rem 0;
+    padding: 0.3rem 1rem 0.15rem;
   }
 
   .app-header {
@@ -109,7 +110,15 @@
 
 .lang-switch {
   display: flex;
-  gap: 0.3rem;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.lang-label {
+  font-size: 0.68rem;
+  color: #a89886;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 // Banderas en vez de texto "ES"/"EN": ocupan menos espacio y quedan mas elegantes.

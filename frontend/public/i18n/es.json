@@ -5,7 +5,8 @@
   },
   "nav": {
     "games": "Juegos",
-    "myLists": "Mis Listas"
+    "myLists": "Mis Listas",
+    "language": "Idioma"
   },
   "auth": {
     "signIn": "Iniciar sesión",
