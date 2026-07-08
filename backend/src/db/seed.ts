@@ -1,9 +1,11 @@
 import { db, initSchema } from "./client";
 import { blackPowder } from "./data/blackPowder";
+import { frenchIndianWar } from "./data/frenchIndianWar";
 import { pikeAndShotte } from "./data/pikeAndShotte";
+import { pikeAndShottePlain } from "./data/pikeAndShottePlain";
 import { GameSeed } from "./types";
 
-const GAMES: GameSeed[] = [pikeAndShotte, blackPowder];
+const GAMES: GameSeed[] = [pikeAndShotte, pikeAndShottePlain, blackPowder, frenchIndianWar];
 
 function seed(): void {
   initSchema();

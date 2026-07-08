@@ -2,6 +2,8 @@ import * as fs from "fs";
 import * as path from "path";
 import { blackPowder } from "../db/data/blackPowder";
 import { pikeAndShotte } from "../db/data/pikeAndShotte";
+import { pikeAndShottePlain } from "../db/data/pikeAndShottePlain";
+import { frenchIndianWar } from "../db/data/frenchIndianWar";
 import { CommanderSeed, FactionSeed, FactionUnitSeed, GameSeed, UnitOptionSeed } from "../db/types";
 
 // Genera el catálogo completo (juegos/conflictos/facciones/unidades) como archivos
@@ -15,7 +17,7 @@ import { CommanderSeed, FactionSeed, FactionUnitSeed, GameSeed, UnitOptionSeed }
 
 type Locale = "en" | "es";
 const LOCALES: Locale[] = ["en", "es"];
-const GAMES: GameSeed[] = [pikeAndShotte, blackPowder];
+const GAMES: GameSeed[] = [pikeAndShotte, pikeAndShottePlain, blackPowder, frenchIndianWar];
 
 const OUT_DIR = path.join(__dirname, "..", "..", "..", "frontend", "public", "data");
 
