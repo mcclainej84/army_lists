@@ -123,3 +123,72 @@
   opacity: 1;
   border-color: #f2e6d8;
 }
+
+// Widget de cuenta: comparte el mismo "order" que el selector de idioma para aparecer
+// justo a su lado (a la derecha del banner) tanto en escritorio como en el envoltorio de
+// movil, sin tener que tocar la logica de centrado del banner (que depende de que a cada
+// lado solo haya un grupo de controles).
+.account-widget {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  order: 3;
+  margin-left: 0.6rem;
+  font-size: 0.8rem;
+}
+
+.account-link {
+  color: #c9b79c;
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0.85;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.account-link:hover {
+  opacity: 1;
+  color: #f2e6d8;
+}
+
+.account-name {
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #f2e6d8;
+  opacity: 0.9;
+}
+
+.account-btn {
+  background: transparent;
+  border: 1px solid #6b5b4b;
+  color: #f2e6d8;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.account-btn:hover {
+  border-color: #f2e6d8;
+}
+
+.account-btn-primary {
+  border-color: #7a1f1f;
+  background: #7a1f1f;
+}
+
+.account-btn-primary:hover {
+  background: #922626;
+  border-color: #922626;
+}
+
+@media (max-width: 640px) {
+  .account-widget {
+    order: 3;
+    margin-left: 0;
+  }
+}

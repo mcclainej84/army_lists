@@ -38,4 +38,20 @@
       </svg>
     </button>
   </div>
+
+  @if (authService.isConfigured) {
+    <div class="account-widget">
+      <a class="account-link" routerLink="/mis-listas">{{ 'nav.myLists' | transloco }}</a>
+      @if (authService.authReady()) {
+        @if (authService.currentUser(); as user) {
+          <span class="account-name" [title]="user.email || ''">{{ user.displayName || user.email }}</span>
+          <button type="button" class="account-btn" (click)="signOut()">{{ 'auth.signOut' | transloco }}</button>
+        } @else {
+          <button type="button" class="account-btn account-btn-primary" (click)="signIn()">
+            {{ 'auth.signIn' | transloco }}
+          </button>
+        }
+      }
+    </div>
+  }
 </header>

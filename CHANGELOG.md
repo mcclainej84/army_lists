@@ -4,6 +4,15 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.25 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Añadido inicio de sesión con Google (Firebase Authentication) y guardado/carga/edición/borrado de listas (Firebase Firestore). Se puede seguir navegando y construyendo listas sin iniciar sesión; solo guardar requiere sesión (aviso visible en la pantalla de facción cuando no has iniciado sesión).
+- Nuevo botón "Guardar lista" junto a "Exportar a PDF" en la pantalla de facción (mismo bloqueo que el PDF si quedan unidades sin asignar a battalia/brigada). Guardar una lista ya guardada la actualiza en vez de duplicarla.
+- Nueva página "Mis Listas" (enlace en la cabecera): lista tus listas guardadas con puntos/facción/fecha, y permite cargarlas para seguir editándolas o eliminarlas.
+- Reglas de seguridad de Firestore (`firestore.rules`) para que cada usuario solo pueda leer/editar/borrar sus propias listas.
+- Requiere configuración manual de un proyecto de Firebase (no se puede hacer desde aquí): ver `FIREBASE_SETUP.md` en la raíz del repo para los pasos completos. Hasta que se complete esa configuración, la app funciona igual que antes pero sin guardado.
+- Este trabajo vive en la rama `feature/firebase-lists`, no en `main`. `main` sigue en la versión 0.24 (con etiqueta `v0.24`) para poder volver atrás sin más que cambiar de rama si esto no convence.
+
 ## 0.24 — 2026-07-08
 
 - Arreglado que en móvil las facciones de Black Powder (forzadas a una sola fila en escritorio) se amontonaran unas encima de otras: por debajo de 640px de ancho vuelven a repartirse en varias filas, igual que el resto de conflictos.

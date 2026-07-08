@@ -30,7 +30,20 @@
       >
         {{ 'factionDetail.export.button' | transloco }}
       </button>
+      <button
+        type="button"
+        class="save-list-btn"
+        [disabled]="!canSaveList()"
+        [title]="saveBlockedReason()"
+        (click)="openSaveDialog(faction.name)"
+      >
+        {{ (currentListId() ? 'factionDetail.save.updateButton' : 'factionDetail.save.button') | transloco }}
+      </button>
     </div>
+
+    @if (authService.isConfigured && authService.authReady() && !authService.currentUser()) {
+      <p class="guest-notice">{{ 'factionDetail.save.guestNotice' | transloco }}</p>
+    }
 
     <div class="detail-layout">
       <!-- CENTRO: MI LISTA -->
@@ -322,6 +335,39 @@
               (click)="confirmExport()"
             >
               {{ 'factionDetail.export.confirm' | transloco }}
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (saveDialogOpen()) {
+      <div class="export-modal-backdrop" (click)="closeSaveDialog()">
+        <div class="export-modal" (click)="$event.stopPropagation()">
+          <h3>{{ (currentListId() ? 'factionDetail.save.updateDialogTitle' : 'factionDetail.save.dialogTitle') | transloco }}</h3>
+          <p class="export-modal-hint">{{ 'factionDetail.save.dialogHint' | transloco }}</p>
+          <input
+            type="text"
+            class="export-name-input"
+            [ngModel]="saveListName()"
+            (ngModelChange)="saveListName.set($event)"
+            [placeholder]="'factionDetail.save.namePlaceholder' | transloco"
+            (keydown.enter)="confirmSave()"
+          />
+          @if (saveError()) {
+            <p class="save-error">{{ saveError() }}</p>
+          }
+          <div class="export-modal-actions">
+            <button type="button" class="export-cancel-btn" (click)="closeSaveDialog()">
+              {{ 'factionDetail.export.cancel' | transloco }}
+            </button>
+            <button
+              type="button"
+              class="export-confirm-btn"
+              [disabled]="!saveListName().trim() || savingInProgress()"
+              (click)="confirmSave()"
+            >
+              {{ (savingInProgress() ? 'factionDetail.save.saving' : 'factionDetail.export.confirm') | transloco }}
             </button>
           </div>
         </div>

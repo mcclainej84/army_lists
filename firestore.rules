@@ -1,0 +1,21 @@
+rules_version = '2';
+
+// Reglas de seguridad de Firestore para ListGenerator.
+//
+// Como pegar esto en tu proyecto: Firebase Console > tu proyecto > Firestore Database >
+// pestaña "Reglas" > pega este contenido entero, sustituyendo lo que haya > "Publicar".
+// (No hace falta la CLI de Firebase para esto, se puede pegar directamente en la consola).
+//
+// Coleccion unica "lists": cada documento es una lista guardada, con un campo "ownerId"
+// igual al uid del usuario de Firebase Auth que la creo. Solo su dueño puede leerla,
+// actualizarla o borrarla; para crear una hace falta estar autenticado y que el documento
+// que se sube ya lleve tu propio uid en "ownerId" (para que nadie pueda crear listas a
+// nombre de otro usuario).
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /lists/{listId} {
+      allow read, update, delete: if request.auth != null && request.auth.uid == resource.data.ownerId;
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.ownerId;
+    }
+  }
+}

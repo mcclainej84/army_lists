@@ -4,7 +4,12 @@
     "lastUpdated": "Última actualización"
   },
   "nav": {
-    "games": "Juegos"
+    "games": "Juegos",
+    "myLists": "Mis Listas"
+  },
+  "auth": {
+    "signIn": "Iniciar sesión",
+    "signOut": "Cerrar sesión"
   },
   "home": {
     "tagline": "Elige tu juego, conflicto y facción para empezar a construir tu lista.",
@@ -103,7 +108,36 @@
       "generatedWith": "Generado con List Generator",
       "page": "Página",
       "blockedUnassigned": "Asigna todas las unidades a una {{group}} antes de exportar"
+    },
+    "save": {
+      "button": "Guardar lista",
+      "updateButton": "Actualizar lista",
+      "notConfigured": "Guardado de listas no disponible todavía",
+      "signInRequired": "Inicia sesión para guardar tu lista",
+      "guestNotice": "Puedes construir tu lista sin iniciar sesión, pero no podrás guardarla. Inicia sesión para guardar, cargar y editar tus listas.",
+      "dialogTitle": "Guardar lista",
+      "updateDialogTitle": "Actualizar lista guardada",
+      "dialogHint": "Elige un nombre para esta lista. Podrás cargarla y editarla luego desde \"Mis Listas\".",
+      "namePlaceholder": "Nombre de la lista",
+      "saving": "Guardando...",
+      "error": "No se ha podido guardar la lista. Inténtalo de nuevo."
     }
+  },
+  "myLists": {
+    "title": "Mis Listas",
+    "notConfigured": "El guardado de listas no está disponible todavía en esta app.",
+    "loading": "Cargando...",
+    "signInHint": "Inicia sesión para ver, cargar y editar tus listas guardadas.",
+    "empty": "Todavía no tienes ninguna lista guardada.",
+    "name": "Nombre",
+    "faction": "Facción",
+    "points": "Puntos",
+    "updated": "Actualizada",
+    "loadEdit": "Cargar / Editar",
+    "delete": "Eliminar",
+    "loadError": "No se han podido cargar tus listas. Inténtalo de nuevo.",
+    "deleteError": "No se ha podido eliminar la lista. Inténtalo de nuevo.",
+    "confirmDelete": "¿Seguro que quieres eliminar la lista \"{{name}}\"? Esta acción no se puede deshacer."
   },
   "language": {
     "es": "Español",

@@ -4,7 +4,12 @@
     "lastUpdated": "Last updated"
   },
   "nav": {
-    "games": "Games"
+    "games": "Games",
+    "myLists": "My Lists"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signOut": "Sign out"
   },
   "home": {
     "tagline": "Choose your game, conflict and faction to start building your list.",
@@ -103,7 +108,36 @@
       "generatedWith": "Generated with List Generator",
       "page": "Page",
       "blockedUnassigned": "Assign all units to a {{group}} before exporting"
+    },
+    "save": {
+      "button": "Save list",
+      "updateButton": "Update list",
+      "notConfigured": "List saving not available yet",
+      "signInRequired": "Sign in to save your list",
+      "guestNotice": "You can build your list without signing in, but you won't be able to save it. Sign in to save, load and edit your lists.",
+      "dialogTitle": "Save list",
+      "updateDialogTitle": "Update saved list",
+      "dialogHint": "Choose a name for this list. You'll be able to load and edit it later from \"My Lists\".",
+      "namePlaceholder": "List name",
+      "saving": "Saving...",
+      "error": "Couldn't save the list. Please try again."
     }
+  },
+  "myLists": {
+    "title": "My Lists",
+    "notConfigured": "List saving isn't available in this app yet.",
+    "loading": "Loading...",
+    "signInHint": "Sign in to view, load and edit your saved lists.",
+    "empty": "You don't have any saved lists yet.",
+    "name": "Name",
+    "faction": "Faction",
+    "points": "Points",
+    "updated": "Updated",
+    "loadEdit": "Load / Edit",
+    "delete": "Delete",
+    "loadError": "Couldn't load your lists. Please try again.",
+    "deleteError": "Couldn't delete the list. Please try again.",
+    "confirmDelete": "Are you sure you want to delete the list \"{{name}}\"? This cannot be undone."
   },
   "language": {
     "es": "Español",

@@ -5,8 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { Observable, switchMap, tap } from 'rxjs';
+import { AuthService } from '../../core/auth.service';
 import { CatalogService } from '../../core/catalog.service';
 import { CommanderDTO, FactionDetailDTO, UnitDTO, UnitOptionDTO } from '../../core/models';
+import { SavedListInput } from '../../core/saved-list.model';
+import { SavedListsService } from '../../core/saved-lists.service';
 import { BattaliaWarning, canAddUnit, canSelectOption, getBattaliaWarnings, ValidationResult } from './constraints';
 import {
   Battalia,
@@ -38,6 +41,8 @@ export class FactionDetail {
   private catalogService = inject(CatalogService);
   private route = inject(ActivatedRoute);
   private transloco = inject(TranslocoService);
+  authService = inject(AuthService);
+  private savedListsService = inject(SavedListsService);
 
   gameCode = '';
   conflictCode = '';
@@ -68,6 +73,9 @@ export class FactionDetail {
       this.battalias.set([]);
       this.pendingSelections.set({});
       this.activeBattaliaId.set(UNASSIGNED_BATTALIA_ID);
+      this.currentListId.set(null);
+      this.saveListName.set('');
+      this.saveError.set('');
       return this.catalogService.getFactionDetail(this.gameCode, this.conflictCode, factionCode).pipe(
         tap(() => {
           // French Indian War no tiene el concepto de "varias battalias/brigadas": es una
@@ -76,10 +84,34 @@ export class FactionDetail {
           if (this.gameCode === 'french_indian_war' && this.battalias().length === 0) {
             this.addBattalia();
           }
+          // Si venimos de "Mis Listas" (Cargar/Editar), la ruta lleva ?listId=... y aqui se
+          // rellena el constructor con lo que habia guardado, en vez de empezar de cero.
+          const listId = this.route.snapshot.queryParamMap.get('listId');
+          if (listId) {
+            this.loadSavedList(listId);
+          }
         })
       );
     })
   );
+
+  private async loadSavedList(listId: string): Promise<void> {
+    try {
+      const saved = await this.savedListsService.getList(listId);
+      if (!saved) return;
+      this.battalias.set(saved.battalias);
+      this.listCommanders.set(saved.listCommanders);
+      this.listUnits.set(saved.listUnits);
+      this.pointsLimit.set(saved.pointsLimit);
+      this.currentListId.set(saved.id);
+      this.saveListName.set(saved.name);
+      this.exportListName.set(saved.name);
+      this.activeBattaliaId.set(saved.battalias[0]?.id ?? UNASSIGNED_BATTALIA_ID);
+    } catch {
+      // Lista de otro usuario, borrada, o sin sesion: las reglas de Firestore lo rechazan.
+      // Nos quedamos con la lista vacia de siempre en vez de romper la pantalla.
+    }
+  }
 
   // --- Estado del constructor de listas ---
   pointsLimit = signal(600);
@@ -95,6 +127,15 @@ export class FactionDetail {
   exportDialogOpen = signal(false);
   exportListName = signal('');
   private exportFactionName = '';
+
+  // --- Guardado de listas (Firebase) ---
+  /** Id del documento de Firestore si esta lista ya se guardo/cargo antes; null = todavia no se ha guardado nunca. */
+  currentListId = signal<string | null>(null);
+  saveDialogOpen = signal(false);
+  saveListName = signal('');
+  savingInProgress = signal(false);
+  saveError = signal('');
+  private saveFactionName = '';
 
   totalPoints = computed(() => {
     const commanderPoints = this.listCommanders().reduce((sum, c) => sum + c.commander.points, 0);
@@ -481,5 +522,70 @@ export class FactionDetail {
     });
 
     this.exportDialogOpen.set(false);
+  }
+
+  // --- Guardado de listas (Firebase) ---
+  /** true si se puede intentar guardar ahora mismo: hay sesion iniciada y no quedan unidades sin asignar. */
+  canSaveList(): boolean {
+    return this.authService.isConfigured && !!this.authService.currentUser() && !this.hasUnassignedUnits();
+  }
+
+  /** Motivo por el que el boton de guardar esta desactivado, para el tooltip. */
+  saveBlockedReason(): string {
+    if (!this.authService.isConfigured) return this.transloco.translate('factionDetail.save.notConfigured');
+    if (!this.authService.currentUser()) return this.transloco.translate('factionDetail.save.signInRequired');
+    if (this.hasUnassignedUnits()) {
+      return this.transloco.translate('factionDetail.export.blockedUnassigned', { group: this.groupNoun(true) });
+    }
+    return '';
+  }
+
+  openSaveDialog(factionName: string): void {
+    if (!this.canSaveList()) return;
+    this.saveFactionName = factionName;
+    if (!this.saveListName().trim()) {
+      this.saveListName.set(factionName);
+    }
+    this.saveError.set('');
+    this.saveDialogOpen.set(true);
+  }
+
+  closeSaveDialog(): void {
+    this.saveDialogOpen.set(false);
+  }
+
+  async confirmSave(): Promise<void> {
+    const name = this.saveListName().trim();
+    if (!name || !this.canSaveList()) return;
+
+    const input: SavedListInput = {
+      name,
+      gameCode: this.gameCode,
+      conflictCode: this.conflictCode,
+      factionCode: this.route.snapshot.paramMap.get('factionCode') ?? '',
+      factionName: this.saveFactionName,
+      pointsLimit: this.pointsLimit(),
+      totalPoints: this.totalPoints(),
+      battalias: this.battalias(),
+      listCommanders: this.listCommanders(),
+      listUnits: this.listUnits(),
+    };
+
+    this.savingInProgress.set(true);
+    this.saveError.set('');
+    try {
+      const existingId = this.currentListId();
+      if (existingId) {
+        await this.savedListsService.updateList(existingId, input);
+      } else {
+        const newId = await this.savedListsService.saveList(input);
+        this.currentListId.set(newId);
+      }
+      this.saveDialogOpen.set(false);
+    } catch {
+      this.saveError.set(this.transloco.translate('factionDetail.save.error'));
+    } finally {
+      this.savingInProgress.set(false);
+    }
   }
 }
