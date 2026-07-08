@@ -1,20 +1,25 @@
 // Un unico marco (mismo fondo/borde para toda la cabecera, sin franjas de color distintas):
-// 1. .lang-row: fila fina arriba, solo el idioma, pegada a la derecha.
+// 1. .lang-row: en vez de ser una fila propia que suma altura por encima de todo lo demas,
+//    se saca del flujo normal (position:absolute) y se superpone en la esquina superior
+//    derecha, a la misma altura que el borde de arriba del banner. Asi el idioma no anade
+//    nada de alto extra a la cabecera.
 // 2. .app-header: fila principal en grid de 3 columnas iguales (1fr auto 1fr) — marca a la
 //    izquierda, banner realmente centrado (no depende de que el texto de la marca y los
 //    botones midan lo mismo, a diferencia de flexbox con justify-content:space-between),
 //    y los botones de cuenta a la derecha.
 .site-header {
+  position: relative;
   background: #201f1e;
   border-bottom: 3px solid #7a1f1f;
   color: #f2e6d8;
 }
 
 .lang-row {
+  position: absolute;
+  top: 0.35rem;
+  right: 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding: 0.3rem 1.5rem 0.15rem;
 }
 
 .app-header {
@@ -22,7 +27,7 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 1rem;
-  padding: 0.15rem 1.5rem 0.3rem;
+  padding: 0.15rem 1.5rem 0.2rem;
 }
 
 .brand-group {
@@ -62,15 +67,20 @@
 }
 
 @media (max-width: 640px) {
+  // En movil todo se apila igualmente (marca/banner/acciones centrados), asi que superponer
+  // el idioma en una esquina corre el riesgo de pisar el texto de la marca: aqui se vuelve
+  // a una fila normal, propia y centrada, en vez de absoluta.
   .lang-row {
-    padding: 0.3rem 1rem 0.15rem;
+    position: static;
+    justify-content: center;
+    padding: 0.3rem 1rem 0;
   }
 
   .app-header {
     grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
-    padding: 0.6rem 1rem;
+    padding: 0.5rem 1rem 0.6rem;
     row-gap: 0.5rem;
   }
 

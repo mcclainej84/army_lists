@@ -4,6 +4,10 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.31 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- El idioma ya no ocupa su propia fila (que sumaba altura a la cabecera): ahora se superpone en la esquina superior derecha, a la misma altura que el borde de arriba del banner, sin dejar hueco extra por encima. En móvil se mantiene como fila propia para no pisar el texto de la marca.
+
 ## 0.30 — 2026-07-08 (rama `feature/firebase-lists`)
 
 - Cabecera: fondo cambiado de marrón a un gris casi negro, márgenes arriba/abajo del banner reducidos al mínimo, y la fila de idioma bajada un poco (ya no pegada al borde superior). Añadida la etiqueta "Idioma" junto a las banderas.
