@@ -4,6 +4,12 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.26 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Arreglado "Mis Listas" al no cargar nada: la consulta a Firestore combinaba `where` + `orderBy` sobre campos distintos, lo que exige un índice compuesto que un proyecto nuevo no tiene creado. Se ordena ahora en el propio código en vez de pedírselo a Firestore.
+- `frontend/src/environments/firebase-config.ts` reescrito con la configuración real del proyecto (`army-list-generator`), con la estructura correcta (exports) en vez del snippet en bruto de la consola de Firebase.
+- `package.json` fijado en las versiones compatibles conocidas (`@angular/build` en línea con el resto de Angular 22, `jspdf`/`jspdf-autotable` en el par verificado) tras varias idas y vueltas con `npm audit fix --force`.
+
 ## 0.25 — 2026-07-08 (rama `feature/firebase-lists`)
 
 - Añadido inicio de sesión con Google (Firebase Authentication) y guardado/carga/edición/borrado de listas (Firebase Firestore). Se puede seguir navegando y construyendo listas sin iniciar sesión; solo guardar requiere sesión (aviso visible en la pantalla de facción cuando no has iniciado sesión).

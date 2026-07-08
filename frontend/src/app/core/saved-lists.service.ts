@@ -7,7 +7,6 @@ import {
   DocumentData,
   getDoc,
   getDocs,
-  orderBy,
   query,
   QueryDocumentSnapshot,
   serverTimestamp,
@@ -66,9 +65,13 @@ export class SavedListsService {
 
   async listMyLists(): Promise<SavedListSummary[]> {
     const uid = this.requireUid();
-    const q = query(collection(this.authService.firestore, COLLECTION), where('ownerId', '==', uid), orderBy('updatedAt', 'desc'));
+    // Solo "where" (sin "orderBy" sobre otro campo distinto): combinar ambos exigiria un
+    // indice compuesto en Firestore que un proyecto nuevo no tiene creado todavia. Como el
+    // numero de listas de un usuario es pequeño, se ordena aqui mismo en vez de en la
+    // consulta.
+    const q = query(collection(this.authService.firestore, COLLECTION), where('ownerId', '==', uid));
     const snapshot = await getDocs(q);
-    return snapshot.docs.map((docSnap: QueryDocumentSnapshot<DocumentData>) => {
+    const results = snapshot.docs.map((docSnap: QueryDocumentSnapshot<DocumentData>) => {
       const data = docSnap.data() as SavedListDoc;
       return {
         id: docSnap.id,
@@ -82,6 +85,8 @@ export class SavedListsService {
         updatedAt: data.updatedAt instanceof Timestamp ? data.updatedAt.toDate() : null,
       };
     });
+    results.sort((a, b) => (b.updatedAt?.getTime() ?? 0) - (a.updatedAt?.getTime() ?? 0));
+    return results;
   }
 
   async getList(id: string): Promise<SavedListDetail | null> {

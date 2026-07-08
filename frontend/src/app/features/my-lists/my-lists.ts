@@ -53,7 +53,14 @@ export class MyLists {
     this.savedListsService
       .listMyLists()
       .then((lists) => this.lists.set(lists))
-      .catch(() => this.loadError.set('myLists.loadError'));
+      .catch((err) => {
+        // El texto que ve el usuario es generico (traducido), pero el error real se deja
+        // en la consola del navegador para poder diagnosticarlo (p.ej. reglas de Firestore
+        // o un indice que falte).
+        console.error('Error cargando "Mis Listas":', err);
+        this.loadError.set('myLists.loadError');
+        this.lists.set([]);
+      });
   }
 
   routeFor(list: SavedListSummary): unknown[] {

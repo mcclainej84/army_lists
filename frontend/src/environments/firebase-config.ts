@@ -2,22 +2,20 @@
 // guardar/cargar/editar listas. Se comparte entre environment.ts y environment.prod.ts
 // para no tener el mismo valor duplicado en dos sitios.
 //
-// PASO MANUAL REQUERIDO (no lo puede hacer el asistente por ti): crea un proyecto en
-// https://console.firebase.google.com, habilita "Authentication" (proveedor Google) y
-// "Firestore Database", registra una "app web" (icono </>) dentro del proyecto, y copia
-// aquí los valores que te da la consola en "Configuración del proyecto" > "Tus apps".
-// Instrucciones completas en FIREBASE_SETUP.md (raíz del repo).
-//
 // Estos valores NO son secretos: es la configuración pública del cliente de Firebase, la
 // seguridad real la dan las reglas de Firestore (ver firestore.rules). Es seguro
 // commitearlos y publicarlos tal cual en GitHub Pages.
+//
+// Nota: la inicialización real de Firebase (initializeApp) se hace una única vez en
+// frontend/src/app/core/auth.service.ts, no aquí — este archivo solo exporta los datos de
+// configuración para que ese servicio (y cualquier otro que lo necesite) los reutilice.
 export const firebaseConfig = {
-  apiKey: 'REPLACE_WITH_YOUR_API_KEY',
-  authDomain: 'REPLACE_WITH_YOUR_PROJECT.firebaseapp.com',
-  projectId: 'REPLACE_WITH_YOUR_PROJECT',
-  storageBucket: 'REPLACE_WITH_YOUR_PROJECT.appspot.com',
-  messagingSenderId: 'REPLACE_WITH_YOUR_SENDER_ID',
-  appId: 'REPLACE_WITH_YOUR_APP_ID',
+  apiKey: 'AIzaSyDppTpfrzaSwhq_G4g8Ilb86-wDS8c_Gw0',
+  authDomain: 'army-list-generator.firebaseapp.com',
+  projectId: 'army-list-generator',
+  storageBucket: 'army-list-generator.firebasestorage.app',
+  messagingSenderId: '419950751828',
+  appId: '1:419950751828:web:67ed9537d00c6a2b047dc1',
 };
 
 // Mientras el usuario no haya rellenado su configuración real, no queremos que la app
