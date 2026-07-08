@@ -1,0 +1,232 @@
+.selector {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.75rem 1.5rem 5rem;
+}
+
+.selector-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.selector-hero h1 {
+  font-size: 2.1rem;
+  color: #2b1d14;
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.tagline {
+  color: #6b5b4b;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+}
+
+// Cada paso es un tramo de una linea de tiempo vertical: el borde izquierdo conecta
+// el badge numerado de un paso con el siguiente, dando sensacion de progreso en vez
+// de tarjetas sueltas flotando en espacio vacio.
+.step {
+  position: relative;
+  padding: 0.25rem 0 2.25rem 3rem;
+  border-left: 2px solid #d8c8b0;
+  margin-left: 1.05rem;
+}
+
+.step:last-child {
+  border-left-color: transparent;
+  padding-bottom: 0;
+}
+
+.step-badge {
+  position: absolute;
+  left: -1.15rem;
+  top: 0;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 50%;
+  background: #fbf6ee;
+  border: 2px solid #d8c8b0;
+  color: #6b5b4b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.step.active .step-badge,
+.step.done .step-badge {
+  border-color: #7a1f1f;
+  background: #7a1f1f;
+  color: #fbf6ee;
+}
+
+.step-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.3rem;
+  margin-bottom: 1.1rem;
+}
+
+.step-head h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #2b1d14;
+  letter-spacing: 0.01em;
+}
+
+.change-btn {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid #d8c8b0;
+  color: #7a1f1f;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.change-btn:hover {
+  border-color: #7a1f1f;
+  background: #fbf1e6;
+}
+
+.step-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 1.1rem;
+  background: #fbf6ee;
+  border: 1px solid #d8c8b0;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #2b1d14;
+  width: fit-content;
+}
+
+.summary-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.card-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+// Forzados en una sola fila (4 juegos hoy): a diferencia del resto de grids, aqui no
+// queremos que envuelvan a una segunda linea aunque el hueco por tarjeta se reduzca.
+.game-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 720px) {
+  .game-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.conflict-grid {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.faction-grid {
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+}
+
+.card {
+  display: block;
+  border: 1px solid #d8c8b0;
+  border-radius: 10px;
+  background: #fbf6ee;
+  color: #2b1d14;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: inherit;
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border-color: #7a1f1f;
+}
+
+.game-card {
+  padding: 0;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+}
+
+.game-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.game-card:hover .game-logo {
+  transform: scale(1.04);
+}
+
+.conflict-card {
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.faction-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: center;
+  padding: 1.25rem 1rem;
+}
+
+// Caja fija con object-fit: los escudos (retrato) y las banderas (paisaje, wide) de las
+// nuevas facciones napoleonicas conviven con el mismo tamano visual sin deformarse.
+.faction-icon {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+.include-custom-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+  color: #2b1d14;
+  cursor: pointer;
+  font-size: 0.88rem;
+}
+
+.include-custom-toggle input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: #7a1f1f;
+  cursor: pointer;
+}
+
+.coming-soon,
+.loading {
+  color: #6b5b4b;
+  font-style: italic;
+  margin: 0;
+}

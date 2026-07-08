@@ -1,0 +1,113 @@
+<section class="selector">
+  <header class="selector-hero">
+    <h1>{{ 'app.title' | transloco }}</h1>
+    <p class="tagline">{{ 'home.tagline' | transloco }}</p>
+  </header>
+
+  <div class="steps">
+    <!-- PASO 1: JUEGO -->
+    <div class="step" [class.done]="selectedGame()" [class.active]="!selectedGame()">
+      <div class="step-head">
+        <span class="step-badge">1</span>
+        <h2>{{ 'games.title' | transloco }}</h2>
+        @if (selectedGame()) {
+          <button type="button" class="change-btn" (click)="changeGame()">{{ 'home.change' | transloco }}</button>
+        }
+      </div>
+
+      @if (selectedGame(); as game) {
+        <div class="step-summary">
+          @if (logoFor(game); as logo) {
+            <img [src]="logo" [alt]="game.name" class="summary-logo" />
+          }
+          <span>{{ game.name }}</span>
+        </div>
+      } @else if (games(); as list) {
+        <div class="card-grid game-grid">
+          @for (game of list; track game.id) {
+            <button type="button" class="card game-card" (click)="chooseGame(game)">
+              @if (logoFor(game); as logo) {
+                <img [src]="logo" [alt]="game.name" class="game-logo" />
+              } @else {
+                {{ game.name }}
+              }
+            </button>
+          }
+        </div>
+      } @else {
+        <p class="loading">{{ 'games.loading' | transloco }}</p>
+      }
+    </div>
+
+    <!-- PASO 2: CONFLICTO -->
+    @if (selectedGame()) {
+      <div class="step" [class.done]="selectedConflict()" [class.active]="!selectedConflict()">
+        <div class="step-head">
+          <span class="step-badge">2</span>
+          <h2>{{ 'conflicts.title' | transloco }}</h2>
+          @if (selectedConflict()) {
+            <button type="button" class="change-btn" (click)="changeConflict()">{{ 'home.change' | transloco }}</button>
+          }
+        </div>
+
+        @if (selectedConflict(); as conflict) {
+          <div class="step-summary">
+            <span>{{ conflict.name }}</span>
+          </div>
+        } @else if (conflicts(); as list) {
+          @if (list.length) {
+            <div class="card-grid conflict-grid">
+              @for (conflict of list; track conflict.id) {
+                <button type="button" class="card conflict-card" (click)="chooseConflict(conflict)">
+                  {{ conflict.name }}
+                </button>
+              }
+            </div>
+          } @else {
+            <p class="coming-soon">{{ 'conflicts.comingSoon' | transloco }}</p>
+          }
+        } @else {
+          <p class="loading">{{ 'games.loading' | transloco }}</p>
+        }
+      </div>
+    }
+
+    <!-- PASO 3: FACCION -->
+    @if (selectedConflict()) {
+      <div class="step active">
+        <div class="step-head">
+          <span class="step-badge">3</span>
+          <h2>{{ 'factions.title' | transloco }}</h2>
+        </div>
+
+        <label class="include-custom-toggle">
+          <input type="checkbox" [checked]="includeCustom()" (change)="includeCustom.set(!includeCustom())" />
+          {{ 'factions.includeCustom' | transloco }}
+        </label>
+
+        @if (factions(); as list) {
+          @let visible = visibleFactions();
+          @if (visible.length) {
+            <div class="card-grid faction-grid">
+              @for (faction of visible; track faction.id) {
+                <a
+                  class="card faction-card"
+                  [routerLink]="['/juegos', selectedGame()!.code, 'conflictos', selectedConflict()!.code, 'facciones', faction.code]"
+                >
+                  @if (iconFor(faction); as icon) {
+                    <img [src]="icon" [alt]="faction.name" class="faction-icon" />
+                  }
+                  <span>{{ faction.name }}</span>
+                </a>
+              }
+            </div>
+          } @else {
+            <p class="coming-soon">{{ 'factions.customComingSoon' | transloco }}</p>
+          }
+        } @else {
+          <p class="loading">{{ 'games.loading' | transloco }}</p>
+        }
+      </div>
+    }
+  </div>
+</section>
