@@ -4,6 +4,10 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.37 — 2026-07-08
+
+- La columna "Puntos" también se centra ahora (antes iba alineada a la derecha), tanto en la tabla de "Mi Lista" como en la exportación a PDF, para quedar en línea con el resto de columnas numéricas.
+
 ## 0.36 — 2026-07-08
 
 - Corregido el desalineado de "Aguante" en las fichas de "Unidades Disponibles": la rejilla de estadísticas solo tenía 5 columnas definidas para los 7 datos que ya mostraba (Movimiento, Armamento, Alcance, CaC, Disparo, Moral, Aguante), así que Aguante se salía a una segunda fila descuadrada. Ahora tiene 7 columnas y todo queda en línea.

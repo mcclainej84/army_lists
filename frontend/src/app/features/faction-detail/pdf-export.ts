@@ -295,7 +295,7 @@ export function exportListToPdf(options: PdfExportOptions): void {
         8: { cellWidth: 11, halign: 'center' }, // Moral
         9: { cellWidth: 13, halign: 'center' }, // Aguante
         10: { cellWidth: 25 }, // Reglas Especiales
-        11: { cellWidth: 12, halign: 'right', fontStyle: 'bold', textColor: COLOR_ACCENT }, // Puntos
+        11: { cellWidth: 12, halign: 'center', fontStyle: 'bold', textColor: COLOR_ACCENT }, // Puntos
       },
     });
 
