@@ -4,6 +4,11 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.20 — 2026-07-08
+
+- Logo principal recortado en origen (eliminado el margen transparente sobrante, sobre todo abajo) y fijado en la pantalla de inicio por altura (150px) en vez de por ancho, para que ocupe menos espacio vertical.
+- Reducido el hueco entre el logo y la frase "Elige tu juego, conflicto y facción..." y compactados los espaciados de toda la pantalla de selección (pasos, tarjetas de conflicto/facción, iconos de facción, checkbox de reglas personalizadas) para que la pantalla completa quepa mejor en 1080p.
+
 ## 0.19 — 2026-07-08
 
 - Banner de escritorio recortado por arriba y por abajo (se pierde algo de las banderas y sombreros de las puntas) en vez de escalado entero: vuelve a la altura anterior (100px) pero mucho más ancho (724px, aspect-ratio ~7.24:1), con look "cinemático" alargado. La cabecera recupera su altura anterior en escritorio.
