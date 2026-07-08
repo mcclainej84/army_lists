@@ -183,7 +183,10 @@
           <h2 class="catalog-frame-title">{{ 'factionDetail.availableUnits' | transloco }}</h2>
 
           <!-- Barra de pestañas fija: permite saltar a cualquier categoria en un clic, sin
-               tener que hacer scroll hasta abajo para llegar a las que no esten abiertas. -->
+               tener que hacer scroll hasta abajo para llegar a las que no esten abiertas.
+               Iconos en "pixel art" (rejilla 16x16, colores fijos tipo insignia/miniatura,
+               no siguen currentColor) a peticion del usuario: mas elaborados y explicitos
+               que un simple icono de linea. -->
           <nav class="catalog-tabs">
             @if (faction.commanders.length) {
               <button
@@ -192,8 +195,9 @@
                 [class.active]="activeCatalogTab() === 'COMMAND'"
                 (click)="setCatalogTab('COMMAND')"
               >
-                <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <polygon points="12 2 14.9 9.1 22.5 9.8 16.8 14.9 18.5 22.4 12 18.3 5.5 22.4 7.2 14.9 1.5 9.8 9.1 9.1" />
+                <!-- Bicornio con escarapela: icono de Mando -->
+                <svg class="tab-icon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                  <rect x="6" y="4" width="4" height="1" fill="#2b1d14" /><rect x="4" y="5" width="2" height="1" fill="#2b1d14" /><rect x="6" y="5" width="1" height="1" fill="#c9a227" /><rect x="7" y="5" width="2" height="1" fill="#7a1f1f" /><rect x="9" y="5" width="1" height="1" fill="#c9a227" /><rect x="10" y="5" width="2" height="1" fill="#2b1d14" /><rect x="2" y="6" width="4" height="1" fill="#2b1d14" /><rect x="6" y="6" width="1" height="1" fill="#c9a227" /><rect x="7" y="6" width="2" height="1" fill="#7a1f1f" /><rect x="9" y="6" width="1" height="1" fill="#c9a227" /><rect x="10" y="6" width="4" height="1" fill="#2b1d14" /><rect x="1" y="7" width="14" height="1" fill="#2b1d14" /><rect x="0" y="8" width="4" height="1" fill="#2b1d14" /><rect x="4" y="8" width="8" height="1" fill="#c9a227" /><rect x="12" y="8" width="4" height="1" fill="#2b1d14" /><rect x="0" y="9" width="3" height="1" fill="#2b1d14" /><rect x="13" y="9" width="3" height="1" fill="#2b1d14" /><rect x="0" y="10" width="2" height="1" fill="#2b1d14" /><rect x="14" y="10" width="2" height="1" fill="#2b1d14" /><rect x="1" y="11" width="1" height="1" fill="#2b1d14" /><rect x="14" y="11" width="1" height="1" fill="#2b1d14" />
                 </svg>
                 {{ 'factionDetail.category.COMMAND' | transloco }}
               </button>
@@ -208,19 +212,19 @@
                   (click)="setCatalogTab(category)"
                 >
                   @if (category === 'FOOT') {
-                    <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M9 2h4v9.3c0 .7.35 1.35 1 1.7l6 3.35c1 .55 1.6 1.6 1.6 2.75V20c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1v-2.65c0-1.6.9-3.05 2.3-3.8L9 11.6V2z" />
+                    <!-- Mosquete: icono de Infanteria -->
+                    <svg class="tab-icon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                      <rect x="14" y="0" width="2" height="1" fill="#cfd4d9" /><rect x="13" y="1" width="2" height="1" fill="#cfd4d9" /><rect x="12" y="2" width="2" height="1" fill="#9aa0a6" /><rect x="11" y="3" width="2" height="1" fill="#9aa0a6" /><rect x="10" y="4" width="2" height="1" fill="#9aa0a6" /><rect x="9" y="5" width="2" height="1" fill="#9aa0a6" /><rect x="8" y="6" width="2" height="1" fill="#9aa0a6" /><rect x="7" y="7" width="2" height="1" fill="#9aa0a6" /><rect x="4" y="8" width="1" height="1" fill="#4a3d2f" /><rect x="5" y="8" width="2" height="1" fill="#6b4423" /><rect x="3" y="9" width="1" height="1" fill="#4a3d2f" /><rect x="4" y="9" width="1" height="1" fill="#6b4423" /><rect x="5" y="9" width="2" height="1" fill="#33302b" /><rect x="2" y="10" width="1" height="1" fill="#4a3d2f" /><rect x="3" y="10" width="2" height="1" fill="#6b4423" /><rect x="5" y="10" width="2" height="1" fill="#33302b" /><rect x="0" y="11" width="1" height="1" fill="#4a3d2f" /><rect x="1" y="11" width="2" height="1" fill="#6b4423" /><rect x="0" y="12" width="1" height="1" fill="#6b4423" /><rect x="0" y="13" width="3" height="1" fill="#6b4423" /><rect x="3" y="13" width="1" height="1" fill="#4a3d2f" /><rect x="0" y="14" width="3" height="1" fill="#6b4423" /><rect x="3" y="14" width="1" height="1" fill="#4a3d2f" /><rect x="0" y="15" width="3" height="1" fill="#6b4423" /><rect x="3" y="15" width="1" height="1" fill="#4a3d2f" />
                     </svg>
                   } @else if (category === 'HORSE') {
-                    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M6 21v-8a6 6 0 0 1 12 0v8" />
-                      <circle cx="6" cy="21" r="0.9" fill="currentColor" stroke="none" />
-                      <circle cx="18" cy="21" r="0.9" fill="currentColor" stroke="none" />
+                    <!-- Cabeza de caballo: icono de Caballeria -->
+                    <svg class="tab-icon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                      <rect x="6" y="1" width="2" height="1" fill="#c9a227" /><rect x="5" y="2" width="1" height="1" fill="#c9a227" /><rect x="6" y="2" width="2" height="1" fill="#8a5a2b" /><rect x="4" y="3" width="1" height="1" fill="#4a3d2f" /><rect x="5" y="3" width="1" height="1" fill="#c9a227" /><rect x="6" y="3" width="3" height="1" fill="#8a5a2b" /><rect x="3" y="4" width="2" height="1" fill="#4a3d2f" /><rect x="5" y="4" width="1" height="1" fill="#c9a227" /><rect x="6" y="4" width="4" height="1" fill="#8a5a2b" /><rect x="2" y="5" width="3" height="1" fill="#4a3d2f" /><rect x="5" y="5" width="1" height="1" fill="#c9a227" /><rect x="6" y="5" width="5" height="1" fill="#8a5a2b" /><rect x="2" y="6" width="2" height="1" fill="#4a3d2f" /><rect x="4" y="6" width="1" height="1" fill="#c9a227" /><rect x="5" y="6" width="7" height="1" fill="#8a5a2b" /><rect x="2" y="7" width="1" height="1" fill="#4a3d2f" /><rect x="3" y="7" width="1" height="1" fill="#c9a227" /><rect x="4" y="7" width="3" height="1" fill="#8a5a2b" /><rect x="7" y="7" width="1" height="1" fill="#1a1410" /><rect x="8" y="7" width="5" height="1" fill="#8a5a2b" /><rect x="2" y="8" width="1" height="1" fill="#4a3d2f" /><rect x="3" y="8" width="1" height="1" fill="#c9a227" /><rect x="4" y="8" width="10" height="1" fill="#8a5a2b" /><rect x="3" y="9" width="1" height="1" fill="#c9a227" /><rect x="4" y="9" width="10" height="1" fill="#8a5a2b" /><rect x="14" y="9" width="1" height="1" fill="#1a1410" /><rect x="4" y="10" width="11" height="1" fill="#8a5a2b" /><rect x="4" y="11" width="10" height="1" fill="#8a5a2b" /><rect x="5" y="12" width="3" height="1" fill="#8a5a2b" /><rect x="10" y="12" width="3" height="1" fill="#8a5a2b" /><rect x="5" y="13" width="2" height="1" fill="#8a5a2b" /><rect x="11" y="13" width="2" height="1" fill="#8a5a2b" />
                     </svg>
                   } @else {
-                    <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <circle cx="7" cy="17.5" r="4.5" />
-                      <rect x="6" y="3" width="13" height="4.6" rx="2" transform="rotate(-25 12.5 5.3)" />
+                    <!-- Cañon sobre rueda: icono de Artilleria -->
+                    <svg class="tab-icon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                      <rect x="13" y="0" width="1" height="1" fill="#e8c766" /><rect x="14" y="0" width="2" height="1" fill="#cfd4d9" /><rect x="12" y="1" width="3" height="1" fill="#e8c766" /><rect x="15" y="1" width="1" height="1" fill="#cfd4d9" /><rect x="11" y="2" width="3" height="1" fill="#c9a227" /><rect x="10" y="3" width="3" height="1" fill="#c9a227" /><rect x="9" y="4" width="3" height="1" fill="#c9a227" /><rect x="8" y="5" width="3" height="1" fill="#c9a227" /><rect x="7" y="6" width="3" height="1" fill="#c9a227" /><rect x="4" y="7" width="2" height="1" fill="#33302b" /><rect x="6" y="7" width="3" height="1" fill="#c9a227" /><rect x="2" y="8" width="3" height="1" fill="#33302b" /><rect x="5" y="8" width="2" height="1" fill="#c9a227" /><rect x="7" y="8" width="2" height="1" fill="#6b4423" /><rect x="2" y="9" width="1" height="1" fill="#33302b" /><rect x="3" y="9" width="2" height="1" fill="#9aa0a6" /><rect x="5" y="9" width="1" height="1" fill="#33302b" /><rect x="6" y="9" width="1" height="1" fill="#9aa0a6" /><rect x="7" y="9" width="2" height="1" fill="#6b4423" /><rect x="1" y="10" width="2" height="1" fill="#33302b" /><rect x="3" y="10" width="2" height="1" fill="#9aa0a6" /><rect x="5" y="10" width="1" height="1" fill="#33302b" /><rect x="6" y="10" width="2" height="1" fill="#9aa0a6" /><rect x="8" y="10" width="2" height="1" fill="#33302b" /><rect x="1" y="11" width="9" height="1" fill="#33302b" /><rect x="1" y="12" width="2" height="1" fill="#33302b" /><rect x="3" y="12" width="2" height="1" fill="#9aa0a6" /><rect x="5" y="12" width="1" height="1" fill="#33302b" /><rect x="6" y="12" width="2" height="1" fill="#9aa0a6" /><rect x="8" y="12" width="2" height="1" fill="#33302b" /><rect x="2" y="13" width="1" height="1" fill="#33302b" /><rect x="3" y="13" width="2" height="1" fill="#9aa0a6" /><rect x="5" y="13" width="1" height="1" fill="#33302b" /><rect x="6" y="13" width="2" height="1" fill="#9aa0a6" /><rect x="8" y="13" width="1" height="1" fill="#33302b" /><rect x="2" y="14" width="7" height="1" fill="#33302b" /><rect x="4" y="15" width="3" height="1" fill="#33302b" />
                     </svg>
                   }
                   {{ 'factionDetail.category.' + category | transloco }}

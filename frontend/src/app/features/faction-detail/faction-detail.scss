@@ -121,12 +121,14 @@ h2.catalog-frame-title {
   color: #fbf6ee;
 }
 
-// Los iconos usan fill/stroke: currentColor, asi heredan el color del texto del boton (marron
-// normal, rojo en hover, crema cuando la pestaña esta activa) sin necesidad de variantes.
+// Iconos "pixel art" (rejilla 16x16, colores fijos tipo insignia/miniatura, no currentColor):
+// se ven igual este o no activa la pestaña, por eso llevan algo mas de tamaño que un icono de
+// linea simple, para que el detalle se aprecie.
 .tab-icon {
-  width: 13px;
-  height: 13px;
+  width: 18px;
+  height: 18px;
   flex: 0 0 auto;
+  image-rendering: pixelated;
 }
 
 .catalog-group {
