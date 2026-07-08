@@ -1,57 +1,64 @@
-<header class="app-header">
-  <div class="brand-group">
-    <a class="brand" routerLink="/">{{ 'app.title' | transloco }}</a>
-    <span class="version-tag" [title]="('app.lastUpdated' | transloco) + ': ' + lastUpdated">v{{ version }}</span>
-  </div>
-
-  <!-- Banner ilustrado (30YW / Napoleonicas / FIW), con version @2x para pantallas retina. -->
-  <div class="banner-slot" aria-hidden="true"></div>
-
-  <div class="lang-switch">
-    <button
-      type="button"
-      class="flag-btn"
-      [class.active]="localeService.current() === 'es'"
-      [title]="'language.es' | transloco"
-      [attr.aria-label]="'language.es' | transloco"
-      (click)="setLocale('es')"
-    >
-      <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
-        <rect width="60" height="30" fill="#aa151b" />
-        <rect y="7.5" width="60" height="15" fill="#f1bf00" />
-      </svg>
-    </button>
-    <button
-      type="button"
-      class="flag-btn"
-      [class.active]="localeService.current() === 'en'"
-      [title]="'language.en' | transloco"
-      [attr.aria-label]="'language.en' | transloco"
-      (click)="setLocale('en')"
-    >
-      <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0 v30 h60 v-30 z" fill="#00247d" />
-        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6" />
-        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#cf142b" stroke-width="2" />
-        <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10" />
-        <path d="M30,0 v30 M0,15 h60" stroke="#cf142b" stroke-width="6" />
-      </svg>
-    </button>
-  </div>
-
-  @if (authService.isConfigured) {
-    <div class="account-widget">
-      <a class="account-link" routerLink="/mis-listas">{{ 'nav.myLists' | transloco }}</a>
-      @if (authService.authReady()) {
-        @if (authService.currentUser(); as user) {
-          <span class="account-name" [title]="user.email || ''">{{ user.displayName || user.email }}</span>
-          <button type="button" class="account-btn" (click)="signOut()">{{ 'auth.signOut' | transloco }}</button>
-        } @else {
-          <button type="button" class="account-btn account-btn-primary" (click)="signIn()">
-            {{ 'auth.signIn' | transloco }}
-          </button>
-        }
-      }
+<header class="site-header">
+  <!-- Franja de utilidad: idioma a la izquierda, Mis Listas + sesion a la derecha. Separada
+       de la barra principal (marca + banner) para no competir en altura/peso visual con
+       ella: son acciones secundarias, no la identidad de la app. -->
+  <div class="utility-bar">
+    <div class="lang-switch">
+      <button
+        type="button"
+        class="flag-btn"
+        [class.active]="localeService.current() === 'es'"
+        [title]="'language.es' | transloco"
+        [attr.aria-label]="'language.es' | transloco"
+        (click)="setLocale('es')"
+      >
+        <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+          <rect width="60" height="30" fill="#aa151b" />
+          <rect y="7.5" width="60" height="15" fill="#f1bf00" />
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="flag-btn"
+        [class.active]="localeService.current() === 'en'"
+        [title]="'language.en' | transloco"
+        [attr.aria-label]="'language.en' | transloco"
+        (click)="setLocale('en')"
+      >
+        <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,0 v30 h60 v-30 z" fill="#00247d" />
+          <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6" />
+          <path d="M0,0 L60,30 M60,0 L0,30" stroke="#cf142b" stroke-width="2" />
+          <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10" />
+          <path d="M30,0 v30 M0,15 h60" stroke="#cf142b" stroke-width="6" />
+        </svg>
+      </button>
     </div>
-  }
+
+    @if (authService.isConfigured) {
+      <div class="account-widget">
+        <a class="my-lists-nav-btn" routerLink="/mis-listas">{{ 'nav.myLists' | transloco }}</a>
+        @if (authService.authReady()) {
+          @if (authService.currentUser(); as user) {
+            <span class="account-name" [title]="user.email || ''">{{ user.displayName || user.email }}</span>
+            <button type="button" class="account-btn" (click)="signOut()">{{ 'auth.signOut' | transloco }}</button>
+          } @else {
+            <button type="button" class="account-btn account-btn-primary" (click)="signIn()">
+              {{ 'auth.signIn' | transloco }}
+            </button>
+          }
+        }
+      </div>
+    }
+  </div>
+
+  <div class="app-header">
+    <div class="brand-group">
+      <a class="brand" routerLink="/">{{ 'app.title' | transloco }}</a>
+      <span class="version-tag" [title]="('app.lastUpdated' | transloco) + ': ' + lastUpdated">v{{ version }}</span>
+    </div>
+
+    <!-- Banner ilustrado (30YW / Napoleonicas / FIW), con version @2x para pantallas retina. -->
+    <div class="banner-slot" aria-hidden="true"></div>
+  </div>
 </header>

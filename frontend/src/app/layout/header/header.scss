@@ -1,21 +1,42 @@
+// Cabecera en 2 franjas apiladas:
+// 1. .utility-bar: tira fina de acciones secundarias (idioma, Mis Listas, sesion), mas
+//    oscura y de texto pequeno, para que no compita en peso visual con la marca.
+// 2. .app-header: la barra principal, con la identidad de la app (marca) y el banner
+//    ilustrado, exactamente como estaba antes de anadir cuenta/idioma a este componente.
+// Separarlas asi evita los problemas de alineacion de intentar meter idioma + Mis Listas +
+// sesion + marca + banner en una unica fila (o en una columna junto al banner): cada franja
+// tiene su propio ritmo y ancho, sin que unos elementos empujen o desequilibren a otros.
+.site-header {
+  background: #2b1d14;
+  border-bottom: 3px solid #7a1f1f;
+}
+
+.utility-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.35rem 1.5rem;
+  background: #241809;
+  border-bottom: 1px solid rgba(216, 200, 176, 0.15);
+  font-size: 0.78rem;
+}
+
 .app-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.6rem 1.5rem;
-  background: #2b1d14;
   color: #f2e6d8;
-  border-bottom: 3px solid #7a1f1f;
 }
 
 .brand-group {
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
-  order: 1;
 }
 
-// Banner ilustrado, centrado entre la marca y el selector de idioma (justify-content:
+// Banner ilustrado, centrado entre la marca y el borde derecho (justify-content:
 // space-between del padre reparte el sobrante en 2 huecos iguales a cada lado). En vez
 // de escalar la imagen entera (lo que la hacia mas alta al ensancharla), se recorto una
 // franja del centro (se pierde algo de las banderas/sombreros de arriba y de abajo) para
@@ -24,7 +45,6 @@
 // en public/img/ (se sube 4 niveles hasta frontend/ y baja a public/img/) para que el
 // bundler lo encuentre y lo procese en build.
 .banner-slot {
-  order: 2;
   flex: 0 0 auto;
   width: 724px;
   height: 100px;
@@ -47,23 +67,23 @@
 }
 
 @media (max-width: 640px) {
-  .app-header {
+  .utility-bar {
     flex-wrap: wrap;
     row-gap: 0.4rem;
+    padding: 0.4rem 1rem;
   }
 
-  .lang-switch {
-    order: 3;
-    margin-left: auto;
+  .app-header {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    justify-content: center;
+    padding: 0.6rem 1rem;
   }
 
   .banner-slot {
-    order: 4;
-    flex: 0 0 100%;
     width: 320px;
     max-width: 100%;
     height: 89px;
-    margin: 0 auto;
     // Imagen especifica para movil (recorte distinto, no solo el mismo banner escalado).
     background-image: image-set(
       url('../../../../public/img/banner-mobile.png') 1x,
@@ -92,15 +112,14 @@
 .lang-switch {
   display: flex;
   gap: 0.4rem;
-  order: 3;
 }
 
 // Banderas en vez de texto "ES"/"EN": ocupan menos espacio y quedan mas elegantes.
 .flag-btn {
   display: block;
   padding: 0;
-  width: 30px;
-  height: 20px;
+  width: 26px;
+  height: 17px;
   border: 1px solid #6b5b4b;
   border-radius: 3px;
   overflow: hidden;
@@ -124,30 +143,31 @@
   border-color: #f2e6d8;
 }
 
-// Widget de cuenta: comparte el mismo "order" que el selector de idioma para aparecer
-// justo a su lado (a la derecha del banner) tanto en escritorio como en el envoltorio de
-// movil, sin tener que tocar la logica de centrado del banner (que depende de que a cada
-// lado solo haya un grupo de controles).
 .account-widget {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  order: 3;
-  margin-left: 0.6rem;
-  font-size: 0.8rem;
+  gap: 0.6rem;
 }
 
-.account-link {
-  color: #c9b79c;
+// "Mis Listas" es la accion mas util de esta franja, asi que lleva tratamiento de boton
+// solido (mismo acento que el resto de acciones primarias de la app) en vez de un enlace de
+// texto plano como el resto de la franja de utilidad, para que destaque un poco mas.
+.my-lists-nav-btn {
+  padding: 0.25rem 0.65rem;
+  border: 1px solid #7a1f1f;
+  border-radius: 5px;
+  background: #7a1f1f;
+  color: #fbf6ee;
   text-decoration: none;
+  font-weight: 600;
+  font-size: 0.75rem;
   white-space: nowrap;
-  opacity: 0.85;
-  transition: opacity 0.15s ease, color 0.15s ease;
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
-.account-link:hover {
-  opacity: 1;
-  color: #f2e6d8;
+.my-lists-nav-btn:hover {
+  background: #922626;
+  border-color: #922626;
 }
 
 .account-name {
@@ -155,17 +175,16 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #f2e6d8;
-  opacity: 0.9;
+  color: #c9b79c;
 }
 
 .account-btn {
   background: transparent;
   border: 1px solid #6b5b4b;
   color: #f2e6d8;
-  padding: 0.25rem 0.6rem;
-  border-radius: 6px;
-  font-size: 0.75rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 5px;
+  font-size: 0.72rem;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
@@ -184,11 +203,4 @@
 .account-btn-primary:hover {
   background: #922626;
   border-color: #922626;
-}
-
-@media (max-width: 640px) {
-  .account-widget {
-    order: 3;
-    margin-left: 0;
-  }
 }

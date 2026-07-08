@@ -12,40 +12,51 @@
   font-weight: 600;
 }
 
-.my-lists-table {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+// Tabla HTML real en vez de "filas" con CSS grid independientes: con grid, cada fila era
+// su propio contenedor con sus propias columnas, asi que el ancho de cada columna se
+// calculaba por separado por fila (segun su contenido) y la cabecera no quedaba alineada
+// con los datos de abajo en cuanto una fila tenia contenido mas ancho (p.ej. los botones de
+// Cargar/Eliminar). Con <table> el navegador alinea las columnas de verdad entre todas las
+// filas, que es justamente lo que hace falta aqui.
+.my-lists-table-wrap {
   margin-top: 1rem;
-}
-
-.my-lists-row {
-  display: grid;
-  grid-template-columns: 1.6fr 1.2fr 0.9fr 1fr auto;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.6rem 0.85rem;
-  background: #fbf6ee;
   border: 1px solid #d8c8b0;
   border-radius: 8px;
-  font-size: 0.85rem;
+  overflow: hidden;
 }
 
-.my-lists-header {
-  background: transparent;
-  border: none;
-  padding: 0 0.85rem;
+.my-lists-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  background: #fbf6ee;
+}
+
+.my-lists-table th,
+.my-lists-table td {
+  padding: 0.6rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid #d8c8b0;
+}
+
+.my-lists-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.my-lists-table th {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 0.65rem;
   letter-spacing: 0.02em;
   color: #6b5b4b;
+  background: #f2e6d8;
 }
 
 .my-lists-actions {
   display: flex;
   gap: 0.5rem;
   justify-content: flex-end;
+  text-align: right;
 }
 
 .my-lists-load-btn {
@@ -89,18 +100,15 @@
   cursor: not-allowed;
 }
 
+// En movil no hay sitio para 5 columnas: en vez de amontonar el contenido (que es lo que
+// causaba el descuadre original), se deja la tabla con su ancho natural y se permite
+// scroll horizontal dentro de su propio recuadro.
 @media (max-width: 720px) {
-  .my-lists-header {
-    display: none;
+  .my-lists-table-wrap {
+    overflow-x: auto;
   }
 
-  .my-lists-row {
-    grid-template-columns: 1fr;
-    gap: 0.3rem;
-  }
-
-  .my-lists-actions {
-    justify-content: flex-start;
-    margin-top: 0.3rem;
+  .my-lists-table {
+    min-width: 640px;
   }
 }

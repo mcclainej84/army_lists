@@ -4,6 +4,11 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.27 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Rediseñada la cabecera en 2 franjas: una tira fina superior de "utilidad" (idioma a la izquierda, "Mis Listas" + sesión a la derecha) separada de la barra principal (marca + banner ilustrado), en vez de intentar meter todo en una sola fila. "Mis Listas" ahora tiene tratamiento de botón sólido para destacar más.
+- Arreglada "Mis Listas": la tabla usaba una fila de CSS grid independiente por fila, así que la cabecera y los datos podían desalinearse según el contenido (los botones de Cargar/Eliminar). Ahora es una tabla HTML real, con columnas siempre alineadas.
+
 ## 0.26 — 2026-07-08 (rama `feature/firebase-lists`)
 
 - Arreglado "Mis Listas" al no cargar nada: la consulta a Firestore combinaba `where` + `orderBy` sobre campos distintos, lo que exige un índice compuesto que un proyecto nuevo no tiene creado. Se ordena ahora en el propio código en vez de pedírselo a Firestore.
