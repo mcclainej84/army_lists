@@ -1,8 +1,19 @@
 import { ConflictSeed } from "../types";
+import {
+  austrianCustomFaction,
+  britishCustomFaction,
+  frenchCustomFaction,
+  prussianCustomFaction,
+  russianCustomFaction,
+} from "./napoleonicWarsCustom";
 
-// Guerras Napoleónicas (Black Powder). De momento solo el andamiaje: nombre de la
-// facción + escudo, sin comandantes ni unidades todavía (a la espera de las tablas de
-// referencia, igual que se hizo con Imperio/Suecia/Francia/España en 30YW).
+// Guerras Napoleónicas (Black Powder). Las facciones oficiales son de momento solo
+// andamiaje (nombre + escudo, sin comandantes ni unidades) a la espera de las tablas de
+// referencia oficiales. España se ha retirado por ahora a petición del usuario. Además de
+// las oficiales, se incluyen 5 facciones personalizadas (is_official:false) transcritas
+// del documento aportado por el usuario, seleccionables mediante el checkbox "Incluir
+// facciones personalizadas". Rusia solo existe como personalizada (no hay facción oficial
+// de Rusia todavía) y de momento no tiene escudo propio.
 export const napoleonicWars: ConflictSeed = {
   code: "napoleonic_wars",
   name_en: "Napoleonic Wars",
@@ -41,14 +52,6 @@ export const napoleonicWars: ConflictSeed = {
       units: [],
     },
     {
-      code: "spain",
-      name_en: "Spain",
-      name_es: "España",
-      is_official: true,
-      commanders: [],
-      units: [],
-    },
-    {
       code: "austria",
       name_en: "Austria",
       name_es: "Austria",
@@ -56,5 +59,10 @@ export const napoleonicWars: ConflictSeed = {
       commanders: [],
       units: [],
     },
+    britishCustomFaction,
+    frenchCustomFaction,
+    prussianCustomFaction,
+    austrianCustomFaction,
+    russianCustomFaction,
   ],
 };

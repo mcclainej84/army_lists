@@ -312,6 +312,106 @@ h2.catalog-frame-title {
   color: #b02a2a;
 }
 
+.export-pdf-btn {
+  margin-left: auto;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid #7a1f1f;
+  border-radius: 5px;
+  background: #7a1f1f;
+  color: #fbf6ee;
+  font-weight: 600;
+  font-size: 0.78rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.export-pdf-btn:hover {
+  opacity: 0.9;
+}
+
+.export-pdf-btn:disabled {
+  background: #b7a591;
+  border-color: #b7a591;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.export-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 29, 20, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.export-modal {
+  width: 100%;
+  max-width: 380px;
+  background: #fffdf9;
+  border: 1px solid #d8c8b0;
+  border-radius: 10px;
+  padding: 1.1rem 1.25rem 1.25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.export-modal h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  color: #7a1f1f;
+}
+
+.export-modal-hint {
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  color: #6b5b4b;
+}
+
+.export-name-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #d8c8b0;
+  border-radius: 5px;
+  font-size: 0.85rem;
+}
+
+.export-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.export-cancel-btn {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #d8c8b0;
+  border-radius: 5px;
+  background: transparent;
+  color: #6b5b4b;
+  font-weight: 600;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.export-confirm-btn {
+  padding: 0.4rem 0.85rem;
+  border: none;
+  border-radius: 5px;
+  background: #7a1f1f;
+  color: #fbf6ee;
+  font-weight: 600;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.export-confirm-btn:disabled {
+  background: #b7a591;
+  cursor: not-allowed;
+}
+
 .my-list {
   margin-bottom: 1.5rem;
   padding: 0.6rem 0.85rem;
@@ -367,6 +467,11 @@ h2.catalog-frame-title {
   border: 1px solid #d8c8b0;
   border-radius: 5px;
   font-size: 0.8rem;
+  cursor: grab;
+}
+
+.commander-entry:active {
+  cursor: grabbing;
 }
 
 .entry-points {
@@ -470,6 +575,15 @@ h2.catalog-frame-title {
   font-size: 0.75rem;
   background: #fbf6ee;
   border-bottom: 1px solid #ece0cf;
+  cursor: grab;
+}
+
+.unit-row:active {
+  cursor: grabbing;
+}
+
+.unit-row-header {
+  cursor: default;
 }
 
 .unit-row-header {

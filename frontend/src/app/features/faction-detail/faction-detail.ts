@@ -9,6 +9,7 @@ import { CatalogService } from '../../core/catalog.service';
 import { CommanderDTO, FactionDetailDTO, UnitDTO, UnitOptionDTO } from '../../core/models';
 import { BattaliaWarning, canAddUnit, canSelectOption, getBattaliaWarnings, ValidationResult } from './constraints';
 import { Battalia, ListCommanderEntry, ListUnitEntry, nextInstanceId, UNASSIGNED_BATTALIA_ID } from './list-builder.model';
+import { exportListToPdf } from './pdf-export';
 
 type Category = 'HORSE' | 'FOOT' | 'ORDNANCE';
 // Orden pedido para el catalogo: Mando (aparte, son comandantes) / Infanteria / Caballeria / Artilleria.
@@ -29,6 +30,18 @@ export class FactionDetail {
   conflictCode = '';
   categoryOrder = CATEGORY_ORDER;
   unassignedId = UNASSIGNED_BATTALIA_ID;
+
+  /**
+   * El nombre de "battalia" cambia segun el reglamento: en Pike & Shotte (epoca de picas y
+   * mosquetes) el termino historico es "Battalia"; en Black Powder (Napoleonicas) la unidad
+   * de mando se llama "Brigada". Se resuelve por gameCode en vez de tener un unico termino
+   * fijo en las traducciones.
+   */
+  groupNoun(capitalize: boolean): string {
+    const key = this.gameCode === 'black_powder' ? 'factionDetail.groupNoun.brigade' : 'factionDetail.groupNoun.battalia';
+    const word = this.transloco.translate(key);
+    return capitalize ? word : word.toLowerCase();
+  }
 
   faction$: Observable<FactionDetailDTO> = this.route.paramMap.pipe(
     switchMap((params) => {
@@ -55,6 +68,11 @@ export class FactionDetail {
   /** Opciones marcadas (pero aun no confirmadas) en el catalogo, antes de pulsar "Anadir". Clave: unit.code */
   pendingSelections = signal<Record<string, string[]>>({});
 
+  // --- Exportacion a PDF ---
+  exportDialogOpen = signal(false);
+  exportListName = signal('');
+  private exportFactionName = '';
+
   totalPoints = computed(() => {
     const commanderPoints = this.listCommanders().reduce((sum, c) => sum + c.commander.points, 0);
     const unitPoints = this.listUnits().reduce((sum, entry) => sum + this.entryPoints(entry), 0);
@@ -62,6 +80,9 @@ export class FactionDetail {
   });
 
   remainingPoints = computed(() => this.pointsLimit() - this.totalPoints());
+
+  /** Bloquea la exportacion a PDF mientras queden unidades sin asignar a ninguna battalia. */
+  hasUnassignedUnits = computed(() => this.listUnits().some((u) => u.battaliaId === UNASSIGNED_BATTALIA_ID));
 
   battaliaWarnings = computed(() => getBattaliaWarnings(this.battalias(), this.listUnits()));
 
@@ -91,12 +112,17 @@ export class FactionDetail {
   }
 
   warningMessage(warning: BattaliaWarning): string {
+    const groupLower = this.groupNoun(false);
     if (warning.kind === 'group') {
       const groupLabel = this.transloco.translate(`factionDetail.groups.${warning.name}`);
-      return this.transloco.translate('factionDetail.warnings.battaliaMaxGroup', { max: warning.max, name: groupLabel });
+      return this.transloco.translate('factionDetail.warnings.battaliaMaxGroup', {
+        max: warning.max,
+        name: groupLabel,
+        groupLower,
+      });
     }
     const key = warning.kind === 'unit' ? 'factionDetail.warnings.battaliaMaxUnit' : 'factionDetail.warnings.battaliaMaxOption';
-    return this.transloco.translate(key, { max: warning.max, name: warning.name });
+    return this.transloco.translate(key, { max: warning.max, name: warning.name, groupLower });
   }
 
   // --- Battalia en foco ---
@@ -139,7 +165,7 @@ export class FactionDetail {
   addBattalia(): void {
     const n = this.battalias().length + 1;
     const id = nextInstanceId('battalia');
-    this.battalias.update((list) => [...list, { id, name: `Battalia ${n}` }]);
+    this.battalias.update((list) => [...list, { id, name: `${this.groupNoun(true)} ${n}` }]);
     this.activeBattaliaId.set(id);
   }
 
@@ -302,5 +328,59 @@ export class FactionDetail {
 
       return [...rest, ...newDestination];
     });
+  }
+
+  // --- Exportacion a PDF ---
+  openExportDialog(factionName: string): void {
+    if (this.hasUnassignedUnits()) return;
+    this.exportFactionName = factionName;
+    if (!this.exportListName().trim()) {
+      this.exportListName.set(factionName);
+    }
+    this.exportDialogOpen.set(true);
+  }
+
+  closeExportDialog(): void {
+    this.exportDialogOpen.set(false);
+  }
+
+  confirmExport(): void {
+    const name = this.exportListName().trim();
+    if (!name || this.hasUnassignedUnits()) return;
+
+    exportListToPdf({
+      listName: name,
+      factionName: this.exportFactionName,
+      totalPoints: this.totalPoints(),
+      pointsLimit: this.pointsLimit(),
+      battalias: this.battalias(),
+      listCommanders: this.listCommanders(),
+      listUnits: this.listUnits(),
+      labels: {
+        table: {
+          unit: this.transloco.translate('factionDetail.table.unit'),
+          type: this.transloco.translate('factionDetail.table.type'),
+          bases: this.transloco.translate('factionDetail.table.bases'),
+          armament: this.transloco.translate('factionDetail.table.armament'),
+          handToHand: this.transloco.translate('factionDetail.export.handToHandAbbr'),
+          shooting: this.transloco.translate('factionDetail.table.shooting'),
+          morale: this.transloco.translate('factionDetail.table.morale'),
+          stamina: this.transloco.translate('factionDetail.table.stamina'),
+          specialRules: this.transloco.translate('factionDetail.table.specialRules'),
+          points: this.transloco.translate('factionDetail.table.points'),
+        },
+        faction: this.transloco.translate('factionDetail.export.faction'),
+        points: this.transloco.translate('factionDetail.table.points'),
+        battalia: this.groupNoun(true),
+        commander: this.transloco.translate('factionDetail.export.commander'),
+        commandRating: this.transloco.translate('factionDetail.commandRating'),
+        unassigned: this.transloco.translate('factionDetail.battalias.unassigned'),
+        noUnits: this.transloco.translate('factionDetail.export.noUnits'),
+        generatedWith: this.transloco.translate('factionDetail.export.generatedWith'),
+        page: this.transloco.translate('factionDetail.export.page'),
+      },
+    });
+
+    this.exportDialogOpen.set(false);
   }
 }

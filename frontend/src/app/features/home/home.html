@@ -92,7 +92,7 @@
               @for (faction of visible; track faction.id) {
                 <a
                   class="card faction-card"
-                  [routerLink]="['/juegos', selectedGame()!.code, 'conflictos', selectedConflict()!.code, 'facciones', faction.code]"
+                  [routerLink]="['/juegos', selectedGame()!.code, 'conflictos', selectedConflict()!.code, 'facciones', targetFactionCode(faction)]"
                 >
                   @if (iconFor(faction); as icon) {
                     <img [src]="icon" [alt]="faction.name" class="faction-icon" />

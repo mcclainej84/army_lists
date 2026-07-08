@@ -12,7 +12,9 @@ export interface UnitStatsSeed {
   category: Category;
   unit_type_en: string;
   unit_type_es: string;
-  bases: number;
+  // Opcional: algunas fuentes (p.ej. el documento de Black Powder personalizado) no dan
+  // un numero de peanas por unidad, a diferencia de las tablas de Pike & Shotte.
+  bases?: number;
   armament_en: string;
   armament_es: string;
   hand_to_hand: string;

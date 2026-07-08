@@ -88,7 +88,7 @@ function seed(): void {
               category: unit.stats.category,
               unit_type_en: unit.stats.unit_type_en,
               unit_type_es: unit.stats.unit_type_es,
-              bases: unit.stats.bases,
+              bases: unit.stats.bases ?? null,
               armament_en: unit.stats.armament_en,
               armament_es: unit.stats.armament_es,
               hand_to_hand: unit.stats.hand_to_hand,

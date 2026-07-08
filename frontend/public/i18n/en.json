@@ -59,7 +59,7 @@
     "pointsLimit": "Points limit",
     "totalPoints": "Total",
     "remaining": "Remaining",
-    "emptyColumn": "Drag units and commanders here, or press Add with this battalia in focus.",
+    "emptyColumn": "Drag units and commanders here, or press Add with this {{groupLower}} in focus.",
     "active": "In focus",
     "notAvailable": "Not available due to army restrictions",
     "reasons": {
@@ -70,18 +70,37 @@
       "notEnoughPoints": "Not enough points left (costs {{cost}}, {{remaining}} remaining)"
     },
     "battalias": {
-      "add": "+ New Battalia",
+      "add": "+ New {{group}}",
       "unassigned": "Unassigned",
-      "namePlaceholder": "Battalia name"
+      "namePlaceholder": "{{group}} name"
     },
     "warnings": {
-      "battaliaMaxUnit": "This battalia exceeds the maximum of {{max}} {{name}}",
-      "battaliaMaxOption": "This battalia exceeds the maximum of {{max}} with the {{name}} option",
-      "battaliaMaxGroup": "This battalia exceeds the maximum of {{max}} {{name}}",
-      "noUnitsAssigned": "This battalia has no units assigned yet"
+      "battaliaMaxUnit": "This {{groupLower}} exceeds the maximum of {{max}} {{name}}",
+      "battaliaMaxOption": "This {{groupLower}} exceeds the maximum of {{max}} with the {{name}} option",
+      "battaliaMaxGroup": "This {{groupLower}} exceeds the maximum of {{max}} {{name}}",
+      "noUnitsAssigned": "This {{groupLower}} has no units assigned yet"
     },
     "groups": {
       "ordnance": "Ordnance"
+    },
+    "groupNoun": {
+      "battalia": "Battalia",
+      "brigade": "Brigade"
+    },
+    "export": {
+      "button": "Export to PDF",
+      "dialogTitle": "Export list",
+      "dialogHint": "Choose a name for this list. It will be used as the sheet title and the file name.",
+      "namePlaceholder": "List name",
+      "cancel": "Cancel",
+      "confirm": "Export",
+      "faction": "Faction",
+      "commander": "Commander",
+      "handToHandAbbr": "H2H",
+      "noUnits": "No units",
+      "generatedWith": "Generated with ListGenerator",
+      "page": "Page",
+      "blockedUnassigned": "Assign all units to a {{group}} before exporting"
     }
   },
   "language": {

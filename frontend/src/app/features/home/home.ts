@@ -27,8 +27,28 @@ const FACTION_ICONS: Record<string, string> = {
   great_britain: 'img/factions/nap-great-britain.png',
   prussia: 'img/factions/nap-prussia.png',
   portugal: 'img/factions/nap-portugal.png',
-  spain: 'img/factions/nap-spain.png',
   austria: 'img/factions/nap-austria.png',
+  // Facciones personalizadas de Black Powder Napoleonicas: reutilizan el escudo de la
+  // nacion oficial correspondiente. Rusia no tiene escudo todavia (a la espera de que
+  // el usuario suba uno), asi que se queda sin entrada aqui a proposito.
+  british_custom: 'img/factions/nap-great-britain.png',
+  french_custom: 'img/factions/nap-imperial-france.png',
+  prussian_custom: 'img/factions/nap-prussia.png',
+  austrian_custom: 'img/factions/nap-austria.png',
+};
+
+// Cuando una nacion tiene tanto version oficial (de momento vacia) como version
+// personalizada con reglas completas, no queremos dos botones casi iguales en el
+// selector ("Francia Imperial" y "Francia (Reglas Personalizadas)"). En vez de eso se
+// muestra un unico boton (el de la faccion oficial) y, si "Incluir facciones
+// personalizadas" esta activado, el click lleva directamente a la version personalizada.
+// Rusia no tiene version oficial (solo personalizada), asi que no entra en este mapa: se
+// sigue mostrando como una entrada normal en la lista.
+const CUSTOM_FACTION_OVERRIDES: Record<string, string> = {
+  imperial_france: 'french_custom',
+  great_britain: 'british_custom',
+  prussia: 'prussian_custom',
+  austria: 'austrian_custom',
 };
 
 @Component({
@@ -65,7 +85,29 @@ export class Home {
   visibleFactions(): FactionSummaryDTO[] {
     const list = this.factions();
     if (!list) return [];
-    return this.includeCustom() ? list : list.filter((f) => f.isOfficial);
+    // Las personalizadas que tienen una oficial "anfitriona" (ver CUSTOM_FACTION_OVERRIDES)
+    // nunca aparecen como boton propio: se accede a ellas a traves del boton oficial. Las
+    // personalizadas "huerfanas" (sin oficial equivalente, p.ej. Rusia) si son su propia
+    // entrada, y respetan el checkbox como siempre.
+    const overriddenCodes = new Set(Object.values(CUSTOM_FACTION_OVERRIDES));
+    return list.filter((f) => {
+      if (overriddenCodes.has(f.code)) return false;
+      if (f.isOfficial) return true;
+      return this.includeCustom();
+    });
+  }
+
+  /**
+   * Codigo de faccion al que navega el click sobre esta tarjeta: si "Incluir facciones
+   * personalizadas" esta activado y esta nacion tiene una version personalizada cargada,
+   * vamos directos a esa; si no, a la oficial de siempre.
+   */
+  targetFactionCode(faction: FactionSummaryDTO): string {
+    if (!this.includeCustom()) return faction.code;
+    const overrideCode = CUSTOM_FACTION_OVERRIDES[faction.code];
+    if (!overrideCode) return faction.code;
+    const hasCustom = this.factions()?.some((f) => f.code === overrideCode) ?? false;
+    return hasCustom ? overrideCode : faction.code;
   }
 
   chooseGame(game: GameDTO): void {

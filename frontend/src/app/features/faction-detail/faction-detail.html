@@ -21,6 +21,15 @@
       <span class="points-remaining" [class.over]="remainingPoints() < 0">
         {{ 'factionDetail.remaining' | transloco }}: {{ remainingPoints() }}
       </span>
+      <button
+        type="button"
+        class="export-pdf-btn"
+        [disabled]="hasUnassignedUnits()"
+        [title]="hasUnassignedUnits() ? ('factionDetail.export.blockedUnassigned' | transloco: { group: groupNoun(true) }) : ''"
+        (click)="openExportDialog(faction.name)"
+      >
+        {{ 'factionDetail.export.button' | transloco }}
+      </button>
     </div>
 
     <div class="detail-layout">
@@ -29,7 +38,7 @@
         <div class="my-list-header">
           <h2>{{ 'factionDetail.myList' | transloco }}</h2>
           <button type="button" class="add-battalia-btn" (click)="addBattalia()">
-            {{ 'factionDetail.battalias.add' | transloco }}
+            {{ 'factionDetail.battalias.add' | transloco: { group: groupNoun(true) } }}
           </button>
         </div>
 
@@ -41,7 +50,7 @@
                   class="battalia-name-input"
                   type="text"
                   [ngModel]="col.name"
-                  [placeholder]="'factionDetail.battalias.namePlaceholder' | transloco"
+                  [placeholder]="'factionDetail.battalias.namePlaceholder' | transloco: { group: groupNoun(true), groupLower: groupNoun(false) }"
                   (ngModelChange)="renameBattalia(col.id, $event)"
                   (click)="$event.stopPropagation()"
                 />
@@ -55,7 +64,7 @@
               <p class="battalia-warning">{{ warningMessage(warning) }}</p>
             }
             @if (col.removable && unitsInBattalia(col.id).length === 0) {
-              <p class="battalia-warning">{{ 'factionDetail.warnings.noUnitsAssigned' | transloco }}</p>
+              <p class="battalia-warning">{{ 'factionDetail.warnings.noUnitsAssigned' | transloco: { groupLower: groupNoun(false) } }}</p>
             }
 
             <!-- Comandantes de esta battalia -->
@@ -70,7 +79,7 @@
             >
               @for (entry of commandersInBattalia(col.id); track entry.instanceId) {
                 <div class="commander-entry" cdkDrag [cdkDragData]="entry">
-                  <span class="drag-col" cdkDragHandle>⠿</span>
+                  <span class="drag-col">⠿</span>
                   <span>{{ entry.commander.name }}</span>
                   <span class="entry-points">{{ entry.commander.points }} pts</span>
                   <button type="button" class="remove-btn" (click)="removeCommander(entry.instanceId)">✕</button>
@@ -107,7 +116,7 @@
 
                 @for (entry of unitsInBattalia(col.id); track entry.instanceId) {
                   <div class="unit-row" cdkDrag [cdkDragData]="entry">
-                    <span class="drag-col" cdkDragHandle>⠿</span>
+                    <span class="drag-col">⠿</span>
                     <span>{{ entry.unit.name }}</span>
                     <span>{{ entry.unit.unitType }}</span>
                     <span>{{ entry.unit.bases }}</span>
@@ -126,7 +135,7 @@
             </div>
 
             @if (!col.removable && unitsInBattalia(col.id).length === 0 && commandersInBattalia(col.id).length === 0) {
-              <p class="empty-column">{{ 'factionDetail.emptyColumn' | transloco }}</p>
+              <p class="empty-column">{{ 'factionDetail.emptyColumn' | transloco: { groupLower: groupNoun(false) } }}</p>
             }
           </div>
         }
@@ -244,5 +253,35 @@
         </div>
       </aside>
     </div>
+
+    @if (exportDialogOpen()) {
+      <div class="export-modal-backdrop" (click)="closeExportDialog()">
+        <div class="export-modal" (click)="$event.stopPropagation()">
+          <h3>{{ 'factionDetail.export.dialogTitle' | transloco }}</h3>
+          <p class="export-modal-hint">{{ 'factionDetail.export.dialogHint' | transloco }}</p>
+          <input
+            type="text"
+            class="export-name-input"
+            [ngModel]="exportListName()"
+            (ngModelChange)="exportListName.set($event)"
+            [placeholder]="'factionDetail.export.namePlaceholder' | transloco"
+            (keydown.enter)="confirmExport()"
+          />
+          <div class="export-modal-actions">
+            <button type="button" class="export-cancel-btn" (click)="closeExportDialog()">
+              {{ 'factionDetail.export.cancel' | transloco }}
+            </button>
+            <button
+              type="button"
+              class="export-confirm-btn"
+              [disabled]="!exportListName().trim()"
+              (click)="confirmExport()"
+            >
+              {{ 'factionDetail.export.confirm' | transloco }}
+            </button>
+          </div>
+        </div>
+      </div>
+    }
   }
 </section>

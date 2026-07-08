@@ -59,7 +59,7 @@
     "pointsLimit": "Límite de puntos",
     "totalPoints": "Total",
     "remaining": "Restantes",
-    "emptyColumn": "Arrastra aquí unidades y comandantes, o pulsa Añadir con esta battalia en foco.",
+    "emptyColumn": "Arrastra aquí unidades y comandantes, o pulsa Añadir con esta {{groupLower}} en foco.",
     "active": "En foco",
     "notAvailable": "No disponible por las restricciones del ejército",
     "reasons": {
@@ -70,18 +70,37 @@
       "notEnoughPoints": "No quedan puntos suficientes (cuesta {{cost}}, quedan {{remaining}})"
     },
     "battalias": {
-      "add": "+ Nueva Battalia",
+      "add": "+ Nueva {{group}}",
       "unassigned": "Sin asignar",
-      "namePlaceholder": "Nombre de la battalia"
+      "namePlaceholder": "Nombre de la {{groupLower}}"
     },
     "warnings": {
-      "battaliaMaxUnit": "Esta battalia supera el máximo de {{max}} de {{name}}",
-      "battaliaMaxOption": "Esta battalia supera el máximo de {{max}} con la opción {{name}}",
-      "battaliaMaxGroup": "Esta battalia supera el máximo de {{max}} de {{name}}",
-      "noUnitsAssigned": "Esta battalia no tiene unidades asignadas todavía"
+      "battaliaMaxUnit": "Esta {{groupLower}} supera el máximo de {{max}} de {{name}}",
+      "battaliaMaxOption": "Esta {{groupLower}} supera el máximo de {{max}} con la opción {{name}}",
+      "battaliaMaxGroup": "Esta {{groupLower}} supera el máximo de {{max}} de {{name}}",
+      "noUnitsAssigned": "Esta {{groupLower}} no tiene unidades asignadas todavía"
     },
     "groups": {
       "ordnance": "Artillería"
+    },
+    "groupNoun": {
+      "battalia": "Battalia",
+      "brigade": "Brigada"
+    },
+    "export": {
+      "button": "Exportar a PDF",
+      "dialogTitle": "Exportar lista",
+      "dialogHint": "Elige un nombre para esta lista. Se usará como título de la hoja y como nombre del archivo.",
+      "namePlaceholder": "Nombre de la lista",
+      "cancel": "Cancelar",
+      "confirm": "Exportar",
+      "faction": "Facción",
+      "commander": "Comandante",
+      "handToHandAbbr": "CaC",
+      "noUnits": "Sin unidades",
+      "generatedWith": "Generado con ListGenerator",
+      "page": "Página",
+      "blockedUnassigned": "Asigna todas las unidades a una {{group}} antes de exportar"
     }
   },
   "language": {

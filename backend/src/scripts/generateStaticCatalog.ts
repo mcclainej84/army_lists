@@ -103,7 +103,7 @@ function buildUnitDTO(idFactory: () => number, unit: FactionUnitSeed, locale: Lo
     name: locale === "en" ? unit.name_en : unit.name_es,
     category: s.category,
     unitType: locale === "en" ? s.unit_type_en : s.unit_type_es,
-    bases: s.bases,
+    bases: s.bases ?? null,
     armament: locale === "en" ? s.armament_en : s.armament_es,
     handToHand: s.hand_to_hand,
     shooting: s.shooting,
