@@ -4,6 +4,11 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.33 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Añadidas fechas a los conflictos (igual que en Guerra Franco-India): "Guerra de los Treinta Años (1618–1648)" y "Guerras Napoleónicas (1803–1815)".
+- Las facciones de "Epic Pike & Shotte" (Español, Imperial, Francés y Sueco) son ahora todas oficiales: las 4 aparecen por defecto sin necesidad de activar "Incluir facciones personalizadas".
+
 ## 0.32 — 2026-07-08 (rama `feature/firebase-lists`)
 
 - Nombre de la app cambiado de "List Generator" a "Army List Generator" (cabecera, pestaña del navegador, pie del PDF exportado).

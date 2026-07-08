@@ -16,8 +16,8 @@ import {
 // resto de naciones), ademas de la version personalizada con reglas completas.
 export const napoleonicWars: ConflictSeed = {
   code: "napoleonic_wars",
-  name_en: "Napoleonic Wars",
-  name_es: "Guerras Napoleónicas",
+  name_en: "Napoleonic Wars (1803–1815)",
+  name_es: "Guerras Napoleónicas (1803–1815)",
   factions: [
     {
       code: "imperial_france",
