@@ -4,6 +4,10 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.29 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Reducida la fila de idioma de la cabecera (menos padding, banderas más pequeñas) y algo menos de aire en la fila principal: se veía demasiado grande.
+
 ## 0.28 — 2026-07-08 (rama `feature/firebase-lists`)
 
 - Cabecera reorganizada en un único marco: fila fina arriba a la derecha solo con el idioma, y fila principal en grid de 3 columnas (marca a la izquierda, banner realmente centrado, botones de cuenta a la derecha) en vez de flexbox de space-between.
