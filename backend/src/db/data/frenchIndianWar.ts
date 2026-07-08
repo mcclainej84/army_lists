@@ -58,6 +58,7 @@ function buildUnits(): FactionUnitSeed[] {
         stamina: 4,
         special_rules_en: "First Fire, Reliable",
         special_rules_es: "Primer disparo, Fiable",
+        move_range: 12,
       },
       base_points: 46,
       options: [sizeOption("small", 38, 46, 3, "5", "3", 3)],
@@ -79,6 +80,7 @@ function buildUnits(): FactionUnitSeed[] {
         stamina: 3,
         special_rules_en: "First Fire, Reliable, Skirmishers",
         special_rules_es: "Primer disparo, Fiable, Hostigadores",
+        move_range: 12,
       },
       base_points: 39,
       options: [sizeOption("small", 31, 39, 2, "3", "2", 2)],
@@ -100,6 +102,7 @@ function buildUnits(): FactionUnitSeed[] {
         stamina: 3,
         special_rules_en: "First Fire, Reliable, Elite 3+",
         special_rules_es: "Primer disparo, Fiable, Élite 3+",
+        move_range: 12,
       },
       base_points: 49,
       options: [sizeOption("small", 41, 49, 2, "5", "2", 2)],
@@ -121,6 +124,7 @@ function buildUnits(): FactionUnitSeed[] {
         stamina: 3,
         special_rules_en: "",
         special_rules_es: "",
+        move_range: 12,
       },
       base_points: 36,
       options: [
@@ -145,6 +149,7 @@ function buildUnits(): FactionUnitSeed[] {
         stamina: 3,
         special_rules_en: "Unreliable",
         special_rules_es: "Poco fiable",
+        move_range: 12,
       },
       base_points: 26,
       options: [
@@ -169,6 +174,7 @@ function buildUnits(): FactionUnitSeed[] {
         stamina: 3,
         special_rules_en: "Seasoned Marksmen, Ambush, Tenacious",
         special_rules_es: "Tirador curtido, Emboscada, Tenaces",
+        move_range: 12,
       },
       base_points: 38,
       options: [sizeOption("small", 30, 38, 2, "2", "2", 2)],
@@ -190,6 +196,7 @@ function buildUnits(): FactionUnitSeed[] {
         stamina: 3,
         special_rules_en: "Unclear Target, Hardened Fighter, Wild Charge (+2D), Ambush",
         special_rules_es: "Objetivo no claro, Combatiente aguerrido, Carga salvaje (+2D), Emboscada",
+        move_range: 12,
       },
       base_points: 39,
       options: [
@@ -214,6 +221,7 @@ function buildUnits(): FactionUnitSeed[] {
         stamina: 3,
         special_rules_en: "",
         special_rules_es: "",
+        move_range: 18,
       },
       base_points: 44,
       options: [],
@@ -235,6 +243,7 @@ function buildUnits(): FactionUnitSeed[] {
         stamina: 3,
         special_rules_en: "",
         special_rules_es: "",
+        move_range: 18,
       },
       base_points: 36,
       options: [sizeOption("small", 28, 36, 2, "4", "1", 2)],
@@ -256,6 +265,7 @@ function buildUnits(): FactionUnitSeed[] {
         stamina: 2,
         special_rules_en: "",
         special_rules_es: "",
+        move_range: 12,
       },
       base_points: 27,
       options: [],
@@ -274,6 +284,10 @@ function buildOfficer(): CommanderSeed {
     command_rating: 8,
     points: 0,
     role: "battalia_leader",
+    // Sin dato explicito de si va a pie o a caballo en la tabla aportada: se asume a pie
+    // (36") por ser habitual en este tipo de juego de escaramuzas. Facil de cambiar a 48"
+    // si el reglamento dice lo contrario.
+    move_range: 36,
   };
 }
 

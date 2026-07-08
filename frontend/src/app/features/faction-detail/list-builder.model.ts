@@ -52,6 +52,22 @@ export interface EffectiveUnitStats {
 }
 
 /**
+ * Alcance de movimiento (y, mas adelante, de armas) mostrado segun el modo elegido:
+ * "original" (el valor tal cual viene del catalogo) o "recortado" (2/3 del original,
+ * redondeando siempre hacia arriba, a peticion explicita del usuario — p.ej. 12" -> 8").
+ * null se mantiene null (todavia no hay dato de alcance para esa unidad/comandante).
+ */
+export function scaleDistance(value: number | null, reduced: boolean): number | null {
+  if (value === null) return null;
+  if (!reduced) return value;
+  return Math.ceil((value * 2) / 3);
+}
+
+export function formatDistance(value: number | null): string {
+  return value === null ? '–' : `${value}"`;
+}
+
+/**
  * Estadisticas "reales" de una unidad segun las opciones seleccionadas: en la mayoria de
  * juegos (p.ej. Black Powder) el tamaño solo cambia puntos y las estadisticas base se
  * mantienen. En otros (p.ej. French Indian War) cada tamaño tiene sus propias peanas,

@@ -49,6 +49,7 @@ interface CommanderDTO {
   commandRating: number | null;
   points: number;
   role: string | null;
+  moveRange: number | null;
 }
 
 interface UnitOptionStatOverridesDTO {
@@ -83,6 +84,7 @@ interface UnitDTO {
   basePoints: number;
   constraints: Record<string, unknown> | null;
   options: UnitOptionDTO[];
+  moveRange: number | null;
 }
 
 interface FactionDetailDTO extends FactionSummaryDTO {
@@ -132,6 +134,7 @@ function buildUnitDTO(idFactory: () => number, unit: FactionUnitSeed, locale: Lo
     basePoints: unit.base_points,
     constraints: unit.constraints ?? null,
     options: (unit.options ?? []).map((o) => buildOptionDTO(idFactory, o, locale)),
+    moveRange: s.move_range ?? null,
   };
 }
 
@@ -143,6 +146,7 @@ function buildCommanderDTO(idFactory: () => number, commander: CommanderSeed, lo
     commandRating: commander.command_rating,
     points: commander.points,
     role: commander.role ?? null,
+    moveRange: commander.move_range ?? null,
   };
 }
 

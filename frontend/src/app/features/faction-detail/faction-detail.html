@@ -41,6 +41,17 @@
       </button>
     </div>
 
+    <div class="distances-bar">
+      <button
+        type="button"
+        class="distances-toggle-btn"
+        [title]="'factionDetail.distances.hint' | transloco"
+        (click)="toggleDistances()"
+      >
+        {{ (useReducedDistances() ? 'factionDetail.distances.original' : 'factionDetail.distances.reduce') | transloco }}
+      </button>
+    </div>
+
     @if (authService.isConfigured && authService.authReady() && !authService.currentUser()) {
       <p class="guest-notice">{{ 'factionDetail.save.guestNotice' | transloco }}</p>
     }
@@ -122,6 +133,7 @@
                   <span class="drag-col"></span>
                   <span>{{ 'factionDetail.table.unit' | transloco }}</span>
                   <span>{{ 'factionDetail.table.type' | transloco }}</span>
+                  <span>{{ 'factionDetail.table.move' | transloco }}</span>
                   <span>{{ 'factionDetail.table.bases' | transloco }}</span>
                   <span>{{ 'factionDetail.table.armament' | transloco }}</span>
                   <span>{{ 'factionDetail.table.handToHand' | transloco }}</span>
@@ -140,6 +152,7 @@
                     <span class="drag-col" cdkDragHandle>⠿</span>
                     <span>{{ entry.unit.name }}</span>
                     <span>{{ entry.unit.unitType }}</span>
+                    <span>{{ moveRangeText(entry.unit.moveRange) }}</span>
                     <span>{{ stats.bases }}</span>
                     <span>{{ entry.unit.armament }}</span>
                     <span>{{ stats.handToHand }}</span>
@@ -177,6 +190,11 @@
                     @if (commander.commandRating !== null) {
                       <span class="commander-meta">
                         {{ 'factionDetail.commandRating' | transloco }}: {{ commander.commandRating }}
+                      </span>
+                    }
+                    @if (commander.moveRange !== null) {
+                      <span class="commander-meta">
+                        {{ 'factionDetail.table.move' | transloco }}: {{ moveRangeText(commander.moveRange) }}
                       </span>
                     }
                     <span class="commander-points">{{ commander.points }} {{ 'factionDetail.table.points' | transloco }}</span>
@@ -221,6 +239,7 @@
                       }
 
                       <dl class="unit-stats-main">
+                        <div><dt>{{ 'factionDetail.table.move' | transloco }}</dt><dd>{{ moveRangeText(unit.moveRange) }}</dd></div>
                         <div><dt>{{ 'factionDetail.table.armament' | transloco }}</dt><dd>{{ unit.armament || '–' }}</dd></div>
                         <div><dt>{{ 'factionDetail.table.handToHand' | transloco }}</dt><dd>{{ previewStat.handToHand }}</dd></div>
                         <div><dt>{{ 'factionDetail.table.shooting' | transloco }}</dt><dd>{{ previewStat.shooting }}</dd></div>

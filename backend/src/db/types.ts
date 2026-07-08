@@ -36,6 +36,9 @@ export interface UnitStatsSeed {
   stamina: number;
   special_rules_en: string;
   special_rules_es: string;
+  // Alcance de movimiento en pulgadas. Opcional: se va rellenando juego a juego (ver
+  // CHANGELOG); si falta, el frontend simplemente no muestra la columna para esa unidad.
+  move_range?: number;
 }
 
 export interface FactionUnitSeed {
@@ -56,6 +59,9 @@ export interface CommanderSeed {
   name_es: string;
   command_rating: number;
   points: number;
+  // Alcance de movimiento en pulgadas (a pie o a caballo, segun el comandante). Opcional
+  // por la misma razon que en UnitStatsSeed.
+  move_range?: number;
   /**
    * Rol del comandante a efectos de restricciones de composicion de lista:
    * - "army_general": unico en todo el ejercito (cuente o no en una battalia concreta).

@@ -15,9 +15,11 @@ import {
   Battalia,
   EffectiveUnitStats,
   effectiveUnitStats,
+  formatDistance,
   ListCommanderEntry,
   ListUnitEntry,
   nextInstanceId,
+  scaleDistance,
   UNASSIGNED_BATTALIA_ID,
 } from './list-builder.model';
 import { exportListToPdf } from './pdf-export';
@@ -127,6 +129,22 @@ export class FactionDetail {
   exportDialogOpen = signal(false);
   exportListName = signal('');
   private exportFactionName = '';
+
+  // --- Distancias (movimiento) original / recortada ---
+  /**
+   * Boton "Recortar distancias": alterna entre el alcance de movimiento tal cual viene del
+   * catalogo y un recorte de un tercio (2/3 del original, redondeando hacia arriba). Afecta
+   * a la tabla de "Mi Lista", a las fichas del catalogo y a la exportacion a PDF.
+   */
+  useReducedDistances = signal(false);
+
+  toggleDistances(): void {
+    this.useReducedDistances.update((v) => !v);
+  }
+
+  moveRangeText(value: number | null): string {
+    return formatDistance(scaleDistance(value, this.useReducedDistances()));
+  }
 
   // --- Guardado de listas (Firebase) ---
   /** Id del documento de Firestore si esta lista ya se guardo/cargo antes; null = todavia no se ha guardado nunca. */
@@ -496,6 +514,7 @@ export class FactionDetail {
       battalias: this.battalias(),
       listCommanders: this.listCommanders(),
       listUnits: this.listUnits(),
+      reducedDistances: this.useReducedDistances(),
       labels: {
         table: {
           unit: this.transloco.translate('factionDetail.table.unit'),
@@ -508,6 +527,7 @@ export class FactionDetail {
           stamina: this.transloco.translate('factionDetail.table.stamina'),
           specialRules: this.transloco.translate('factionDetail.table.specialRules'),
           points: this.transloco.translate('factionDetail.table.points'),
+          move: this.transloco.translate('factionDetail.export.moveAbbr'),
         },
         faction: this.transloco.translate('factionDetail.export.faction'),
         points: this.transloco.translate('factionDetail.table.points'),

@@ -17,6 +17,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 4,
     special_rules_en: "Caracole, Heavy Cavalry",
     special_rules_es: "Caracola, Caballería Pesada",
+    move_range: 9,
   },
   harquebusiers: {
     category: "HORSE",
@@ -31,6 +32,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "–",
     special_rules_es: "–",
+    move_range: 9,
   },
   lightCavalry: {
     category: "HORSE",
@@ -45,6 +47,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "–",
     special_rules_es: "–",
+    move_range: 12,
   },
   finnishCavalry: {
     category: "HORSE",
@@ -59,6 +62,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "Gallopers, Ferocious Charge",
     special_rules_es: "Gallopers, Carga Feroz",
+    move_range: 12,
   },
   croatCavalry: {
     category: "HORSE",
@@ -73,6 +77,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "–",
     special_rules_es: "–",
+    move_range: 12,
   },
   hussars: {
     category: "HORSE",
@@ -87,6 +92,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "–",
     special_rules_es: "–",
+    move_range: 12,
   },
   cossacks: {
     category: "HORSE",
@@ -101,6 +107,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "Marauder",
     special_rules_es: "Merodeador",
+    move_range: 12,
   },
   dragoons: {
     category: "HORSE",
@@ -115,6 +122,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "Fire & Evade, Marauder",
     special_rules_es: "Disparar y Replegarse, Merodeador",
+    move_range: 9,
   },
   imperialPikeMusket: {
     category: "FOOT",
@@ -129,6 +137,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 5,
     special_rules_en: "Hedgehog, Mercenary",
     special_rules_es: "Erizo, Mercenario",
+    move_range: 6,
   },
   imperialPikemen: {
     category: "FOOT",
@@ -143,6 +152,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 4,
     special_rules_en: "Hedgehog, Mercenary",
     special_rules_es: "Erizo, Mercenario",
+    move_range: 6,
   },
   imperialMusketeers: {
     category: "FOOT",
@@ -157,6 +167,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "Mercenary",
     special_rules_es: "Mercenario",
+    move_range: 6,
   },
   saxonPikeMusket: {
     category: "FOOT",
@@ -171,6 +182,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 4,
     special_rules_en: "Hedgehog, Mercenary",
     special_rules_es: "Erizo, Mercenario",
+    move_range: 6,
   },
   saxonPikemen: {
     category: "FOOT",
@@ -185,6 +197,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "Hedgehog, Mercenary",
     special_rules_es: "Erizo, Mercenario",
+    move_range: 6,
   },
   saxonMusketeers: {
     category: "FOOT",
@@ -199,6 +212,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "Mercenary",
     special_rules_es: "Mercenario",
+    move_range: 6,
   },
   swedishGermanPikeMusket: {
     category: "FOOT",
@@ -213,6 +227,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 5,
     special_rules_en: "Hedgehog, First Fire",
     special_rules_es: "Erizo, Primer Fuego",
+    move_range: 6,
   },
   swedishGermanPikemen: {
     category: "FOOT",
@@ -227,6 +242,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 4,
     special_rules_en: "Hedgehog",
     special_rules_es: "Erizo",
+    move_range: 6,
   },
   swedishGermanMusketeers: {
     category: "FOOT",
@@ -241,6 +257,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "First Fire",
     special_rules_es: "Primer Fuego",
+    move_range: 6,
   },
   commandedMusket: {
     category: "FOOT",
@@ -255,6 +272,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "First Fire",
     special_rules_es: "Primer Fuego",
+    move_range: 6,
   },
   swedishGermanCommandedMusket: {
     category: "FOOT",
@@ -269,6 +287,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "First Fire",
     special_rules_es: "Primer Fuego",
+    move_range: 6,
   },
   stormingParty: {
     category: "FOOT",
@@ -283,6 +302,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "First Fire",
     special_rules_es: "Primer Fuego",
+    move_range: 6,
   },
   swordsmen: {
     category: "FOOT",
@@ -297,6 +317,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 3,
     special_rules_en: "Swordsmen",
     special_rules_es: "Espadachines",
+    move_range: 6,
   },
   militia: {
     category: "FOOT",
@@ -311,6 +332,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 2,
     special_rules_en: "Rabble, Militia",
     special_rules_es: "Chusma, Milicia",
+    move_range: 6,
   },
   lightOrdnance: {
     category: "ORDNANCE",
@@ -325,6 +347,10 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 2,
     special_rules_en: "–",
     special_rules_es: "–",
+    // Base para light_ordnance (6", manhandled) y para galloper_gun (spread, hereda este
+    // 6" como "artilleria enganchada/limbered"). medium_ordnance y heavy_ordnance
+    // sobreescriben este valor mas abajo con su propio move_range (3" y 0").
+    move_range: 6,
   },
   mortar: {
     category: "ORDNANCE",
@@ -339,6 +365,7 @@ const STATS: Record<string, UnitStatsSeed> = {
     stamina: 2,
     special_rules_en: "–",
     special_rules_es: "–",
+    move_range: 0,
   },
 };
 
@@ -353,8 +380,8 @@ export const thirtyYearsWar: ConflictSeed = {
       name_es: "Ejército Imperial",
       is_official: true,
       commanders: [
-        { code: "army_general", name_en: "Army General", name_es: "General en Jefe", command_rating: 8, points: 40, role: "army_general" },
-        { code: "battalia_commander", name_en: "Battalia Commander", name_es: "Comandante de Batalla", command_rating: 8, points: 40, role: "battalia_leader" },
+        { code: "army_general", name_en: "Army General", name_es: "General en Jefe", command_rating: 8, points: 40, role: "army_general", move_range: 27 },
+        { code: "battalia_commander", name_en: "Battalia Commander", name_es: "Comandante de Batalla", command_rating: 8, points: 40, role: "battalia_leader", move_range: 27 },
       ],
       units: [
         {
@@ -502,7 +529,7 @@ export const thirtyYearsWar: ConflictSeed = {
           code: "medium_ordnance",
           name_en: "Medium Ordnance",
           name_es: "Artillería Media",
-          stats: STATS.lightOrdnance,
+          stats: { ...STATS.lightOrdnance, move_range: 3 },
           base_points: 21,
           constraints: { maxPerBattaliaGroup: { key: "ordnance", max: 2 } },
         },
@@ -510,7 +537,7 @@ export const thirtyYearsWar: ConflictSeed = {
           code: "heavy_ordnance",
           name_en: "Heavy Ordnance",
           name_es: "Artillería Pesada",
-          stats: STATS.lightOrdnance,
+          stats: { ...STATS.lightOrdnance, move_range: 0 },
           base_points: 25,
           constraints: { maxPerBattaliaGroup: { key: "ordnance", max: 2 } },
         },
@@ -539,8 +566,8 @@ export const thirtyYearsWar: ConflictSeed = {
       name_es: "Ejército Sueco",
       is_official: true,
       commanders: [
-        { code: "army_general", name_en: "Army General", name_es: "General en Jefe", command_rating: 8, points: 40, role: "army_general" },
-        { code: "battalia_commander", name_en: "Battalia Commander", name_es: "Comandante de Batalla", command_rating: 8, points: 40, role: "battalia_leader" },
+        { code: "army_general", name_en: "Army General", name_es: "General en Jefe", command_rating: 8, points: 40, role: "army_general", move_range: 27 },
+        { code: "battalia_commander", name_en: "Battalia Commander", name_es: "Comandante de Batalla", command_rating: 8, points: 40, role: "battalia_leader", move_range: 27 },
       ],
       units: [
         {
@@ -716,7 +743,7 @@ export const thirtyYearsWar: ConflictSeed = {
           code: "medium_ordnance",
           name_en: "Medium Ordnance",
           name_es: "Artillería Media",
-          stats: STATS.lightOrdnance,
+          stats: { ...STATS.lightOrdnance, move_range: 3 },
           base_points: 21,
           constraints: {
             maxPerBattaliaGroup: { key: "ordnance", max: 3 },

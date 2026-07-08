@@ -49,6 +49,10 @@ function commandersUpTo(maxTier: 7 | 8 | 9): CommanderSeed[] {
       // Como mucho un lider por brigada/battalia, independientemente de la tarifa de
       // Valor de Mando elegida (los 3 niveles ocupan el mismo "puesto").
       role: "battalia_leader",
+      // Sin dato explicito en el documento de si va a pie o a caballo: se asume a caballo
+      // (48"), habitual para un lider de brigada napoleonico. Facil de cambiar a 36" si no
+      // es correcto para alguna facción/rango en concreto.
+      move_range: 48,
     }));
 }
 
@@ -65,6 +69,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Infantería",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -85,6 +90,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Infantería Ligera",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -105,6 +111,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Infantería Ligera KGL",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Rifled Musket",
@@ -125,6 +132,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Fusileros",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Rifled Musket",
@@ -145,6 +153,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Milicia",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -165,6 +174,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Infantería Hannoveriana",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -185,6 +195,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Infantería Landwehr Hannoveriana",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -205,6 +216,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Infantería Highland",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -225,6 +237,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Infantería de la Guardia",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -245,6 +258,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Dragones",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Saber",
@@ -265,6 +279,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Húsares",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Saber",
@@ -285,6 +300,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Caballería Household",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Saber",
@@ -305,6 +321,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Artillería Hannoveriana",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
@@ -325,6 +342,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Artillería Real o KGL",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
@@ -345,6 +363,7 @@ export const britishCustomFaction: FactionSeed = {
       name_es: "Artillería Real a Caballo",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
@@ -375,6 +394,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Infantería",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -395,6 +415,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Infantería Ligera",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -415,6 +436,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Reclutas",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -435,6 +457,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Vieja Guardia",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -455,6 +478,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Media Guardia",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -475,6 +499,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Joven Guardia",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -495,6 +520,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Dragones",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Saber",
@@ -515,6 +541,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Húsares",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Saber",
@@ -535,6 +562,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Lanceros",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Lance",
@@ -555,6 +583,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Coraceros / Carabineros",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Saber",
@@ -575,6 +604,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Lanceros de la Guardia",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Lance",
@@ -595,6 +625,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Artillería a Pie",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
@@ -615,6 +646,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Artillería a Caballo",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
@@ -635,6 +667,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Artillería Pesada de la Guardia",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
@@ -655,6 +688,7 @@ export const frenchCustomFaction: FactionSeed = {
       name_es: "Artillería a Caballo de la Guardia",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
@@ -685,6 +719,7 @@ export const prussianCustomFaction: FactionSeed = {
       name_es: "Mosqueteros",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -705,6 +740,7 @@ export const prussianCustomFaction: FactionSeed = {
       name_es: "Fusileros",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -725,6 +761,7 @@ export const prussianCustomFaction: FactionSeed = {
       name_es: "Jägers",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Rifled Musket",
@@ -745,6 +782,7 @@ export const prussianCustomFaction: FactionSeed = {
       name_es: "Milicia",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -765,6 +803,7 @@ export const prussianCustomFaction: FactionSeed = {
       name_es: "Infantería Landwehr",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -785,6 +824,7 @@ export const prussianCustomFaction: FactionSeed = {
       name_es: "Dragones",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Saber",
@@ -805,6 +845,7 @@ export const prussianCustomFaction: FactionSeed = {
       name_es: "Ulanos",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Lance",
@@ -825,6 +866,7 @@ export const prussianCustomFaction: FactionSeed = {
       name_es: "Húsares",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Saber",
@@ -845,6 +887,7 @@ export const prussianCustomFaction: FactionSeed = {
       name_es: "Caballería Landwehr",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Lance",
@@ -865,6 +908,7 @@ export const prussianCustomFaction: FactionSeed = {
       name_es: "Artillería a Pie",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
@@ -885,6 +929,7 @@ export const prussianCustomFaction: FactionSeed = {
       name_es: "Artillería a Caballo",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
@@ -915,6 +960,7 @@ export const austrianCustomFaction: FactionSeed = {
       name_es: "Infantería",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -935,6 +981,7 @@ export const austrianCustomFaction: FactionSeed = {
       name_es: "Infantería Húngara",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -955,6 +1002,7 @@ export const austrianCustomFaction: FactionSeed = {
       name_es: "Infantería Ligera",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -975,6 +1023,7 @@ export const austrianCustomFaction: FactionSeed = {
       name_es: "Grenz",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -995,6 +1044,7 @@ export const austrianCustomFaction: FactionSeed = {
       name_es: "Jägers",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Rifled Musket",
@@ -1015,6 +1065,7 @@ export const austrianCustomFaction: FactionSeed = {
       name_es: "Granaderos",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -1035,6 +1086,7 @@ export const austrianCustomFaction: FactionSeed = {
       name_es: "Infantería Landwehr",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -1055,6 +1107,7 @@ export const austrianCustomFaction: FactionSeed = {
       name_es: "Dragones",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Saber",
@@ -1075,6 +1128,7 @@ export const austrianCustomFaction: FactionSeed = {
       name_es: "Coraceros",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Saber",
@@ -1095,6 +1149,7 @@ export const austrianCustomFaction: FactionSeed = {
       name_es: "Ulanos",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Lance",
@@ -1115,6 +1170,7 @@ export const austrianCustomFaction: FactionSeed = {
       name_es: "Húsares",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Saber",
@@ -1135,6 +1191,7 @@ export const austrianCustomFaction: FactionSeed = {
       name_es: "Artillería a Pie",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
@@ -1155,6 +1212,7 @@ export const austrianCustomFaction: FactionSeed = {
       name_es: "Artillería a Caballo",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
@@ -1188,6 +1246,7 @@ export const russianCustomFaction: FactionSeed = {
       name_es: "Infantería",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -1208,6 +1267,7 @@ export const russianCustomFaction: FactionSeed = {
       name_es: "Jägers",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -1228,6 +1288,7 @@ export const russianCustomFaction: FactionSeed = {
       name_es: "Jägers Voluntarios",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -1248,6 +1309,7 @@ export const russianCustomFaction: FactionSeed = {
       name_es: "Opolchenie",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -1268,6 +1330,7 @@ export const russianCustomFaction: FactionSeed = {
       name_es: "Granaderos",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -1288,6 +1351,7 @@ export const russianCustomFaction: FactionSeed = {
       name_es: "Life Guard",
       stats: {
         category: "FOOT",
+        move_range: 12,
         unit_type_en: "Infantry",
         unit_type_es: "Infantería",
         armament_en: "Smoothbore Musket",
@@ -1308,6 +1372,7 @@ export const russianCustomFaction: FactionSeed = {
       name_es: "Dragones",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Saber",
@@ -1328,6 +1393,7 @@ export const russianCustomFaction: FactionSeed = {
       name_es: "Coraceros",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Saber",
@@ -1348,6 +1414,7 @@ export const russianCustomFaction: FactionSeed = {
       name_es: "Ulanos",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Lance",
@@ -1368,6 +1435,7 @@ export const russianCustomFaction: FactionSeed = {
       name_es: "Húsares",
       stats: {
         category: "HORSE",
+        move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
         armament_en: "Saber",
@@ -1388,6 +1456,7 @@ export const russianCustomFaction: FactionSeed = {
       name_es: "Artillería a Pie",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
@@ -1408,6 +1477,7 @@ export const russianCustomFaction: FactionSeed = {
       name_es: "Artillería en Batería a Pie",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
@@ -1428,6 +1498,7 @@ export const russianCustomFaction: FactionSeed = {
       name_es: "Artillería a Caballo",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",
@@ -1448,6 +1519,7 @@ export const russianCustomFaction: FactionSeed = {
       name_es: "Artillería en Batería a Caballo",
       stats: {
         category: "ORDNANCE",
+        move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
         armament_en: "Smoothbore Ordnance",

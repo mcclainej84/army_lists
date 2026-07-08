@@ -55,7 +55,13 @@
       "stamina": "Aguante",
       "specialRules": "Reglas Especiales",
       "option": "Opción",
-      "points": "Puntos"
+      "points": "Puntos",
+      "move": "Movimiento"
+    },
+    "distances": {
+      "reduce": "Recortar distancias (1/3)",
+      "original": "Distancias originales",
+      "hint": "Recorta el movimiento un tercio (redondeando hacia arriba). Afecta a la tabla y a la exportación a PDF."
     },
     "options": "Opciones",
     "sizeNormal": "Normal",
@@ -106,6 +112,7 @@
       "commander": "Comandante",
       "handToHandAbbr": "CaC",
       "noUnits": "Sin unidades",
+      "moveAbbr": "Mov.",
       "generatedWith": "Generado con Army List Generator",
       "page": "Página",
       "blockedUnassigned": "Asigna todas las unidades a una {{group}} antes de exportar"

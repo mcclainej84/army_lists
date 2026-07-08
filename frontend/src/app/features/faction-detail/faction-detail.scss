@@ -392,6 +392,32 @@ h2.catalog-frame-title {
   color: #6b5b4b;
 }
 
+// Fila propia justo debajo de la barra de puntos/exportar, a peticion del usuario: es una
+// opcion de visualizacion (no una accion como exportar/guardar), asi que lleva un estilo
+// neutro (outline) en vez de los colores solidos de esos botones.
+.distances-bar {
+  display: flex;
+  margin: -0.5rem 0 1rem;
+}
+
+.distances-toggle-btn {
+  padding: 0.35rem 0.75rem;
+  border: 1px solid #6b5b4b;
+  border-radius: 5px;
+  background: transparent;
+  color: #6b5b4b;
+  font-weight: 600;
+  font-size: 0.76rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.distances-toggle-btn:hover {
+  border-color: #7a1f1f;
+  color: #7a1f1f;
+}
+
 .save-error {
   margin: 0.5rem 0 0;
   font-size: 0.78rem;
@@ -630,7 +656,7 @@ h2.catalog-frame-title {
 
 .unit-row {
   display: grid;
-  grid-template-columns: 1.2rem 1.4fr 1fr 0.6fr 1.1fr 0.9fr 0.9fr 0.7fr 0.7fr 1.1fr 1.7fr 0.7fr 1.2rem;
+  grid-template-columns: 1.2rem 1.4fr 1fr 0.6fr 0.6fr 1.1fr 0.9fr 0.9fr 0.7fr 0.7fr 1.1fr 1.7fr 0.7fr 1.2rem;
   align-items: center;
   gap: 0.35rem;
   padding: 0.3rem 0.4rem;

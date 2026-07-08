@@ -1,14 +1,15 @@
 import { CommanderSeed, FactionSeed, UnitStatsSeed } from "../types";
 
 // Datos de las tablas de Francia y España (1618-1648) aportadas por el usuario.
-// NOTA: las columnas "Alcance" y "M" (Movimiento) de la tabla original se ignoran
-// a proposito por instrucción explícita: en el futuro se añadirá un campo de
-// movimiento y un valor de alcance para las unidades de todos los juegos, pero
-// de momento el modelo de datos no los contempla todavía.
+// NOTA: el movimiento (move_range) de estas unidades NO viene de la columna "M" de la
+// tabla original de Francia/España (que se ignoro a proposito en su momento): se aplica
+// la tabla generica de movimiento "Especifica para Epic" que dio el usuario despues,
+// consistente con Imperial/Suecia (ver thirtyYearsWar.ts). El alcance de las armas
+// todavia no se ha anadido (pendiente de que el usuario pase esos datos).
 
 const STANDARD_COMMANDERS: CommanderSeed[] = [
-  { code: "army_general", name_en: "Army General", name_es: "General en Jefe", command_rating: 8, points: 40, role: "army_general" },
-  { code: "battalia_commander", name_en: "Battalia Commander", name_es: "Comandante de Batalla", command_rating: 8, points: 40, role: "battalia_leader" },
+  { code: "army_general", name_en: "Army General", name_es: "General en Jefe", command_rating: 8, points: 40, role: "army_general", move_range: 27 },
+  { code: "battalia_commander", name_en: "Battalia Commander", name_es: "Comandante de Batalla", command_rating: 8, points: 40, role: "battalia_leader", move_range: 27 },
 ];
 
 // Perfil compartido por Francia y España: la línea de "Dragones" es idéntica en ambas tablas.
@@ -25,6 +26,7 @@ const dragoons: UnitStatsSeed = {
   stamina: 3,
   special_rules_en: "Fire & Evade, Dragoons, Marauder",
   special_rules_es: "Disparar y Evadir, Dragones, Marauder",
+  move_range: 9,
 };
 
 // Las 4 piezas de artillería son idénticas en ambas listas (misma Peana, valores y puntos).
@@ -41,18 +43,21 @@ const lightOrdnance: UnitStatsSeed = {
   stamina: 2,
   special_rules_en: "–",
   special_rules_es: "–",
+  move_range: 6,
 };
 
 const mediumOrdnance: UnitStatsSeed = {
   ...lightOrdnance,
   armament_en: "Medium Cannon",
   armament_es: "Cañón Medio",
+  move_range: 3,
 };
 
 const heavyOrdnance: UnitStatsSeed = {
   ...lightOrdnance,
   armament_en: "Heavy Cannon",
   armament_es: "Cañón Pesado",
+  move_range: 0,
 };
 
 const siegeOrdnance: UnitStatsSeed = {
@@ -68,6 +73,7 @@ const siegeOrdnance: UnitStatsSeed = {
   stamina: 2,
   special_rules_en: "–",
   special_rules_es: "–",
+  move_range: 0,
 };
 
 // Un maximo de 2 baterias de artilleria por battalia, igual que en Imperial/Suecia
@@ -99,6 +105,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 4,
         special_rules_en: "Lance, Elite 4+, Caracole, Heavy Cavalry +1",
         special_rules_es: "Lanza, Élite 4+, Caracola, Caballería Pesada +1",
+        move_range: 9,
       },
       base_points: 64,
       constraints: { maxUnitsPerArmy: 1 },
@@ -120,6 +127,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 4,
         special_rules_en: "Caracole, Heavy Cavalry +1",
         special_rules_es: "Caracola, Caballería Pesada +1",
+        move_range: 9,
       },
       base_points: 53,
     },
@@ -140,6 +148,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "–",
         special_rules_es: "–",
+        move_range: 9,
       },
       base_points: 36,
     },
@@ -160,6 +169,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "–",
         special_rules_es: "–",
+        move_range: 12,
       },
       base_points: 39,
     },
@@ -180,6 +190,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "–",
         special_rules_es: "–",
+        move_range: 12,
       },
       base_points: 39,
     },
@@ -207,6 +218,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 5,
         special_rules_en: "Hedgehog, First Fire",
         special_rules_es: "Erizo, Primer Disparo",
+        move_range: 6,
       },
       base_points: 47,
       constraints: { maxUnitsPerArmy: 1 },
@@ -228,6 +240,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 4,
         special_rules_en: "Elite 4+, Hedgehog",
         special_rules_es: "Élite 4+, Erizo",
+        move_range: 6,
       },
       base_points: 40,
     },
@@ -248,6 +261,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 4,
         special_rules_en: "Hedgehog",
         special_rules_es: "Erizo",
+        move_range: 6,
       },
       base_points: 38,
     },
@@ -268,6 +282,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 4,
         special_rules_en: "Elite 4+, Hedgehog",
         special_rules_es: "Élite 4+, Erizo",
+        move_range: 6,
       },
       base_points: 33,
       constraints: { maxUnitsPerArmy: 1 },
@@ -289,6 +304,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "Hedgehog, Mercenary",
         special_rules_es: "Erizo, Mercenario",
+        move_range: 6,
       },
       base_points: 26,
     },
@@ -309,6 +325,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "Elite 4+, First Fire",
         special_rules_es: "Élite 4+, Primer Disparo",
+        move_range: 6,
       },
       base_points: 38,
       constraints: { maxUnitsPerArmy: 1 },
@@ -330,6 +347,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "First Fire",
         special_rules_es: "Primer Disparo",
+        move_range: 6,
       },
       base_points: 34,
       constraints: { maxUnitsPerArmy: 2 },
@@ -351,6 +369,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "First Fire",
         special_rules_es: "Primer Disparo",
+        move_range: 6,
       },
       base_points: 33,
     },
@@ -371,6 +390,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "First Fire",
         special_rules_es: "Primer Disparo",
+        move_range: 6,
       },
       base_points: 35,
       constraints: { maxUnitsPerArmy: 1 },
@@ -396,6 +416,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 4,
         special_rules_en: "First Fire, Mercenary",
         special_rules_es: "Primer Disparo, Mercenarios",
+        move_range: 6,
       },
       base_points: 26,
     },
@@ -416,6 +437,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "Swordsmen",
         special_rules_es: "Espadachines",
+        move_range: 6,
       },
       base_points: 34,
     },
@@ -436,6 +458,7 @@ export const frenchFaction: FactionSeed = {
         stamina: 2,
         special_rules_en: "Rabble, Militia",
         special_rules_es: "Turbas, Milicia",
+        move_range: 6,
       },
       base_points: 9,
       constraints: { maxUnitsPerArmy: 1 },
@@ -499,6 +522,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 4,
         special_rules_en: "Lance, Elite 4+, Caracole, Heavy Cavalry +1",
         special_rules_es: "Lanza, Élite 4+, Caracola, Caballería Pesada +1",
+        move_range: 9,
       },
       base_points: 64,
       constraints: { maxUnitsPerArmy: 1 },
@@ -520,6 +544,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 4,
         special_rules_en: "Caracole, Heavy Cavalry +1",
         special_rules_es: "Caracola, Caballería Pesada +1",
+        move_range: 9,
       },
       base_points: 53,
     },
@@ -540,6 +565,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "–",
         special_rules_es: "–",
+        move_range: 9,
       },
       base_points: 39,
     },
@@ -560,6 +586,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "–",
         special_rules_es: "–",
+        move_range: 12,
       },
       base_points: 35,
     },
@@ -580,6 +607,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "Lance",
         special_rules_es: "Lanza",
+        move_range: 12,
       },
       base_points: 39,
     },
@@ -600,6 +628,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "Mercenary",
         special_rules_es: "Mercenarios",
+        move_range: 12,
       },
       base_points: 33,
     },
@@ -627,6 +656,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 5,
         special_rules_en: "Elite 4+, Hedgehog",
         special_rules_es: "Élite 4+, Erizo",
+        move_range: 6,
       },
       base_points: 49,
       constraints: { maxUnitsPerArmy: 1 },
@@ -648,6 +678,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 5,
         special_rules_en: "Hedgehog",
         special_rules_es: "Erizo",
+        move_range: 6,
       },
       base_points: 43,
     },
@@ -668,6 +699,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 4,
         special_rules_en: "Hedgehog",
         special_rules_es: "Erizo",
+        move_range: 6,
       },
       base_points: 38,
     },
@@ -688,6 +720,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 4,
         special_rules_en: "Hedgehog",
         special_rules_es: "Erizo",
+        move_range: 6,
       },
       base_points: 30,
     },
@@ -708,6 +741,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "Hedgehog, Mercenary",
         special_rules_es: "Erizo, Mercenarios",
+        move_range: 6,
       },
       base_points: 26,
     },
@@ -728,6 +762,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "Elite 4+, First Fire",
         special_rules_es: "Élite 4+, Primer Disparo",
+        move_range: 6,
       },
       base_points: 39,
       constraints: { maxUnitsPerArmy: 1 },
@@ -749,6 +784,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "First Fire",
         special_rules_es: "Primer Disparo",
+        move_range: 6,
       },
       base_points: 34,
     },
@@ -769,6 +805,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 4,
         special_rules_en: "First Fire, Mercenary",
         special_rules_es: "Primer Disparo, Mercenarios",
+        move_range: 6,
       },
       base_points: 26,
     },
@@ -789,6 +826,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 3,
         special_rules_en: "Swordsmen",
         special_rules_es: "Espadachines",
+        move_range: 6,
       },
       base_points: 34,
     },
@@ -809,6 +847,7 @@ export const spanishFaction: FactionSeed = {
         stamina: 2,
         special_rules_en: "Rabble, Militia",
         special_rules_es: "Turbas, Milicia",
+        move_range: 6,
       },
       base_points: 9,
       constraints: { maxUnitsPerArmy: 1 },

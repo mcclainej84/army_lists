@@ -28,6 +28,7 @@ export interface CommanderDTO {
   commandRating: number | null;
   points: number;
   role: CommanderRole | null;
+  moveRange: number | null;
 }
 
 export interface UnitOptionStatOverridesDTO {
@@ -62,6 +63,7 @@ export interface UnitDTO {
   basePoints: number;
   constraints: Record<string, unknown> | null;
   options: UnitOptionDTO[];
+  moveRange: number | null;
 }
 
 export interface FactionDetailDTO extends FactionSummaryDTO {

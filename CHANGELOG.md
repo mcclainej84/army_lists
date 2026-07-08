@@ -4,6 +4,12 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.34 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Añadido el alcance de movimiento (en pulgadas) a todas las unidades y comandantes de los 3 juegos (French Indian War, Epic Pike & Shotte y Black Powder Napoleónicas), con la tabla de valores que pasó el usuario: 12"/18"/12" (Infantería/Caballería/Artillería) y 36"/48" (Comandante a pie/a caballo) en general, con una tabla propia y más granular para Epic Pike & Shotte (Infantería 6", Caballería 9", Caballería Ligera 12", artillería según su tipo de 0" a 6", Comandantes 18"/27"). Cuando la tabla original no aclaraba si un comandante genérico iba a pie o a caballo, se ha asumido a caballo (a pie en el caso del Oficial de French Indian War) — fácil de corregir si no es correcto.
+- Nuevo botón "Recortar distancias (1/3)" justo debajo de la barra de puntos/exportar: alterna entre el movimiento original y un recorte de un tercio (2/3, redondeando hacia arriba). Afecta a la columna "Movimiento" de "Mi Lista", a las fichas del catálogo y a la exportación a PDF.
+- El alcance de las armas todavía no se ha añadido (pendiente de que el usuario pase esos datos).
+
 ## 0.33 — 2026-07-08 (rama `feature/firebase-lists`)
 
 - Añadidas fechas a los conflictos (igual que en Guerra Franco-India): "Guerra de los Treinta Años (1618–1648)" y "Guerras Napoleónicas (1803–1815)".
