@@ -192,6 +192,9 @@
                 [class.active]="activeCatalogTab() === 'COMMAND'"
                 (click)="setCatalogTab('COMMAND')"
               >
+                <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <polygon points="12 2 14.9 9.1 22.5 9.8 16.8 14.9 18.5 22.4 12 18.3 5.5 22.4 7.2 14.9 1.5 9.8 9.1 9.1" />
+                </svg>
                 {{ 'factionDetail.category.COMMAND' | transloco }}
               </button>
             }
@@ -204,6 +207,22 @@
                   [class.active]="activeCatalogTab() === category"
                   (click)="setCatalogTab(category)"
                 >
+                  @if (category === 'FOOT') {
+                    <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M9 2h4v9.3c0 .7.35 1.35 1 1.7l6 3.35c1 .55 1.6 1.6 1.6 2.75V20c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1v-2.65c0-1.6.9-3.05 2.3-3.8L9 11.6V2z" />
+                    </svg>
+                  } @else if (category === 'HORSE') {
+                    <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M6 21v-8a6 6 0 0 1 12 0v8" />
+                      <circle cx="6" cy="21" r="0.9" fill="currentColor" stroke="none" />
+                      <circle cx="18" cy="21" r="0.9" fill="currentColor" stroke="none" />
+                    </svg>
+                  } @else {
+                    <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <circle cx="7" cy="17.5" r="4.5" />
+                      <rect x="6" y="3" width="13" height="4.6" rx="2" transform="rotate(-25 12.5 5.3)" />
+                    </svg>
+                  }
                   {{ 'factionDetail.category.' + category | transloco }}
                 </button>
               }

@@ -4,6 +4,10 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.38 — 2026-07-08
+
+- Iconos en la barra de pestañas del catálogo: una estrella para Mando, una bota para Infantería, una herradura para Caballería y un cañón para Artillería, a la izquierda del nombre de cada pestaña.
+
 ## 0.37 — 2026-07-08
 
 - La columna "Puntos" también se centra ahora (antes iba alineada a la derecha), tanto en la tabla de "Mi Lista" como en la exportación a PDF, para quedar en línea con el resto de columnas numéricas.

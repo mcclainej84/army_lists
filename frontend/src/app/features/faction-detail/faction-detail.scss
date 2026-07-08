@@ -94,6 +94,9 @@ h2.catalog-frame-title {
 }
 
 .catalog-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   padding: 0.3rem 0.65rem;
   border: 1px solid #d8c8b0;
   border-radius: 5px;
@@ -116,6 +119,14 @@ h2.catalog-frame-title {
   background: #7a1f1f;
   border-color: #7a1f1f;
   color: #fbf6ee;
+}
+
+// Los iconos usan fill/stroke: currentColor, asi heredan el color del texto del boton (marron
+// normal, rojo en hover, crema cuando la pestaña esta activa) sin necesidad de variantes.
+.tab-icon {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
 }
 
 .catalog-group {
