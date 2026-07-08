@@ -353,8 +353,8 @@ export const thirtyYearsWar: ConflictSeed = {
       name_es: "Ejército Imperial",
       is_official: true,
       commanders: [
-        { code: "army_general", name_en: "Army General", name_es: "General en Jefe", command_rating: 8, points: 40 },
-        { code: "battalia_commander", name_en: "Battalia Commander", name_es: "Comandante de Batalla", command_rating: 8, points: 40 },
+        { code: "army_general", name_en: "Army General", name_es: "General en Jefe", command_rating: 8, points: 40, role: "army_general" },
+        { code: "battalia_commander", name_en: "Battalia Commander", name_es: "Comandante de Batalla", command_rating: 8, points: 40, role: "battalia_leader" },
       ],
       units: [
         {
@@ -539,8 +539,8 @@ export const thirtyYearsWar: ConflictSeed = {
       name_es: "Ejército Sueco",
       is_official: true,
       commanders: [
-        { code: "army_general", name_en: "Army General", name_es: "General en Jefe", command_rating: 8, points: 40 },
-        { code: "battalia_commander", name_en: "Battalia Commander", name_es: "Comandante de Batalla", command_rating: 8, points: 40 },
+        { code: "army_general", name_en: "Army General", name_es: "General en Jefe", command_rating: 8, points: 40, role: "army_general" },
+        { code: "battalia_commander", name_en: "Battalia Commander", name_es: "Comandante de Batalla", command_rating: 8, points: 40, role: "battalia_leader" },
       ],
       units: [
         {

@@ -19,12 +19,15 @@ export interface FactionSummaryDTO {
   isOfficial: boolean;
 }
 
+export type CommanderRole = 'army_general' | 'battalia_leader';
+
 export interface CommanderDTO {
   id: number;
   code: string;
   name: string;
   commandRating: number | null;
   points: number;
+  role: CommanderRole | null;
 }
 
 export interface UnitOptionDTO {

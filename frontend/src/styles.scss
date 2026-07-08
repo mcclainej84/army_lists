@@ -1,13 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+  // Tipografia: Cinzel (titulos, look "placa/inscripcion") + EB Garamond (texto, tipo de
+  // imprenta clasico). Georgia/serif como red de seguridad si las fuentes no cargan.
+  --font-display: 'Cinzel', 'Georgia', 'Times New Roman', serif;
+  --font-body: 'EB Garamond', 'Georgia', 'Times New Roman', serif;
+}
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  // El fondo va en <html>, no en <body>: asi cubre toda la altura del viewport incluso
+  // cuando el contenido de la pagina es mas corto (evita un corte visible del papel).
+  min-height: 100%;
+  background-color: #f2e6d8;
+  background-image:
+    // Un leve tinte encima de la textura real para que el contraste con el texto se
+    // mantenga uniforme aunque la foto de la hoja tenga zonas mas oscuras/claras.
+    linear-gradient(180deg, rgba(247, 236, 217, 0.35) 0%, rgba(242, 230, 216, 0.35) 100%),
+    // Textura de hoja envejecida real (subida por el usuario), en vez del ruido SVG
+    // sintetico que habia antes. Ojo con la ruta: styles.scss vive en src/, pero el
+    // archivo fisico esta en public/img/ (se copia tal cual a los assets servidos), asi
+    // que hay que subir un nivel y entrar en public/ para que el bundler lo encuentre y
+    // lo procese (copiarlo con hash + reescribir la url ya lista para GitHub Pages).
+    // Una ruta "img/bg-parchment.jpg" sin mas falla en build con "Could not resolve".
+    url('../public/img/bg-parchment.jpg');
+  background-size: auto, cover;
+  background-position: top center, top center;
+  background-repeat: repeat, no-repeat;
+  background-attachment: scroll, fixed;
+}
+
 body {
   margin: 0;
-  font-family: 'Georgia', 'Times New Roman', serif;
-  background: linear-gradient(180deg, #f7ecd9 0%, #f2e6d8 420px, #f2e6d8 100%);
+  font-family: var(--font-body);
+  font-size: 17px;
   color: #2b1d14;
   min-height: 100vh;
 }
@@ -17,6 +46,13 @@ h1 {
 }
 
 h1, h2, h3 {
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 

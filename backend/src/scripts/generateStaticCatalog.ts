@@ -46,6 +46,7 @@ interface CommanderDTO {
   name: string;
   commandRating: number | null;
   points: number;
+  role: string | null;
 }
 
 interface UnitOptionDTO {
@@ -123,6 +124,7 @@ function buildCommanderDTO(idFactory: () => number, commander: CommanderSeed, lo
     name: locale === "en" ? commander.name_en : commander.name_es,
     commandRating: commander.command_rating,
     points: commander.points,
+    role: commander.role ?? null,
   };
 }
 

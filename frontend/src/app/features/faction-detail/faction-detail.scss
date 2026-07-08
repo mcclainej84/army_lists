@@ -248,6 +248,30 @@ h2.catalog-frame-title {
   margin-top: 0.3rem;
 }
 
+// Selector de tamaño (Normal / Pequeña / Grande): excluyente, no checkboxes sueltos,
+// para que no se puedan marcar Pequeña y Grande a la vez.
+.size-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.85rem;
+  margin-top: 0.3rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dashed #d8c8b0;
+}
+
+.size-radio {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.size-radio.disabled {
+  color: #a89886;
+  font-weight: 400;
+}
+
 .add-btn {
   margin-top: 0.6rem;
   padding: 0.35rem 0.7rem;

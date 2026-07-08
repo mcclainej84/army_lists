@@ -1,6 +1,8 @@
 <section class="selector">
   <header class="selector-hero">
-    <h1>{{ 'app.title' | transloco }}</h1>
+    <h1>
+      <img src="img/logo-hero.png" srcset="img/logo-hero.png 1x, img/logo-hero@2x.png 2x" [alt]="'app.title' | transloco" class="hero-logo" />
+    </h1>
     <p class="tagline">{{ 'home.tagline' | transloco }}</p>
   </header>
 

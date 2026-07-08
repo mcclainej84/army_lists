@@ -35,12 +35,24 @@ export interface FactionUnitSeed {
   options?: UnitOptionSeed[];
 }
 
+export type CommanderRole = "army_general" | "battalia_leader";
+
 export interface CommanderSeed {
   code: string;
   name_en: string;
   name_es: string;
   command_rating: number;
   points: number;
+  /**
+   * Rol del comandante a efectos de restricciones de composicion de lista:
+   * - "army_general": unico en todo el ejercito (cuente o no en una battalia concreta).
+   * - "battalia_leader": como mucho uno por battalia/brigada, sea cual sea su codigo o
+   *   nivel exacto (p.ej. las 3 tarifas de Valor de Mando de Black Powder son 3 codigos
+   *   distintos pero ocupan el mismo "puesto" de lider dentro de una brigada).
+   * Sin rol (undefined): sin restriccion especial (p.ej. comandantes de apoyo que se
+   * puedan repetir libremente).
+   */
+  role?: CommanderRole;
 }
 
 export interface FactionSeed {

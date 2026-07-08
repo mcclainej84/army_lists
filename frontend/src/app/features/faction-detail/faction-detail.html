@@ -66,6 +66,9 @@
             @if (col.removable && unitsInBattalia(col.id).length === 0) {
               <p class="battalia-warning">{{ 'factionDetail.warnings.noUnitsAssigned' | transloco: { groupLower: groupNoun(false) } }}</p>
             }
+            @if (col.removable && missingLeader(col.id)) {
+              <p class="battalia-warning">{{ 'factionDetail.warnings.missingLeader' | transloco: { groupLower: groupNoun(false) } }}</p>
+            }
 
             <!-- Comandantes de esta battalia -->
             <div
@@ -215,23 +218,58 @@
                       @if (unit.options.length) {
                         <div class="unit-options">
                           <span class="options-title">{{ 'factionDetail.options' | transloco }}</span>
-                          <div class="option-checkbox-list">
-                            @for (option of unit.options; track option.code) {
-                              <label
-                                class="option-checkbox"
-                                [class.disabled]="!isPendingOptionSelected(unit.code, option.code) && !canSelectPendingOption(unit, option)"
-                                [title]="!isPendingOptionSelected(unit.code, option.code) && !canSelectPendingOption(unit, option) ? pendingOptionBlockedReason(unit, option, faction.units) : ''"
-                              >
+
+                          @let sizeOpts = sizeOptions(unit);
+                          @if (sizeOpts.length) {
+                            <div class="size-selector" role="radiogroup">
+                              <label class="size-radio">
                                 <input
-                                  type="checkbox"
-                                  [checked]="isPendingOptionSelected(unit.code, option.code)"
-                                  [disabled]="!isPendingOptionSelected(unit.code, option.code) && !canSelectPendingOption(unit, option)"
-                                  (change)="togglePendingOption(unit, option)"
+                                  type="radio"
+                                  [name]="'size-' + unit.code"
+                                  [checked]="selectedSizeCode(unit.code) === null"
+                                  (change)="setSize(unit, null)"
                                 />
-                                {{ option.description }} ({{ option.pointDelta > 0 ? '+' : '' }}{{ option.pointDelta }})
+                                {{ 'factionDetail.sizeNormal' | transloco }}
                               </label>
-                            }
-                          </div>
+                              @for (option of sizeOpts; track option.code) {
+                                <label
+                                  class="size-radio"
+                                  [class.disabled]="selectedSizeCode(unit.code) !== option.code && !canSelectPendingOption(unit, option)"
+                                  [title]="selectedSizeCode(unit.code) !== option.code && !canSelectPendingOption(unit, option) ? pendingOptionBlockedReason(unit, option, faction.units) : ''"
+                                >
+                                  <input
+                                    type="radio"
+                                    [name]="'size-' + unit.code"
+                                    [checked]="selectedSizeCode(unit.code) === option.code"
+                                    [disabled]="selectedSizeCode(unit.code) !== option.code && !canSelectPendingOption(unit, option)"
+                                    (change)="setSize(unit, option.code)"
+                                  />
+                                  {{ option.description }} ({{ option.pointDelta > 0 ? '+' : '' }}{{ option.pointDelta }})
+                                </label>
+                              }
+                            </div>
+                          }
+
+                          @let restOpts = nonSizeOptions(unit);
+                          @if (restOpts.length) {
+                            <div class="option-checkbox-list">
+                              @for (option of restOpts; track option.code) {
+                                <label
+                                  class="option-checkbox"
+                                  [class.disabled]="!isPendingOptionSelected(unit.code, option.code) && !canSelectPendingOption(unit, option)"
+                                  [title]="!isPendingOptionSelected(unit.code, option.code) && !canSelectPendingOption(unit, option) ? pendingOptionBlockedReason(unit, option, faction.units) : ''"
+                                >
+                                  <input
+                                    type="checkbox"
+                                    [checked]="isPendingOptionSelected(unit.code, option.code)"
+                                    [disabled]="!isPendingOptionSelected(unit.code, option.code) && !canSelectPendingOption(unit, option)"
+                                    (change)="togglePendingOption(unit, option)"
+                                  />
+                                  {{ option.description }} ({{ option.pointDelta > 0 ? '+' : '' }}{{ option.pointDelta }})
+                                </label>
+                              }
+                            </div>
+                          }
                         </div>
                       }
 

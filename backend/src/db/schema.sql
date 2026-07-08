@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS commanders (
   name_es TEXT NOT NULL,
   command_rating INTEGER,
   points INTEGER NOT NULL,
+  role TEXT CHECK (role IN ('army_general', 'battalia_leader')), -- NULL = sin restriccion especial
   UNIQUE(faction_id, code)
 );
 

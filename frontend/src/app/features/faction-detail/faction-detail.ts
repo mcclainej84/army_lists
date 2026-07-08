@@ -14,6 +14,11 @@ import { exportListToPdf } from './pdf-export';
 type Category = 'HORSE' | 'FOOT' | 'ORDNANCE';
 // Orden pedido para el catalogo: Mando (aparte, son comandantes) / Infanteria / Caballeria / Artilleria.
 const CATEGORY_ORDER: Category[] = ['FOOT', 'HORSE', 'ORDNANCE'];
+// Mismo orden, pero como rango numerico: se usa para decidir donde insertar una unidad
+// nueva dentro de "Mi Lista" por defecto (comandantes ya van aparte, por encima, asi que
+// aqui solo hace falta Infanteria/Caballeria/Artilleria). Dentro de una misma categoria,
+// se ordena despues por Aguante (stamina) de menor a mayor.
+const CATEGORY_SORT_RANK: Record<Category, number> = { FOOT: 0, HORSE: 1, ORDNANCE: 2 };
 
 @Component({
   selector: 'app-faction-detail',
@@ -107,6 +112,13 @@ export class FactionDetail {
     return this.listCommanders().filter((c) => c.battaliaId === battaliaId);
   }
 
+  /** Avisa si esta battalia/brigada ya tiene unidades pero todavia no tiene un lider asignado. */
+  missingLeader(battaliaId: string): boolean {
+    if (battaliaId === UNASSIGNED_BATTALIA_ID) return false;
+    if (this.unitsInBattalia(battaliaId).length === 0) return false;
+    return !this.commandersInBattalia(battaliaId).some((c) => c.commander.role === 'battalia_leader');
+  }
+
   warningsForBattalia(battaliaId: string): BattaliaWarning[] {
     return this.battaliaWarnings().filter((w) => w.battaliaId === battaliaId);
   }
@@ -131,20 +143,26 @@ export class FactionDetail {
   }
 
   // --- Comandantes ---
-  /** Como mucho un Battalia Commander por battalia (la bolsa "sin asignar" no cuenta). */
+  /**
+   * Como mucho un lider (role "battalia_leader") por battalia/brigada, sea cual sea su
+   * codigo/tarifa exacta (la bolsa "sin asignar" no cuenta). Antes esto solo miraba el
+   * codigo literal "battalia_commander", lo que dejaba anadir varios lideres de brigada
+   * de Black Powder (codigos "brigade_leader_vm7/8/9") a la misma brigada porque cada
+   * tarifa de Valor de Mando es un codigo distinto.
+   */
   canAssignCommanderToBattalia(commander: CommanderDTO, battaliaId: string, excludeInstanceId?: string): boolean {
-    if (commander.code !== 'battalia_commander') return true;
+    if (commander.role !== 'battalia_leader') return true;
     if (battaliaId === UNASSIGNED_BATTALIA_ID) return true;
     return !this.listCommanders().some(
-      (c) => c.battaliaId === battaliaId && c.commander.code === 'battalia_commander' && c.instanceId !== excludeInstanceId
+      (c) => c.battaliaId === battaliaId && c.commander.role === 'battalia_leader' && c.instanceId !== excludeInstanceId
     );
   }
 
   /** El Army General es unico en todo el ejercito (cuente o no en una battalia concreta). */
   canAddCommander(commander: CommanderDTO): boolean {
     if (commander.points > this.remainingPoints()) return false;
-    if (commander.code === 'army_general') {
-      return !this.listCommanders().some((c) => c.commander.code === 'army_general');
+    if (commander.role === 'army_general') {
+      return !this.listCommanders().some((c) => c.commander.role === 'army_general');
     }
     return this.canAssignCommanderToBattalia(commander, this.activeBattaliaId());
   }
@@ -214,6 +232,33 @@ export class FactionDetail {
     this.pendingSelections.update((map) => ({ ...map, [unit.code]: updated }));
   }
 
+  // --- Tamaño de unidad (Pequeña/Grande): selector excluyente, no checkboxes sueltos ---
+  /** Opciones de tamaño de esta unidad (puede tener solo "Pequeña", solo "Grande", ambas o ninguna). */
+  sizeOptions(unit: UnitDTO): UnitOptionDTO[] {
+    return unit.options.filter((o) => o.code === 'small' || o.code === 'large');
+  }
+
+  /** El resto de opciones de la unidad, excluyendo tamaño (se siguen mostrando como checkboxes). */
+  nonSizeOptions(unit: UnitDTO): UnitOptionDTO[] {
+    return unit.options.filter((o) => o.code !== 'small' && o.code !== 'large');
+  }
+
+  /** Código de tamaño marcado ahora mismo ("small"/"large"), o null si esta en "Normal". */
+  selectedSizeCode(unitCode: string): string | null {
+    return this.pendingOptionsFor(unitCode).find((c) => c === 'small' || c === 'large') ?? null;
+  }
+
+  /** Selecciona un tamaño (quitando el otro si estaba marcado) o vuelve a "Normal" con null. */
+  setSize(unit: UnitDTO, code: string | null): void {
+    if (code) {
+      const option = unit.options.find((o) => o.code === code);
+      if (!option || !this.canSelectPendingOption(unit, option)) return;
+    }
+    const withoutSize = this.pendingOptionsFor(unit.code).filter((c) => c !== 'small' && c !== 'large');
+    const updated = code ? [...withoutSize, code] : withoutSize;
+    this.pendingSelections.update((map) => ({ ...map, [unit.code]: updated }));
+  }
+
   // --- Unidades ---
   /** Coste de anadir esta unidad ahora mismo, contando las opciones marcadas (aun no confirmadas). */
   costForUnit(unit: UnitDTO): number {
@@ -264,13 +309,37 @@ export class FactionDetail {
     }
   }
 
+  /** Rango de orden por defecto: [categoria (Infanteria/Caballeria/Artilleria), Aguante]. */
+  private sortRank(unit: UnitDTO): [number, number] {
+    return [CATEGORY_SORT_RANK[unit.category] ?? 99, unit.stamina ?? 0];
+  }
+
   addUnit(unit: UnitDTO): void {
     if (!this.canAddUnit(unit)) return;
     const selectedOptionCodes = this.pendingOptionsFor(unit.code);
-    this.listUnits.update((list) => [
-      ...list,
-      { instanceId: nextInstanceId('unit'), unit, selectedOptionCodes, battaliaId: this.activeBattaliaId() },
-    ]);
+    const battaliaId = this.activeBattaliaId();
+    const newEntry: ListUnitEntry = { instanceId: nextInstanceId('unit'), unit, selectedOptionCodes, battaliaId };
+
+    // Insercion por defecto ordenada (categoria, luego Aguante). No se reordena la lista
+    // entera en cada render para no pelearse con el reordenado manual por arrastre: solo
+    // se decide la posicion de entrada al anadir la unidad.
+    this.listUnits.update((list) => {
+      const outside = list.filter((e) => e.battaliaId !== battaliaId);
+      const within = list.filter((e) => e.battaliaId === battaliaId);
+
+      const [newCategoryRank, newStamina] = this.sortRank(unit);
+      let insertAt = within.length;
+      for (let i = 0; i < within.length; i++) {
+        const [categoryRank, stamina] = this.sortRank(within[i].unit);
+        if (newCategoryRank < categoryRank || (newCategoryRank === categoryRank && newStamina < stamina)) {
+          insertAt = i;
+          break;
+        }
+      }
+      within.splice(insertAt, 0, newEntry);
+
+      return [...outside, ...within];
+    });
     this.pendingSelections.update((map) => ({ ...map, [unit.code]: [] }));
   }
 

@@ -26,8 +26,8 @@ function seed(): void {
      VALUES (@conflict_id, @code, @name_en, @name_es, @is_official, @owner_email)`
   );
   const insertCommander = db.prepare(
-    `INSERT INTO commanders (faction_id, code, name_en, name_es, command_rating, points)
-     VALUES (@faction_id, @code, @name_en, @name_es, @command_rating, @points)`
+    `INSERT INTO commanders (faction_id, code, name_en, name_es, command_rating, points, role)
+     VALUES (@faction_id, @code, @name_en, @name_es, @command_rating, @points, @role)`
   );
   const insertUnit = db.prepare(
     `INSERT INTO units (
@@ -76,6 +76,7 @@ function seed(): void {
               name_es: commander.name_es,
               command_rating: commander.command_rating,
               points: commander.points,
+              role: commander.role ?? null,
             });
           }
 

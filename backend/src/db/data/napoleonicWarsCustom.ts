@@ -38,10 +38,17 @@ function commandersUpTo(maxTier: 7 | 8 | 9): CommanderSeed[] {
     .filter((t) => t.tier <= maxTier)
     .map((t) => ({
       code: `brigade_leader_vm${t.tier}`,
-      name_en: `Brigade Leader (Command ${t.tier})`,
-      name_es: `Líder de Brigada (Valor de Mando ${t.tier})`,
+      // El Valor de Mando NO se repite en el nombre: ya se muestra por separado (campo
+      // command_rating) tanto en el catalogo como en el PDF exportado. Repetirlo aqui
+      // hacia que apareciera duplicado (p.ej. "Lider de Brigada (Valor de Mando 9) (Valor
+      // de Mando: 9)" en la cabecera del PDF).
+      name_en: "Brigade Leader",
+      name_es: "Líder de Brigada",
       command_rating: t.tier,
       points: t.points,
+      // Como mucho un lider por brigada/battalia, independientemente de la tarifa de
+      // Valor de Mando elegida (los 3 niveles ocupan el mismo "puesto").
+      role: "battalia_leader",
     }));
 }
 
@@ -1167,8 +1174,11 @@ export const austrianCustomFaction: FactionSeed = {
 
 export const russianCustomFaction: FactionSeed = {
   code: "russian_custom",
-  name_en: "Russia (Custom Rules)",
-  name_es: "Rusia (Reglas Personalizadas)",
+  // Rusia no tiene version oficial (a diferencia de Francia/Gran Bretaña/Prusia/Austria,
+  // que si tienen una entrada oficial vacia con la que "fusionarse" en el selector), asi
+  // que se muestra con su propio boton y nombre liso, sin sufijo "(Reglas Personalizadas)".
+  name_en: "Russia",
+  name_es: "Rusia",
   is_official: false,
   commanders: commandersUpTo(9),
   units: [
@@ -1454,3 +1464,114 @@ export const russianCustomFaction: FactionSeed = {
     },
   ],
 };
+
+// ---------------------------------------------------------------------------
+// Reglas nacionales opcionales ("Manual del General"), aplicadas por categoria de unidad
+// tal y como las especifico el usuario. El esquema actual solo soporta opciones por
+// unidad (no por categoria/ejercito entero ni por comandante), asi que se modelan
+// añadiendo la misma opcion a cada unidad de la categoria correspondiente.
+//
+// Regla de exclusion aplicada de forma sistematica: si una unidad YA tiene de base
+// exactamente la ventaja que la opcion ofrece (p.ej. ya es Elite de algun nivel, ya es
+// Poco Fiable, o su Moral base ya es 5), no se le anade esa opcion - pagar puntos por algo
+// que ya tienes gratis no tiene sentido. Fuera de esos casos se aplica tal cual la
+// restriccion literal del documento (solo infanteria/caballeria/artilleria, o unidades
+// nombradas explicitamente como excepcion).
+//
+// No se han modelado los rasgos de comandante (p.ej. "Inspirador" en Francia) ni el
+// catalogo mas amplio de mejoras "a la carta" que no vinieron detalladas en este pedido:
+// solo se an~aden las lineas que el usuario detallo explicitamente con su restriccion y
+// coste.
+
+function opt(code: string, description_en: string, description_es: string, point_delta: number): UnitOptionSeed {
+  return { code, description_en, description_es, point_delta };
+}
+
+function addOption(units: FactionSeed["units"], codes: string[], option: UnitOptionSeed): void {
+  for (const unit of units) {
+    if (codes.includes(unit.code)) {
+      unit.options = [...(unit.options ?? []), option];
+    }
+  }
+}
+
+// --- Francia ---
+{
+  const u = frenchCustomFaction.units;
+  const allInfantry = ["line_infantry", "light_infantry", "recruits", "old_guard", "middle_guard", "young_guard"];
+  addOption(u, allInfantry, opt("pas_de_charge", "Pas de Charge", "Pas de Charge", 2));
+  addOption(u, ["line_infantry", "light_infantry", "recruits"], opt("reliable_elite5", "Reliable, Elite 5+", "Fiables, Élite 5+", 6));
+  addOption(u, ["line_infantry", "light_infantry", "recruits"], opt("reliable_elite4", "Reliable, Elite 4+", "Fiables, Élite 4+", 8));
+  // Vieja Guardia ya es "Fierce Fighters" de base.
+  addOption(u, ["line_infantry", "light_infantry", "recruits", "middle_guard", "young_guard"], opt("fierce_fighters", "Fierce Fighters", "Combatientes Aguerridos", 1));
+  addOption(u, allInfantry, opt("doubtful", "Doubtful", "Dudosos", -6));
+  // Reclutas ya tiene Moral 5 de base.
+  addOption(u, ["line_infantry", "light_infantry", "old_guard", "middle_guard", "young_guard"], opt("morale5", "Morale 5", "Moral 5", -4));
+  addOption(u, allInfantry, opt("unreliable", "Unreliable", "Poco Fiables", -3));
+  // Restriccion explicita del usuario: solo Vieja y Media Guardia.
+  addOption(u, ["old_guard", "middle_guard"], opt("stubborn", "Stubborn", "Tenaces", 3));
+  // "Caballeria ligera" = unidades de caballeria con la regla "Raiders" (Incursores), a
+  // diferencia de la caballeria pesada ("Heavy Cavalry"). Patron consistente en las 5
+  // listas de ejercito transcritas de este documento.
+  addOption(u, ["hussars", "lancers", "guard_lancers"], opt("reliable_plus1cac", "Reliable, +1 Hand-to-Hand", "Fiables, +1 CaC", 6));
+  addOption(u, ["foot_artillery", "horse_artillery"], opt("reliable_elite5_artillery", "Reliable, Elite 5+", "Fiables, Élite 5+", 8));
+  addOption(u, ["foot_artillery", "horse_artillery"], opt("reliable_elite4_artillery", "Reliable, Elite 4+", "Fiables, Élite 4+", 10));
+}
+
+// --- Prusia ---
+{
+  const u = prussianCustomFaction.units;
+  const allInfantry = ["musketeers", "fusiliers", "jagers", "militia", "landwehr_infantry"];
+  // Jagers ya son "Reliable, Elite 5+" de base.
+  addOption(u, ["musketeers", "fusiliers", "militia", "landwehr_infantry"], opt("reliable_elite5", "Reliable, Elite 5+", "Fiables, Élite 5+", 8));
+  addOption(u, allInfantry, opt("fierce_fighters", "Fierce Fighters", "Combatientes Aguerridos", 1));
+  addOption(u, allInfantry, opt("doubtful", "Doubtful", "Dudosos", -6));
+  // Milicia ya tiene Moral 5 de base.
+  addOption(u, ["musketeers", "fusiliers", "jagers", "landwehr_infantry"], opt("morale5", "Morale 5", "Moral 5", -4));
+  // Landwehr ya es "Unreliable" de base.
+  addOption(u, ["musketeers", "fusiliers", "jagers", "militia"], opt("unreliable", "Unreliable", "Poco Fiables", -3));
+  addOption(u, allInfantry, opt("stubborn", "Stubborn", "Tenaces", 3));
+  // Prusia: sin restriccion de caballeria ligera, se aplica a toda la caballeria.
+  addOption(u, ["dragoons", "uhlans", "hussars", "landwehr_cavalry"], opt("reliable_plus1cac", "Reliable, +1 Hand-to-Hand", "Fiables, +1 CaC", 6));
+  addOption(u, ["foot_artillery", "horse_artillery"], opt("reliable_elite5_artillery", "Reliable, Elite 5+", "Fiables, Élite 5+", 8));
+}
+
+// --- Austria ---
+{
+  const u = austrianCustomFaction.units;
+  const allInfantry = ["line_infantry", "hungarian_infantry", "light_infantry", "grenz", "jagers", "grenadiers", "landwehr_infantry"];
+  // Infanteria Hungara ya es "Elite 5+" y Granaderos ya son "Reliable, Elite 4+" de base.
+  addOption(u, ["line_infantry", "light_infantry", "grenz", "jagers", "landwehr_infantry"], opt("reliable_elite5", "Reliable, Elite 5+", "Fiables, Élite 5+", 8));
+  // Grenz ya es "Fierce Fighters" de base.
+  addOption(u, ["line_infantry", "hungarian_infantry", "light_infantry", "jagers", "grenadiers", "landwehr_infantry"], opt("fierce_fighters", "Fierce Fighters", "Combatientes Aguerridos", 1));
+  addOption(u, allInfantry, opt("doubtful", "Doubtful", "Dudosos", -6));
+  addOption(u, allInfantry, opt("morale5", "Morale 5", "Moral 5", -4));
+  // Grenz y Landwehr ya son "Unreliable" de base.
+  addOption(u, ["line_infantry", "hungarian_infantry", "light_infantry", "jagers", "grenadiers"], opt("unreliable", "Unreliable", "Poco Fiables", -3));
+  addOption(u, allInfantry, opt("stubborn", "Stubborn", "Tenaces", 3));
+  addOption(u, ["dragoons", "cuirassiers", "uhlans", "hussars"], opt("reliable_plus1cac", "Reliable, +1 Hand-to-Hand", "Fiables, +1 CaC", 6));
+  addOption(u, ["foot_artillery", "horse_artillery"], opt("reliable_elite5_artillery", "Reliable, Elite 5+", "Fiables, Élite 5+", 8));
+}
+
+// --- Gran Bretaña ---
+{
+  const u = britishCustomFaction.units;
+  // Restriccion explicita del usuario ("excepto unidades*"): las 3 unidades marcadas con
+  // "*" en el documento original (Milicia, Infanteria Hannoveriana, Infanteria Landwehr
+  // Hannoveriana) quedan fuera de "Linea Firme y Primer Disparo".
+  addOption(
+    u,
+    ["line_infantry", "light_infantry", "kgl_light_infantry", "riflemen", "highland_infantry", "guards_infantry"],
+    opt("steady_first_fire", "Steady Line and First Fire", "Línea Firme y Primer Disparo", 3)
+  );
+  addOption(u, ["dragoons", "hussars", "household_cavalry"], opt("charge_regardless", "Charge Regardless", "Galopar Contra Todo", 3));
+  // Fusileros ya son "Reliable, Elite 4+" y la Guardia ya es "Reliable, Elite 3+" de base.
+  const infantryEligibleForElite = ["line_infantry", "light_infantry", "kgl_light_infantry", "militia", "hanoverian_infantry", "hanoverian_landwehr", "highland_infantry"];
+  addOption(u, infantryEligibleForElite, opt("reliable_elite5", "Reliable, Elite 5+", "Fiables, Élite 5+", 8));
+  addOption(u, infantryEligibleForElite, opt("reliable_elite4", "Reliable, Elite 4+", "Fiables, Élite 4+", 10));
+  // Caballeria ligera britanica = Husares (unica con la regla "Raiders").
+  addOption(u, ["hussars"], opt("reliable_plus1cac", "Reliable, +1 Hand-to-Hand", "Fiables, +1 CaC", 6));
+  // Restriccion explicita del usuario: solo artilleria Real o KGL (no la Hannoveriana ni la de caballo).
+  addOption(u, ["royal_or_kgl_artillery"], opt("elite5_royal_kgl", "Elite 5+", "Élite 5+", 4));
+  addOption(u, ["royal_or_kgl_artillery"], opt("elite4_royal_kgl", "Elite 4+", "Élite 4+", 6));
+}

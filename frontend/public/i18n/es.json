@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "ListGenerator",
+    "title": "List Generator",
     "lastUpdated": "Última actualización"
   },
   "nav": {
@@ -52,6 +52,7 @@
       "points": "Puntos"
     },
     "options": "Opciones",
+    "sizeNormal": "Normal",
     "commandRating": "Valor de Mando",
     "add": "Añadir",
     "remove": "Quitar",
@@ -78,7 +79,8 @@
       "battaliaMaxUnit": "Esta {{groupLower}} supera el máximo de {{max}} de {{name}}",
       "battaliaMaxOption": "Esta {{groupLower}} supera el máximo de {{max}} con la opción {{name}}",
       "battaliaMaxGroup": "Esta {{groupLower}} supera el máximo de {{max}} de {{name}}",
-      "noUnitsAssigned": "Esta {{groupLower}} no tiene unidades asignadas todavía"
+      "noUnitsAssigned": "Esta {{groupLower}} no tiene unidades asignadas todavía",
+      "missingLeader": "Esta {{groupLower}} necesita un líder asignado"
     },
     "groups": {
       "ordnance": "Artillería"
@@ -98,7 +100,7 @@
       "commander": "Comandante",
       "handToHandAbbr": "CaC",
       "noUnits": "Sin unidades",
-      "generatedWith": "Generado con ListGenerator",
+      "generatedWith": "Generado con List Generator",
       "page": "Página",
       "blockedUnassigned": "Asigna todas las unidades a una {{group}} antes de exportar"
     }

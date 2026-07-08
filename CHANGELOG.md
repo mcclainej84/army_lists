@@ -4,6 +4,64 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.19 — 2026-07-08
+
+- Banner de escritorio recortado por arriba y por abajo (se pierde algo de las banderas y sombreros de las puntas) en vez de escalado entero: vuelve a la altura anterior (100px) pero mucho más ancho (724px, aspect-ratio ~7.24:1), con look "cinemático" alargado. La cabecera recupera su altura anterior en escritorio.
+
+## 0.18 — 2026-07-08
+
+- Reprocesado el logo con la nueva versión de fondo transparente subida por el usuario (confirmado a nivel de canal alfa: esquinas totalmente transparentes, solo el emblema opaco).
+- Logos de cada juego (Pike & Shotte, Epic P&S, Black Powder, French Indian War) regenerados a mayor resolución (900×600 → 1200×800) para que no se vean borrosos en pantallas de alta densidad (Retina/HiDPI).
+
+## 0.17 — 2026-07-08
+
+- Banner de escritorio ensanchado de 420px a 760px (se veía muy vacío en pantallas de ordenador). Al mantener el aspect-ratio real de la imagen, también crece de alto (100px → 180px), así que la cabecera es algo más alta en escritorio. Añadido un escalón intermedio (420px) entre 640-900px de ancho de ventana para no pasar bruscamente del banner grande al de móvil.
+- El banner de móvil ahora usa la imagen específica para móvil que subió el usuario (`banner-mobile.png`, recorte propio, no solo el banner de escritorio reducido).
+
+## 0.16 — 2026-07-08
+
+- El logo subido por el usuario (mosquete cruzado + bicornio + laurel + "Army List Generator") sustituye al texto "List Generator" en el centro de la página principal. Se mantiene el `<h1>` semánticamente (con `alt` para accesibilidad/SEO), pero visualmente ahora es la imagen; se quitó la línea decorativa que acompañaba al texto porque el propio logo ya hace ese papel.
+
+
+## 0.15 — 2026-07-08
+
+- Revertido el zoom al pasar el ratón por los logos de juego (`.game-card:hover .game-logo { transform: scale(...) }`): recortaba/distorsionaba visualmente el logo. Se mantiene el efecto de elevación + sombra de la tarjeta, que no toca la imagen.
+- Banner de cabecera colocado: se recortaron los márgenes negros de la ilustración subida por el usuario y se generó en dos tamaños (420×100px escritorio, 300×71px móvil, con versión @2x para pantallas retina), centrado entre el nombre de la app y el selector de idioma.
+- Selector de idioma: ahora son dos banderas (España/Reino Unido) en vez de botones de texto "ES"/"EN" — ocupan menos espacio. Mantienen accesibilidad vía `title`/`aria-label`.
+
+
+## 0.14 — 2026-07-08
+
+- Donde una unidad puede ser Pequeña o Grande, ahora es un selector excluyente (Normal / Pequeña / Grande) en vez de dos checkboxes sueltos: ya no se pueden marcar las dos tallas a la vez. Se aplica automáticamente a cualquier unidad de cualquier ejército/conflicto que tenga esas opciones (se detectan por código, no hace falta configurarlo unidad a unidad). El resto de opciones de la unidad se siguen mostrando como checkboxes normales debajo.
+
+## 0.13 — 2026-07-08
+
+- Arreglado el build ("Could not resolve img/bg-parchment.jpg"): el fondo de hoja envejecida se referenciaba desde `styles.scss` con una ruta que solo existe en los assets ya copiados (`public/img/...`), pero el bundler de Angular resuelve los `url()` de las hojas de estilo globales contra archivos reales en disco relativos al propio `.scss`. Corregido apuntando a la ruta real (`../public/img/bg-parchment.jpg`) para que el build lo encuentre, lo procese y lo sirva bien tanto en local como en GitHub Pages.
+
+## 0.12 — 2026-07-08
+
+- Restaurado el ejército Español de la Guerra de los 30 Años (se había quitado por un malentendido: la petición era sobre España en Black Powder, no en Pike & Shotte).
+- Fondo de la app: se sustituye el degradado + ruido SVG sintético por la textura de hoja envejecida real subida por el usuario (`FONDO_HOJA.jpg`), con un ligero tinte encima para mantener el contraste del texto uniforme.
+- "List Generator" se escribe ahora separado (antes "ListGenerator") en el título de la cabecera, en la pestaña del navegador (antes decía literalmente "Frontend", sin corregir) y en el pie del PDF exportado.
+- Cabecera: reservado un hueco fijo para un futuro banner, centrado entre el nombre de la app y el selector de idioma. Tamaños objetivo de las imágenes (cuando se suban): **480×48px** en escritorio, **320×48px** en móvil (con `flex-wrap`, el banner pasa a su propia fila debajo de marca/idioma en pantallas ≤640px). De momento el hueco está vacío (sin imagen todavía) para no romper el build de producción con una referencia a un archivo inexistente.
+
+## 0.11 — 2026-07-08
+
+- Lavado de cara visual con un aire más histórico: tipografía Cinzel (títulos, estilo "placa/inscripción") + EB Garamond (texto, tipo de imprenta clásico de los siglos XVI-XIX), y un fondo de página tipo papel envejecido (manchas suaves + grano fino, generado con CSS/SVG, sin imágenes externas). Cambio sobrio: misma paleta de colores de siempre, solo se eleva la tipografía y la textura de fondo.
+- Añadidas las opciones de reglas nacionales de Black Powder Napoleónicas para las 4 facciones personalizadas con roster completo (Francia, Prusia, Austria, Gran Bretaña), aplicadas unidad por unidad según su categoría (infantería/caballería/artillería) o, cuando así se indicó, a unidades concretas (p.ej. "Tenaces" solo en Vieja y Media Guardia francesas, o las opciones de artillería solo en la Real/KGL británica). Se excluyen automáticamente las opciones que serían redundantes (p.ej. no se ofrece "Élite" a una unidad que ya es Élite de base, ni "Poco Fiables" a una que ya lo es). No se han modelado los rasgos de comandante (p.ej. "Inspirador" francés) porque el modelo de datos actual no soporta opciones sobre comandantes.
+
+
+
+## 0.10 — 2026-07-08
+
+- Arreglado: el Valor de Mando del líder aparecía duplicado en el PDF (el nombre del comandante ya lo incluía como texto, y encima se añadía otra vez en la cabecera). Ahora el nombre no lleva el número de Valor de Mando; se muestra una sola vez, en el campo dedicado.
+- No se puede añadir más de un líder de brigada/battalia a la misma brigada/battalia, sea cual sea su tarifa de Valor de Mando (antes solo se comprobaba un código concreto, así que las 3 tarifas de Black Powder —códigos distintos— se colaban como si fueran comandantes diferentes). Se ha introducido un campo `role` en los comandantes (`army_general` / `battalia_leader`) para que esta y otras restricciones futuras no dependan de códigos concretos.
+- Reaplicada la bandera de Suecia (30 años) con la imagen actualizada por el usuario.
+- Rusia ya tiene bandera propia, y su nombre ya no lleva el sufijo "(Reglas Personalizadas)" (se llama simplemente "Rusia" / "Russia", igual que el resto de facciones).
+- Eliminado (de momento) el ejército Español de la Guerra de los 30 Años.
+- Al añadir una unidad, se inserta automáticamente en su posición ordenada por defecto dentro de "Mi Lista": primero por tipo (Infantería, luego Caballería, luego Artillería — los comandantes ya iban aparte, por encima), y dentro de cada tipo por Aguante ascendente. El reordenado manual por arrastre sigue funcionando con normalidad después de añadir.
+- Nuevo aviso: si una battalia/brigada tiene unidades pero no tiene ningún líder asignado, se muestra un mensaje pidiendo que se le añada uno.
+
 ## 0.9 — 2026-07-08
 
 - Arrastrar unidades y comandantes ahora funciona agarrando cualquier punto de la fila, no solo el icono ⠿.

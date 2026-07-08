@@ -29,12 +29,13 @@ const FACTION_ICONS: Record<string, string> = {
   portugal: 'img/factions/nap-portugal.png',
   austria: 'img/factions/nap-austria.png',
   // Facciones personalizadas de Black Powder Napoleonicas: reutilizan el escudo de la
-  // nacion oficial correspondiente. Rusia no tiene escudo todavia (a la espera de que
-  // el usuario suba uno), asi que se queda sin entrada aqui a proposito.
+  // nacion oficial correspondiente. Rusia no tiene oficial equivalente, asi que lleva su
+  // propio escudo.
   british_custom: 'img/factions/nap-great-britain.png',
   french_custom: 'img/factions/nap-imperial-france.png',
   prussian_custom: 'img/factions/nap-prussia.png',
   austrian_custom: 'img/factions/nap-austria.png',
+  russian_custom: 'img/factions/nap-russia.png',
 };
 
 // Cuando una nacion tiene tanto version oficial (de momento vacia) como version

@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1.5rem;
+  padding: 0.6rem 1.5rem;
   background: #2b1d14;
   color: #f2e6d8;
   border-bottom: 3px solid #7a1f1f;
@@ -12,14 +12,74 @@
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
+  order: 1;
+}
+
+// Banner ilustrado, centrado entre la marca y el selector de idioma (justify-content:
+// space-between del padre reparte el sobrante en 2 huecos iguales a cada lado). En vez
+// de escalar la imagen entera (lo que la hacia mas alta al ensancharla), se recorto una
+// franja del centro (se pierde algo de las banderas/sombreros de arriba y de abajo) para
+// poder ser mas ancho manteniendo la altura original de 100px: aspect-ratio ~7.24:1.
+// Ruta relativa: header.scss vive en src/app/layout/header/, pero el archivo fisico esta
+// en public/img/ (se sube 4 niveles hasta frontend/ y baja a public/img/) para que el
+// bundler lo encuentre y lo procese en build.
+.banner-slot {
+  order: 2;
+  flex: 0 0 auto;
+  width: 724px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: image-set(
+    url('../../../../public/img/banner-desktop.png') 1x,
+    url('../../../../public/img/banner-desktop@2x.png') 2x
+  );
+}
+
+@media (max-width: 900px) {
+  // Entre 640-900px no hay sitio para un banner de 724px de ancho: se reduce
+  // proporcionalmente en vez de saltar directamente al recorte movil.
+  .banner-slot {
+    width: 420px;
+    height: 58px;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-header {
+    flex-wrap: wrap;
+    row-gap: 0.4rem;
+  }
+
+  .lang-switch {
+    order: 3;
+    margin-left: auto;
+  }
+
+  .banner-slot {
+    order: 4;
+    flex: 0 0 100%;
+    width: 320px;
+    max-width: 100%;
+    height: 89px;
+    margin: 0 auto;
+    // Imagen especifica para movil (recorte distinto, no solo el mismo banner escalado).
+    background-image: image-set(
+      url('../../../../public/img/banner-mobile.png') 1x,
+      url('../../../../public/img/banner-mobile@2x.png') 2x
+    );
+  }
 }
 
 .brand {
+  font-family: var(--font-display);
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #f2e6d8;
   text-decoration: none;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .version-tag {
@@ -31,20 +91,35 @@
 
 .lang-switch {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
+  order: 3;
 }
 
-.lang-switch button {
-  background: transparent;
-  border: 1px solid #7a1f1f;
-  color: #f2e6d8;
-  padding: 0.3rem 0.7rem;
-  border-radius: 4px;
+// Banderas en vez de texto "ES"/"EN": ocupan menos espacio y quedan mas elegantes.
+.flag-btn {
+  display: block;
+  padding: 0;
+  width: 30px;
+  height: 20px;
+  border: 1px solid #6b5b4b;
+  border-radius: 3px;
+  overflow: hidden;
   cursor: pointer;
-  font-size: 0.85rem;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, border-color 0.15s ease;
 }
 
-.lang-switch button.active {
-  background: #7a1f1f;
-  font-weight: 600;
+.flag-btn svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.flag-btn:hover {
+  opacity: 0.85;
+}
+
+.flag-btn.active {
+  opacity: 1;
+  border-color: #f2e6d8;
 }

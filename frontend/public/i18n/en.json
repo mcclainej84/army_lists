@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "ListGenerator",
+    "title": "List Generator",
     "lastUpdated": "Last updated"
   },
   "nav": {
@@ -52,6 +52,7 @@
       "points": "Points"
     },
     "options": "Options",
+    "sizeNormal": "Normal",
     "commandRating": "Command Rating",
     "add": "Add",
     "remove": "Remove",
@@ -78,7 +79,8 @@
       "battaliaMaxUnit": "This {{groupLower}} exceeds the maximum of {{max}} {{name}}",
       "battaliaMaxOption": "This {{groupLower}} exceeds the maximum of {{max}} with the {{name}} option",
       "battaliaMaxGroup": "This {{groupLower}} exceeds the maximum of {{max}} {{name}}",
-      "noUnitsAssigned": "This {{groupLower}} has no units assigned yet"
+      "noUnitsAssigned": "This {{groupLower}} has no units assigned yet",
+      "missingLeader": "This {{groupLower}} needs an assigned leader"
     },
     "groups": {
       "ordnance": "Ordnance"
@@ -98,7 +100,7 @@
       "commander": "Commander",
       "handToHandAbbr": "H2H",
       "noUnits": "No units",
-      "generatedWith": "Generated with ListGenerator",
+      "generatedWith": "Generated with List Generator",
       "page": "Page",
       "blockedUnassigned": "Assign all units to a {{group}} before exporting"
     }
