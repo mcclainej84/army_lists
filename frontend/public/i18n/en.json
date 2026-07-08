@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "List Generator",
+    "title": "Army List Generator",
     "lastUpdated": "Last updated"
   },
   "nav": {
@@ -106,7 +106,7 @@
       "commander": "Commander",
       "handToHandAbbr": "H2H",
       "noUnits": "No units",
-      "generatedWith": "Generated with List Generator",
+      "generatedWith": "Generated with Army List Generator",
       "page": "Page",
       "blockedUnassigned": "Assign all units to a {{group}} before exporting"
     },

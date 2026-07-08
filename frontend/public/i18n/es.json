@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "List Generator",
+    "title": "Army List Generator",
     "lastUpdated": "Última actualización"
   },
   "nav": {
@@ -106,7 +106,7 @@
       "commander": "Comandante",
       "handToHandAbbr": "CaC",
       "noUnits": "Sin unidades",
-      "generatedWith": "Generado con List Generator",
+      "generatedWith": "Generado con Army List Generator",
       "page": "Página",
       "blockedUnassigned": "Asigna todas las unidades a una {{group}} antes de exportar"
     },

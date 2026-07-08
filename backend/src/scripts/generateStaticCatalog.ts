@@ -2,7 +2,6 @@ import * as fs from "fs";
 import * as path from "path";
 import { blackPowder } from "../db/data/blackPowder";
 import { pikeAndShotte } from "../db/data/pikeAndShotte";
-import { pikeAndShottePlain } from "../db/data/pikeAndShottePlain";
 import { frenchIndianWar } from "../db/data/frenchIndianWar";
 import { CommanderSeed, FactionSeed, FactionUnitSeed, GameSeed, UnitOptionSeed } from "../db/types";
 
@@ -17,7 +16,10 @@ import { CommanderSeed, FactionSeed, FactionUnitSeed, GameSeed, UnitOptionSeed }
 
 type Locale = "en" | "es";
 const LOCALES: Locale[] = ["en", "es"];
-const GAMES: GameSeed[] = [pikeAndShotte, pikeAndShottePlain, blackPowder, frenchIndianWar];
+// "Pike & Shotte" (version llana, sin Epic) se retira de momento del catalogo a peticion
+// del usuario: no se va a usar por ahora. El archivo de datos (pikeAndShottePlain.ts) se
+// deja intacto sin usar, por si se quiere recuperar mas adelante.
+const GAMES: GameSeed[] = [pikeAndShotte, blackPowder, frenchIndianWar];
 
 const OUT_DIR = path.join(__dirname, "..", "..", "..", "frontend", "public", "data");
 

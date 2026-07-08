@@ -12,8 +12,8 @@ import {
 // referencia oficiales. España se ha retirado por ahora a petición del usuario. Además de
 // las oficiales, se incluyen 5 facciones personalizadas (is_official:false) transcritas
 // del documento aportado por el usuario, seleccionables mediante el checkbox "Incluir
-// facciones personalizadas". Rusia solo existe como personalizada (no hay facción oficial
-// de Rusia todavía) y de momento no tiene escudo propio.
+// facciones personalizadas". Rusia ya tiene tambien su andamiaje oficial (igual que el
+// resto de naciones), ademas de la version personalizada con reglas completas.
 export const napoleonicWars: ConflictSeed = {
   code: "napoleonic_wars",
   name_en: "Napoleonic Wars",
@@ -55,6 +55,14 @@ export const napoleonicWars: ConflictSeed = {
       code: "austria",
       name_en: "Austria",
       name_es: "Austria",
+      is_official: true,
+      commanders: [],
+      units: [],
+    },
+    {
+      code: "russia",
+      name_en: "Russia",
+      name_es: "Rusia",
       is_official: true,
       commanders: [],
       units: [],

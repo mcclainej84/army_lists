@@ -4,6 +4,13 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.32 — 2026-07-08 (rama `feature/firebase-lists`)
+
+- Nombre de la app cambiado de "List Generator" a "Army List Generator" (cabecera, pestaña del navegador, pie del PDF exportado).
+- Retirado de momento el juego "Pike & Shotte" (versión llana, sin Epic) del catálogo. Los datos no se han borrado, solo se ha quitado del listado.
+- Rusia tiene ahora también una entrada oficial (andamiaje vacío) en Guerras Napoleónicas, igual que el resto de naciones: aparece en la lista aunque no se active "Incluir facciones personalizadas", y ese botón lleva a la versión con reglas completas cuando el checkbox está activo.
+- Prueba: color distinto (bronce/dorado) para las tarjetas de facción en la página principal, para diferenciarlas del resto.
+
 ## 0.31 — 2026-07-08 (rama `feature/firebase-lists`)
 
 - El idioma ya no ocupa su propia fila (que sumaba altura a la cabecera): ahora se superpone en la esquina superior derecha, a la misma altura que el borde de arriba del banner, sin dejar hueco extra por encima. En móvil se mantiene como fila propia para no pisar el texto de la marca.
