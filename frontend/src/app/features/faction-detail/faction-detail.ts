@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -51,6 +51,18 @@ export class FactionDetail {
   categoryOrder = CATEGORY_ORDER;
   unassignedId = UNASSIGNED_BATTALIA_ID;
 
+  // Pestaña activa del catalogo (Mando/Infanteria/Caballeria/Artilleria): a peticion del
+  // usuario, las categorias deben poder alcanzarse con un clic sin tener que hacer scroll
+  // hasta abajo. Sustituye al <details> nativo, que obligaba a desplazarse por el panel
+  // para llegar a una categoria distinta de la que estuviera abierta.
+  activeCatalogTab = signal<'COMMAND' | Category>('COMMAND');
+  @ViewChild('catalogPanel') private catalogPanelRef?: ElementRef<HTMLElement>;
+
+  setCatalogTab(tab: 'COMMAND' | Category): void {
+    this.activeCatalogTab.set(tab);
+    this.catalogPanelRef?.nativeElement.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   /**
    * El nombre de "battalia" cambia segun el reglamento: en Pike & Shotte (epoca de picas y
    * mosquetes) el termino historico es "Battalia"; en Black Powder (Napoleonicas) y en
@@ -79,7 +91,16 @@ export class FactionDetail {
       this.saveListName.set('');
       this.saveError.set('');
       return this.catalogService.getFactionDetail(this.gameCode, this.conflictCode, factionCode).pipe(
-        tap(() => {
+        tap((faction) => {
+          // Pestaña por defecto del catalogo: Mando si la faccion tiene comandantes, si no
+          // la primera categoria de unidades que tenga contenido (nunca una pestaña vacia).
+          if (faction.commanders.length) {
+            this.activeCatalogTab.set('COMMAND');
+          } else {
+            const firstCategory = CATEGORY_ORDER.find((category) => faction.units.some((u) => u.category === category));
+            this.activeCatalogTab.set(firstCategory ?? CATEGORY_ORDER[0]);
+          }
+
           // French Indian War no tiene el concepto de "varias battalias/brigadas": es una
           // unica fuerza. Se crea automaticamente y las unidades anadidas caen ahi directas,
           // sin que el usuario tenga que crear ni elegir ninguna (solo pasa en este juego).

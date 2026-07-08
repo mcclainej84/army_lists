@@ -4,6 +4,13 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.36 — 2026-07-08
+
+- Corregido el desalineado de "Aguante" en las fichas de "Unidades Disponibles": la rejilla de estadísticas solo tenía 5 columnas definidas para los 7 datos que ya mostraba (Movimiento, Armamento, Alcance, CaC, Disparo, Moral, Aguante), así que Aguante se salía a una segunda fila descuadrada. Ahora tiene 7 columnas y todo queda en línea.
+- Nuevo icono en la pestaña del navegador: el emblema de mosquetes cruzados y bicornio (el mismo de la portada), en vez del icono por defecto de Angular.
+- "Unidades Disponibles" ahora tiene una barra de pestañas fija (Mando/Infantería/Caballería/Artillería) en la parte de arriba del panel: cualquier categoría se alcanza con un clic, sin tener que hacer scroll hasta abajo primero. Sustituye al desplegable nativo anterior.
+- Fichas de unidad más compactas: menos relleno y márgenes en cada tarjeta, para que quepan más unidades en pantalla sin necesidad de scroll.
+
 ## 0.35 — 2026-07-08
 
 - Tabla de "Mi Lista" menos apretada: Movimiento, Peanas, CaC, Disparo, Moral y Aguante ahora centrados, y "Cuerpo a Cuerpo" se abrevia a "CaC" (Hand-to-Hand a "H2H" en inglés) para ganar espacio.

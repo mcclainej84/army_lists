@@ -178,13 +178,40 @@
       </section>
 
       <!-- DERECHA: CATALOGO / ANADIR -->
-      <aside class="catalog-panel">
+      <aside class="catalog-panel" #catalogPanel>
         <div class="catalog-frame">
           <h2 class="catalog-frame-title">{{ 'factionDetail.availableUnits' | transloco }}</h2>
 
-          @if (faction.commanders.length) {
-            <details class="catalog-group" name="catalog-accordion">
-              <summary>{{ 'factionDetail.category.COMMAND' | transloco }}</summary>
+          <!-- Barra de pestañas fija: permite saltar a cualquier categoria en un clic, sin
+               tener que hacer scroll hasta abajo para llegar a las que no esten abiertas. -->
+          <nav class="catalog-tabs">
+            @if (faction.commanders.length) {
+              <button
+                type="button"
+                class="catalog-tab"
+                [class.active]="activeCatalogTab() === 'COMMAND'"
+                (click)="setCatalogTab('COMMAND')"
+              >
+                {{ 'factionDetail.category.COMMAND' | transloco }}
+              </button>
+            }
+            @for (category of categoryOrder; track category) {
+              @let tabUnits = unitsByCategory(faction.units, category);
+              @if (tabUnits.length) {
+                <button
+                  type="button"
+                  class="catalog-tab"
+                  [class.active]="activeCatalogTab() === category"
+                  (click)="setCatalogTab(category)"
+                >
+                  {{ 'factionDetail.category.' + category | transloco }}
+                </button>
+              }
+            }
+          </nav>
+
+          @if (faction.commanders.length && activeCatalogTab() === 'COMMAND') {
+            <div class="catalog-group">
               <div class="commander-grid">
                 @for (commander of faction.commanders; track commander.id) {
                   <div class="commander-card">
@@ -212,14 +239,13 @@
                   </div>
                 }
               </div>
-            </details>
+            </div>
           }
 
           @for (category of categoryOrder; track category) {
             @let units = unitsByCategory(faction.units, category);
-            @if (units.length) {
-              <details class="catalog-group" name="catalog-accordion">
-                <summary>{{ 'factionDetail.category.' + category | transloco }}</summary>
+            @if (units.length && activeCatalogTab() === category) {
+              <div class="catalog-group">
                 <div class="unit-list">
                   @for (unit of units; track unit.id) {
                     @let previewStat = previewStats(unit);
@@ -326,7 +352,7 @@
                     </article>
                   }
                 </div>
-              </details>
+              </div>
             }
           }
         </div>
