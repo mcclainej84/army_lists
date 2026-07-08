@@ -4,6 +4,11 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.24 — 2026-07-08
+
+- Arreglado que en móvil las facciones de Black Powder (forzadas a una sola fila en escritorio) se amontonaran unas encima de otras: por debajo de 640px de ancho vuelven a repartirse en varias filas, igual que el resto de conflictos.
+- Arreglado el arrastre de unidades/comandantes entre brigadas en móvil: antes cualquier toque sobre la fila se interpretaba como un intento de arrastre y bloqueaba el scroll normal. Ahora el arrastre solo se activa tocando el icono "⠿" (drag handle), así el resto de la fila deja pasar el scroll táctil con normalidad.
+
 ## 0.23 — 2026-07-08
 
 - Facciones de Black Powder ahora siempre en una sola fila (antes se repartían en dos según el ancho), tanto con 5 facciones oficiales como con las 6 que aparecen al incluir personalizadas.

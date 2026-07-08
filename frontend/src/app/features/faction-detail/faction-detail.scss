@@ -623,6 +623,11 @@ h2.catalog-frame-title {
   text-align: center;
   cursor: grab;
   color: #a89886;
+  // El drag ahora se activa solo desde este icono (cdkDragHandle), no desde toda la fila:
+  // asi el resto de la fila deja pasar el scroll tactil normal en movil en vez de
+  // interpretarlo como un intento de arrastre. touch-action:none aqui es lo que le dice al
+  // navegador que este icono en concreto lo gestiona el propio drag-and-drop, no el scroll.
+  touch-action: none;
 }
 
 .points-col {

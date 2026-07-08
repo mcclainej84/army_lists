@@ -161,6 +161,18 @@
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
 }
 
+// En Black Powder, home.ts fija por JS un numero fijo de columnas (todas las facciones en
+// una sola fila) via [style], que por especificidad gana al grid-template-columns de
+// arriba. En movil eso las deja demasiado estrechas y los escudos/nombres se amontonan
+// (superpuestos, cortados). Por debajo de este ancho, forzamos que vuelva a repartirlas en
+// varias filas con el mismo min-width que el resto de conflictos: el !important es
+// necesario para poder ganarle al estilo inline solo en esta franja de ancho.
+@media (max-width: 640px) {
+  .faction-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+  }
+}
+
 .card {
   display: block;
   border: 1px solid #d8c8b0;

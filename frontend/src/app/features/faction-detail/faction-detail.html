@@ -86,7 +86,7 @@
             >
               @for (entry of commandersInBattalia(col.id); track entry.instanceId) {
                 <div class="commander-entry" cdkDrag [cdkDragData]="entry">
-                  <span class="drag-col">⠿</span>
+                  <span class="drag-col" cdkDragHandle>⠿</span>
                   <span>{{ entry.commander.name }}</span>
                   <span class="entry-points">{{ entry.commander.points }} pts</span>
                   <button type="button" class="remove-btn" (click)="removeCommander(entry.instanceId)">✕</button>
@@ -124,7 +124,7 @@
                 @for (entry of unitsInBattalia(col.id); track entry.instanceId) {
                   @let stats = entryStats(entry);
                   <div class="unit-row" cdkDrag [cdkDragData]="entry">
-                    <span class="drag-col">⠿</span>
+                    <span class="drag-col" cdkDragHandle>⠿</span>
                     <span>{{ entry.unit.name }}</span>
                     <span>{{ entry.unit.unitType }}</span>
                     <span>{{ stats.bases }}</span>
