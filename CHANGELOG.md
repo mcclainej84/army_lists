@@ -4,6 +4,12 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.47 — 2026-07-15
+
+- Facciones reordenadas por importancia histórica en su conflicto:
+  - Guerras Napoleónicas: Francia, Gran Bretaña, Rusia, Prusia, Austria, Portugal (antes: Portugal, Gran Bretaña, Francia, Prusia, Austria, Rusia).
+  - Guerra de los Treinta Años (Epic Pike & Shotte) y Guerra Franco-India ya estaban en este orden (Imperial/Sueco/Francés/Español e Ingleses/Franceses); sin cambios.
+
 ## 0.46 — 2026-07-15
 
 - Normalizados los tamaños de los iconos de facción por categoría: los 4 escudos de Epic Pike & Shotte ya estaban a 500x500; las 7 banderas de Black Powder Napoleónicas y las 2 de French Indian War se han igualado a 400x267.

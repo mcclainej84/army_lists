@@ -22,11 +22,31 @@ import {
 // selector. Portugal es la unica nacion sin ningun reglamento con contenido todavia, asi
 // que se mantiene visible con su andamiaje vacio (a peticion del usuario) hasta que se
 // aporten esos datos. España se ha retirado por ahora a petición del usuario.
+//
+// Orden de las naciones: por importancia historica en el conjunto de las Guerras
+// Napoleonicas (1803-1815), a peticion del usuario. Francia es la potencia central del
+// periodo; Gran Bretaña su enemigo mas persistente (nunca hizo la paz, financio las
+// coaliciones); Rusia decidio el desenlace de la campaña de 1812; Prusia y Austria son
+// las otras dos grandes potencias continentales, presentes en varias coaliciones y en
+// Waterloo; Portugal queda ultima por ser, de momento, la unica sin ningun reglamento con
+// contenido.
 export const napoleonicWars: ConflictSeed = {
   code: "napoleonic_wars",
   name_en: "Napoleonic Wars (1803–1815)",
   name_es: "Guerras Napoleónicas (1803–1815)",
   factions: [
+    frenchCustomFaction,
+    frenchClashOfEaglesFaction,
+    frenchWaterlooFaction,
+    britishCustomFaction,
+    britishWaterlooFaction,
+    russianCustomFaction,
+    prussianCustomFaction,
+    prussianClashOfEaglesFaction,
+    prussianWaterlooFaction,
+    austrianCustomFaction,
+    austrianClashOfEaglesFaction,
+    austrianWaterlooFaction,
     {
       code: "portugal",
       name_en: "Portugal",
@@ -38,17 +58,5 @@ export const napoleonicWars: ConflictSeed = {
       commanders: [],
       units: [],
     },
-    britishCustomFaction,
-    britishWaterlooFaction,
-    frenchCustomFaction,
-    frenchClashOfEaglesFaction,
-    frenchWaterlooFaction,
-    prussianCustomFaction,
-    prussianClashOfEaglesFaction,
-    prussianWaterlooFaction,
-    austrianCustomFaction,
-    austrianClashOfEaglesFaction,
-    austrianWaterlooFaction,
-    russianCustomFaction,
   ],
 };
