@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { CatalogService } from '../../core/catalog.service';
 import { ConflictDTO, FactionSummaryDTO, GameDTO } from '../../core/models';
@@ -36,17 +36,19 @@ const FACTION_ICONS: Record<string, string> = {
 };
 
 // French Indian War no tiene distincion oficial/personalizada: cada faccion tiene una
-// unica lista, asi que no tiene sentido mostrar la etiqueta de reglamento en sus tarjetas.
-const GAMES_WITHOUT_RULESET_BADGE = ['french_indian_war'];
+// unica lista, asi que al elegir facción se pasa directo al generador, sin pedir ademas
+// que reglamento usar (paso 4, ver mas abajo).
+const GAMES_WITHOUT_RULESET_STEP = ['french_indian_war'];
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, TranslocoModule],
+  imports: [TranslocoModule],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class Home {
   private catalogService = inject(CatalogService);
+  private router = inject(Router);
 
   games = signal<GameDTO[] | null>(null);
   conflicts = signal<ConflictDTO[] | null>(null);
@@ -54,6 +56,9 @@ export class Home {
 
   selectedGame = signal<GameDTO | null>(null);
   selectedConflict = signal<ConflictDTO | null>(null);
+  // Facción ya elegida, a la espera de que el usuario confirme que reglamento usar (paso 4).
+  // En French Indian War este paso no existe: chooseFaction navega directo al generador.
+  selectedFaction = signal<FactionSummaryDTO | null>(null);
 
   constructor() {
     this.catalogService.listGames().subscribe((games) => this.games.set(games));
@@ -68,8 +73,7 @@ export class Home {
   }
 
   // Ya no hay checkbox de "incluir personalizadas" ni facciones "anfitrionas": se muestran
-  // siempre todas las facciones que devuelva la API, cada una con su propia etiqueta de
-  // reglamento (ver showRulesetBadge/rulesetLabelKey) en vez de fusionarse dos en una.
+  // siempre todas las facciones que devuelva la API tal cual.
   visibleFactions(): FactionSummaryDTO[] {
     return this.factions() ?? [];
   }
@@ -86,12 +90,20 @@ export class Home {
     return { 'grid-template-columns': `repeat(${count}, minmax(0, 1fr))` };
   }
 
-  showRulesetBadge(): boolean {
-    return !GAMES_WITHOUT_RULESET_BADGE.includes(this.selectedGame()?.code ?? '');
+  showRulesetStep(): boolean {
+    return !GAMES_WITHOUT_RULESET_STEP.includes(this.selectedGame()?.code ?? '');
   }
 
-  rulesetLabelKey(faction: FactionSummaryDTO): string {
-    return faction.isOfficial ? 'factions.ruleset.official' : 'factions.ruleset.custom';
+  /**
+   * Texto del reglamento a mostrar en el paso 4. Por ahora cada facción tiene un unico
+   * reglamento posible (no hay eleccion real todavia), pero se muestra igualmente como
+   * paso propio: deja sitio a que en el futuro una facción pueda tener mas de una opcion,
+   * y aqui mismo se resuelve el caso especial de Epic Pike & Shotte (que nombra el
+   * reglamento oficial explicitamente, a diferencia del resto de juegos).
+   */
+  rulesetTitleKey(faction: FactionSummaryDTO): string {
+    if (!faction.isOfficial) return 'factions.ruleset.custom';
+    return this.selectedGame()?.code === 'epic_pike_and_shotte' ? 'factions.ruleset.officialPikeShotte' : 'factions.ruleset.official';
   }
 
   chooseGame(game: GameDTO): void {
@@ -99,6 +111,7 @@ export class Home {
     this.selectedConflict.set(null);
     this.conflicts.set(null);
     this.factions.set(null);
+    this.selectedFaction.set(null);
     this.catalogService.listConflicts(game.code).subscribe((conflicts) => {
       this.conflicts.set(conflicts);
       // Si el juego solo tiene un conflicto (p.ej. French Indian War), no tiene sentido
@@ -114,7 +127,28 @@ export class Home {
     if (!game) return;
     this.selectedConflict.set(conflict);
     this.factions.set(null);
+    this.selectedFaction.set(null);
     this.catalogService.listFactions(game.code, conflict.code).subscribe((factions) => this.factions.set(factions));
+  }
+
+  /**
+   * Al elegir facción: en French Indian War (sin paso de reglamento) se navega directo al
+   * generador, igual que antes. En el resto, se guarda la facción elegida y se muestra el
+   * paso 4 para confirmar el reglamento antes de navegar.
+   */
+  chooseFaction(faction: FactionSummaryDTO): void {
+    if (!this.showRulesetStep()) {
+      this.goToFaction(faction);
+      return;
+    }
+    this.selectedFaction.set(faction);
+  }
+
+  goToFaction(faction: FactionSummaryDTO): void {
+    const game = this.selectedGame();
+    const conflict = this.selectedConflict();
+    if (!game || !conflict) return;
+    this.router.navigate(['/juegos', game.code, 'conflictos', conflict.code, 'facciones', faction.code]);
   }
 
   changeGame(): void {
@@ -122,10 +156,16 @@ export class Home {
     this.selectedConflict.set(null);
     this.conflicts.set(null);
     this.factions.set(null);
+    this.selectedFaction.set(null);
   }
 
   changeConflict(): void {
     this.selectedConflict.set(null);
     this.factions.set(null);
+    this.selectedFaction.set(null);
+  }
+
+  changeFaction(): void {
+    this.selectedFaction.set(null);
   }
 }

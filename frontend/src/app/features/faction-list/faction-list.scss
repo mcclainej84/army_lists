@@ -53,21 +53,3 @@
   width: 84px;
   height: auto;
 }
-
-// Sustituye al antiguo checkbox "Incluir facciones personalizadas": ahora se muestran
-// siempre todas las facciones, cada una con su propia etiqueta de que reglamento sigue.
-.ruleset-badge {
-  padding: 0.15rem 0.55rem;
-  border-radius: 999px;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  background: #ece0cf;
-  color: #6b5b4b;
-}
-
-.ruleset-badge.official {
-  background: #2f7a3f;
-  color: #fbf6ee;
-}

@@ -28,7 +28,9 @@
   "factions": {
     "title": "Elige una facción",
     "ruleset": {
+      "title": "Elige el reglamento",
       "official": "Reglamento Oficial",
+      "officialPikeShotte": "Reglamento Oficial Pike & Shotte",
       "custom": "Reglas Personalizadas"
     },
     "customComingSoon": "Todavía no hay facciones disponibles.",

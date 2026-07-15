@@ -76,31 +76,33 @@
 
     <!-- PASO 3: FACCION -->
     @if (selectedConflict()) {
-      <div class="step active">
+      <div class="step" [class.done]="selectedFaction() && showRulesetStep()" [class.active]="!selectedFaction() || !showRulesetStep()">
         <div class="step-head">
           <span class="step-badge">3</span>
           <h2>{{ 'factions.title' | transloco }}</h2>
+          @if (selectedFaction() && showRulesetStep()) {
+            <button type="button" class="change-btn" (click)="changeFaction()">{{ 'home.change' | transloco }}</button>
+          }
         </div>
 
-        @if (factions(); as list) {
+        @if (showRulesetStep() && selectedFaction(); as faction) {
+          <div class="step-summary">
+            @if (iconFor(faction); as icon) {
+              <img [src]="icon" [alt]="faction.name" class="summary-logo" />
+            }
+            <span>{{ faction.name }}</span>
+          </div>
+        } @else if (factions(); as list) {
           @let visible = visibleFactions();
           @if (visible.length) {
             <div class="card-grid faction-grid" [style]="factionGridStyle()">
               @for (faction of visible; track faction.id) {
-                <a
-                  class="card faction-card"
-                  [routerLink]="['/juegos', selectedGame()!.code, 'conflictos', selectedConflict()!.code, 'facciones', faction.code]"
-                >
+                <button type="button" class="card faction-card" (click)="chooseFaction(faction)">
                   @if (iconFor(faction); as icon) {
                     <img [src]="icon" [alt]="faction.name" class="faction-icon" />
                   }
                   <span>{{ faction.name }}</span>
-                  @if (showRulesetBadge()) {
-                    <span class="ruleset-badge" [class.official]="faction.isOfficial">
-                      {{ rulesetLabelKey(faction) | transloco }}
-                    </span>
-                  }
-                </a>
+                </button>
               }
             </div>
           } @else {
@@ -109,6 +111,22 @@
         } @else {
           <p class="loading">{{ 'games.loading' | transloco }}</p>
         }
+      </div>
+    }
+
+    <!-- PASO 4: REGLAMENTO (solo si el juego lo necesita, ver showRulesetStep) -->
+    @if (showRulesetStep() && selectedFaction(); as faction) {
+      <div class="step active">
+        <div class="step-head">
+          <span class="step-badge">4</span>
+          <h2>{{ 'factions.ruleset.title' | transloco }}</h2>
+        </div>
+
+        <div class="card-grid ruleset-grid">
+          <button type="button" class="card ruleset-card" [class.official]="faction.isOfficial" (click)="goToFaction(faction)">
+            <span class="ruleset-name">{{ rulesetTitleKey(faction) | transloco }}</span>
+          </button>
+        </div>
       </div>
     }
   </div>

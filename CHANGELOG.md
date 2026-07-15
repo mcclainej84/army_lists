@@ -4,6 +4,13 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.41 — 2026-07-15
+
+- Rehecho el paso de reglamento tras el feedback de que la etiqueta dentro de la tarjeta de facción quedaba descuadrada: ahora, al elegir facción, aparece un nuevo paso 4 "Elige el reglamento" debajo (mismo patrón visual que los pasos 1-3), con la opción de reglamento de esa facción para confirmar antes de entrar al generador de listas.
+- Las tarjetas de facción del paso 3 vuelven a ser limpias, sin ninguna etiqueta dentro.
+- Epic Pike & Shotte: el paso 4 dice "Reglamento Oficial Pike & Shotte" para Sueco/Imperial (en vez del genérico "Reglamento Oficial").
+- French Indian War sigue sin este paso: al elegir facción se entra directo al generador, como antes.
+
 ## 0.40 — 2026-07-15
 
 - Quitado el checkbox "Incluir facciones personalizadas": ahora se muestran siempre todas las facciones de un conflicto, cada una con una etiqueta ("Reglamento Oficial" / "Reglas Personalizadas") que indica de qué lista viene.

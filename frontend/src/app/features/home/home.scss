@@ -239,22 +239,41 @@
   object-fit: contain;
 }
 
-// Sustituye al antiguo checkbox "Incluir facciones personalizadas": ahora se muestran
-// siempre todas las facciones, cada una con su propia etiqueta de que reglamento sigue.
-.ruleset-badge {
-  padding: 0.15rem 0.55rem;
-  border-radius: 999px;
-  font-size: 0.62rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  background: #ece0cf;
-  color: #6b5b4b;
+// Paso 4 (Reglamento): sustituye al antiguo checkbox "Incluir facciones personalizadas".
+// Se muestra siempre todas las facciones directamente (paso 3, sin distintivo) y, tras
+// elegir una, este paso aparte confirma que reglamento sigue antes de entrar al generador.
+.ruleset-grid {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 }
 
-.ruleset-badge.official {
-  background: #2f7a3f;
-  color: #fbf6ee;
+.ruleset-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.1rem 1.25rem;
+  text-align: center;
+  background: #f6efd9;
+  border-color: #b8944f;
+}
+
+.ruleset-card:hover {
+  border-color: #8a6a26;
+  box-shadow: 0 6px 18px rgba(138, 106, 38, 0.25);
+}
+
+.ruleset-card.official {
+  background: #eaf3ec;
+  border-color: #2f7a3f;
+}
+
+.ruleset-card.official:hover {
+  box-shadow: 0 6px 18px rgba(47, 122, 63, 0.25);
+}
+
+.ruleset-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2b1d14;
 }
 
 .coming-soon,

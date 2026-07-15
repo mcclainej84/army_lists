@@ -11,11 +11,6 @@
               <img [src]="icon" [alt]="faction.name" class="faction-icon" />
             }
             <span>{{ faction.name }}</span>
-            @if (showRulesetBadge()) {
-              <span class="ruleset-badge" [class.official]="faction.isOfficial">
-                {{ rulesetLabelKey(faction) | transloco }}
-              </span>
-            }
           </a>
         }
       </div>

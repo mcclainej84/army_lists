@@ -13,10 +13,9 @@ const FACTION_ICONS: Record<string, string> = {
   swedish: 'img/factions/swedish.svg',
 };
 
-// French Indian War no tiene distincion oficial/personalizada: cada faccion tiene una
-// unica lista, asi que no tiene sentido mostrar la etiqueta de reglamento en sus tarjetas.
-const GAMES_WITHOUT_RULESET_BADGE = ['french_indian_war'];
-
+// NOTA: este componente no esta enrutado (ver app.routes.ts, que usa el selector
+// unificado de home.ts). Se deja sin las 2 fases Facción->Reglamento de home.ts para no
+// invertir esfuerzo en una pantalla que nadie ve; solo se mantiene simple y sin errores.
 @Component({
   selector: 'app-faction-list',
   imports: [AsyncPipe, RouterLink, TranslocoModule],
@@ -30,9 +29,6 @@ export class FactionList {
   gameCode = '';
   conflictCode = '';
 
-  // Ya no hay checkbox de "incluir personalizadas": se muestran siempre todas las
-  // facciones que devuelva la API, cada una con su etiqueta de reglamento (ver
-  // showRulesetBadge/rulesetLabelKey) en vez de ocultar unas u otras.
   factions$: Observable<FactionSummaryDTO[]> = this.route.paramMap.pipe(
     switchMap((params) => {
       this.gameCode = params.get('gameCode') ?? '';
@@ -43,13 +39,5 @@ export class FactionList {
 
   iconFor(faction: FactionSummaryDTO): string | null {
     return FACTION_ICONS[faction.code] ?? null;
-  }
-
-  showRulesetBadge(): boolean {
-    return !GAMES_WITHOUT_RULESET_BADGE.includes(this.gameCode);
-  }
-
-  rulesetLabelKey(faction: FactionSummaryDTO): string {
-    return faction.isOfficial ? 'factions.ruleset.official' : 'factions.ruleset.custom';
   }
 }
