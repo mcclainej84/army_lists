@@ -1,0 +1,805 @@
+{
+  "id": 129,
+  "code": "russian_custom",
+  "name": "Rusia",
+  "isOfficial": false,
+  "commanders": [
+    {
+      "id": 447,
+      "code": "brigade_leader_vm7",
+      "name": "Líder de Brigada",
+      "commandRating": 7,
+      "points": 0,
+      "role": "battalia_leader",
+      "moveRange": 48
+    },
+    {
+      "id": 448,
+      "code": "brigade_leader_vm8",
+      "name": "Líder de Brigada",
+      "commandRating": 8,
+      "points": 20,
+      "role": "battalia_leader",
+      "moveRange": 48
+    }
+  ],
+  "units": [
+    {
+      "id": 449,
+      "code": "life_guard",
+      "name": "Infantería de la Guardia de Corps",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "7",
+      "shooting": "3",
+      "morale": "3",
+      "stamina": 4,
+      "specialRules": "Luchador Aguerrido, Fiables, Élite 3+, Valiente, Formación Mixta Deficiente, Tumbarse, Debe Formar Cuadro, Columna Cerrada, Columna de Compañías",
+      "basePoints": 61,
+      "constraints": null,
+      "options": [
+        {
+          "id": 450,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 451,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 452,
+      "code": "guard_jager",
+      "name": "Jäger de la Guardia",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "3",
+      "stamina": 4,
+      "specialRules": "Fiables, Élite 4+, Formación Mixta de Rifles, Formación Mixta de Infantería Ligera, Hostigador, Tirador Certero, Tumbarse, Debe Formar Cuadro, Columna Cerrada, Columna de Compañías",
+      "basePoints": 59,
+      "constraints": null,
+      "options": [
+        {
+          "id": 453,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 454,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 455,
+      "code": "grenadiers",
+      "name": "Granadero",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "7",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 4,
+      "specialRules": "Luchador Aguerrido, Élite 4+, Falta de Iniciativa, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta Deficiente",
+      "basePoints": 48,
+      "constraints": null,
+      "options": [
+        {
+          "id": 456,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 457,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 458,
+      "code": "combined_grenadiers",
+      "name": "Granadero Combinado",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 4,
+      "specialRules": "Luchador Aguerrido, Hostigador Deficiente, Falta de Iniciativa, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta Deficiente",
+      "basePoints": 41,
+      "constraints": null,
+      "options": [
+        {
+          "id": 459,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 460,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 461,
+      "code": "line_infantry",
+      "name": "Mosquetero / Infantería de Línea",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 4,
+      "specialRules": "Luchador Aguerrido, Falta de Iniciativa, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta Deficiente",
+      "basePoints": 41,
+      "constraints": null,
+      "options": [
+        {
+          "id": 462,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 463,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 464,
+      "code": "jagers",
+      "name": "Jäger",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 4,
+      "specialRules": "Luchador Aguerrido, Tirador Certero, Hostigador, Falta de Iniciativa, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta de Rifles, Formación Mixta de Infantería Ligera",
+      "basePoints": 45,
+      "constraints": null,
+      "options": [
+        {
+          "id": 465,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 466,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 467,
+      "code": "opolchenie",
+      "name": "Opolchenie",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Pica",
+      "handToHand": "5",
+      "shooting": "0",
+      "morale": "5",
+      "stamina": 3,
+      "specialRules": "Milicia, Sin Experiencia, Poco Fiables, Falta de Iniciativa",
+      "basePoints": 19,
+      "constraints": null,
+      "options": [
+        {
+          "id": 468,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 469,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 470,
+          "code": "muskets",
+          "description": "Mosquetes",
+          "pointDelta": 4,
+          "constraints": null,
+          "statOverrides": {
+            "bases": null,
+            "handToHand": null,
+            "shooting": "2",
+            "stamina": null
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 471,
+      "code": "opolchenie_jagers",
+      "name": "Jägers de Opolchenie",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "5",
+      "shooting": "2",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Hostigador Deficiente, Milicia, Falta de Iniciativa",
+      "basePoints": 30,
+      "constraints": null,
+      "options": [
+        {
+          "id": 472,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 473,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 474,
+      "code": "volunteer_jager",
+      "name": "Jäger Voluntario",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 4,
+      "specialRules": "Hostigador Deficiente, Milicia, Falta de Iniciativa",
+      "basePoints": 37,
+      "constraints": null,
+      "options": [
+        {
+          "id": 475,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 476,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 477,
+          "code": "rifled_muskets",
+          "description": "Mosquetes Rayados (Tirador Certero)",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 478,
+      "code": "cuirassiers",
+      "name": "Coraceros",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Sable",
+      "handToHand": "9",
+      "shooting": "–",
+      "morale": "3",
+      "stamina": 3,
+      "specialRules": "Fiables, Caballería Pesada D3",
+      "basePoints": 58,
+      "constraints": null,
+      "options": [
+        {
+          "id": 479,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 480,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 481,
+      "code": "dragoons",
+      "name": "Dragones",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Sable",
+      "handToHand": "8",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Caballería Pesada D1",
+      "basePoints": 44,
+      "constraints": null,
+      "options": [
+        {
+          "id": 482,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 483,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 484,
+      "code": "dragoons_foot",
+      "name": "Dragones a Pie",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "4",
+      "shooting": "2",
+      "morale": "4",
+      "stamina": 2,
+      "specialRules": "Hostigador",
+      "basePoints": 28,
+      "constraints": null,
+      "options": [
+        {
+          "id": 485,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 486,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 487,
+      "code": "uhlans",
+      "name": "Ulanos",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Lanza",
+      "handToHand": "7",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Lanceros, Merodeador",
+      "basePoints": 48,
+      "constraints": null,
+      "options": [
+        {
+          "id": 488,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 489,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 490,
+      "code": "hussars",
+      "name": "Húsares",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Lanza",
+      "handToHand": "6",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Lanceros, Merodeador",
+      "basePoints": 46,
+      "constraints": null,
+      "options": [
+        {
+          "id": 491,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 492,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 493,
+      "code": "cossacks_regular",
+      "name": "Cosacos Montados",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Lanza",
+      "handToHand": "5",
+      "shooting": "0",
+      "morale": "5",
+      "stamina": 3,
+      "specialRules": "Lanceros, Merodeador, Poco Fiables",
+      "basePoints": 34,
+      "constraints": null,
+      "options": [
+        {
+          "id": 494,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 495,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 496,
+      "code": "cossacks_irregular",
+      "name": "Cosacos Montados Irregulares",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Lanza",
+      "handToHand": "5",
+      "shooting": "0",
+      "morale": "5",
+      "stamina": 3,
+      "specialRules": "Lanceros, Merodeador, Poco Fiables, Hostigador",
+      "basePoints": 32,
+      "constraints": null,
+      "options": [
+        {
+          "id": 497,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 498,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 499,
+      "code": "light_battery_artillery",
+      "name": "Compañía Ligera",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Artillería de Ánima Lisa",
+      "handToHand": "2",
+      "shooting": "4-2-2",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "–",
+      "basePoints": 36,
+      "constraints": null,
+      "options": [
+        {
+          "id": 500,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 501,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    },
+    {
+      "id": 502,
+      "code": "position_battery_artillery",
+      "name": "Compañía Pesada / de Posición",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Artillería de Ánima Lisa",
+      "handToHand": "2",
+      "shooting": "4-2-2",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Artillería de Asedio",
+      "basePoints": 40,
+      "constraints": null,
+      "options": [
+        {
+          "id": 503,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 504,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    },
+    {
+      "id": 505,
+      "code": "horse_battery_artillery",
+      "name": "Compañía a Caballo",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Artillería de Ánima Lisa",
+      "handToHand": "2",
+      "shooting": "4-2-2",
+      "morale": "4",
+      "stamina": 2,
+      "specialRules": "Merodeador",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [
+        {
+          "id": 506,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 507,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 36
+    },
+    {
+      "id": 508,
+      "code": "unicorn_battery_10pdr",
+      "name": "Compañía de Unicornios (10 libras)",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Cañón de Ánima Lisa (Obús)",
+      "handToHand": "2",
+      "shooting": "4-2-2",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Cañón (Obús)",
+      "basePoints": 23,
+      "constraints": null,
+      "options": [
+        {
+          "id": 509,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 510,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 36
+    },
+    {
+      "id": 511,
+      "code": "unicorn_battery_20pdr",
+      "name": "Compañía de Unicornios (20 libras)",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Cañón de Ánima Lisa (Obús)",
+      "handToHand": "2",
+      "shooting": "4-2-2",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Cañón (Obús)",
+      "basePoints": 27,
+      "constraints": null,
+      "options": [
+        {
+          "id": 512,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 513,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    }
+  ]
+}

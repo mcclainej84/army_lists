@@ -1,0 +1,26 @@
+[
+  {
+    "id": 5,
+    "code": "imperial",
+    "name": "Imperial Army",
+    "isOfficial": true
+  },
+  {
+    "id": 6,
+    "code": "swedish",
+    "name": "Swedish Army",
+    "isOfficial": true
+  },
+  {
+    "id": 7,
+    "code": "french",
+    "name": "French Army",
+    "isOfficial": true
+  },
+  {
+    "id": 8,
+    "code": "spanish",
+    "name": "Spanish Army",
+    "isOfficial": true
+  }
+]

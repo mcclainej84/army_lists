@@ -1,0 +1,363 @@
+{
+  "id": 612,
+  "code": "fiw_french",
+  "name": "French",
+  "isOfficial": true,
+  "groupCode": "fiw_french",
+  "rulesetName": "Single Roster",
+  "available": true,
+  "commanders": [
+    {
+      "id": 635,
+      "code": "officer",
+      "name": "Officer",
+      "commandRating": 8,
+      "points": 0,
+      "role": "battalia_leader",
+      "moveRange": 36
+    }
+  ],
+  "units": [
+    {
+      "id": 636,
+      "code": "regular_infantry",
+      "name": "Regular Infantry",
+      "category": "FOOT",
+      "unitType": "Regular Infantry",
+      "bases": 4,
+      "armament": "Smoothbore Musket",
+      "handToHand": "7",
+      "shooting": "4",
+      "morale": "4+",
+      "stamina": 4,
+      "specialRules": "First Fire, Reliable",
+      "basePoints": 46,
+      "constraints": null,
+      "options": [
+        {
+          "id": 637,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 3,
+            "handToHand": "5",
+            "shooting": "3",
+            "stamina": 3
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 638,
+      "code": "light_infantry",
+      "name": "Light Infantry",
+      "category": "FOOT",
+      "unitType": "Regular Infantry",
+      "bases": 3,
+      "armament": "Smoothbore Musket",
+      "handToHand": "5",
+      "shooting": "3",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "First Fire, Reliable, Skirmishers",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [
+        {
+          "id": 639,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 2,
+            "handToHand": "3",
+            "shooting": "2",
+            "stamina": 2
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 640,
+      "code": "elite_infantry",
+      "name": "Elite Infantry",
+      "category": "FOOT",
+      "unitType": "Regular Infantry",
+      "bases": 3,
+      "armament": "Smoothbore Musket",
+      "handToHand": "7",
+      "shooting": "3",
+      "morale": "3+",
+      "stamina": 3,
+      "specialRules": "First Fire, Reliable, Elite 3+",
+      "basePoints": 49,
+      "constraints": null,
+      "options": [
+        {
+          "id": 641,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 2,
+            "handToHand": "5",
+            "shooting": "2",
+            "stamina": 2
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 642,
+      "code": "militia",
+      "name": "Militia",
+      "category": "FOOT",
+      "unitType": "Regular Infantry",
+      "bases": 4,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "",
+      "basePoints": 36,
+      "constraints": null,
+      "options": [
+        {
+          "id": 643,
+          "code": "medium",
+          "description": "Medium",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 3,
+            "handToHand": "4",
+            "shooting": "2",
+            "stamina": 2
+          }
+        },
+        {
+          "id": 644,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -18,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 2,
+            "handToHand": "2",
+            "shooting": "1",
+            "stamina": 1
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 645,
+      "code": "settlers",
+      "name": "Settlers",
+      "category": "FOOT",
+      "unitType": "Irregular Infantry",
+      "bases": 4,
+      "armament": "Smoothbore Musket",
+      "handToHand": "5",
+      "shooting": "2",
+      "morale": "5+",
+      "stamina": 3,
+      "specialRules": "Unreliable",
+      "basePoints": 26,
+      "constraints": null,
+      "options": [
+        {
+          "id": 646,
+          "code": "medium",
+          "description": "Medium",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 3,
+            "handToHand": "3",
+            "shooting": "2",
+            "stamina": 2
+          }
+        },
+        {
+          "id": 647,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -16,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 2,
+            "handToHand": "1",
+            "shooting": "1",
+            "stamina": 1
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 648,
+      "code": "frontiersmen",
+      "name": "Frontiersmen",
+      "category": "FOOT",
+      "unitType": "Irregular Infantry",
+      "bases": 3,
+      "armament": "Smoothbore Musket",
+      "handToHand": "4",
+      "shooting": "3",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Seasoned Marksmen, Ambush, Tenacious",
+      "basePoints": 38,
+      "constraints": null,
+      "options": [
+        {
+          "id": 649,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 2,
+            "handToHand": "2",
+            "shooting": "2",
+            "stamina": 2
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 650,
+      "code": "indian_war_party",
+      "name": "Indian War Party",
+      "category": "FOOT",
+      "unitType": "Irregular Infantry",
+      "bases": 4,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "2",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Unclear Target, Hardened Fighter, Wild Charge (+2D), Ambush",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [
+        {
+          "id": 651,
+          "code": "medium",
+          "description": "Medium",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 3,
+            "handToHand": "4",
+            "shooting": "2",
+            "stamina": 2
+          }
+        },
+        {
+          "id": 652,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -16,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 2,
+            "handToHand": "2",
+            "shooting": "1",
+            "stamina": 1
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 653,
+      "code": "regular_cavalry",
+      "name": "Regular Cavalry",
+      "category": "HORSE",
+      "unitType": "Regular Cavalry",
+      "bases": 3,
+      "armament": "Swords",
+      "handToHand": "8",
+      "shooting": "–",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "",
+      "basePoints": 44,
+      "constraints": null,
+      "options": [],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 654,
+      "code": "mounted_militia",
+      "name": "Mounted Militia",
+      "category": "HORSE",
+      "unitType": "Irregular Cavalry",
+      "bases": 3,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "2",
+      "morale": "5+",
+      "stamina": 3,
+      "specialRules": "",
+      "basePoints": 36,
+      "constraints": null,
+      "options": [
+        {
+          "id": 655,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 2,
+            "handToHand": "4",
+            "shooting": "1",
+            "stamina": 2
+          }
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": 18
+    },
+    {
+      "id": 656,
+      "code": "artillery",
+      "name": "Artillery",
+      "category": "ORDNANCE",
+      "unitType": "Artillery",
+      "bases": 1,
+      "armament": "Smoothbore Artillery",
+      "handToHand": "0 / 1 (limbered)",
+      "shooting": "3-2-1",
+      "morale": "4+",
+      "stamina": 2,
+      "specialRules": "",
+      "basePoints": 27,
+      "constraints": null,
+      "options": [],
+      "moveRange": 12,
+      "weaponRange": 48
+    }
+  ]
+}

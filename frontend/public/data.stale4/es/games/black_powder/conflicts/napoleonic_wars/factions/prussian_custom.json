@@ -1,0 +1,700 @@
+{
+  "id": 130,
+  "code": "prussian_custom",
+  "name": "Prusia",
+  "isOfficial": false,
+  "groupCode": "prussian",
+  "rulesetName": "Reglas Personalizadas",
+  "available": true,
+  "commanders": [
+    {
+      "id": 301,
+      "code": "brigade_leader_vm7",
+      "name": "Líder de Brigada",
+      "commandRating": 7,
+      "points": 0,
+      "role": "battalia_leader",
+      "moveRange": 48
+    },
+    {
+      "id": 302,
+      "code": "brigade_leader_vm8",
+      "name": "Líder de Brigada",
+      "commandRating": 8,
+      "points": 25,
+      "role": "battalia_leader",
+      "moveRange": 48
+    },
+    {
+      "id": 303,
+      "code": "brigade_leader_vm9",
+      "name": "Líder de Brigada",
+      "commandRating": 9,
+      "points": 50,
+      "role": "battalia_leader",
+      "moveRange": 48
+    }
+  ],
+  "units": [
+    {
+      "id": 304,
+      "code": "musketeers",
+      "name": "Mosqueteros",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Formación Mixta, Debe Formar Cuadro",
+      "basePoints": 36,
+      "constraints": null,
+      "options": [
+        {
+          "id": 305,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 306,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 307,
+          "code": "reliable_elite5",
+          "description": "Fiables, Élite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 308,
+          "code": "fierce_fighters",
+          "description": "Combatientes Aguerridos",
+          "pointDelta": 1,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 309,
+          "code": "doubtful",
+          "description": "Dudosos",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 310,
+          "code": "morale5",
+          "description": "Moral 5",
+          "pointDelta": -4,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 311,
+          "code": "unreliable",
+          "description": "Poco Fiables",
+          "pointDelta": -3,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 312,
+          "code": "stubborn",
+          "description": "Tenaces",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 313,
+      "code": "fusiliers",
+      "name": "Fusileros",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Formación Mixta, Debe Formar Cuadro, Tiradores Curtidos, Hostigadores",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [
+        {
+          "id": 314,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 315,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 316,
+          "code": "reliable_elite5",
+          "description": "Fiables, Élite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 317,
+          "code": "fierce_fighters",
+          "description": "Combatientes Aguerridos",
+          "pointDelta": 1,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 318,
+          "code": "doubtful",
+          "description": "Dudosos",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 319,
+          "code": "morale5",
+          "description": "Moral 5",
+          "pointDelta": -4,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 320,
+          "code": "unreliable",
+          "description": "Poco Fiables",
+          "pointDelta": -3,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 321,
+          "code": "stubborn",
+          "description": "Tenaces",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 322,
+      "code": "jagers",
+      "name": "Jägers",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Rayada",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Formación Mixta, Debe Formar Cuadro, Tiradores Curtidos, Hostigadores, Fiables, Élite 5+",
+      "basePoints": 50,
+      "constraints": null,
+      "options": [
+        {
+          "id": 323,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 324,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 325,
+          "code": "fierce_fighters",
+          "description": "Combatientes Aguerridos",
+          "pointDelta": 1,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 326,
+          "code": "doubtful",
+          "description": "Dudosos",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 327,
+          "code": "morale5",
+          "description": "Moral 5",
+          "pointDelta": -4,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 328,
+          "code": "unreliable",
+          "description": "Poco Fiables",
+          "pointDelta": -3,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 329,
+          "code": "stubborn",
+          "description": "Tenaces",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 24
+    },
+    {
+      "id": 330,
+      "code": "militia",
+      "name": "Milicia",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "5",
+      "stamina": 3,
+      "specialRules": "Formación Mixta, Debe Formar Cuadro, Recién Reclutados",
+      "basePoints": 29,
+      "constraints": null,
+      "options": [
+        {
+          "id": 331,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 332,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 333,
+          "code": "reliable_elite5",
+          "description": "Fiables, Élite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 334,
+          "code": "fierce_fighters",
+          "description": "Combatientes Aguerridos",
+          "pointDelta": 1,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 335,
+          "code": "doubtful",
+          "description": "Dudosos",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 336,
+          "code": "unreliable",
+          "description": "Poco Fiables",
+          "pointDelta": -3,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 337,
+          "code": "stubborn",
+          "description": "Tenaces",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 338,
+      "code": "landwehr_infantry",
+      "name": "Infantería Landwehr",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Formación Mixta, Poco Fiables, Debe Formar Cuadro",
+      "basePoints": 33,
+      "constraints": null,
+      "options": [
+        {
+          "id": 339,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 340,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 341,
+          "code": "reliable_elite5",
+          "description": "Fiables, Élite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 342,
+          "code": "fierce_fighters",
+          "description": "Combatientes Aguerridos",
+          "pointDelta": 1,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 343,
+          "code": "doubtful",
+          "description": "Dudosos",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 344,
+          "code": "morale5",
+          "description": "Moral 5",
+          "pointDelta": -4,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 345,
+          "code": "stubborn",
+          "description": "Tenaces",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 346,
+      "code": "dragoons",
+      "name": "Dragones",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Sable",
+      "handToHand": "8",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Caballería Pesada +1",
+      "basePoints": 44,
+      "constraints": null,
+      "options": [
+        {
+          "id": 347,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 348,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 349,
+          "code": "reliable_plus1cac",
+          "description": "Fiables, +1 CaC",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 350,
+      "code": "uhlans",
+      "name": "Ulanos",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Lanza",
+      "handToHand": "7",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Lanceros, Incursores",
+      "basePoints": 48,
+      "constraints": null,
+      "options": [
+        {
+          "id": 351,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 352,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 353,
+          "code": "reliable_plus1cac",
+          "description": "Fiables, +1 CaC",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 354,
+      "code": "hussars",
+      "name": "Húsares",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Sable",
+      "handToHand": "6",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Incursores",
+      "basePoints": 41,
+      "constraints": null,
+      "options": [
+        {
+          "id": 355,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 356,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 357,
+          "code": "reliable_plus1cac",
+          "description": "Fiables, +1 CaC",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 358,
+      "code": "landwehr_cavalry",
+      "name": "Caballería Landwehr",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Lanza",
+      "handToHand": "5",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Lanceros, Poco Fiables, Incursores",
+      "basePoints": 32,
+      "constraints": null,
+      "options": [
+        {
+          "id": 359,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 360,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 361,
+          "code": "reliable_plus1cac",
+          "description": "Fiables, +1 CaC",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 362,
+      "code": "foot_artillery",
+      "name": "Artillería a Pie",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Artillería de Ánima Lisa",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 2,
+      "specialRules": "–",
+      "basePoints": 27,
+      "constraints": null,
+      "options": [
+        {
+          "id": 363,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 364,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 365,
+          "code": "reliable_elite5_artillery",
+          "description": "Fiables, Élite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    },
+    {
+      "id": 366,
+      "code": "horse_artillery",
+      "name": "Artillería a Caballo",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Artillería de Ánima Lisa",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 1,
+      "specialRules": "Incursores",
+      "basePoints": 26,
+      "constraints": null,
+      "options": [
+        {
+          "id": 367,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 368,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 369,
+          "code": "reliable_elite5_artillery",
+          "description": "Fiables, Élite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 36
+    }
+  ]
+}

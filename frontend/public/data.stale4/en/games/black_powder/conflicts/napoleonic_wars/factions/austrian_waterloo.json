@@ -1,0 +1,11 @@
+{
+  "id": 135,
+  "code": "austrian_waterloo",
+  "name": "Austria",
+  "isOfficial": true,
+  "groupCode": "austrian",
+  "rulesetName": "Waterloo",
+  "available": false,
+  "commanders": [],
+  "units": []
+}

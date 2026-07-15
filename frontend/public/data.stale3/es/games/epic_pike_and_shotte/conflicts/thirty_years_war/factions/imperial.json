@@ -1,0 +1,500 @@
+{
+  "id": 5,
+  "code": "imperial",
+  "name": "Ejército Imperial",
+  "isOfficial": true,
+  "commanders": [
+    {
+      "id": 9,
+      "code": "army_general",
+      "name": "General en Jefe",
+      "commandRating": 8,
+      "points": 40,
+      "role": "army_general",
+      "moveRange": 27
+    },
+    {
+      "id": 10,
+      "code": "battalia_commander",
+      "name": "Comandante de Batalla",
+      "commandRating": 8,
+      "points": 40,
+      "role": "battalia_leader",
+      "moveRange": 27
+    }
+  ],
+  "units": [
+    {
+      "id": 11,
+      "code": "cuirassiers",
+      "name": "Corazas",
+      "category": "HORSE",
+      "unitType": "Caballería Pesada",
+      "bases": 3,
+      "armament": "Pistola",
+      "handToHand": "8",
+      "shooting": "1",
+      "morale": "3+",
+      "stamina": 4,
+      "specialRules": "Caracola, Caballería Pesada",
+      "basePoints": 53,
+      "constraints": null,
+      "options": [
+        {
+          "id": 12,
+          "code": "wallensteins_lifeguard",
+          "description": "Lanza, Élite (Guardia de Wallenstein)",
+          "pointDelta": 11,
+          "constraints": {
+            "maxUnitsPerArmy": 1
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 9,
+      "weaponRange": 6
+    },
+    {
+      "id": 13,
+      "code": "harquebusiers",
+      "name": "Arcabuceros a Caballo",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": 3,
+      "armament": "Carabina, Pistola",
+      "handToHand": "7",
+      "shooting": "1",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Caracola",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [],
+      "moveRange": 9,
+      "weaponRange": 12
+    },
+    {
+      "id": 14,
+      "code": "croat_cavalry",
+      "name": "Caballería Croata",
+      "category": "HORSE",
+      "unitType": "Caballería Ligera Escaramuzadora",
+      "bases": 3,
+      "armament": "Pistola, Lanzas",
+      "handToHand": "7",
+      "shooting": "1",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "–",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [],
+      "moveRange": 12,
+      "weaponRange": 6
+    },
+    {
+      "id": 15,
+      "code": "hussars",
+      "name": "Húsares",
+      "category": "HORSE",
+      "unitType": "Caballería Ligera Escaramuzadora",
+      "bases": 3,
+      "armament": "Arcos",
+      "handToHand": "7",
+      "shooting": "1",
+      "morale": "5+",
+      "stamina": 3,
+      "specialRules": "–",
+      "basePoints": 36,
+      "constraints": null,
+      "options": [],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 16,
+      "code": "cossacks",
+      "name": "Cosacos",
+      "category": "HORSE",
+      "unitType": "Caballería Ligera Escaramuzadora",
+      "bases": 3,
+      "armament": "Lanza, Arco",
+      "handToHand": "7",
+      "shooting": "1",
+      "morale": "5+",
+      "stamina": 3,
+      "specialRules": "Merodeador",
+      "basePoints": 46,
+      "constraints": null,
+      "options": [],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 17,
+      "code": "dragoons",
+      "name": "Dragones",
+      "category": "HORSE",
+      "unitType": "Escaramuzador a Caballo y Pie",
+      "bases": 3,
+      "armament": "Chispa",
+      "handToHand": "3",
+      "shooting": "2",
+      "morale": "5+",
+      "stamina": 3,
+      "specialRules": "Disparar y Replegarse, Merodeador",
+      "basePoints": 35,
+      "constraints": null,
+      "options": [],
+      "moveRange": 9,
+      "weaponRange": 18
+    },
+    {
+      "id": 18,
+      "code": "imperial_pike_musket",
+      "name": "Pica y Mosquete Imperial",
+      "category": "FOOT",
+      "unitType": "Infantería Combinada",
+      "bases": 4,
+      "armament": "Pica, Mosquete de Mecha",
+      "handToHand": "7",
+      "shooting": "3",
+      "morale": "4+",
+      "stamina": 5,
+      "specialRules": "Erizo, Mercenario",
+      "basePoints": 43,
+      "constraints": null,
+      "options": [
+        {
+          "id": 19,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 20,
+          "code": "elite",
+          "description": "Élite (4+)",
+          "pointDelta": 6,
+          "constraints": {
+            "maxUnitsPerArmy": 1
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 21,
+      "code": "imperial_pikemen",
+      "name": "Piqueros Imperiales",
+      "category": "FOOT",
+      "unitType": "Bloque de Picas",
+      "bases": 2,
+      "armament": "Pica",
+      "handToHand": "6",
+      "shooting": "–",
+      "morale": "4+",
+      "stamina": 4,
+      "specialRules": "Erizo, Mercenario",
+      "basePoints": 34,
+      "constraints": null,
+      "options": [
+        {
+          "id": 22,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 23,
+          "code": "elite",
+          "description": "Élite (4+)",
+          "pointDelta": 6,
+          "constraints": {
+            "maxUnitsPerArmy": 1
+          },
+          "statOverrides": null
+        },
+        {
+          "id": 24,
+          "code": "halberds",
+          "description": "Alabardas (–Pica y Erizo, +Arma a Dos Manos)",
+          "pointDelta": 2,
+          "constraints": {
+            "maxUnitsPerArmy": 1
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": null
+    },
+    {
+      "id": 25,
+      "code": "imperial_musketeers",
+      "name": "Mosqueteros Imperiales",
+      "category": "FOOT",
+      "unitType": "Línea de Batalla",
+      "bases": 2,
+      "armament": "Mosquete de Mecha",
+      "handToHand": "3",
+      "shooting": "2",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Mercenario",
+      "basePoints": 24,
+      "constraints": {
+        "maxRatioTo": {
+          "unitCode": "imperial_pikemen",
+          "ratio": 2
+        }
+      },
+      "options": [
+        {
+          "id": 26,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 27,
+      "code": "commanded_musket",
+      "name": "Mosquete Destacado",
+      "category": "FOOT",
+      "unitType": "Línea de Batalla",
+      "bases": 2,
+      "armament": "Mosquete de Mecha",
+      "handToHand": "3",
+      "shooting": "3",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Primer Fuego",
+      "basePoints": 34,
+      "constraints": {
+        "maxUnitsPerArmy": 2
+      },
+      "options": [
+        {
+          "id": 28,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": {
+            "maxUnitsPerArmy": 1
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 29,
+      "code": "storming_party",
+      "name": "Partida de Asalto",
+      "category": "FOOT",
+      "unitType": "Línea de Batalla",
+      "bases": 2,
+      "armament": "Mosquete de Chispa",
+      "handToHand": "4",
+      "shooting": "2",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Primer Fuego",
+      "basePoints": 34,
+      "constraints": {
+        "maxUnitsPerArmy": 1
+      },
+      "options": [
+        {
+          "id": 30,
+          "code": "elite",
+          "description": "Élite (4+)",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 31,
+          "code": "petard",
+          "description": "Petardo",
+          "pointDelta": 20,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 32,
+      "code": "swordsmen",
+      "name": "Espadachines",
+      "category": "FOOT",
+      "unitType": "Línea de Batalla",
+      "bases": 2,
+      "armament": "–",
+      "handToHand": "6",
+      "shooting": "–",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Espadachines",
+      "basePoints": 34,
+      "constraints": {
+        "maxUnitsPerArmy": 2
+      },
+      "options": [],
+      "moveRange": 6,
+      "weaponRange": null
+    },
+    {
+      "id": 33,
+      "code": "militia",
+      "name": "Milicia",
+      "category": "FOOT",
+      "unitType": "Horda",
+      "bases": 4,
+      "armament": "Armas Arrojadizas",
+      "handToHand": "2",
+      "shooting": "1",
+      "morale": "6+",
+      "stamina": 2,
+      "specialRules": "Chusma, Milicia",
+      "basePoints": 7,
+      "constraints": null,
+      "options": [],
+      "moveRange": 6,
+      "weaponRange": 6
+    },
+    {
+      "id": 34,
+      "code": "light_ordnance",
+      "name": "Artillería Ligera",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": 3,
+      "armament": "variable",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "5+",
+      "stamina": 2,
+      "specialRules": "–",
+      "basePoints": 17,
+      "constraints": {
+        "maxPerBattaliaGroup": {
+          "key": "ordnance",
+          "max": 2
+        }
+      },
+      "options": [],
+      "moveRange": 6,
+      "weaponRange": 24
+    },
+    {
+      "id": 35,
+      "code": "medium_ordnance",
+      "name": "Artillería Media",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": 3,
+      "armament": "variable",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "5+",
+      "stamina": 2,
+      "specialRules": "–",
+      "basePoints": 21,
+      "constraints": {
+        "maxPerBattaliaGroup": {
+          "key": "ordnance",
+          "max": 2
+        }
+      },
+      "options": [],
+      "moveRange": 3,
+      "weaponRange": 36
+    },
+    {
+      "id": 36,
+      "code": "heavy_ordnance",
+      "name": "Artillería Pesada",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": 3,
+      "armament": "variable",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "5+",
+      "stamina": 2,
+      "specialRules": "–",
+      "basePoints": 25,
+      "constraints": {
+        "maxPerBattaliaGroup": {
+          "key": "ordnance",
+          "max": 2
+        }
+      },
+      "options": [],
+      "moveRange": 0,
+      "weaponRange": 48
+    },
+    {
+      "id": 37,
+      "code": "galloper_gun",
+      "name": "Cañón Ligero de Escolta (Galloper Gun)",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": 3,
+      "armament": "variable",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "5+",
+      "stamina": 2,
+      "specialRules": "Galloper Gun",
+      "basePoints": 21,
+      "constraints": {
+        "maxPerBattalia": 1,
+        "maxPerBattaliaGroup": {
+          "key": "ordnance",
+          "max": 2
+        }
+      },
+      "options": [],
+      "moveRange": 6,
+      "weaponRange": 24
+    },
+    {
+      "id": 38,
+      "code": "mortar",
+      "name": "Mortero",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": 3,
+      "armament": "Mortero",
+      "handToHand": "1",
+      "shooting": "2",
+      "morale": "5+",
+      "stamina": 2,
+      "specialRules": "–",
+      "basePoints": 25,
+      "constraints": {
+        "maxUnitsPerArmy": 1
+      },
+      "options": [],
+      "moveRange": 0,
+      "weaponRange": 48
+    }
+  ]
+}

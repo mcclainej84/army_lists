@@ -1,0 +1,38 @@
+[
+  {
+    "id": 5,
+    "code": "imperial",
+    "name": "Ejército Imperial",
+    "isOfficial": true,
+    "groupCode": "imperial",
+    "rulesetName": "Reglamento Oficial Pike & Shotte",
+    "available": true
+  },
+  {
+    "id": 6,
+    "code": "swedish",
+    "name": "Ejército Sueco",
+    "isOfficial": true,
+    "groupCode": "swedish",
+    "rulesetName": "Reglamento Oficial Pike & Shotte",
+    "available": true
+  },
+  {
+    "id": 7,
+    "code": "french",
+    "name": "Ejército Francés",
+    "isOfficial": false,
+    "groupCode": "french",
+    "rulesetName": "Reglas Personalizadas",
+    "available": true
+  },
+  {
+    "id": 8,
+    "code": "spanish",
+    "name": "Ejército Español",
+    "isOfficial": false,
+    "groupCode": "spanish",
+    "rulesetName": "Reglas Personalizadas",
+    "available": true
+  }
+]

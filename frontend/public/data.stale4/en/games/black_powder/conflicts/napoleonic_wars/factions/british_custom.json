@@ -1,0 +1,779 @@
+{
+  "id": 125,
+  "code": "british_custom",
+  "name": "Great Britain",
+  "isOfficial": false,
+  "groupCode": "british",
+  "rulesetName": "Custom Rules",
+  "available": true,
+  "commanders": [
+    {
+      "id": 137,
+      "code": "brigade_leader_vm7",
+      "name": "Brigade Leader",
+      "commandRating": 7,
+      "points": 0,
+      "role": "battalia_leader",
+      "moveRange": 48
+    },
+    {
+      "id": 138,
+      "code": "brigade_leader_vm8",
+      "name": "Brigade Leader",
+      "commandRating": 8,
+      "points": 25,
+      "role": "battalia_leader",
+      "moveRange": 48
+    }
+  ],
+  "units": [
+    {
+      "id": 139,
+      "code": "line_infantry",
+      "name": "Infantry",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Mixed Formation, Must Form Square",
+      "basePoints": 36,
+      "constraints": null,
+      "options": [
+        {
+          "id": 140,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 141,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 142,
+          "code": "steady_first_fire",
+          "description": "Steady Line and First Fire",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 143,
+          "code": "reliable_elite5",
+          "description": "Reliable, Elite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 144,
+          "code": "reliable_elite4",
+          "description": "Reliable, Elite 4+",
+          "pointDelta": 10,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 145,
+      "code": "light_infantry",
+      "name": "Light Infantry",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Mixed Formation, Must Form Square, Seasoned Marksmen, Skirmishers",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [
+        {
+          "id": 146,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 147,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 148,
+          "code": "steady_first_fire",
+          "description": "Steady Line and First Fire",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 149,
+          "code": "reliable_elite5",
+          "description": "Reliable, Elite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 150,
+          "code": "reliable_elite4",
+          "description": "Reliable, Elite 4+",
+          "pointDelta": 10,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 151,
+      "code": "kgl_light_infantry",
+      "name": "KGL Light Infantry",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Rifled Musket",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Mixed Formation, Must Form Square, Seasoned Marksmen, Skirmishers",
+      "basePoints": 42,
+      "constraints": null,
+      "options": [
+        {
+          "id": 152,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 153,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 154,
+          "code": "steady_first_fire",
+          "description": "Steady Line and First Fire",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 155,
+          "code": "reliable_elite5",
+          "description": "Reliable, Elite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 156,
+          "code": "reliable_elite4",
+          "description": "Reliable, Elite 4+",
+          "pointDelta": 10,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 24
+    },
+    {
+      "id": 157,
+      "code": "riflemen",
+      "name": "Riflemen",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Rifled Musket",
+      "handToHand": "6",
+      "shooting": "4",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Mixed Formation, Must Form Square, Seasoned Marksmen, Skirmishers, Reliable, Elite 4+",
+      "basePoints": 53,
+      "constraints": null,
+      "options": [
+        {
+          "id": 158,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 159,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 160,
+          "code": "steady_first_fire",
+          "description": "Steady Line and First Fire",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 24
+    },
+    {
+      "id": 161,
+      "code": "militia",
+      "name": "Militia",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "5",
+      "stamina": 3,
+      "specialRules": "Mixed Formation, Must Form Square, Raw Recruits",
+      "basePoints": 29,
+      "constraints": null,
+      "options": [
+        {
+          "id": 162,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 163,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 164,
+          "code": "reliable_elite5",
+          "description": "Reliable, Elite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 165,
+          "code": "reliable_elite4",
+          "description": "Reliable, Elite 4+",
+          "pointDelta": 10,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 166,
+      "code": "hanoverian_infantry",
+      "name": "Hanoverian Infantry",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Mixed Formation, Must Form Square",
+      "basePoints": 36,
+      "constraints": null,
+      "options": [
+        {
+          "id": 167,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 168,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 169,
+          "code": "reliable_elite5",
+          "description": "Reliable, Elite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 170,
+          "code": "reliable_elite4",
+          "description": "Reliable, Elite 4+",
+          "pointDelta": 10,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 171,
+      "code": "hanoverian_landwehr",
+      "name": "Hanoverian Landwehr",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Mixed Formation, Unreliable, Must Form Square, Raw Recruits",
+      "basePoints": 30,
+      "constraints": null,
+      "options": [
+        {
+          "id": 172,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 173,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 174,
+          "code": "reliable_elite5",
+          "description": "Reliable, Elite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 175,
+          "code": "reliable_elite4",
+          "description": "Reliable, Elite 4+",
+          "pointDelta": 10,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 176,
+      "code": "highland_infantry",
+      "name": "Highland Infantry",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Mixed Formation, Must Form Square, Ferocious Charge, Fierce Fighters",
+      "basePoints": 40,
+      "constraints": null,
+      "options": [
+        {
+          "id": 177,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 178,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 179,
+          "code": "steady_first_fire",
+          "description": "Steady Line and First Fire",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 180,
+          "code": "reliable_elite5",
+          "description": "Reliable, Elite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 181,
+          "code": "reliable_elite4",
+          "description": "Reliable, Elite 4+",
+          "pointDelta": 10,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 182,
+      "code": "guards_infantry",
+      "name": "Guards Infantry",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "7",
+      "shooting": "4",
+      "morale": "3",
+      "stamina": 4,
+      "specialRules": "Mixed Formation, Must Form Square, Reliable, Elite 3+",
+      "basePoints": 59,
+      "constraints": null,
+      "options": [
+        {
+          "id": 183,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 184,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 185,
+          "code": "steady_first_fire",
+          "description": "Steady Line and First Fire",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 186,
+      "code": "dragoons",
+      "name": "Dragoons",
+      "category": "HORSE",
+      "unitType": "Cavalry",
+      "bases": null,
+      "armament": "Saber",
+      "handToHand": "8",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Heavy Cavalry +1",
+      "basePoints": 44,
+      "constraints": null,
+      "options": [
+        {
+          "id": 187,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 188,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 189,
+          "code": "charge_regardless",
+          "description": "Charge Regardless",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 190,
+      "code": "hussars",
+      "name": "Hussars",
+      "category": "HORSE",
+      "unitType": "Cavalry",
+      "bases": null,
+      "armament": "Saber",
+      "handToHand": "6",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Raiders",
+      "basePoints": 43,
+      "constraints": null,
+      "options": [
+        {
+          "id": 191,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 192,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 193,
+          "code": "charge_regardless",
+          "description": "Charge Regardless",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 194,
+          "code": "reliable_plus1cac",
+          "description": "Reliable, +1 Hand-to-Hand",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 195,
+      "code": "household_cavalry",
+      "name": "Household Cavalry",
+      "category": "HORSE",
+      "unitType": "Cavalry",
+      "bases": null,
+      "armament": "Saber",
+      "handToHand": "8",
+      "shooting": "–",
+      "morale": "3",
+      "stamina": 3,
+      "specialRules": "Heavy Cavalry D3, Reliable",
+      "basePoints": 58,
+      "constraints": null,
+      "options": [
+        {
+          "id": 196,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 197,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 198,
+          "code": "charge_regardless",
+          "description": "Charge Regardless",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 199,
+      "code": "hanoverian_artillery",
+      "name": "Hanoverian Artillery",
+      "category": "ORDNANCE",
+      "unitType": "Artillery",
+      "bases": null,
+      "armament": "Smoothbore Ordnance",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 2,
+      "specialRules": "–",
+      "basePoints": 27,
+      "constraints": null,
+      "options": [
+        {
+          "id": 200,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 201,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    },
+    {
+      "id": 202,
+      "code": "royal_or_kgl_artillery",
+      "name": "Royal or KGL Artillery",
+      "category": "ORDNANCE",
+      "unitType": "Artillery",
+      "bases": null,
+      "armament": "Smoothbore Ordnance",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 2,
+      "specialRules": "Reliable, Canister",
+      "basePoints": 31,
+      "constraints": null,
+      "options": [
+        {
+          "id": 203,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 204,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 205,
+          "code": "elite5_royal_kgl",
+          "description": "Elite 5+",
+          "pointDelta": 4,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 206,
+          "code": "elite4_royal_kgl",
+          "description": "Elite 4+",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    },
+    {
+      "id": 207,
+      "code": "royal_horse_artillery",
+      "name": "Royal Horse Artillery",
+      "category": "ORDNANCE",
+      "unitType": "Artillery",
+      "bases": null,
+      "armament": "Smoothbore Ordnance",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 1,
+      "specialRules": "Raiders, Reliable, Canister",
+      "basePoints": 34,
+      "constraints": null,
+      "options": [
+        {
+          "id": 208,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 209,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 36
+    }
+  ]
+}

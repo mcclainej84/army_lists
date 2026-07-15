@@ -1,0 +1,11 @@
+{
+  "id": 134,
+  "code": "austrian_clash_of_eagles",
+  "name": "Austria",
+  "isOfficial": true,
+  "groupCode": "austrian",
+  "rulesetName": "Clash of Eagles",
+  "available": false,
+  "commanders": [],
+  "units": []
+}

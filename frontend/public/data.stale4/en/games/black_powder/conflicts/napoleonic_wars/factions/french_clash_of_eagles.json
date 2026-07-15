@@ -1,0 +1,11 @@
+{
+  "id": 128,
+  "code": "french_clash_of_eagles",
+  "name": "France",
+  "isOfficial": true,
+  "groupCode": "french",
+  "rulesetName": "Clash of Eagles",
+  "available": false,
+  "commanders": [],
+  "units": []
+}

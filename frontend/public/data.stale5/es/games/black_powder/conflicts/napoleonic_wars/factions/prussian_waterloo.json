@@ -1,0 +1,11 @@
+{
+  "id": 132,
+  "code": "prussian_waterloo",
+  "name": "Prusia",
+  "isOfficial": true,
+  "groupCode": "prussian",
+  "rulesetName": "Waterloo",
+  "available": false,
+  "commanders": [],
+  "units": []
+}

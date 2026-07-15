@@ -1,0 +1,525 @@
+{
+  "id": 6,
+  "code": "swedish",
+  "name": "Swedish Army",
+  "isOfficial": true,
+  "commanders": [
+    {
+      "id": 39,
+      "code": "army_general",
+      "name": "Army General",
+      "commandRating": 8,
+      "points": 40,
+      "role": "army_general",
+      "moveRange": 27
+    },
+    {
+      "id": 40,
+      "code": "battalia_commander",
+      "name": "Battalia Commander",
+      "commandRating": 8,
+      "points": 40,
+      "role": "battalia_leader",
+      "moveRange": 27
+    }
+  ],
+  "units": [
+    {
+      "id": 41,
+      "code": "cuirassiers",
+      "name": "Cuirassiers",
+      "category": "HORSE",
+      "unitType": "Heavy Horse",
+      "bases": 3,
+      "armament": "Pistol",
+      "handToHand": "8",
+      "shooting": "1",
+      "morale": "3+",
+      "stamina": 4,
+      "specialRules": "Caracole, Heavy Cavalry",
+      "basePoints": 53,
+      "constraints": {
+        "maxUnitsPerArmy": 2
+      },
+      "options": [],
+      "moveRange": 9,
+      "weaponRange": 6
+    },
+    {
+      "id": 42,
+      "code": "harquebusiers",
+      "name": "Harquebusiers",
+      "category": "HORSE",
+      "unitType": "Horse",
+      "bases": 3,
+      "armament": "Carbine, Pistol",
+      "handToHand": "7",
+      "shooting": "1",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "–",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [],
+      "moveRange": 9,
+      "weaponRange": 12
+    },
+    {
+      "id": 43,
+      "code": "light_cavalry",
+      "name": "Light Cavalry",
+      "category": "HORSE",
+      "unitType": "Light Skirmisher Horse",
+      "bases": 3,
+      "armament": "Pistol",
+      "handToHand": "7",
+      "shooting": "1",
+      "morale": "5+",
+      "stamina": 3,
+      "specialRules": "–",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [],
+      "moveRange": 12,
+      "weaponRange": 6
+    },
+    {
+      "id": 44,
+      "code": "finnish_cavalry",
+      "name": "Finnish Cavalry",
+      "category": "HORSE",
+      "unitType": "Light Horse",
+      "bases": 3,
+      "armament": "Pistol",
+      "handToHand": "7",
+      "shooting": "1",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Gallopers, Ferocious Charge",
+      "basePoints": 36,
+      "constraints": {
+        "cannotOutnumber": "light_cavalry"
+      },
+      "options": [],
+      "moveRange": 12,
+      "weaponRange": 6
+    },
+    {
+      "id": 45,
+      "code": "dragoons",
+      "name": "Dragoons",
+      "category": "HORSE",
+      "unitType": "Horse and Foot Skirmisher",
+      "bases": 3,
+      "armament": "Firelock",
+      "handToHand": "3",
+      "shooting": "2",
+      "morale": "5+",
+      "stamina": 3,
+      "specialRules": "Fire & Evade, Marauder",
+      "basePoints": 35,
+      "constraints": null,
+      "options": [],
+      "moveRange": 9,
+      "weaponRange": 18
+    },
+    {
+      "id": 46,
+      "code": "swedish_german_pike_musket",
+      "name": "Swedish or German Pike & Musket",
+      "category": "FOOT",
+      "unitType": "Combined Infantry",
+      "bases": 4,
+      "armament": "Pike, Matchlock Musket",
+      "handToHand": "6",
+      "shooting": "4",
+      "morale": "4+",
+      "stamina": 5,
+      "specialRules": "Hedgehog, First Fire",
+      "basePoints": 47,
+      "constraints": null,
+      "options": [
+        {
+          "id": 47,
+          "code": "elite",
+          "description": "Elite (4+)",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 48,
+          "code": "stubborn",
+          "description": "Stubborn",
+          "pointDelta": 5,
+          "constraints": {
+            "maxUnitsPerArmy": 2
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 49,
+      "code": "swedish_german_pikemen",
+      "name": "Swedish or German Pikemen",
+      "category": "FOOT",
+      "unitType": "Pike Block",
+      "bases": 2,
+      "armament": "Pike",
+      "handToHand": "5",
+      "shooting": "–",
+      "morale": "3+",
+      "stamina": 4,
+      "specialRules": "Hedgehog",
+      "basePoints": 37,
+      "constraints": null,
+      "options": [
+        {
+          "id": 50,
+          "code": "elite",
+          "description": "Elite (4+)",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 51,
+          "code": "stubborn",
+          "description": "Stubborn",
+          "pointDelta": 5,
+          "constraints": {
+            "maxUnitsPerArmy": 2
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": null
+    },
+    {
+      "id": 52,
+      "code": "swedish_german_musketeers",
+      "name": "Swedish or German Musketeers",
+      "category": "FOOT",
+      "unitType": "Battle Line",
+      "bases": 2,
+      "armament": "Matchlock Musket",
+      "handToHand": "4",
+      "shooting": "3",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "First Fire",
+      "basePoints": 33,
+      "constraints": {
+        "maxRatioTo": {
+          "unitCode": "swedish_german_pikemen",
+          "ratio": 3
+        }
+      },
+      "options": [
+        {
+          "id": 53,
+          "code": "elite",
+          "description": "Elite (4+)",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 54,
+          "code": "guard_musketeers",
+          "description": "Guard Musketeers (gains Stubborn)",
+          "pointDelta": 5,
+          "constraints": {
+            "maxUnitsPerArmy": 4
+          },
+          "statOverrides": null
+        },
+        {
+          "id": 55,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 56,
+          "code": "scots",
+          "description": "Scots (Bow instead of Musket)",
+          "pointDelta": -2,
+          "constraints": {
+            "maxUnitsPerArmy": 3
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 57,
+      "code": "saxon_pike_musket",
+      "name": "Saxon Pike & Musket",
+      "category": "FOOT",
+      "unitType": "Combined Infantry",
+      "bases": 4,
+      "armament": "Pike, Musket",
+      "handToHand": "7",
+      "shooting": "3",
+      "morale": "4+",
+      "stamina": 4,
+      "specialRules": "Hedgehog, Mercenary",
+      "basePoints": 38,
+      "constraints": null,
+      "options": [
+        {
+          "id": 58,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 59,
+          "code": "elite",
+          "description": "Elite (4+)",
+          "pointDelta": 6,
+          "constraints": {
+            "maxUnitsPerArmy": 1
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 60,
+      "code": "saxon_pikemen",
+      "name": "Saxon Pikemen",
+      "category": "FOOT",
+      "unitType": "Pike Block",
+      "bases": 2,
+      "armament": "Pike",
+      "handToHand": "6",
+      "shooting": "–",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Hedgehog, Mercenary",
+      "basePoints": 31,
+      "constraints": null,
+      "options": [
+        {
+          "id": 61,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 62,
+          "code": "elite",
+          "description": "Elite (4+)",
+          "pointDelta": 6,
+          "constraints": {
+            "maxUnitsPerArmy": 1
+          },
+          "statOverrides": null
+        },
+        {
+          "id": 63,
+          "code": "halberds",
+          "description": "Halberds (–Pike & Hedgehog, +Double-handed Weapon)",
+          "pointDelta": 2,
+          "constraints": {
+            "maxUnitsPerArmy": 1
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": null
+    },
+    {
+      "id": 64,
+      "code": "saxon_musketeers",
+      "name": "Saxon Musketeers",
+      "category": "FOOT",
+      "unitType": "Battle Line",
+      "bases": 2,
+      "armament": "Matchlock Musket",
+      "handToHand": "3",
+      "shooting": "2",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Mercenary",
+      "basePoints": 24,
+      "constraints": {
+        "maxRatioTo": {
+          "unitCode": "imperial_pikemen",
+          "ratio": 2
+        },
+        "sourceNote": "Texto del reglamento tal cual, posible errata."
+      },
+      "options": [
+        {
+          "id": 65,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 66,
+      "code": "swedish_german_commanded_musket",
+      "name": "Swedish or German Commanded Musket",
+      "category": "FOOT",
+      "unitType": "Battle Line",
+      "bases": 2,
+      "armament": "Matchlock Musket",
+      "handToHand": "3",
+      "shooting": "4",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "First Fire",
+      "basePoints": 35,
+      "constraints": {
+        "maxUnitsPerArmy": 2
+      },
+      "options": [
+        {
+          "id": 67,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": {
+            "maxUnitsPerArmy": 1
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 68,
+      "code": "storming_party",
+      "name": "Storming Party",
+      "category": "FOOT",
+      "unitType": "Battle Line",
+      "bases": 2,
+      "armament": "Firelock Musket",
+      "handToHand": "4",
+      "shooting": "2",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "First Fire",
+      "basePoints": 34,
+      "constraints": {
+        "maxUnitsPerArmy": 1
+      },
+      "options": [
+        {
+          "id": 69,
+          "code": "elite",
+          "description": "Elite (4+)",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 70,
+          "code": "petard",
+          "description": "Petard",
+          "pointDelta": 20,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 71,
+      "code": "militia",
+      "name": "Militia",
+      "category": "FOOT",
+      "unitType": "Warband",
+      "bases": 4,
+      "armament": "Thrown Weapons",
+      "handToHand": "2",
+      "shooting": "1",
+      "morale": "6+",
+      "stamina": 2,
+      "specialRules": "Rabble, Militia",
+      "basePoints": 7,
+      "constraints": null,
+      "options": [],
+      "moveRange": 6,
+      "weaponRange": 6
+    },
+    {
+      "id": 72,
+      "code": "light_ordnance",
+      "name": "Light Ordnance",
+      "category": "ORDNANCE",
+      "unitType": "Ordnance",
+      "bases": 3,
+      "armament": "varies",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "5+",
+      "stamina": 2,
+      "specialRules": "–",
+      "basePoints": 17,
+      "constraints": {
+        "maxPerBattaliaGroup": {
+          "key": "ordnance",
+          "max": 3
+        }
+      },
+      "options": [],
+      "moveRange": 6,
+      "weaponRange": 24
+    },
+    {
+      "id": 73,
+      "code": "medium_ordnance",
+      "name": "Medium Ordnance",
+      "category": "ORDNANCE",
+      "unitType": "Ordnance",
+      "bases": 3,
+      "armament": "varies",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "5+",
+      "stamina": 2,
+      "specialRules": "–",
+      "basePoints": 21,
+      "constraints": {
+        "maxPerBattaliaGroup": {
+          "key": "ordnance",
+          "max": 3
+        },
+        "maxRatioTo": {
+          "unitCode": "light_ordnance",
+          "ratio": 0.3333333333333333
+        }
+      },
+      "options": [],
+      "moveRange": 3,
+      "weaponRange": 36
+    }
+  ]
+}

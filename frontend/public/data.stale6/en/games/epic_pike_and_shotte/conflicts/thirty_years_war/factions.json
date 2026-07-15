@@ -1,0 +1,38 @@
+[
+  {
+    "id": 5,
+    "code": "imperial",
+    "name": "Imperial Army",
+    "isOfficial": true,
+    "groupCode": "imperial",
+    "rulesetName": "Official Pike & Shotte Rules",
+    "available": true
+  },
+  {
+    "id": 6,
+    "code": "swedish",
+    "name": "Swedish Army",
+    "isOfficial": true,
+    "groupCode": "swedish",
+    "rulesetName": "Official Pike & Shotte Rules",
+    "available": true
+  },
+  {
+    "id": 7,
+    "code": "french",
+    "name": "French Army",
+    "isOfficial": false,
+    "groupCode": "french",
+    "rulesetName": "Custom Rules",
+    "available": true
+  },
+  {
+    "id": 8,
+    "code": "spanish",
+    "name": "Spanish Army",
+    "isOfficial": false,
+    "groupCode": "spanish",
+    "rulesetName": "Custom Rules",
+    "available": true
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "id": 124,
+    "code": "imperial_france",
+    "name": "Francia Imperial",
+    "isOfficial": true
+  },
+  {
+    "id": 125,
+    "code": "great_britain",
+    "name": "Gran Bretaña",
+    "isOfficial": true
+  },
+  {
+    "id": 126,
+    "code": "prussia",
+    "name": "Prusia",
+    "isOfficial": true
+  },
+  {
+    "id": 127,
+    "code": "portugal",
+    "name": "Portugal",
+    "isOfficial": true
+  },
+  {
+    "id": 128,
+    "code": "austria",
+    "name": "Austria",
+    "isOfficial": true
+  },
+  {
+    "id": 129,
+    "code": "russia",
+    "name": "Rusia",
+    "isOfficial": true
+  },
+  {
+    "id": 130,
+    "code": "british_custom",
+    "name": "Gran Bretaña (Reglas Personalizadas)",
+    "isOfficial": false
+  },
+  {
+    "id": 131,
+    "code": "french_custom",
+    "name": "Francia (Reglas Personalizadas)",
+    "isOfficial": false
+  },
+  {
+    "id": 132,
+    "code": "prussian_custom",
+    "name": "Prusia (Reglas Personalizadas)",
+    "isOfficial": false
+  },
+  {
+    "id": 133,
+    "code": "austrian_custom",
+    "name": "Austria (Reglas Personalizadas)",
+    "isOfficial": false
+  },
+  {
+    "id": 134,
+    "code": "russian_custom",
+    "name": "Rusia",
+    "isOfficial": false
+  }
+]

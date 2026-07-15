@@ -1,0 +1,11 @@
+{
+  "id": 131,
+  "code": "prussian_clash_of_eagles",
+  "name": "Prusia",
+  "isOfficial": true,
+  "groupCode": "prussian",
+  "rulesetName": "Clash of Eagles",
+  "available": false,
+  "commanders": [],
+  "units": []
+}

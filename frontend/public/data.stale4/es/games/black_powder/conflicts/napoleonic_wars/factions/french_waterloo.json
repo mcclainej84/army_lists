@@ -1,0 +1,11 @@
+{
+  "id": 129,
+  "code": "french_waterloo",
+  "name": "Francia",
+  "isOfficial": true,
+  "groupCode": "french",
+  "rulesetName": "Waterloo",
+  "available": false,
+  "commanders": [],
+  "units": []
+}

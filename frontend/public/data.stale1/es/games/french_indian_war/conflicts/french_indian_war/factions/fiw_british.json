@@ -1,0 +1,360 @@
+{
+  "id": 498,
+  "code": "fiw_british",
+  "name": "Ingleses",
+  "isOfficial": true,
+  "commanders": [
+    {
+      "id": 500,
+      "code": "officer",
+      "name": "Oficial",
+      "commandRating": 8,
+      "points": 0,
+      "role": "battalia_leader",
+      "moveRange": 36
+    }
+  ],
+  "units": [
+    {
+      "id": 501,
+      "code": "regular_infantry",
+      "name": "Infantería Regular",
+      "category": "FOOT",
+      "unitType": "Infantería regular",
+      "bases": 4,
+      "armament": "Mosquete de ánima lisa",
+      "handToHand": "7",
+      "shooting": "4",
+      "morale": "4+",
+      "stamina": 4,
+      "specialRules": "Primer disparo, Fiable",
+      "basePoints": 46,
+      "constraints": null,
+      "options": [
+        {
+          "id": 502,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 3,
+            "handToHand": "5",
+            "shooting": "3",
+            "stamina": 3
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 503,
+      "code": "light_infantry",
+      "name": "Infantería Ligera",
+      "category": "FOOT",
+      "unitType": "Infantería regular",
+      "bases": 3,
+      "armament": "Mosquete de ánima lisa",
+      "handToHand": "5",
+      "shooting": "3",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Primer disparo, Fiable, Hostigadores",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [
+        {
+          "id": 504,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 2,
+            "handToHand": "3",
+            "shooting": "2",
+            "stamina": 2
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 505,
+      "code": "elite_infantry",
+      "name": "Infantería de Élite",
+      "category": "FOOT",
+      "unitType": "Infantería regular",
+      "bases": 3,
+      "armament": "Mosquete de ánima lisa",
+      "handToHand": "7",
+      "shooting": "3",
+      "morale": "3+",
+      "stamina": 3,
+      "specialRules": "Primer disparo, Fiable, Élite 3+",
+      "basePoints": 49,
+      "constraints": null,
+      "options": [
+        {
+          "id": 506,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 2,
+            "handToHand": "5",
+            "shooting": "2",
+            "stamina": 2
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 507,
+      "code": "militia",
+      "name": "Milicia",
+      "category": "FOOT",
+      "unitType": "Infantería regular",
+      "bases": 4,
+      "armament": "Mosquete de ánima lisa",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "",
+      "basePoints": 36,
+      "constraints": null,
+      "options": [
+        {
+          "id": 508,
+          "code": "medium",
+          "description": "Mediana",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 3,
+            "handToHand": "4",
+            "shooting": "2",
+            "stamina": 2
+          }
+        },
+        {
+          "id": 509,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -18,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 2,
+            "handToHand": "2",
+            "shooting": "1",
+            "stamina": 1
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 510,
+      "code": "settlers",
+      "name": "Colonos",
+      "category": "FOOT",
+      "unitType": "Infantería irregular",
+      "bases": 4,
+      "armament": "Mosquete de ánima lisa",
+      "handToHand": "5",
+      "shooting": "2",
+      "morale": "5+",
+      "stamina": 3,
+      "specialRules": "Poco fiable",
+      "basePoints": 26,
+      "constraints": null,
+      "options": [
+        {
+          "id": 511,
+          "code": "medium",
+          "description": "Mediana",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 3,
+            "handToHand": "3",
+            "shooting": "2",
+            "stamina": 2
+          }
+        },
+        {
+          "id": 512,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -16,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 2,
+            "handToHand": "1",
+            "shooting": "1",
+            "stamina": 1
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 513,
+      "code": "frontiersmen",
+      "name": "Hombres de Frontera",
+      "category": "FOOT",
+      "unitType": "Infantería irregular",
+      "bases": 3,
+      "armament": "Mosquete de ánima lisa",
+      "handToHand": "4",
+      "shooting": "3",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Tirador curtido, Emboscada, Tenaces",
+      "basePoints": 38,
+      "constraints": null,
+      "options": [
+        {
+          "id": 514,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 2,
+            "handToHand": "2",
+            "shooting": "2",
+            "stamina": 2
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 515,
+      "code": "indian_war_party",
+      "name": "Partida de Guerra India",
+      "category": "FOOT",
+      "unitType": "Infantería irregular",
+      "bases": 4,
+      "armament": "Mosquete de ánima lisa",
+      "handToHand": "6",
+      "shooting": "2",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Objetivo no claro, Combatiente aguerrido, Carga salvaje (+2D), Emboscada",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [
+        {
+          "id": 516,
+          "code": "medium",
+          "description": "Mediana",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 3,
+            "handToHand": "4",
+            "shooting": "2",
+            "stamina": 2
+          }
+        },
+        {
+          "id": 517,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -16,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 2,
+            "handToHand": "2",
+            "shooting": "1",
+            "stamina": 1
+          }
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 518,
+      "code": "regular_cavalry",
+      "name": "Caballería Regular",
+      "category": "HORSE",
+      "unitType": "Caballería regular",
+      "bases": 3,
+      "armament": "Espadas",
+      "handToHand": "8",
+      "shooting": "–",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "",
+      "basePoints": 44,
+      "constraints": null,
+      "options": [],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 519,
+      "code": "mounted_militia",
+      "name": "Milicia a Caballo",
+      "category": "HORSE",
+      "unitType": "Caballería irregular",
+      "bases": 3,
+      "armament": "Mosquete de ánima lisa",
+      "handToHand": "6",
+      "shooting": "2",
+      "morale": "5+",
+      "stamina": 3,
+      "specialRules": "",
+      "basePoints": 36,
+      "constraints": null,
+      "options": [
+        {
+          "id": 520,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": {
+            "bases": 2,
+            "handToHand": "4",
+            "shooting": "1",
+            "stamina": 2
+          }
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": 18
+    },
+    {
+      "id": 521,
+      "code": "artillery",
+      "name": "Artillería",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": 1,
+      "armament": "Artillería de ánima lisa",
+      "handToHand": "0 / 1 (limbered)",
+      "shooting": "3-2-1",
+      "morale": "4+",
+      "stamina": 2,
+      "specialRules": "",
+      "basePoints": 27,
+      "constraints": null,
+      "options": [],
+      "moveRange": 12,
+      "weaponRange": 48
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": 124,
+  "code": "portugal",
+  "name": "Portugal",
+  "isOfficial": true,
+  "groupCode": "portugal",
+  "rulesetName": "Reglamento Oficial",
+  "available": true,
+  "commanders": [],
+  "units": []
+}

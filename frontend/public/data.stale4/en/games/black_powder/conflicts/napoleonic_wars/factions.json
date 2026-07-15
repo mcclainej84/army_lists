@@ -1,0 +1,119 @@
+[
+  {
+    "id": 124,
+    "code": "portugal",
+    "name": "Portugal",
+    "isOfficial": true,
+    "groupCode": "portugal",
+    "rulesetName": "Official Rules",
+    "available": true
+  },
+  {
+    "id": 125,
+    "code": "british_custom",
+    "name": "Great Britain",
+    "isOfficial": false,
+    "groupCode": "british",
+    "rulesetName": "Custom Rules",
+    "available": true
+  },
+  {
+    "id": 126,
+    "code": "british_waterloo",
+    "name": "Great Britain",
+    "isOfficial": true,
+    "groupCode": "british",
+    "rulesetName": "Waterloo",
+    "available": false
+  },
+  {
+    "id": 127,
+    "code": "french_custom",
+    "name": "France",
+    "isOfficial": false,
+    "groupCode": "french",
+    "rulesetName": "Custom Rules",
+    "available": true
+  },
+  {
+    "id": 128,
+    "code": "french_clash_of_eagles",
+    "name": "France",
+    "isOfficial": true,
+    "groupCode": "french",
+    "rulesetName": "Clash of Eagles",
+    "available": false
+  },
+  {
+    "id": 129,
+    "code": "french_waterloo",
+    "name": "France",
+    "isOfficial": true,
+    "groupCode": "french",
+    "rulesetName": "Waterloo",
+    "available": false
+  },
+  {
+    "id": 130,
+    "code": "prussian_custom",
+    "name": "Prussia",
+    "isOfficial": false,
+    "groupCode": "prussian",
+    "rulesetName": "Custom Rules",
+    "available": true
+  },
+  {
+    "id": 131,
+    "code": "prussian_clash_of_eagles",
+    "name": "Prussia",
+    "isOfficial": true,
+    "groupCode": "prussian",
+    "rulesetName": "Clash of Eagles",
+    "available": false
+  },
+  {
+    "id": 132,
+    "code": "prussian_waterloo",
+    "name": "Prussia",
+    "isOfficial": true,
+    "groupCode": "prussian",
+    "rulesetName": "Waterloo",
+    "available": false
+  },
+  {
+    "id": 133,
+    "code": "austrian_custom",
+    "name": "Austria",
+    "isOfficial": false,
+    "groupCode": "austrian",
+    "rulesetName": "Custom Rules",
+    "available": true
+  },
+  {
+    "id": 134,
+    "code": "austrian_clash_of_eagles",
+    "name": "Austria",
+    "isOfficial": true,
+    "groupCode": "austrian",
+    "rulesetName": "Clash of Eagles",
+    "available": false
+  },
+  {
+    "id": 135,
+    "code": "austrian_waterloo",
+    "name": "Austria",
+    "isOfficial": true,
+    "groupCode": "austrian",
+    "rulesetName": "Waterloo",
+    "available": false
+  },
+  {
+    "id": 136,
+    "code": "russian_custom",
+    "name": "Russia",
+    "isOfficial": true,
+    "groupCode": "russian",
+    "rulesetName": "Clash of Eagles",
+    "available": true
+  }
+]

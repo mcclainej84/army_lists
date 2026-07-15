@@ -1,0 +1,38 @@
+[
+  {
+    "id": 124,
+    "code": "portugal",
+    "name": "Portugal",
+    "isOfficial": true
+  },
+  {
+    "id": 125,
+    "code": "british_custom",
+    "name": "Gran Bretaña",
+    "isOfficial": false
+  },
+  {
+    "id": 126,
+    "code": "french_custom",
+    "name": "Francia",
+    "isOfficial": false
+  },
+  {
+    "id": 127,
+    "code": "prussian_custom",
+    "name": "Prusia",
+    "isOfficial": false
+  },
+  {
+    "id": 128,
+    "code": "austrian_custom",
+    "name": "Austria",
+    "isOfficial": false
+  },
+  {
+    "id": 129,
+    "code": "russian_custom",
+    "name": "Rusia",
+    "isOfficial": false
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "id": 611,
+    "code": "fiw_british",
+    "name": "British",
+    "isOfficial": true,
+    "groupCode": "fiw_british",
+    "rulesetName": "Single Roster",
+    "available": true
+  },
+  {
+    "id": 612,
+    "code": "fiw_french",
+    "name": "French",
+    "isOfficial": true,
+    "groupCode": "fiw_french",
+    "rulesetName": "Single Roster",
+    "available": true
+  }
+]
