@@ -4,6 +4,10 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.42 — 2026-07-15
+
+- Actualizados los escudos de las 4 facciones de Epic Pike & Shotte (Imperial, Sueco, Francés, Español) con el nuevo arte de más detalle que pasó el usuario.
+
 ## 0.41 — 2026-07-15
 
 - Rehecho el paso de reglamento tras el feedback de que la etiqueta dentro de la tarjeta de facción quedaba descuadrada: ahora, al elegir facción, aparece un nuevo paso 4 "Elige el reglamento" debajo (mismo patrón visual que los pasos 1-3), con la opción de reglamento de esa facción para confirmar antes de entrar al generador de listas.
