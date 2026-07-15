@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "code": "epic_pike_and_shotte",
+    "name": "Epic Pike & Shotte"
+  },
+  {
+    "id": 2,
+    "code": "black_powder",
+    "name": "Black Powder"
+  },
+  {
+    "id": 3,
+    "code": "french_indian_war",
+    "name": "French Indian War"
+  }
+]

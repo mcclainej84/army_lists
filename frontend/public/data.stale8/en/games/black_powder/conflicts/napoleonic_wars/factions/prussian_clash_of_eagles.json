@@ -1,0 +1,400 @@
+{
+  "id": 131,
+  "code": "prussian_clash_of_eagles",
+  "name": "Prussia",
+  "isOfficial": true,
+  "groupCode": "prussian",
+  "rulesetName": "Clash of Eagles",
+  "available": true,
+  "commanders": [
+    {
+      "id": 526,
+      "code": "brigade_leader_vm7",
+      "name": "Brigade Leader",
+      "commandRating": 7,
+      "points": 0,
+      "role": "battalia_leader",
+      "moveRange": 48
+    },
+    {
+      "id": 527,
+      "code": "brigade_leader_vm8",
+      "name": "Brigade Leader",
+      "commandRating": 8,
+      "points": 25,
+      "role": "battalia_leader",
+      "moveRange": 48
+    },
+    {
+      "id": 528,
+      "code": "brigade_leader_vm9",
+      "name": "Brigade Leader",
+      "commandRating": 9,
+      "points": 50,
+      "role": "battalia_leader",
+      "moveRange": 48
+    }
+  ],
+  "units": [
+    {
+      "id": 529,
+      "code": "musketeer",
+      "name": "Musketeer",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Lie Down, Must Form Closed Square, Column of Companies, Close Column, Mixed Formation",
+      "basePoints": 36,
+      "constraints": null,
+      "options": [
+        {
+          "id": 530,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 531,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 532,
+      "code": "fusilier",
+      "name": "Fusilier",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Skirmish, Sharpshooter, Lie Down, Must Form Closed Square, Column of Companies, Closed Column, Light Infantry Mixed Formation",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [
+        {
+          "id": 533,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 534,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 535,
+      "code": "jager",
+      "name": "Jäger",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Rifled Musket",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Skirmish, Sharpshooter, Reliable, Elite 5+, Lie Down, Must Form Closed Square, Column of Companies, Closed Column, Rifle Mixed Formation, Light Infantry Mixed Formation",
+      "basePoints": 42,
+      "constraints": null,
+      "options": [
+        {
+          "id": 536,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 537,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 24
+    },
+    {
+      "id": 538,
+      "code": "guard_musketeer",
+      "name": "Guard Musketeer",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "7",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Reliable, Elite 4+, Lie Down, Must Form Closed Square, Column of Companies, Close Column, Mixed Formation",
+      "basePoints": 47,
+      "constraints": null,
+      "options": [
+        {
+          "id": 539,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 540,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 541,
+      "code": "guard_fusilier",
+      "name": "Guard Fusilier",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "7",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Reliable, Elite 4+, Skirmish, Sharpshooter, Lie Down, Must Form Closed Square, Column of Companies, Closed Column, Light Infantry Mixed Formation",
+      "basePoints": 50,
+      "constraints": null,
+      "options": [
+        {
+          "id": 542,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 543,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 544,
+      "code": "dragoons",
+      "name": "Dragoons",
+      "category": "HORSE",
+      "unitType": "Cavalry",
+      "bases": null,
+      "armament": "Sabre",
+      "handToHand": "8",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Heavy Cavalry D1",
+      "basePoints": 44,
+      "constraints": null,
+      "options": [
+        {
+          "id": 545,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 546,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 547,
+      "code": "hussars",
+      "name": "Hussars",
+      "category": "HORSE",
+      "unitType": "Cavalry",
+      "bases": null,
+      "armament": "Sabre",
+      "handToHand": "6",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Marauder",
+      "basePoints": 41,
+      "constraints": null,
+      "options": [
+        {
+          "id": 548,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 549,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 550,
+      "code": "foot_artillery",
+      "name": "Foot Artillery",
+      "category": "ORDNANCE",
+      "unitType": "Artillery",
+      "bases": null,
+      "armament": "Smoothbore Artillery",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 2,
+      "specialRules": "–",
+      "basePoints": 27,
+      "constraints": null,
+      "options": [
+        {
+          "id": 551,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 552,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    },
+    {
+      "id": 553,
+      "code": "horse_artillery",
+      "name": "Horse Artillery",
+      "category": "ORDNANCE",
+      "unitType": "Artillery",
+      "bases": null,
+      "armament": "Smoothbore Artillery",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 1,
+      "specialRules": "Marauder",
+      "basePoints": 30,
+      "constraints": null,
+      "options": [
+        {
+          "id": 554,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 555,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 36
+    },
+    {
+      "id": 556,
+      "code": "heavy_artillery",
+      "name": "Heavy Artillery",
+      "category": "ORDNANCE",
+      "unitType": "Artillery",
+      "bases": null,
+      "armament": "Smoothbore Heavy Artillery",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 2,
+      "specialRules": "Siege Artillery",
+      "basePoints": 31,
+      "constraints": null,
+      "options": [
+        {
+          "id": 557,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 558,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    }
+  ]
+}

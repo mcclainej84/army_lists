@@ -1,0 +1,1066 @@
+{
+  "id": 125,
+  "code": "french_clash_of_eagles",
+  "name": "Francia",
+  "isOfficial": true,
+  "groupCode": "french",
+  "rulesetName": "Clash of Eagles",
+  "available": true,
+  "commanders": [
+    {
+      "id": 228,
+      "code": "brigade_leader_vm7",
+      "name": "Líder de Brigada",
+      "commandRating": 7,
+      "points": 0,
+      "role": "battalia_leader",
+      "moveRange": 48
+    },
+    {
+      "id": 229,
+      "code": "brigade_leader_vm8",
+      "name": "Líder de Brigada",
+      "commandRating": 8,
+      "points": 25,
+      "role": "battalia_leader",
+      "moveRange": 48
+    },
+    {
+      "id": 230,
+      "code": "brigade_leader_vm9",
+      "name": "Líder de Brigada",
+      "commandRating": 9,
+      "points": 50,
+      "role": "battalia_leader",
+      "moveRange": 48
+    },
+    {
+      "id": 231,
+      "code": "guard_divisional_commander_vm8",
+      "name": "Comandante Divisional de la Guardia",
+      "commandRating": 8,
+      "points": 35,
+      "role": "army_general",
+      "moveRange": 48
+    },
+    {
+      "id": 232,
+      "code": "guard_divisional_commander_vm9",
+      "name": "Comandante Divisional de la Guardia",
+      "commandRating": 9,
+      "points": 60,
+      "role": "army_general",
+      "moveRange": 48
+    }
+  ],
+  "units": [
+    {
+      "id": 233,
+      "code": "line_infantry",
+      "name": "Infantería de Línea",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Pas de Charge, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta",
+      "basePoints": 38,
+      "constraints": null,
+      "options": [
+        {
+          "id": 234,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 235,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 236,
+      "code": "light_infantry",
+      "name": "Infantería Ligera",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Pas de Charge, Tiradores Certeros, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta de Infantería Ligera, Hostigador",
+      "basePoints": 41,
+      "constraints": null,
+      "options": [
+        {
+          "id": 237,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 238,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 239,
+      "code": "combined_grenadiers",
+      "name": "Granaderos Combinados",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "7",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Pas de Charge, Élite 5+, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta",
+      "basePoints": 43,
+      "constraints": null,
+      "options": [
+        {
+          "id": 240,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 241,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 242,
+      "code": "combined_voltigeurs",
+      "name": "Voltigeurs Combinados",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "6",
+      "shooting": "4",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Pas de Charge, Hostigador, Tirador Certero, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta, Formación Mixta de Infantería Ligera",
+      "basePoints": 41,
+      "constraints": null,
+      "options": [
+        {
+          "id": 243,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 244,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 245,
+      "code": "old_guard",
+      "name": "Vieja Guardia (Granaderos y Cazadores)",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "8",
+      "shooting": "4",
+      "morale": "3",
+      "stamina": 4,
+      "specialRules": "Pas de Charge, Fiables, Élite 3+, Luchadores Aguerridos, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta",
+      "basePoints": 61,
+      "constraints": null,
+      "options": [
+        {
+          "id": 246,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 247,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 248,
+      "code": "middle_guard",
+      "name": "Media Guardia (Granaderos, Cazadores, Fusileros-Granaderos, Fusileros-Cazadores)",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "7",
+      "shooting": "4",
+      "morale": "3",
+      "stamina": 3,
+      "specialRules": "Pas de Charge, Fiables, Élite 4+, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta",
+      "basePoints": 53,
+      "constraints": null,
+      "options": [
+        {
+          "id": 249,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 250,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 251,
+      "code": "young_guard",
+      "name": "Joven Guardia (Voltigeurs y Tirailleurs)",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "7",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Pas de Charge, Fiables, Élite 5+, Hostigador, Tirador Certero, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta, Formación Mixta de Infantería Ligera",
+      "basePoints": 50,
+      "constraints": null,
+      "options": [
+        {
+          "id": 252,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 253,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 254,
+      "code": "vistula_legion_infantry",
+      "name": "Infantería de la Legión del Vístula",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Fiables, Élite 5+, Pas de Charge, Luchador Aguerrido",
+      "basePoints": 47,
+      "constraints": null,
+      "options": [
+        {
+          "id": 255,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 256,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 257,
+      "code": "portuguese_spanish_infantry",
+      "name": "Infantería Portuguesa o Española",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "–",
+      "basePoints": 36,
+      "constraints": null,
+      "options": [
+        {
+          "id": 258,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 259,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 260,
+      "code": "rheinbund_infantry",
+      "name": "Infantería de la Confederación del Rin",
+      "category": "FOOT",
+      "unitType": "Infantería",
+      "bases": null,
+      "armament": "Mosquete de Ánima Lisa",
+      "handToHand": "5",
+      "shooting": "3",
+      "morale": "5",
+      "stamina": 3,
+      "specialRules": "Falta de Iniciativa",
+      "basePoints": 31,
+      "constraints": null,
+      "options": [
+        {
+          "id": 261,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 262,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 263,
+      "code": "dragoons",
+      "name": "Dragones",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Sable",
+      "handToHand": "8",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Caballería Pesada D1",
+      "basePoints": 44,
+      "constraints": null,
+      "options": [
+        {
+          "id": 264,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 265,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 266,
+      "code": "hussars_chasseurs",
+      "name": "Húsares / Chasseurs-à-Cheval",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Sable",
+      "handToHand": "6",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Merodeador",
+      "basePoints": 41,
+      "constraints": null,
+      "options": [
+        {
+          "id": 267,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 268,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 269,
+      "code": "lancers",
+      "name": "Chevau-Léger Lanceros",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Lanza",
+      "handToHand": "7",
+      "shooting": "0",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Lanceros, Merodeador",
+      "basePoints": 48,
+      "constraints": null,
+      "options": [
+        {
+          "id": 270,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 271,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 272,
+      "code": "cuirassiers_carabiniers",
+      "name": "Coraceros / Carabineros",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Sable",
+      "handToHand": "9",
+      "shooting": "–",
+      "morale": "3",
+      "stamina": 3,
+      "specialRules": "Fiables, Caballería Pesada D3",
+      "basePoints": 58,
+      "constraints": null,
+      "options": [
+        {
+          "id": 273,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 274,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 275,
+      "code": "guard_heavy_cavalry",
+      "name": "Caballería Pesada de la Guardia",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Sable",
+      "handToHand": "10",
+      "shooting": "0",
+      "morale": "3",
+      "stamina": 3,
+      "specialRules": "Caballería Pesada D3, Fiables",
+      "basePoints": 60,
+      "constraints": null,
+      "options": [
+        {
+          "id": 276,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 277,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 278,
+      "code": "guard_light_cavalry",
+      "name": "Caballería Ligera de la Guardia",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Sable",
+      "handToHand": "7",
+      "shooting": "0",
+      "morale": "3",
+      "stamina": 3,
+      "specialRules": "Fiables, Merodeador",
+      "basePoints": 52,
+      "constraints": null,
+      "options": [
+        {
+          "id": 279,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 280,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 281,
+      "code": "guard_lancer_cavalry",
+      "name": "Caballería Lancera de la Guardia",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Lanza",
+      "handToHand": "8",
+      "shooting": "0",
+      "morale": "3",
+      "stamina": 3,
+      "specialRules": "Fiables, Merodeador, Lanceros",
+      "basePoints": 58,
+      "constraints": null,
+      "options": [
+        {
+          "id": 282,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 283,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 284,
+      "code": "polish_uhlan",
+      "name": "Ulanos Polacos",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Lanza",
+      "handToHand": "5",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Lanceros",
+      "basePoints": 48,
+      "constraints": null,
+      "options": [
+        {
+          "id": 285,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 286,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 287,
+      "code": "wurttemberg_horse_jager",
+      "name": "Jäger a Caballo de Wurtemberg",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Sable",
+      "handToHand": "6",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Merodeador",
+      "basePoints": 41,
+      "constraints": null,
+      "options": [
+        {
+          "id": 288,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 289,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 290,
+      "code": "bavarian_chevauleger",
+      "name": "Chevauleger Bávaro",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": null,
+      "armament": "Sable",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Merodeador",
+      "basePoints": 48,
+      "constraints": null,
+      "options": [
+        {
+          "id": 291,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 292,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 293,
+      "code": "foot_artillery",
+      "name": "Artillería a Pie",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Artillería de Ánima Lisa",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 2,
+      "specialRules": "–",
+      "basePoints": 27,
+      "constraints": null,
+      "options": [
+        {
+          "id": 294,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 295,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    },
+    {
+      "id": 296,
+      "code": "horse_artillery",
+      "name": "Artillería a Caballo",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Artillería de Ánima Lisa",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 1,
+      "specialRules": "Merodeador",
+      "basePoints": 30,
+      "constraints": null,
+      "options": [
+        {
+          "id": 297,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 298,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 36
+    },
+    {
+      "id": 299,
+      "code": "heavy_foot_artillery",
+      "name": "Artillería Pesada / de Posición",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Artillería Pesada de Ánima Lisa",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 2,
+      "specialRules": "Artillería de Asedio",
+      "basePoints": 31,
+      "constraints": null,
+      "options": [
+        {
+          "id": 300,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 301,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    },
+    {
+      "id": 302,
+      "code": "old_guard_foot_artillery",
+      "name": "Artillería a Pie de la Vieja Guardia",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Artillería de Ánima Lisa",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "3",
+      "stamina": 2,
+      "specialRules": "Fiables, Élite 4+",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [
+        {
+          "id": 303,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 304,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    },
+    {
+      "id": 305,
+      "code": "old_guard_heavy_foot_artillery",
+      "name": "Artillería Pesada a Pie de la Vieja Guardia",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Artillería Pesada de Ánima Lisa",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "3",
+      "stamina": 2,
+      "specialRules": "Fiables, Élite 4+, Artillería de Asedio",
+      "basePoints": 43,
+      "constraints": null,
+      "options": [
+        {
+          "id": 306,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 307,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    },
+    {
+      "id": 308,
+      "code": "old_guard_horse_artillery",
+      "name": "Artillería a Caballo de la Vieja Guardia",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Artillería de Ánima Lisa",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "3",
+      "stamina": 1,
+      "specialRules": "Fiables, Élite 4+, Merodeador",
+      "basePoints": 42,
+      "constraints": null,
+      "options": [
+        {
+          "id": 309,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 310,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 36
+    },
+    {
+      "id": 311,
+      "code": "young_guard_artillery",
+      "name": "Artillería de la Joven Guardia",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Artillería de Ánima Lisa",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 2,
+      "specialRules": "Fiables, Élite 5+",
+      "basePoints": 35,
+      "constraints": null,
+      "options": [
+        {
+          "id": 312,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 313,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    },
+    {
+      "id": 314,
+      "code": "young_guard_horse_artillery",
+      "name": "Artillería a Caballo de la Joven Guardia",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": null,
+      "armament": "Artillería de Ánima Lisa",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 1,
+      "specialRules": "Fiables, Élite 5+, Merodeador",
+      "basePoints": 38,
+      "constraints": null,
+      "options": [
+        {
+          "id": 315,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 316,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 36
+    }
+  ]
+}

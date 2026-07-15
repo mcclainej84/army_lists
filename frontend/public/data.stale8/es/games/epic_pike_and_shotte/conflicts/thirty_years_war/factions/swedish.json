@@ -1,0 +1,528 @@
+{
+  "id": 6,
+  "code": "swedish",
+  "name": "Ejército Sueco",
+  "isOfficial": true,
+  "groupCode": "swedish",
+  "rulesetName": "Reglamento Oficial Pike & Shotte",
+  "available": true,
+  "commanders": [
+    {
+      "id": 39,
+      "code": "army_general",
+      "name": "General en Jefe",
+      "commandRating": 8,
+      "points": 40,
+      "role": "army_general",
+      "moveRange": 27
+    },
+    {
+      "id": 40,
+      "code": "battalia_commander",
+      "name": "Comandante de Batalla",
+      "commandRating": 8,
+      "points": 40,
+      "role": "battalia_leader",
+      "moveRange": 27
+    }
+  ],
+  "units": [
+    {
+      "id": 41,
+      "code": "cuirassiers",
+      "name": "Coraceros",
+      "category": "HORSE",
+      "unitType": "Caballería Pesada",
+      "bases": 3,
+      "armament": "Pistola",
+      "handToHand": "8",
+      "shooting": "1",
+      "morale": "3+",
+      "stamina": 4,
+      "specialRules": "Caracola, Caballería Pesada",
+      "basePoints": 53,
+      "constraints": {
+        "maxUnitsPerArmy": 2
+      },
+      "options": [],
+      "moveRange": 9,
+      "weaponRange": 6
+    },
+    {
+      "id": 42,
+      "code": "harquebusiers",
+      "name": "Arcabuceros a Caballo",
+      "category": "HORSE",
+      "unitType": "Caballería",
+      "bases": 3,
+      "armament": "Carabina, Pistola",
+      "handToHand": "7",
+      "shooting": "1",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "–",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [],
+      "moveRange": 9,
+      "weaponRange": 12
+    },
+    {
+      "id": 43,
+      "code": "light_cavalry",
+      "name": "Caballería Ligera",
+      "category": "HORSE",
+      "unitType": "Caballería Ligera Escaramuzadora",
+      "bases": 3,
+      "armament": "Pistola",
+      "handToHand": "7",
+      "shooting": "1",
+      "morale": "5+",
+      "stamina": 3,
+      "specialRules": "–",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [],
+      "moveRange": 12,
+      "weaponRange": 6
+    },
+    {
+      "id": 44,
+      "code": "finnish_cavalry",
+      "name": "Caballería Finlandesa",
+      "category": "HORSE",
+      "unitType": "Caballería Ligera",
+      "bases": 3,
+      "armament": "Pistola",
+      "handToHand": "7",
+      "shooting": "1",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Gallopers, Carga Feroz",
+      "basePoints": 36,
+      "constraints": {
+        "cannotOutnumber": "light_cavalry"
+      },
+      "options": [],
+      "moveRange": 12,
+      "weaponRange": 6
+    },
+    {
+      "id": 45,
+      "code": "dragoons",
+      "name": "Dragones",
+      "category": "HORSE",
+      "unitType": "Escaramuzador a Caballo y Pie",
+      "bases": 3,
+      "armament": "Chispa",
+      "handToHand": "3",
+      "shooting": "2",
+      "morale": "5+",
+      "stamina": 3,
+      "specialRules": "Disparar y Replegarse, Merodeador",
+      "basePoints": 35,
+      "constraints": null,
+      "options": [],
+      "moveRange": 9,
+      "weaponRange": 18
+    },
+    {
+      "id": 46,
+      "code": "swedish_german_pike_musket",
+      "name": "Pica y Mosquete Sueco o Alemán",
+      "category": "FOOT",
+      "unitType": "Infantería Combinada",
+      "bases": 4,
+      "armament": "Pica, Mosquete de Mecha",
+      "handToHand": "6",
+      "shooting": "4",
+      "morale": "4+",
+      "stamina": 5,
+      "specialRules": "Erizo, Primer Fuego",
+      "basePoints": 47,
+      "constraints": null,
+      "options": [
+        {
+          "id": 47,
+          "code": "elite",
+          "description": "Élite (4+)",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 48,
+          "code": "stubborn",
+          "description": "Tenaz",
+          "pointDelta": 5,
+          "constraints": {
+            "maxUnitsPerArmy": 2
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 49,
+      "code": "swedish_german_pikemen",
+      "name": "Piqueros Suecos o Alemanes",
+      "category": "FOOT",
+      "unitType": "Bloque de Picas",
+      "bases": 2,
+      "armament": "Pica",
+      "handToHand": "5",
+      "shooting": "–",
+      "morale": "3+",
+      "stamina": 4,
+      "specialRules": "Erizo",
+      "basePoints": 37,
+      "constraints": null,
+      "options": [
+        {
+          "id": 50,
+          "code": "elite",
+          "description": "Élite (4+)",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 51,
+          "code": "stubborn",
+          "description": "Tenaz",
+          "pointDelta": 5,
+          "constraints": {
+            "maxUnitsPerArmy": 2
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": null
+    },
+    {
+      "id": 52,
+      "code": "swedish_german_musketeers",
+      "name": "Mosqueteros Suecos o Alemanes",
+      "category": "FOOT",
+      "unitType": "Línea de Batalla",
+      "bases": 2,
+      "armament": "Mosquete de Mecha",
+      "handToHand": "4",
+      "shooting": "3",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Primer Fuego",
+      "basePoints": 33,
+      "constraints": {
+        "maxRatioTo": {
+          "unitCode": "swedish_german_pikemen",
+          "ratio": 3
+        }
+      },
+      "options": [
+        {
+          "id": 53,
+          "code": "elite",
+          "description": "Élite (4+)",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 54,
+          "code": "guard_musketeers",
+          "description": "Mosqueteros de Guardia (gana Tenaz)",
+          "pointDelta": 5,
+          "constraints": {
+            "maxUnitsPerArmy": 4
+          },
+          "statOverrides": null
+        },
+        {
+          "id": 55,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 56,
+          "code": "scots",
+          "description": "Escoceses (Arco en vez de Mosquete)",
+          "pointDelta": -2,
+          "constraints": {
+            "maxUnitsPerArmy": 3
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 57,
+      "code": "saxon_pike_musket",
+      "name": "Pica y Mosquete Sajón",
+      "category": "FOOT",
+      "unitType": "Infantería Combinada",
+      "bases": 4,
+      "armament": "Pica, Mosquete",
+      "handToHand": "7",
+      "shooting": "3",
+      "morale": "4+",
+      "stamina": 4,
+      "specialRules": "Erizo, Mercenario",
+      "basePoints": 38,
+      "constraints": null,
+      "options": [
+        {
+          "id": 58,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 59,
+          "code": "elite",
+          "description": "Élite (4+)",
+          "pointDelta": 6,
+          "constraints": {
+            "maxUnitsPerArmy": 1
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 60,
+      "code": "saxon_pikemen",
+      "name": "Piqueros Sajones",
+      "category": "FOOT",
+      "unitType": "Bloque de Picas",
+      "bases": 2,
+      "armament": "Pica",
+      "handToHand": "6",
+      "shooting": "–",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Erizo, Mercenario",
+      "basePoints": 31,
+      "constraints": null,
+      "options": [
+        {
+          "id": 61,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 62,
+          "code": "elite",
+          "description": "Élite (4+)",
+          "pointDelta": 6,
+          "constraints": {
+            "maxUnitsPerArmy": 1
+          },
+          "statOverrides": null
+        },
+        {
+          "id": 63,
+          "code": "halberds",
+          "description": "Alabardas (–Pica y Erizo, +Arma a Dos Manos)",
+          "pointDelta": 2,
+          "constraints": {
+            "maxUnitsPerArmy": 1
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": null
+    },
+    {
+      "id": 64,
+      "code": "saxon_musketeers",
+      "name": "Mosqueteros Sajones",
+      "category": "FOOT",
+      "unitType": "Línea de Batalla",
+      "bases": 2,
+      "armament": "Mosquete de Mecha",
+      "handToHand": "3",
+      "shooting": "2",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Mercenario",
+      "basePoints": 24,
+      "constraints": {
+        "maxRatioTo": {
+          "unitCode": "imperial_pikemen",
+          "ratio": 2
+        },
+        "sourceNote": "Texto del reglamento tal cual, posible errata."
+      },
+      "options": [
+        {
+          "id": 65,
+          "code": "small",
+          "description": "Pequeña",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 66,
+      "code": "swedish_german_commanded_musket",
+      "name": "Mosquete Destacado Sueco o Alemán",
+      "category": "FOOT",
+      "unitType": "Línea de Batalla",
+      "bases": 2,
+      "armament": "Mosquete de Mecha",
+      "handToHand": "3",
+      "shooting": "4",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Primer Fuego",
+      "basePoints": 35,
+      "constraints": {
+        "maxUnitsPerArmy": 2
+      },
+      "options": [
+        {
+          "id": 67,
+          "code": "large",
+          "description": "Grande",
+          "pointDelta": 8,
+          "constraints": {
+            "maxUnitsPerArmy": 1
+          },
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 68,
+      "code": "storming_party",
+      "name": "Partida de Asalto",
+      "category": "FOOT",
+      "unitType": "Línea de Batalla",
+      "bases": 2,
+      "armament": "Mosquete de Chispa",
+      "handToHand": "4",
+      "shooting": "2",
+      "morale": "4+",
+      "stamina": 3,
+      "specialRules": "Primer Fuego",
+      "basePoints": 34,
+      "constraints": {
+        "maxUnitsPerArmy": 1
+      },
+      "options": [
+        {
+          "id": 69,
+          "code": "elite",
+          "description": "Élite (4+)",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 70,
+          "code": "petard",
+          "description": "Petardo",
+          "pointDelta": 20,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 6,
+      "weaponRange": 18
+    },
+    {
+      "id": 71,
+      "code": "militia",
+      "name": "Milicia",
+      "category": "FOOT",
+      "unitType": "Horda",
+      "bases": 4,
+      "armament": "Armas Arrojadizas",
+      "handToHand": "2",
+      "shooting": "1",
+      "morale": "6+",
+      "stamina": 2,
+      "specialRules": "Chusma, Milicia",
+      "basePoints": 7,
+      "constraints": null,
+      "options": [],
+      "moveRange": 6,
+      "weaponRange": 6
+    },
+    {
+      "id": 72,
+      "code": "light_ordnance",
+      "name": "Artillería Ligera",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": 3,
+      "armament": "variable",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "5+",
+      "stamina": 2,
+      "specialRules": "–",
+      "basePoints": 17,
+      "constraints": {
+        "maxPerBattaliaGroup": {
+          "key": "ordnance",
+          "max": 3
+        }
+      },
+      "options": [],
+      "moveRange": 6,
+      "weaponRange": 24
+    },
+    {
+      "id": 73,
+      "code": "medium_ordnance",
+      "name": "Artillería Media",
+      "category": "ORDNANCE",
+      "unitType": "Artillería",
+      "bases": 3,
+      "armament": "variable",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "5+",
+      "stamina": 2,
+      "specialRules": "–",
+      "basePoints": 21,
+      "constraints": {
+        "maxPerBattaliaGroup": {
+          "key": "ordnance",
+          "max": 3
+        },
+        "maxRatioTo": {
+          "unitCode": "light_ordnance",
+          "ratio": 0.3333333333333333
+        }
+      },
+      "options": [],
+      "moveRange": 3,
+      "weaponRange": 36
+    }
+  ]
+}

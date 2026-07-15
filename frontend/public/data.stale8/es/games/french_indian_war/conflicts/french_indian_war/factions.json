@@ -1,0 +1,20 @@
+[
+  {
+    "id": 683,
+    "code": "fiw_british",
+    "name": "Ingleses",
+    "isOfficial": true,
+    "groupCode": "fiw_british",
+    "rulesetName": "Lista Única",
+    "available": true
+  },
+  {
+    "id": 684,
+    "code": "fiw_french",
+    "name": "Franceses",
+    "isOfficial": true,
+    "groupCode": "fiw_french",
+    "rulesetName": "Lista Única",
+    "available": true
+  }
+]

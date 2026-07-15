@@ -1,0 +1,924 @@
+{
+  "id": 124,
+  "code": "french_custom",
+  "name": "France",
+  "isOfficial": false,
+  "groupCode": "french",
+  "rulesetName": "Custom Rules",
+  "available": true,
+  "commanders": [
+    {
+      "id": 137,
+      "code": "brigade_leader_vm7",
+      "name": "Brigade Leader",
+      "commandRating": 7,
+      "points": 0,
+      "role": "battalia_leader",
+      "moveRange": 48
+    },
+    {
+      "id": 138,
+      "code": "brigade_leader_vm8",
+      "name": "Brigade Leader",
+      "commandRating": 8,
+      "points": 25,
+      "role": "battalia_leader",
+      "moveRange": 48
+    },
+    {
+      "id": 139,
+      "code": "brigade_leader_vm9",
+      "name": "Brigade Leader",
+      "commandRating": 9,
+      "points": 50,
+      "role": "battalia_leader",
+      "moveRange": 48
+    }
+  ],
+  "units": [
+    {
+      "id": 140,
+      "code": "line_infantry",
+      "name": "Infantry",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Mixed Formation, Must Form Square",
+      "basePoints": 36,
+      "constraints": null,
+      "options": [
+        {
+          "id": 141,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 142,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 143,
+          "code": "pas_de_charge",
+          "description": "Pas de Charge",
+          "pointDelta": 2,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 144,
+          "code": "reliable_elite5",
+          "description": "Reliable, Elite 5+",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 145,
+          "code": "reliable_elite4",
+          "description": "Reliable, Elite 4+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 146,
+          "code": "fierce_fighters",
+          "description": "Fierce Fighters",
+          "pointDelta": 1,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 147,
+          "code": "doubtful",
+          "description": "Doubtful",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 148,
+          "code": "morale5",
+          "description": "Morale 5",
+          "pointDelta": -4,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 149,
+          "code": "unreliable",
+          "description": "Unreliable",
+          "pointDelta": -3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 150,
+      "code": "light_infantry",
+      "name": "Light Infantry",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Mixed Formation, Must Form Square, Seasoned Marksmen, Skirmishers",
+      "basePoints": 39,
+      "constraints": null,
+      "options": [
+        {
+          "id": 151,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 152,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 153,
+          "code": "pas_de_charge",
+          "description": "Pas de Charge",
+          "pointDelta": 2,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 154,
+          "code": "reliable_elite5",
+          "description": "Reliable, Elite 5+",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 155,
+          "code": "reliable_elite4",
+          "description": "Reliable, Elite 4+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 156,
+          "code": "fierce_fighters",
+          "description": "Fierce Fighters",
+          "pointDelta": 1,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 157,
+          "code": "doubtful",
+          "description": "Doubtful",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 158,
+          "code": "morale5",
+          "description": "Morale 5",
+          "pointDelta": -4,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 159,
+          "code": "unreliable",
+          "description": "Unreliable",
+          "pointDelta": -3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 160,
+      "code": "recruits",
+      "name": "Recruits",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "3",
+      "morale": "5",
+      "stamina": 3,
+      "specialRules": "Mixed Formation, Must Form Square, Raw Recruits",
+      "basePoints": 29,
+      "constraints": null,
+      "options": [
+        {
+          "id": 161,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 162,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 163,
+          "code": "pas_de_charge",
+          "description": "Pas de Charge",
+          "pointDelta": 2,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 164,
+          "code": "reliable_elite5",
+          "description": "Reliable, Elite 5+",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 165,
+          "code": "reliable_elite4",
+          "description": "Reliable, Elite 4+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 166,
+          "code": "fierce_fighters",
+          "description": "Fierce Fighters",
+          "pointDelta": 1,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 167,
+          "code": "doubtful",
+          "description": "Doubtful",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 168,
+          "code": "unreliable",
+          "description": "Unreliable",
+          "pointDelta": -3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 169,
+      "code": "old_guard",
+      "name": "Old Guard",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "8",
+      "shooting": "4",
+      "morale": "3",
+      "stamina": 4,
+      "specialRules": "Mixed Formation, Must Form Square, Reliable, Elite 3+, Fierce Fighters",
+      "basePoints": 59,
+      "constraints": null,
+      "options": [
+        {
+          "id": 170,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 171,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 172,
+          "code": "pas_de_charge",
+          "description": "Pas de Charge",
+          "pointDelta": 2,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 173,
+          "code": "doubtful",
+          "description": "Doubtful",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 174,
+          "code": "morale5",
+          "description": "Morale 5",
+          "pointDelta": -4,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 175,
+          "code": "unreliable",
+          "description": "Unreliable",
+          "pointDelta": -3,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 176,
+          "code": "stubborn",
+          "description": "Stubborn",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 177,
+      "code": "middle_guard",
+      "name": "Middle Guard",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "8",
+      "shooting": "4",
+      "morale": "3",
+      "stamina": 4,
+      "specialRules": "Mixed Formation, Must Form Square, Reliable, Elite 4+",
+      "basePoints": 51,
+      "constraints": null,
+      "options": [
+        {
+          "id": 178,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 179,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 180,
+          "code": "pas_de_charge",
+          "description": "Pas de Charge",
+          "pointDelta": 2,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 181,
+          "code": "fierce_fighters",
+          "description": "Fierce Fighters",
+          "pointDelta": 1,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 182,
+          "code": "doubtful",
+          "description": "Doubtful",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 183,
+          "code": "morale5",
+          "description": "Morale 5",
+          "pointDelta": -4,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 184,
+          "code": "unreliable",
+          "description": "Unreliable",
+          "pointDelta": -3,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 185,
+          "code": "stubborn",
+          "description": "Stubborn",
+          "pointDelta": 3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 186,
+      "code": "young_guard",
+      "name": "Young Guard",
+      "category": "FOOT",
+      "unitType": "Infantry",
+      "bases": null,
+      "armament": "Smoothbore Musket",
+      "handToHand": "6",
+      "shooting": "4",
+      "morale": "3",
+      "stamina": 3,
+      "specialRules": "Mixed Formation, Must Form Square, Reliable, Elite 5+, Skirmishers",
+      "basePoints": 40,
+      "constraints": null,
+      "options": [
+        {
+          "id": 187,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 188,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 189,
+          "code": "pas_de_charge",
+          "description": "Pas de Charge",
+          "pointDelta": 2,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 190,
+          "code": "fierce_fighters",
+          "description": "Fierce Fighters",
+          "pointDelta": 1,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 191,
+          "code": "doubtful",
+          "description": "Doubtful",
+          "pointDelta": -6,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 192,
+          "code": "morale5",
+          "description": "Morale 5",
+          "pointDelta": -4,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 193,
+          "code": "unreliable",
+          "description": "Unreliable",
+          "pointDelta": -3,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 18
+    },
+    {
+      "id": 194,
+      "code": "dragoons",
+      "name": "Dragoons",
+      "category": "HORSE",
+      "unitType": "Cavalry",
+      "bases": null,
+      "armament": "Saber",
+      "handToHand": "8",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Heavy Cavalry +1",
+      "basePoints": 44,
+      "constraints": null,
+      "options": [
+        {
+          "id": 195,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 196,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 197,
+      "code": "hussars",
+      "name": "Hussars",
+      "category": "HORSE",
+      "unitType": "Cavalry",
+      "bases": null,
+      "armament": "Saber",
+      "handToHand": "6",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Raiders",
+      "basePoints": 41,
+      "constraints": null,
+      "options": [
+        {
+          "id": 198,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 199,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 200,
+          "code": "reliable_plus1cac",
+          "description": "Reliable, +1 Hand-to-Hand",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 201,
+      "code": "lancers",
+      "name": "Lancers",
+      "category": "HORSE",
+      "unitType": "Cavalry",
+      "bases": null,
+      "armament": "Lance",
+      "handToHand": "7",
+      "shooting": "–",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Lancers, Raiders",
+      "basePoints": 48,
+      "constraints": null,
+      "options": [
+        {
+          "id": 202,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 203,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 204,
+          "code": "reliable_plus1cac",
+          "description": "Reliable, +1 Hand-to-Hand",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 205,
+      "code": "cuirassiers_carabiniers",
+      "name": "Cuirassiers / Carabiniers",
+      "category": "HORSE",
+      "unitType": "Cavalry",
+      "bases": null,
+      "armament": "Saber",
+      "handToHand": "9",
+      "shooting": "–",
+      "morale": "3",
+      "stamina": 3,
+      "specialRules": "Heavy Cavalry D3, Reliable",
+      "basePoints": 58,
+      "constraints": null,
+      "options": [
+        {
+          "id": 206,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 207,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 208,
+      "code": "guard_lancers",
+      "name": "Guard Lancers",
+      "category": "HORSE",
+      "unitType": "Cavalry",
+      "bases": null,
+      "armament": "Lance",
+      "handToHand": "8",
+      "shooting": "–",
+      "morale": "3",
+      "stamina": 3,
+      "specialRules": "Lancers, Raiders, Reliable",
+      "basePoints": 58,
+      "constraints": null,
+      "options": [
+        {
+          "id": 209,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 210,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 211,
+          "code": "reliable_plus1cac",
+          "description": "Reliable, +1 Hand-to-Hand",
+          "pointDelta": 6,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 18,
+      "weaponRange": null
+    },
+    {
+      "id": 212,
+      "code": "foot_artillery",
+      "name": "Foot Artillery",
+      "category": "ORDNANCE",
+      "unitType": "Artillery",
+      "bases": null,
+      "armament": "Smoothbore Ordnance",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 2,
+      "specialRules": "–",
+      "basePoints": 27,
+      "constraints": null,
+      "options": [
+        {
+          "id": 213,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 214,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 215,
+          "code": "reliable_elite5_artillery",
+          "description": "Reliable, Elite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 216,
+          "code": "reliable_elite4_artillery",
+          "description": "Reliable, Elite 4+",
+          "pointDelta": 10,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    },
+    {
+      "id": 217,
+      "code": "horse_artillery",
+      "name": "Horse Artillery",
+      "category": "ORDNANCE",
+      "unitType": "Artillery",
+      "bases": null,
+      "armament": "Smoothbore Ordnance",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 1,
+      "specialRules": "Raiders",
+      "basePoints": 26,
+      "constraints": null,
+      "options": [
+        {
+          "id": 218,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 219,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 220,
+          "code": "reliable_elite5_artillery",
+          "description": "Reliable, Elite 5+",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 221,
+          "code": "reliable_elite4_artillery",
+          "description": "Reliable, Elite 4+",
+          "pointDelta": 10,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 36
+    },
+    {
+      "id": 222,
+      "code": "guard_heavy_artillery",
+      "name": "Guard Heavy Artillery",
+      "category": "ORDNANCE",
+      "unitType": "Artillery",
+      "bases": null,
+      "armament": "Smoothbore Ordnance",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 3,
+      "specialRules": "Reliable, Elite 4+",
+      "basePoints": 46,
+      "constraints": null,
+      "options": [
+        {
+          "id": 223,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 224,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 48
+    },
+    {
+      "id": 225,
+      "code": "guard_horse_artillery",
+      "name": "Guard Horse Artillery",
+      "category": "ORDNANCE",
+      "unitType": "Artillery",
+      "bases": null,
+      "armament": "Smoothbore Ordnance",
+      "handToHand": "1",
+      "shooting": "3-2-1",
+      "morale": "4",
+      "stamina": 2,
+      "specialRules": "Raiders, Reliable, Elite 4+",
+      "basePoints": 38,
+      "constraints": null,
+      "options": [
+        {
+          "id": 226,
+          "code": "small",
+          "description": "Small",
+          "pointDelta": -8,
+          "constraints": null,
+          "statOverrides": null
+        },
+        {
+          "id": 227,
+          "code": "large",
+          "description": "Large",
+          "pointDelta": 8,
+          "constraints": null,
+          "statOverrides": null
+        }
+      ],
+      "moveRange": 12,
+      "weaponRange": 36
+    }
+  ]
+}

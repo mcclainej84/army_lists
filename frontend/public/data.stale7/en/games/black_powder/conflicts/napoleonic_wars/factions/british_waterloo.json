@@ -1,0 +1,11 @@
+{
+  "id": 128,
+  "code": "british_waterloo",
+  "name": "Great Britain",
+  "isOfficial": true,
+  "groupCode": "british",
+  "rulesetName": "Waterloo",
+  "available": false,
+  "commanders": [],
+  "units": []
+}
