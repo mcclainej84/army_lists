@@ -7,62 +7,24 @@ import {
   russianCustomFaction,
 } from "./napoleonicWarsCustom";
 
-// Guerras Napoleónicas (Black Powder). Las facciones oficiales son de momento solo
-// andamiaje (nombre + escudo, sin comandantes ni unidades) a la espera de las tablas de
-// referencia oficiales. España se ha retirado por ahora a petición del usuario. Además de
-// las oficiales, se incluyen 5 facciones personalizadas (is_official:false) transcritas
-// del documento aportado por el usuario, seleccionables mediante el checkbox "Incluir
-// facciones personalizadas". Rusia ya tiene tambien su andamiaje oficial (igual que el
-// resto de naciones), ademas de la version personalizada con reglas completas.
+// Guerras Napoleónicas (Black Powder). Se ha quitado el checkbox "Incluir facciones
+// personalizadas": cada nacion aparece una unica vez en el selector, con reglas
+// personalizadas (transcritas del documento que aporto el usuario) por ahora para todas.
+// Cuando una nacion tenia tanto un andamiaje "oficial" vacio (sin comandantes ni unidades)
+// como su version personalizada con reglas completas, se ha quitado el andamiaje vacio y se
+// deja solo la version personalizada (evita tarjetas duplicadas que llevan a una lista sin
+// nada que anadir). Portugal es la unica excepcion: todavia no tiene reglas personalizadas,
+// asi que se mantiene visible con su andamiaje vacio (a peticion del usuario) hasta que se
+// aporten esos datos. España se ha retirado por ahora a petición del usuario.
 export const napoleonicWars: ConflictSeed = {
   code: "napoleonic_wars",
   name_en: "Napoleonic Wars (1803–1815)",
   name_es: "Guerras Napoleónicas (1803–1815)",
   factions: [
     {
-      code: "imperial_france",
-      name_en: "Imperial France",
-      name_es: "Francia Imperial",
-      is_official: true,
-      commanders: [],
-      units: [],
-    },
-    {
-      code: "great_britain",
-      name_en: "Great Britain",
-      name_es: "Gran Bretaña",
-      is_official: true,
-      commanders: [],
-      units: [],
-    },
-    {
-      code: "prussia",
-      name_en: "Prussia",
-      name_es: "Prusia",
-      is_official: true,
-      commanders: [],
-      units: [],
-    },
-    {
       code: "portugal",
       name_en: "Portugal",
       name_es: "Portugal",
-      is_official: true,
-      commanders: [],
-      units: [],
-    },
-    {
-      code: "austria",
-      name_en: "Austria",
-      name_es: "Austria",
-      is_official: true,
-      commanders: [],
-      units: [],
-    },
-    {
-      code: "russia",
-      name_en: "Russia",
-      name_es: "Rusia",
       is_official: true,
       commanders: [],
       units: [],

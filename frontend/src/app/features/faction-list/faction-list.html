@@ -2,25 +2,20 @@
   <a class="back-link" [routerLink]="['/juegos', gameCode]">← {{ 'factions.back' | transloco }}</a>
   <h1>{{ 'factions.title' | transloco }}</h1>
 
-  <label class="include-custom-toggle">
-    <input
-      type="checkbox"
-      [checked]="includeCustom()"
-      (change)="includeCustom.set(!includeCustom())"
-    />
-    {{ 'factions.includeCustom' | transloco }}
-  </label>
-
   @if (factions$ | async; as factions) {
-    @let visible = visibleFactions(factions);
-    @if (visible.length) {
+    @if (factions.length) {
       <div class="card-grid">
-        @for (faction of visible; track faction.id) {
+        @for (faction of factions; track faction.id) {
           <a class="card faction-card" [routerLink]="['/juegos', gameCode, 'conflictos', conflictCode, 'facciones', faction.code]">
             @if (iconFor(faction); as icon) {
               <img [src]="icon" [alt]="faction.name" class="faction-icon" />
             }
             <span>{{ faction.name }}</span>
+            @if (showRulesetBadge()) {
+              <span class="ruleset-badge" [class.official]="faction.isOfficial">
+                {{ rulesetLabelKey(faction) | transloco }}
+              </span>
+            }
           </a>
         }
       </div>

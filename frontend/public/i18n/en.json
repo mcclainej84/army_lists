@@ -27,9 +27,10 @@
   },
   "factions": {
     "title": "Choose a faction",
-    "official": "Official",
-    "custom": "Custom",
-    "includeCustom": "Include custom factions",
+    "ruleset": {
+      "official": "Official Rules",
+      "custom": "Custom Rules"
+    },
     "customComingSoon": "No factions available yet.",
     "back": "Back to conflicts"
   },

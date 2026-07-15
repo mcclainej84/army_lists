@@ -16,20 +16,14 @@ const GAME_LOGOS: Record<string, string> = {
 
 // Nota: las claves son codigos de faccion. Como distintos conflictos pueden tener
 // facciones con nombres parecidos, los codigos de las napoleonicas usan sufijo propio
-// (imperial_france, no "french") para no chocar con los de Guerra de los 30 Años.
+// (french_custom, no "french") para no chocar con los de Guerra de los 30 Años.
 const FACTION_ICONS: Record<string, string> = {
   imperial: 'img/factions/imperial.png',
   swedish: 'img/factions/swedish.png',
   french: 'img/factions/french.png',
   spanish: 'img/factions/spanish.png',
-  imperial_france: 'img/factions/nap-imperial-france.png',
-  great_britain: 'img/factions/nap-great-britain.png',
-  prussia: 'img/factions/nap-prussia.png',
   portugal: 'img/factions/nap-portugal.png',
-  austria: 'img/factions/nap-austria.png',
-  russia: 'img/factions/nap-russia.png',
-  // Facciones personalizadas de Black Powder Napoleonicas: reutilizan el escudo de la
-  // nacion oficial correspondiente.
+  // Facciones personalizadas de Black Powder Napoleonicas.
   british_custom: 'img/factions/nap-great-britain.png',
   french_custom: 'img/factions/nap-imperial-france.png',
   prussian_custom: 'img/factions/nap-prussia.png',
@@ -41,18 +35,9 @@ const FACTION_ICONS: Record<string, string> = {
   fiw_french: 'img/factions/fiw-french.png',
 };
 
-// Cuando una nacion tiene tanto version oficial (de momento vacia) como version
-// personalizada con reglas completas, no queremos dos botones casi iguales en el
-// selector ("Francia Imperial" y "Francia (Reglas Personalizadas)"). En vez de eso se
-// muestra un unico boton (el de la faccion oficial) y, si "Incluir facciones
-// personalizadas" esta activado, el click lleva directamente a la version personalizada.
-const CUSTOM_FACTION_OVERRIDES: Record<string, string> = {
-  imperial_france: 'french_custom',
-  great_britain: 'british_custom',
-  prussia: 'prussian_custom',
-  austria: 'austrian_custom',
-  russia: 'russian_custom',
-};
+// French Indian War no tiene distincion oficial/personalizada: cada faccion tiene una
+// unica lista, asi que no tiene sentido mostrar la etiqueta de reglamento en sus tarjetas.
+const GAMES_WITHOUT_RULESET_BADGE = ['french_indian_war'];
 
 @Component({
   selector: 'app-home',
@@ -69,9 +54,6 @@ export class Home {
 
   selectedGame = signal<GameDTO | null>(null);
   selectedConflict = signal<ConflictDTO | null>(null);
-  // Activado por defecto: Francia y España se cargan como facciones personalizadas
-  // y queremos que se vean desde el principio sin que el usuario tenga que buscarlas.
-  includeCustom = signal(true);
 
   constructor() {
     this.catalogService.listGames().subscribe((games) => this.games.set(games));
@@ -85,27 +67,17 @@ export class Home {
     return FACTION_ICONS[faction.code] ?? null;
   }
 
+  // Ya no hay checkbox de "incluir personalizadas" ni facciones "anfitrionas": se muestran
+  // siempre todas las facciones que devuelva la API, cada una con su propia etiqueta de
+  // reglamento (ver showRulesetBadge/rulesetLabelKey) en vez de fusionarse dos en una.
   visibleFactions(): FactionSummaryDTO[] {
-    const list = this.factions();
-    if (!list) return [];
-    // Las personalizadas que tienen una oficial "anfitriona" (ver CUSTOM_FACTION_OVERRIDES)
-    // nunca aparecen como boton propio: se accede a ellas a traves del boton oficial. Las
-    // personalizadas "huerfanas" (sin oficial equivalente, p.ej. Rusia) si son su propia
-    // entrada, y respetan el checkbox como siempre.
-    const overriddenCodes = new Set(Object.values(CUSTOM_FACTION_OVERRIDES));
-    return list.filter((f) => {
-      if (overriddenCodes.has(f.code)) return false;
-      if (f.isOfficial) return true;
-      return this.includeCustom();
-    });
+    return this.factions() ?? [];
   }
 
   /**
    * En Black Powder queremos las facciones siempre en una sola fila (a diferencia del
    * resto de conflictos, donde se deja que el grid las reparta en varias filas segun el
-   * ancho). Como el numero de tarjetas visibles cambia con el checkbox "Incluir facciones
-   * personalizadas" (5 o 6), las columnas se calculan segun cuantas haya en cada momento
-   * en vez de un numero fijo.
+   * ancho). Las columnas se calculan segun cuantas facciones haya en vez de un numero fijo.
    */
   factionGridStyle(): Record<string, string> | null {
     if (this.selectedGame()?.code !== 'black_powder') return null;
@@ -114,17 +86,12 @@ export class Home {
     return { 'grid-template-columns': `repeat(${count}, minmax(0, 1fr))` };
   }
 
-  /**
-   * Codigo de faccion al que navega el click sobre esta tarjeta: si "Incluir facciones
-   * personalizadas" esta activado y esta nacion tiene una version personalizada cargada,
-   * vamos directos a esa; si no, a la oficial de siempre.
-   */
-  targetFactionCode(faction: FactionSummaryDTO): string {
-    if (!this.includeCustom()) return faction.code;
-    const overrideCode = CUSTOM_FACTION_OVERRIDES[faction.code];
-    if (!overrideCode) return faction.code;
-    const hasCustom = this.factions()?.some((f) => f.code === overrideCode) ?? false;
-    return hasCustom ? overrideCode : faction.code;
+  showRulesetBadge(): boolean {
+    return !GAMES_WITHOUT_RULESET_BADGE.includes(this.selectedGame()?.code ?? '');
+  }
+
+  rulesetLabelKey(faction: FactionSummaryDTO): string {
+    return faction.isOfficial ? 'factions.ruleset.official' : 'factions.ruleset.custom';
   }
 
   chooseGame(game: GameDTO): void {

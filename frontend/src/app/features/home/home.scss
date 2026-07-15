@@ -239,22 +239,22 @@
   object-fit: contain;
 }
 
-.include-custom-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.85rem;
-  font-weight: 600;
-  color: #2b1d14;
-  cursor: pointer;
-  font-size: 0.88rem;
+// Sustituye al antiguo checkbox "Incluir facciones personalizadas": ahora se muestran
+// siempre todas las facciones, cada una con su propia etiqueta de que reglamento sigue.
+.ruleset-badge {
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: #ece0cf;
+  color: #6b5b4b;
 }
 
-.include-custom-toggle input[type='checkbox'] {
-  width: 16px;
-  height: 16px;
-  accent-color: #7a1f1f;
-  cursor: pointer;
+.ruleset-badge.official {
+  background: #2f7a3f;
+  color: #fbf6ee;
 }
 
 .coming-soon,

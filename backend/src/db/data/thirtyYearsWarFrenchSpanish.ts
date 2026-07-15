@@ -89,7 +89,10 @@ export const frenchFaction: FactionSeed = {
   code: "french",
   name_en: "French Army",
   name_es: "Ejército Francés",
-  is_official: true,
+  // Reglas personalizadas (no del suplemento oficial de Epic Pike & Shotte), a diferencia
+  // de Suecia/Imperio que si son del reglamento oficial. is_official ya no oculta la
+  // faccion (el checkbox se quito), solo decide la etiqueta que se ve en su tarjeta.
+  is_official: false,
   commanders: STANDARD_COMMANDERS,
   units: [
     {
@@ -520,7 +523,8 @@ export const spanishFaction: FactionSeed = {
   code: "spanish",
   name_en: "Spanish Army",
   name_es: "Ejército Español",
-  is_official: true,
+  // Reglas personalizadas (ver comentario identico en frenchFaction, arriba).
+  is_official: false,
   commanders: STANDARD_COMMANDERS,
   units: [
     {

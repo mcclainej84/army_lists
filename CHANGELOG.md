@@ -4,6 +4,13 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.40 — 2026-07-15
+
+- Quitado el checkbox "Incluir facciones personalizadas": ahora se muestran siempre todas las facciones de un conflicto, cada una con una etiqueta ("Reglamento Oficial" / "Reglas Personalizadas") que indica de qué lista viene.
+- Epic Pike & Shotte: Ejército Sueco e Imperial quedan marcados como Reglamento Oficial; Ejército Español y Francés como Reglas Personalizadas (antes los 4 estaban marcados como oficiales solo para que el checkbox no los ocultara).
+- Black Powder (Guerras Napoleónicas): quitados los 5 andamiajes "oficiales" vacíos (Francia Imperial, Gran Bretaña, Prusia, Austria, Rusia) que no tenían comandantes ni unidades y duplicaban a su versión con reglas personalizadas ya cargada — ahora cada nación aparece una sola vez, con Reglas Personalizadas. Portugal se mantiene visible con su andamiaje vacío (todavía no hay reglas personalizadas para ella).
+- French Indian War no lleva esta etiqueta: cada facción solo tiene una lista, así que no aporta información nueva.
+
 ## 0.39 — 2026-07-08
 
 - Iconos de la barra de pestañas del catálogo rehechos en "pixel art" (rejilla 16x16, varios colores fijos tipo insignia): bicornio con escarapela para Mando, mosquete para Infantería, cabeza de caballo para Caballería y cañón sobre rueda para Artillería. Sustituyen a los iconos de línea simples de la versión anterior.

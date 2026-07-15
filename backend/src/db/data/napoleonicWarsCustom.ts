@@ -1,9 +1,9 @@
 import { CommanderSeed, FactionSeed, UnitOptionSeed } from "../types";
 
 // Facciones personalizadas de Guerras Napoleónicas (Black Powder), transcritas del
-// "Manual del General" que subió el usuario (bpcustom.md). Se marcan is_official:false
-// para convivir junto a las facciones oficiales (vacías, a la espera de contenido) via
-// el checkbox "Incluir facciones personalizadas".
+// "Manual del General" que subió el usuario (bpcustom.md). Se marcan is_official:false:
+// ya no hay checkbox que las oculte (napoleonicWars.ts las incluye directamente), pero el
+// flag sigue existiendo para mostrar la etiqueta "Reglas Personalizadas" en su tarjeta.
 //
 // Decisiones y omisiones deliberadas (a revisar si se quiere ampliar mas adelante):
 // - El documento no da un numero de peanas por unidad (a diferencia de las tablas de
@@ -58,8 +58,8 @@ function commandersUpTo(maxTier: 7 | 8 | 9): CommanderSeed[] {
 
 export const britishCustomFaction: FactionSeed = {
   code: "british_custom",
-  name_en: "Great Britain (Custom Rules)",
-  name_es: "Gran Bretaña (Reglas Personalizadas)",
+  name_en: "Great Britain",
+  name_es: "Gran Bretaña",
   is_official: false,
   commanders: commandersUpTo(8),
   units: [    {
@@ -380,8 +380,8 @@ export const britishCustomFaction: FactionSeed = {
 
 export const frenchCustomFaction: FactionSeed = {
   code: "french_custom",
-  name_en: "France (Custom Rules)",
-  name_es: "Francia (Reglas Personalizadas)",
+  name_en: "France",
+  name_es: "Francia",
   is_official: false,
   commanders: commandersUpTo(9),
   units: [    {
@@ -700,8 +700,8 @@ export const frenchCustomFaction: FactionSeed = {
 
 export const prussianCustomFaction: FactionSeed = {
   code: "prussian_custom",
-  name_en: "Prussia (Custom Rules)",
-  name_es: "Prusia (Reglas Personalizadas)",
+  name_en: "Prussia",
+  name_es: "Prusia",
   is_official: false,
   commanders: commandersUpTo(9),
   units: [    {
@@ -937,8 +937,8 @@ export const prussianCustomFaction: FactionSeed = {
 
 export const austrianCustomFaction: FactionSeed = {
   code: "austrian_custom",
-  name_en: "Austria (Custom Rules)",
-  name_es: "Austria (Reglas Personalizadas)",
+  name_en: "Austria",
+  name_es: "Austria",
   is_official: false,
   commanders: commandersUpTo(8),
   units: [    {
@@ -1216,9 +1216,6 @@ export const austrianCustomFaction: FactionSeed = {
 
 export const russianCustomFaction: FactionSeed = {
   code: "russian_custom",
-  // Rusia no tiene version oficial (a diferencia de Francia/Gran Bretaña/Prusia/Austria,
-  // que si tienen una entrada oficial vacia con la que "fusionarse" en el selector), asi
-  // que se muestra con su propio boton y nombre liso, sin sufijo "(Reglas Personalizadas)".
   name_en: "Russia",
   name_es: "Rusia",
   is_official: false,
