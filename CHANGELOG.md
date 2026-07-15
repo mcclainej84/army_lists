@@ -4,6 +4,12 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.46 — 2026-07-15
+
+- Normalizados los tamaños de los iconos de facción por categoría: los 4 escudos de Epic Pike & Shotte ya estaban a 500x500; las 7 banderas de Black Powder Napoleónicas y las 2 de French Indian War se han igualado a 400x267.
+- `nap-austria.png` era el único icono napoleónico con forma de escudo (400x400, cuadrado) en vez de bandera rectangular como sus 6 hermanos: se ha recompuesto (águila bicéfala recortada sobre fondo dorado a pantalla completa, mismo estilo que Rusia/Prusia) para que coincida en tamaño y formato.
+- `fiw-british.png` y `fiw-french.png` se han reescalado de su resolución original (1599x1066 y 1152x768, misma proporción 3:2) a 400x267 para unificar peso y tamaño de archivo con el resto de banderas.
+
 ## 0.45 — 2026-07-15
 
 - Austria y Prusia (Black Powder) reciben su reglamento "Clash of Eagles", ya disponible junto a sus Reglas Personalizadas.
