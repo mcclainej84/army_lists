@@ -4,6 +4,10 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.48 — 2026-07-15
+
+- Bandera de Austria (Guerras Napoleónicas) sustituida por el arte que aportó el usuario (`img/factions/NAP/austria.png`, escudo imperial con águila bicéfala sobre franjas negro/dorado), reescalada a 400x267 para mantener el mismo tamaño que el resto de banderas.
+
 ## 0.47 — 2026-07-15
 
 - Facciones reordenadas por importancia histórica en su conflicto:
