@@ -4,6 +4,14 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.45 — 2026-07-15
+
+- Austria y Prusia (Black Powder) reciben su reglamento "Clash of Eagles", ya disponible junto a sus Reglas Personalizadas.
+  - Austria: 12 unidades (Infantería de Línea, Grenz, Jäger, Granadero; Dragones, Chevauleger, Húsares, Ulanos, Coraceros; Artillería de Brigada/Posición/Caballería) y comandantes 0/25/50. El libro distingue estadísticas "Standard"/"Large" para varias unidades (no solo puntos); se ha simplificado usando una sola línea de estadísticas por unidad más las opciones universales Pequeña/Grande, a ajustar si hace falta más adelante.
+  - Prusia (solo aportó la 27ª División a la campaña): 10 unidades (Mosquetero, Fusilero, Jäger, Mosquetero/Fusilero de la Guardia; Dragones, Húsares; Artillería a Pie/Caballo/Pesada) y comandantes 0/25/50.
+  - En ambas, igual que en Francia y Rusia, se han dejado fuera las unidades muy pequeñas o de nicho para mantener el catálogo manejable.
+- Con esto, las 4 naciones acordadas (Francia, Austria, Prusia, Rusia) ya tienen su roster de "Clash of Eagles" completo. Queda pendiente que el usuario aporte los datos de "Waterloo" (Gran Bretaña, Francia, Prusia, Austria), cuyo hueco ya está preparado en el selector ("Próximamente").
+
 ## 0.44 — 2026-07-15
 
 - Francia (Black Powder) recibe su reglamento "Clash of Eagles", ya disponible junto a sus Reglas Personalizadas (habilitado el hueco que estaba "Próximamente"): 28 unidades (línea, ligera, granaderos/voltigeurs combinados, Vieja/Media/Joven Guardia, contingentes extranjeros bajo mando francés: Portugueses/Españoles, Rheinbund, Legión del Vístula, Ulanos Polacos, Cazadores de Wurtemberg, Chevauleger Bávaro; caballería de línea y de la Guardia; artillería de línea y de la Guardia) y 5 niveles de comandante (0/25/50 estándar + 35/60 para el Comandante Divisional de la Guardia). Se dejan fuera, a petición del usuario, las unidades muy pequeñas o de nicho (Dragones Desmontados, Marines/Ingenieros de la Guardia, Velites, Mamelucos, Gendarmes d'Elite, Guardias de Honor Italianos, artillería regimental).
