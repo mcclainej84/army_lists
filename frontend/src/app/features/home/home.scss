@@ -33,7 +33,7 @@
 .tagline {
   font-family: var(--font-body);
   font-style: italic;
-  color: #6b5b4b;
+  color: var(--color-muted);
   font-size: 1.05rem;
   margin: 0;
 }
@@ -49,7 +49,7 @@
 .step {
   position: relative;
   padding: 0.25rem 0 1.5rem 3rem;
-  border-left: 2px solid #d8c8b0;
+  border-left: 2px solid var(--color-border);
   margin-left: 1.05rem;
 }
 
@@ -65,22 +65,22 @@
   width: 2.3rem;
   height: 2.3rem;
   border-radius: 50%;
-  background: #fbf6ee;
-  border: 2px solid #d8c8b0;
-  color: #6b5b4b;
+  background: var(--color-surface-card);
+  border: 2px solid var(--color-border);
+  color: var(--color-muted);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: 1rem;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: background var(--transition-base), border-color var(--transition-base), color var(--transition-base);
 }
 
 .step.active .step-badge,
 .step.done .step-badge {
-  border-color: #7a1f1f;
-  background: #7a1f1f;
-  color: #fbf6ee;
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-surface-card);
 }
 
 .step-head {
@@ -94,26 +94,26 @@
 .step-head h2 {
   margin: 0;
   font-size: 1.2rem;
-  color: #2b1d14;
+  color: var(--color-ink);
   letter-spacing: 0.01em;
 }
 
 .change-btn {
   margin-left: auto;
   background: transparent;
-  border: 1px solid #d8c8b0;
-  color: #7a1f1f;
+  border: 1px solid var(--color-border);
+  color: var(--color-accent);
   padding: 0.3rem 0.8rem;
-  border-radius: 6px;
+  border-radius: var(--radius-lg);
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
 }
 
 .change-btn:hover {
-  border-color: #7a1f1f;
-  background: #fbf1e6;
+  border-color: var(--color-accent);
+  background: var(--color-accent-tint);
 }
 
 .step-summary {
@@ -121,11 +121,11 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.55rem 1.1rem;
-  background: #fbf6ee;
-  border: 1px solid #d8c8b0;
-  border-radius: 8px;
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
   font-weight: 600;
-  color: #2b1d14;
+  color: var(--color-ink);
   width: fit-content;
 }
 
@@ -133,7 +133,7 @@
   width: 34px;
   height: 34px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .card-grid {
@@ -175,23 +175,29 @@
 
 .card {
   display: block;
-  border: 1px solid #d8c8b0;
-  border-radius: 10px;
-  background: #fbf6ee;
-  color: #2b1d14;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  background: var(--color-surface-card);
+  color: var(--color-ink);
   text-decoration: none;
   font-weight: 600;
   font-family: inherit;
   font-size: 0.95rem;
   text-align: left;
   cursor: pointer;
-  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  box-shadow: var(--shadow-xs);
+  transition: box-shadow var(--transition-base), transform var(--transition-base), border-color var(--transition-base);
 }
 
 .card:hover {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md);
   transform: translateY(-2px);
-  border-color: #7a1f1f;
+  border-color: var(--color-accent);
+}
+
+.card:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-xs);
 }
 
 .game-card {
@@ -222,13 +228,13 @@
   gap: 0.5rem;
   text-align: center;
   padding: 0.9rem 1rem;
-  background: #f6efd9;
-  border-color: #b8944f;
+  background: var(--color-bronze-bg);
+  border-color: var(--color-bronze);
 }
 
 .faction-card:hover {
-  border-color: #8a6a26;
-  box-shadow: 0 6px 18px rgba(138, 106, 38, 0.25);
+  border-color: var(--color-bronze-hover);
+  box-shadow: var(--shadow-bronze);
 }
 
 // Caja fija con object-fit: los escudos (retrato) y las banderas (paisaje, wide) de las
@@ -254,22 +260,22 @@
   gap: 0.3rem;
   padding: 1.1rem 1.25rem;
   text-align: center;
-  background: #f6efd9;
-  border-color: #b8944f;
+  background: var(--color-bronze-bg);
+  border-color: var(--color-bronze);
 }
 
 .ruleset-card:hover {
-  border-color: #8a6a26;
-  box-shadow: 0 6px 18px rgba(138, 106, 38, 0.25);
+  border-color: var(--color-bronze-hover);
+  box-shadow: var(--shadow-bronze);
 }
 
 .ruleset-card.official {
-  background: #eaf3ec;
-  border-color: #2f7a3f;
+  background: var(--color-success-bg);
+  border-color: var(--color-success);
 }
 
 .ruleset-card.official:hover {
-  box-shadow: 0 6px 18px rgba(47, 122, 63, 0.25);
+  box-shadow: var(--shadow-success);
 }
 
 .ruleset-card.disabled {
@@ -279,7 +285,7 @@
 }
 
 .ruleset-card.disabled:hover {
-  border-color: #b8944f;
+  border-color: var(--color-bronze);
   box-shadow: none;
   transform: none;
 }
@@ -287,7 +293,7 @@
 .ruleset-name {
   font-size: 1rem;
   font-weight: 700;
-  color: #2b1d14;
+  color: var(--color-ink);
 }
 
 .coming-soon-badge {
@@ -295,12 +301,12 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  color: #6b5b4b;
+  color: var(--color-muted);
 }
 
 .coming-soon,
 .loading {
-  color: #6b5b4b;
+  color: var(--color-muted);
   font-style: italic;
   margin: 0;
 }

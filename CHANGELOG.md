@@ -4,6 +4,14 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.50 — 2026-07-15
+
+- Primera tanda de la revisión/rediseño general pedida por el usuario (alcance: todo el programa, prioridad "belleza/pulido visual", modularización y eficiencia según margen):
+  - Eliminados los componentes `faction-list`/`game-list`/`conflict-list` (confirmados como código muerto: no están en `app.routes.ts` desde que el selector unificado de `home` los sustituyó).
+  - Extraída una capa de tokens de diseño (`styles.scss`): colores, radios de borde y sombras que antes estaban repetidos como literales hexadecimales sueltos en `header.scss`/`home.scss`/`faction-detail.scss`/`my-lists.scss` ahora viven en variables CSS (`--color-*`, `--radius-*`, `--shadow-*`, `--transition-*`). Mismos valores de siempre (no cambia la identidad pergamino/militar), pero centralizados.
+  - Pulido visual: foco de teclado visible (`:focus-visible`), scrollbar a juego con el tema, sombra de reposo sutil en tarjetas/paneles, estado "pulsado" en los botones principales (añadir unidad, exportar PDF, guardar lista), cabecera con un ligero degradado en vez de un negro plano.
+  - Dividido `backend/src/db/data/napoleonicWarsCustom.ts` (3145 líneas, el fichero más grande del proyecto) en `backend/src/db/data/napoleonic/{shared,british,french,prussian,austrian,russian,index}.ts`, uno por nación. Mismo contenido exacto, verificado regenerando el catálogo estático y comparándolo byte a byte contra la versión anterior (sin diferencias).
+
 ## 0.49 — 2026-07-15
 
 - Corregida la terminología en Epic Pike & Shotte: "Corazas" → "Coraceros" (Ejércitos Imperial, Sueco, Francés y Español).

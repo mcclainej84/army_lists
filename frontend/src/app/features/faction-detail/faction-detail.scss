@@ -18,7 +18,7 @@
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #7a1f1f;
+  color: var(--color-accent);
   margin: 1rem 0 0.5rem;
 }
 
@@ -52,16 +52,17 @@
 .back-link {
   display: inline-block;
   margin-bottom: 0.75rem;
-  color: #7a1f1f;
+  color: var(--color-accent);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.8rem;
 }
 
 .catalog-frame {
-  border: 1px solid #d8c8b0;
-  border-radius: 10px;
-  background: #fffdf9;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xs);
+  background: var(--color-surface-panel);
   padding: 0.75rem 0.85rem 0.5rem;
 }
 
@@ -70,9 +71,9 @@ h2.catalog-frame-title {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #7a1f1f;
+  color: var(--color-accent);
   font-weight: 700;
-  border-bottom: 1px solid #d8c8b0;
+  border-bottom: 1px solid var(--color-border);
   padding-bottom: 0.4rem;
 }
 
@@ -89,8 +90,8 @@ h2.catalog-frame-title {
   gap: 0.35rem;
   margin: 0 0 0.6rem;
   padding-bottom: 0.5rem;
-  background: #fffdf9;
-  border-bottom: 1px solid #d8c8b0;
+  background: var(--color-surface-panel);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .catalog-tab {
@@ -98,10 +99,10 @@ h2.catalog-frame-title {
   align-items: center;
   gap: 0.3rem;
   padding: 0.3rem 0.65rem;
-  border: 1px solid #d8c8b0;
-  border-radius: 5px;
-  background: #fbf6ee;
-  color: #6b5b4b;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-card);
+  color: var(--color-muted);
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -111,14 +112,14 @@ h2.catalog-frame-title {
 }
 
 .catalog-tab:hover {
-  border-color: #7a1f1f;
-  color: #7a1f1f;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .catalog-tab.active {
-  background: #7a1f1f;
-  border-color: #7a1f1f;
-  color: #fbf6ee;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-surface-card);
 }
 
 // Iconos "pixel art" (rejilla 16x16, colores fijos tipo insignia/miniatura, no currentColor):
@@ -147,9 +148,10 @@ h2.catalog-frame-title {
   flex-direction: column;
   gap: 0.15rem;
   padding: 0.6rem 0.7rem;
-  border: 1px solid #d8c8b0;
-  border-radius: 6px;
-  background: #fbf6ee;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+  background: var(--color-surface-card);
   font-size: 0.8rem;
 }
 
@@ -158,13 +160,13 @@ h2.catalog-frame-title {
 }
 
 .commander-meta {
-  color: #6b5b4b;
+  color: var(--color-muted);
   font-size: 0.75rem;
 }
 
 .commander-points {
   font-weight: 600;
-  color: #7a1f1f;
+  color: var(--color-accent);
 }
 
 .unit-list {
@@ -175,9 +177,10 @@ h2.catalog-frame-title {
 .unit-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid #d8c8b0;
-  border-radius: 8px;
-  background: #fbf6ee;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xs);
+  background: var(--color-surface-card);
   padding: 0.5rem 0.7rem;
   font-size: 0.8rem;
 }
@@ -192,19 +195,19 @@ h2.catalog-frame-title {
 .unit-name {
   font-size: 0.88rem;
   font-weight: 700;
-  color: #2b1d14;
+  color: var(--color-ink);
 }
 
 .unit-points {
   font-size: 0.8rem;
   font-weight: 700;
-  color: #7a1f1f;
+  color: var(--color-accent);
 }
 
 .unit-meta {
   margin: 0 0 0.25rem;
   font-size: 0.68rem;
-  color: #6b5b4b;
+  color: var(--color-muted);
   display: flex;
   gap: 0.5rem;
 }
@@ -232,7 +235,7 @@ h2.catalog-frame-title {
   font-size: 0.56rem;
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  color: #6b5b4b;
+  color: var(--color-muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -252,26 +255,26 @@ h2.catalog-frame-title {
 }
 
 .special-rules-line strong {
-  color: #6b5b4b;
+  color: var(--color-muted);
   font-weight: 700;
 }
 
 .unit-options {
   margin-top: 0.3rem;
   padding-top: 0.3rem;
-  border-top: 1px dashed #d8c8b0;
+  border-top: 1px dashed var(--color-border);
 }
 
 .options-title {
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  color: #6b5b4b;
+  color: var(--color-muted);
 }
 
 .option-points {
   font-weight: 600;
-  color: #7a1f1f;
+  color: var(--color-accent);
   margin-left: 0.3rem;
 }
 
@@ -290,7 +293,7 @@ h2.catalog-frame-title {
   gap: 0.2rem 0.85rem;
   margin-top: 0.2rem;
   padding-bottom: 0.25rem;
-  border-bottom: 1px dashed #d8c8b0;
+  border-bottom: 1px dashed var(--color-border);
 }
 
 .size-radio {
@@ -302,7 +305,7 @@ h2.catalog-frame-title {
 }
 
 .size-radio.disabled {
-  color: #a89886;
+  color: var(--color-muted-light);
   font-weight: 400;
 }
 
@@ -310,12 +313,21 @@ h2.catalog-frame-title {
   margin-top: 0.6rem;
   padding: 0.35rem 0.7rem;
   border: none;
-  border-radius: 5px;
-  background: #7a1f1f;
-  color: #fbf6ee;
+  border-radius: var(--radius-md);
+  background: var(--color-accent);
+  color: var(--color-surface-card);
   font-weight: 600;
   font-size: 0.78rem;
   cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.add-btn:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+}
+
+.add-btn:active:not(:disabled) {
+  transform: translateY(1px);
 }
 
 .unit-card .add-btn,
@@ -325,7 +337,7 @@ h2.catalog-frame-title {
 }
 
 .add-btn:disabled {
-  background: #b7a591;
+  background: var(--color-disabled-bg);
   cursor: not-allowed;
 }
 
@@ -336,9 +348,10 @@ h2.catalog-frame-title {
   gap: 1rem;
   margin: 0.75rem 0 1rem;
   padding: 0.5rem 0.75rem;
-  background: #fbf6ee;
-  border: 1px solid #d8c8b0;
-  border-radius: 6px;
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
   font-size: 0.8rem;
 }
 
@@ -352,8 +365,8 @@ h2.catalog-frame-title {
 .points-bar input {
   width: 70px;
   padding: 0.2rem 0.4rem;
-  border: 1px solid #d8c8b0;
-  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
   font-size: 0.8rem;
 }
 
@@ -363,33 +376,38 @@ h2.catalog-frame-title {
 
 .points-remaining {
   font-weight: 700;
-  color: #2f7a3f;
+  color: var(--color-success);
 }
 
 .points-remaining.over {
-  color: #b02a2a;
+  color: var(--color-danger);
 }
 
 .export-pdf-btn {
   margin-left: auto;
   padding: 0.4rem 0.85rem;
-  border: 1px solid #7a1f1f;
-  border-radius: 5px;
-  background: #7a1f1f;
-  color: #fbf6ee;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  background: var(--color-accent);
+  color: var(--color-surface-card);
   font-weight: 600;
   font-size: 0.78rem;
   cursor: pointer;
   white-space: nowrap;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
 
 .export-pdf-btn:hover {
   opacity: 0.9;
 }
 
+.export-pdf-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
 .export-pdf-btn:disabled {
-  background: #b7a591;
-  border-color: #b7a591;
+  background: var(--color-disabled-bg);
+  border-color: var(--color-disabled-bg);
   cursor: not-allowed;
   opacity: 1;
 }
@@ -398,23 +416,28 @@ h2.catalog-frame-title {
 // "puntos restantes" en positivo) para diferenciarlo visualmente de la exportacion.
 .save-list-btn {
   padding: 0.4rem 0.85rem;
-  border: 1px solid #2f7a3f;
-  border-radius: 5px;
-  background: #2f7a3f;
-  color: #fbf6ee;
+  border: 1px solid var(--color-success);
+  border-radius: var(--radius-md);
+  background: var(--color-success);
+  color: var(--color-surface-card);
   font-weight: 600;
   font-size: 0.78rem;
   cursor: pointer;
   white-space: nowrap;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
 
 .save-list-btn:hover {
   opacity: 0.9;
 }
 
+.save-list-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
 .save-list-btn:disabled {
-  background: #b7a591;
-  border-color: #b7a591;
+  background: var(--color-disabled-bg);
+  border-color: var(--color-disabled-bg);
   cursor: not-allowed;
   opacity: 1;
 }
@@ -423,7 +446,7 @@ h2.catalog-frame-title {
   margin: -0.5rem 0 1rem;
   font-size: 0.78rem;
   font-style: italic;
-  color: #6b5b4b;
+  color: var(--color-muted);
 }
 
 // Fila propia justo debajo de la barra de puntos/exportar, a peticion del usuario: es una
@@ -436,26 +459,26 @@ h2.catalog-frame-title {
 
 .distances-toggle-btn {
   padding: 0.35rem 0.75rem;
-  border: 1px solid #6b5b4b;
-  border-radius: 5px;
+  border: 1px solid var(--color-muted);
+  border-radius: var(--radius-md);
   background: transparent;
-  color: #6b5b4b;
+  color: var(--color-muted);
   font-weight: 600;
   font-size: 0.76rem;
   cursor: pointer;
   white-space: nowrap;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .distances-toggle-btn:hover {
-  border-color: #7a1f1f;
-  color: #7a1f1f;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .save-error {
   margin: 0.5rem 0 0;
   font-size: 0.78rem;
-  color: #b02a2a;
+  color: var(--color-danger);
 }
 
 .export-modal-backdrop {
@@ -472,31 +495,31 @@ h2.catalog-frame-title {
 .export-modal {
   width: 100%;
   max-width: 380px;
-  background: #fffdf9;
-  border: 1px solid #d8c8b0;
-  border-radius: 10px;
+  background: var(--color-surface-panel);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
   padding: 1.1rem 1.25rem 1.25rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-lg);
 }
 
 .export-modal h3 {
   margin: 0 0 0.35rem;
   font-size: 1rem;
-  color: #7a1f1f;
+  color: var(--color-accent);
 }
 
 .export-modal-hint {
   margin: 0 0 0.75rem;
   font-size: 0.78rem;
-  color: #6b5b4b;
+  color: var(--color-muted);
 }
 
 .export-name-input {
   width: 100%;
   box-sizing: border-box;
   padding: 0.5rem 0.6rem;
-  border: 1px solid #d8c8b0;
-  border-radius: 5px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   font-size: 0.85rem;
 }
 
@@ -509,10 +532,10 @@ h2.catalog-frame-title {
 
 .export-cancel-btn {
   padding: 0.4rem 0.75rem;
-  border: 1px solid #d8c8b0;
-  border-radius: 5px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   background: transparent;
-  color: #6b5b4b;
+  color: var(--color-muted);
   font-weight: 600;
   font-size: 0.78rem;
   cursor: pointer;
@@ -521,25 +544,25 @@ h2.catalog-frame-title {
 .export-confirm-btn {
   padding: 0.4rem 0.85rem;
   border: none;
-  border-radius: 5px;
-  background: #7a1f1f;
-  color: #fbf6ee;
+  border-radius: var(--radius-md);
+  background: var(--color-accent);
+  color: var(--color-surface-card);
   font-weight: 600;
   font-size: 0.78rem;
   cursor: pointer;
 }
 
 .export-confirm-btn:disabled {
-  background: #b7a591;
+  background: var(--color-disabled-bg);
   cursor: not-allowed;
 }
 
 .my-list {
   margin-bottom: 1.5rem;
   padding: 0.6rem 0.85rem;
-  border: 2px dashed #7a1f1f;
-  border-radius: 8px;
-  background: #fffdf9;
+  border: 2px dashed var(--color-accent);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-panel);
 }
 
 .my-list-header {
@@ -555,10 +578,10 @@ h2.catalog-frame-title {
 
 .add-battalia-btn {
   padding: 0.3rem 0.65rem;
-  border: 1px solid #7a1f1f;
-  border-radius: 5px;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
   background: transparent;
-  color: #7a1f1f;
+  color: var(--color-accent);
   font-weight: 600;
   font-size: 0.75rem;
   cursor: pointer;
@@ -566,7 +589,7 @@ h2.catalog-frame-title {
 }
 
 .empty-column {
-  color: #a89886;
+  color: var(--color-muted-light);
   font-style: italic;
   font-size: 0.75rem;
   padding: 0.35rem 0.25rem;
@@ -585,9 +608,9 @@ h2.catalog-frame-title {
   align-items: center;
   gap: 0.6rem;
   padding: 0.3rem 0.6rem;
-  background: #fbf6ee;
-  border: 1px solid #d8c8b0;
-  border-radius: 5px;
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   font-size: 0.8rem;
   cursor: grab;
 }
@@ -599,13 +622,13 @@ h2.catalog-frame-title {
 .entry-points {
   margin-left: auto;
   font-weight: 600;
-  color: #7a1f1f;
+  color: var(--color-accent);
 }
 
 .remove-btn {
   border: none;
   background: transparent;
-  color: #b02a2a;
+  color: var(--color-danger);
   font-weight: 700;
   cursor: pointer;
   font-size: 0.85rem;
@@ -620,26 +643,26 @@ h2.catalog-frame-title {
 }
 
 .option-checkbox.disabled {
-  color: #a89886;
+  color: var(--color-muted-light);
 }
 
 .battalia-block {
   margin-top: 0.85rem;
   padding: 0.5rem 0.5rem 0.65rem;
   border: 2px solid transparent;
-  border-top: 1px solid #d8c8b0;
-  border-radius: 6px;
+  border-top: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
 }
 
 .battalia-block:hover {
-  background: #fbf6ee;
+  background: var(--color-surface-card);
 }
 
 .battalia-block.active {
-  border-color: #7a1f1f;
-  background: #fbf1e6;
+  border-color: var(--color-accent);
+  background: var(--color-accent-tint);
 }
 
 .battalia-header {
@@ -652,32 +675,32 @@ h2.catalog-frame-title {
 .battalia-name {
   font-weight: 700;
   font-size: 0.85rem;
-  color: #7a1f1f;
+  color: var(--color-accent);
 }
 
 .battalia-name-input {
   font-weight: 700;
-  color: #7a1f1f;
+  color: var(--color-accent);
   border: 1px solid transparent;
   background: transparent;
   padding: 0.15rem 0.3rem;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 0.85rem;
 }
 
 .battalia-name-input:hover,
 .battalia-name-input:focus {
-  border-color: #d8c8b0;
+  border-color: var(--color-border);
   background: #fff;
 }
 
 .battalia-warning {
   margin: 0.2rem 0;
   padding: 0.3rem 0.5rem;
-  background: #fbeaea;
-  border: 1px solid #e0b3b3;
-  border-radius: 4px;
-  color: #a12b2b;
+  background: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-danger);
   font-size: 0.72rem;
 }
 
@@ -685,7 +708,7 @@ h2.catalog-frame-title {
   display: flex;
   flex-direction: column;
   min-height: 2rem;
-  border-radius: 6px;
+  border-radius: var(--radius-lg);
 }
 
 .unit-row {
@@ -695,8 +718,8 @@ h2.catalog-frame-title {
   gap: 0.35rem;
   padding: 0.3rem 0.4rem;
   font-size: 0.75rem;
-  background: #fbf6ee;
-  border-bottom: 1px solid #ece0cf;
+  background: var(--color-surface-card);
+  border-bottom: 1px solid var(--color-border-soft);
   cursor: grab;
 }
 
@@ -713,7 +736,7 @@ h2.catalog-frame-title {
   text-transform: uppercase;
   font-size: 0.6rem;
   letter-spacing: 0.02em;
-  color: #6b5b4b;
+  color: var(--color-muted);
   background: transparent;
 }
 
@@ -727,7 +750,7 @@ h2.catalog-frame-title {
 .drag-col {
   text-align: center;
   cursor: grab;
-  color: #a89886;
+  color: var(--color-muted-light);
   // El drag ahora se activa solo desde este icono (cdkDragHandle), no desde toda la fila:
   // asi el resto de la fila deja pasar el scroll tactil normal en movil en vez de
   // interpretarlo como un intento de arrastre. touch-action:none aqui es lo que le dice al
@@ -738,11 +761,11 @@ h2.catalog-frame-title {
 .points-col {
   text-align: center;
   font-weight: 700;
-  color: #7a1f1f;
+  color: var(--color-accent);
 }
 
 .cdk-drag-preview {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-sm);
   background: #fff;
 }
 
@@ -751,5 +774,5 @@ h2.catalog-frame-title {
 }
 
 .cdk-drop-list-dragging .unit-row:not(.cdk-drag-placeholder) {
-  transition: transform 0.15s ease;
+  transition: transform var(--transition-fast);
 }

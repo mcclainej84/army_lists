@@ -12,7 +12,7 @@ import {
   prussianCustomFaction,
   prussianWaterlooFaction,
   russianCustomFaction,
-} from "./napoleonicWarsCustom";
+} from "./napoleonic";
 
 // Guerras Napoleónicas (Black Powder). Se ha quitado el checkbox "Incluir facciones
 // personalizadas": cada nacion aparece una unica vez en el Paso 3 del selector (agrupada

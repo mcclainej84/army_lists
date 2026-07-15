@@ -5,6 +5,66 @@
   // imprenta clasico). Georgia/serif como red de seguridad si las fuentes no cargan.
   --font-display: 'Cinzel', 'Georgia', 'Times New Roman', serif;
   --font-body: 'EB Garamond', 'Georgia', 'Times New Roman', serif;
+
+  // --- Tokens de diseño (paleta pergamino/militar) ---------------------------------------
+  // Extraidos de los valores que ya estaban repetidos sueltos por header/home/faction-detail/
+  // my-lists: mismos colores de siempre (no es un cambio de identidad visual), pero ahora
+  // centralizados aqui para que cambiar el tono de un rol (ej. el rojo de acento) se haga en
+  // un solo sitio en vez de en docenas de literales hexadecimales desperdigados.
+
+  // Texto
+  --color-ink: #2b1d14;           // texto principal
+  --color-muted: #6b5b4b;         // texto secundario (metadatos, hints)
+  --color-muted-light: #a89886;   // texto terciario (deshabilitado, placeholders)
+  --color-muted-on-dark: #c9b79c; // texto secundario sobre el header oscuro
+
+  // Acento principal (garnet/granate militar)
+  --color-accent: #7a1f1f;
+  --color-accent-hover: #922626;
+  --color-accent-tint: #fbf1e6;   // fondo suave al hacer hover sobre elementos con acento
+
+  // Estados
+  --color-danger: #b02a2a;
+  --color-danger-bg: #fbeaea;
+  --color-danger-border: #e0b3b3;
+  --color-success: #2f7a3f;
+  --color-success-bg: #eaf3ec;
+
+  // Acento secundario (bronce/dorado, usado en facciones/reglamentos)
+  --color-bronze: #b8944f;
+  --color-bronze-hover: #8a6a26;
+  --color-bronze-bg: #f6efd9;
+
+  // Superficies
+  --color-surface-base: #f2e6d8;  // pergamino base / fondo de cabeceras de tabla
+  --color-surface-card: #fbf6ee;  // tarjetas, filas, paneles estandar
+  --color-surface-panel: #fffdf9; // paneles "en blanco" (catalogo, modal de exportar)
+  --color-header-bg: #201f1e;
+
+  // Bordes
+  --color-border: #d8c8b0;
+  --color-border-soft: #ece0cf;
+  --color-border-dark: #6b5b4b;
+  --color-disabled-bg: #b7a591;
+
+  // Radios de borde (escala corta -> larga, calcada de los valores ya en uso)
+  --radius-sm: 4px;
+  --radius-md: 5px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  --radius-2xl: 10px;
+
+  // Sombras (neutra + variantes tenidas para las tarjetas de faccion/reglamento)
+  --shadow-xs: 0 1px 3px rgba(43, 29, 20, 0.08); // reposo sutil en tarjetas/paneles
+  --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.25);
+  --shadow-bronze: 0 6px 18px rgba(138, 106, 38, 0.25);
+  --shadow-success: 0 6px 18px rgba(47, 122, 63, 0.25);
+
+  // Transiciones
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
 }
 
 * {
@@ -54,5 +114,43 @@ h1, h2, h3 {
 h1 {
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+// Seleccion de texto tenida con el acento en vez del azul por defecto del navegador: un
+// detalle pequeno pero que rompe la sensacion de "pagina generica" en cuanto alguien
+// selecciona texto.
+::selection {
+  background: var(--color-accent);
+  color: var(--color-surface-card);
+}
+
+// Foco visible consistente para navegacion por teclado (accesibilidad): un contorno solo
+// visible con :focus-visible (no en click de raton) para no ensuciar la interfaz con anillos
+// en cada clic, pero mantener la app usable con tabulador.
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+// Scrollbar afin al tema (solo navegadores WebKit/Blink; en el resto cae al scrollbar nativo,
+// que no rompe nada).
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-lg);
+  border: 3px solid var(--color-surface-base);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-bronze);
 }
 

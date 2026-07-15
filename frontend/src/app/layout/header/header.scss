@@ -9,9 +9,12 @@
 //    y los botones de cuenta a la derecha.
 .site-header {
   position: relative;
-  background: #201f1e;
-  border-bottom: 3px solid #7a1f1f;
-  color: #f2e6d8;
+  // Ligero degradado (en vez de un negro plano) para dar algo de profundidad a la cabecera,
+  // mas una sombra sutil que la separa del pergamino de debajo.
+  background: linear-gradient(180deg, #262524 0%, var(--color-header-bg) 100%);
+  border-bottom: 3px solid var(--color-accent);
+  box-shadow: var(--shadow-xs);
+  color: var(--color-surface-base);
 }
 
 .lang-row {
@@ -105,7 +108,7 @@
   font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 600;
-  color: #f2e6d8;
+  color: var(--color-surface-base);
   text-decoration: none;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -113,7 +116,7 @@
 
 .version-tag {
   font-size: 0.7rem;
-  color: #c9b79c;
+  color: var(--color-muted-on-dark);
   opacity: 0.8;
   cursor: default;
 }
@@ -126,7 +129,7 @@
 
 .lang-label {
   font-size: 0.68rem;
-  color: #a89886;
+  color: var(--color-muted-light);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -137,12 +140,12 @@
   padding: 0;
   width: 20px;
   height: 13px;
-  border: 1px solid #6b5b4b;
+  border: 1px solid var(--color-muted);
   border-radius: 2px;
   overflow: hidden;
   cursor: pointer;
   opacity: 0.6;
-  transition: opacity 0.15s ease, border-color 0.15s ease;
+  transition: opacity var(--transition-fast), border-color var(--transition-fast);
 }
 
 .flag-btn svg {
@@ -157,7 +160,7 @@
 
 .flag-btn.active {
   opacity: 1;
-  border-color: #f2e6d8;
+  border-color: var(--color-surface-base);
 }
 
 .header-actions {
@@ -172,7 +175,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #c9b79c;
+  color: var(--color-muted-on-dark);
   font-size: 0.78rem;
 }
 
@@ -184,10 +187,10 @@
   align-items: center;
   height: 1.9rem;
   padding: 0 0.75rem;
-  border: 1px solid #6b5b4b;
-  border-radius: 5px;
+  border: 1px solid var(--color-muted);
+  border-radius: var(--radius-md);
   background: transparent;
-  color: #f2e6d8;
+  color: var(--color-surface-base);
   text-decoration: none;
   font-family: inherit;
   font-weight: 600;
@@ -195,19 +198,19 @@
   white-space: nowrap;
   cursor: pointer;
   box-sizing: border-box;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
 }
 
 .header-action-btn:hover {
-  border-color: #f2e6d8;
+  border-color: var(--color-surface-base);
 }
 
 .header-action-btn-accent {
-  border-color: #7a1f1f;
-  background: #7a1f1f;
+  border-color: var(--color-accent);
+  background: var(--color-accent);
 }
 
 .header-action-btn-accent:hover {
-  background: #922626;
-  border-color: #922626;
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
 }

@@ -3,12 +3,12 @@
 }
 
 .my-lists-hint {
-  color: #6b5b4b;
+  color: var(--color-muted);
   font-style: italic;
 }
 
 .my-lists-error {
-  color: #b02a2a;
+  color: var(--color-danger);
   font-weight: 600;
 }
 
@@ -20,8 +20,9 @@
 // filas, que es justamente lo que hace falta aqui.
 .my-lists-table-wrap {
   margin-top: 1rem;
-  border: 1px solid #d8c8b0;
-  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xs);
   overflow: hidden;
 }
 
@@ -29,14 +30,14 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 0.85rem;
-  background: #fbf6ee;
+  background: var(--color-surface-card);
 }
 
 .my-lists-table th,
 .my-lists-table td {
   padding: 0.6rem 0.85rem;
   text-align: left;
-  border-bottom: 1px solid #d8c8b0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .my-lists-table tbody tr:last-child td {
@@ -48,8 +49,8 @@
   text-transform: uppercase;
   font-size: 0.65rem;
   letter-spacing: 0.02em;
-  color: #6b5b4b;
-  background: #f2e6d8;
+  color: var(--color-muted);
+  background: var(--color-surface-base);
 }
 
 .my-lists-actions {
@@ -61,38 +62,38 @@
 
 .my-lists-load-btn {
   padding: 0.3rem 0.7rem;
-  border: 1px solid #7a1f1f;
-  border-radius: 5px;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
   background: transparent;
-  color: #7a1f1f;
+  color: var(--color-accent);
   font-weight: 600;
   font-size: 0.75rem;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: background var(--transition-fast);
 }
 
 .my-lists-load-btn:hover {
-  background: #fbf1e6;
+  background: var(--color-accent-tint);
 }
 
 .my-lists-delete-btn {
   padding: 0.3rem 0.7rem;
-  border: 1px solid #d8c8b0;
-  border-radius: 5px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   background: transparent;
-  color: #6b5b4b;
+  color: var(--color-muted);
   font-weight: 600;
   font-size: 0.75rem;
   white-space: nowrap;
   cursor: pointer;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .my-lists-delete-btn:hover {
-  border-color: #b02a2a;
-  color: #b02a2a;
+  border-color: var(--color-danger);
+  color: var(--color-danger);
 }
 
 .my-lists-delete-btn:disabled {
