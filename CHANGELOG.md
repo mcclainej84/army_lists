@@ -4,6 +4,12 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.43 — 2026-07-15
+
+- Rusia (Black Powder) sustituida por completo: su roster (comandantes, infantería, caballería, artillería) ahora viene del suplemento oficial "A Clash of Eagles" en vez del "Manual del General". Excluidos del catálogo, a petición del usuario: Partisans y Mounted Jager. Granadero y Granadero Combinado se mantienen como dos unidades distintas.
+- Nuevo: una misma nación puede tener varios reglamentos seleccionables. Esquema ampliado (`group_code`, `ruleset_name_en/es`, `available`) para que el Paso 3 del selector muestre una única tarjeta por nación y el Paso 4 liste todos sus reglamentos disponibles.
+- Preparado el hueco para Francia/Prusia/Austria: junto a sus "Reglas Personalizadas" ya existentes, aparecen ya (deshabilitadas, "Próximamente") las variantes "Clash of Eagles" (pendientes de rellenar, un ejército a la vez) y "Waterloo" (pendiente de que el usuario aporte los datos). Gran Bretaña solo tendrá Waterloo (el libro de Rusia no cubre su ejército); Rusia solo tiene Clash of Eagles (sustituye del todo a la personalizada anterior).
+
 ## 0.42 — 2026-07-15
 
 - Actualizados los escudos de las 4 facciones de Epic Pike & Shotte (Imperial, Sueco, Francés, Español) con el nuevo arte de más detalle que pasó el usuario.

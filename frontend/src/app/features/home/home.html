@@ -123,9 +123,21 @@
         </div>
 
         <div class="card-grid ruleset-grid">
-          <button type="button" class="card ruleset-card" [class.official]="faction.isOfficial" (click)="goToFaction(faction)">
-            <span class="ruleset-name">{{ rulesetTitleKey(faction) | transloco }}</span>
-          </button>
+          @for (variant of rulesetVariants(faction); track variant.id) {
+            <button
+              type="button"
+              class="card ruleset-card"
+              [class.official]="variant.isOfficial"
+              [class.disabled]="!variant.available"
+              [disabled]="!variant.available"
+              (click)="goToFaction(variant)"
+            >
+              <span class="ruleset-name">{{ variant.rulesetName }}</span>
+              @if (!variant.available) {
+                <span class="coming-soon-badge">{{ 'factions.ruleset.comingSoon' | transloco }}</span>
+              }
+            </button>
+          }
         </div>
       </div>
     }

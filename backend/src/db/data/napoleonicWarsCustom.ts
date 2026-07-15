@@ -61,6 +61,9 @@ export const britishCustomFaction: FactionSeed = {
   name_en: "Great Britain",
   name_es: "Gran Bretaña",
   is_official: false,
+  group_code: "british",
+  ruleset_name_en: "Custom Rules",
+  ruleset_name_es: "Reglas Personalizadas",
   commanders: commandersUpTo(8),
   units: [    {
       code: "line_infantry",
@@ -383,6 +386,9 @@ export const frenchCustomFaction: FactionSeed = {
   name_en: "France",
   name_es: "Francia",
   is_official: false,
+  group_code: "french",
+  ruleset_name_en: "Custom Rules",
+  ruleset_name_es: "Reglas Personalizadas",
   commanders: commandersUpTo(9),
   units: [    {
       code: "line_infantry",
@@ -703,6 +709,9 @@ export const prussianCustomFaction: FactionSeed = {
   name_en: "Prussia",
   name_es: "Prusia",
   is_official: false,
+  group_code: "prussian",
+  ruleset_name_en: "Custom Rules",
+  ruleset_name_es: "Reglas Personalizadas",
   commanders: commandersUpTo(9),
   units: [    {
       code: "musketeers",
@@ -940,6 +949,9 @@ export const austrianCustomFaction: FactionSeed = {
   name_en: "Austria",
   name_es: "Austria",
   is_official: false,
+  group_code: "austrian",
+  ruleset_name_en: "Custom Rules",
+  ruleset_name_es: "Reglas Personalizadas",
   commanders: commandersUpTo(8),
   units: [    {
       code: "line_infantry",
@@ -1214,16 +1226,154 @@ export const austrianCustomFaction: FactionSeed = {
   ],
 };
 
+// Rusia: transcrita directamente del suplemento oficial "A Clash of Eagles" (Warlord
+// Games, campaña de Rusia de 1812), aportado por el usuario como eagles.md. Sustituye la
+// version anterior (que venia del "Manual del General"). Alcance acordado con el usuario:
+// solo Francia/Austria/Prusia/Rusia se sustituyen por datos de este libro; Gran Bretaña y
+// Portugal se dejan tal cual estaban (el libro no cubre esos dos ejercitos).
+//
+// Decisiones y omisiones acordadas explicitamente con el usuario:
+// - Opolchenie: coste base 19 puntos (variante desarmada/con pica, Disparo "0"). El libro
+//   tambien da un coste de 23 puntos para la variante armada con mosquetes (Disparo "2");
+//   se modela como opcion "Mosquetes" (+4, sube el Disparo via stat_overrides).
+// - Volunteer Jager: coste base 37 puntos, con mejora opcional a mosquete rayado/
+//   Sharpshooter por +3 (40 en total) — el libro documenta este mismo +3 en dos sitios
+//   (tabla de estadisticas "Rifle: 40 pts" y lista de ejercito "Upgrade to Sharpshooter"),
+//   se ha tratado como la misma mejora.
+// - Partisans y Mounted Jager: excluidos del catalogo a peticion explicita del usuario.
+// - Combined Grenadier y Grenadier: mantenidos como dos unidades distintas (confirmado).
+// - No se han modelado las variantes de Guardia de caballeria con C. a C. +1 (Chevalier
+//   Garde, Horse Guards, etc. - pag. 45 del libro) ni el amplio catalogo de mejoras
+//   "veterano" por brigada (Elite/Reliable a +4/+6/+8 puntos por unidad) que aparecen en
+//   la seccion de listas de ejercito: siguiendo el mismo criterio ya aplicado a las demas
+//   facciones de este fichero, solo se incluyen las opciones "Pequeña/Grande" universales
+//   mas las 2 mejoras especificas ya detalladas arriba.
+// - "Marauder" (regla propia, distinta de "Raiders") se traduce como "Merodeador".
 export const russianCustomFaction: FactionSeed = {
   code: "russian_custom",
   name_en: "Russia",
   name_es: "Rusia",
-  is_official: false,
-  commanders: commandersUpTo(9),
-  units: [    {
+  // is_official pasa a true: a diferencia del resto de este fichero (que viene del
+  // "Manual del General", un documento de aficionado), Rusia viene del suplemento
+  // oficial "A Clash of Eagles" - de ahi tambien que su ruleset_name sea el nombre del
+  // libro en vez de "Reglas Personalizadas".
+  is_official: true,
+  group_code: "russian",
+  ruleset_name_en: "Clash of Eagles",
+  ruleset_name_es: "Clash of Eagles",
+  commanders: [
+    {
+      code: "brigade_leader_vm7",
+      name_en: "Brigade Leader",
+      name_es: "Líder de Brigada",
+      command_rating: 7,
+      points: 0,
+      role: "battalia_leader",
+      move_range: 48,
+    },
+    {
+      code: "brigade_leader_vm8",
+      name_en: "Brigade Leader",
+      name_es: "Líder de Brigada",
+      command_rating: 8,
+      points: 20,
+      role: "battalia_leader",
+      move_range: 48,
+    },
+  ],
+  units: [
+    {
+      code: "life_guard",
+      name_en: "Life Guard Infantry",
+      name_es: "Infantería de la Guardia de Corps",
+      stats: {
+        category: "FOOT",
+        move_range: 12,
+        unit_type_en: "Infantry",
+        unit_type_es: "Infantería",
+        armament_en: "Smoothbore Musket",
+        armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
+        hand_to_hand: "7",
+        shooting: "3",
+        morale: "3",
+        stamina: 4,
+        special_rules_en: "Tough Fighter, Reliable, Elite 3+, Valiant, Poor Mixed Formation, Lie Down, Must Form Square, Close Column, Column of Companies",
+        special_rules_es: "Luchador Aguerrido, Fiables, Élite 3+, Valiente, Formación Mixta Deficiente, Tumbarse, Debe Formar Cuadro, Columna Cerrada, Columna de Compañías",
+      },
+      base_points: 61,
+      options: [...SIZE_OPTIONS],
+    },
+    {
+      code: "guard_jager",
+      name_en: "Guard Jäger",
+      name_es: "Jäger de la Guardia",
+      stats: {
+        category: "FOOT",
+        move_range: 12,
+        unit_type_en: "Infantry",
+        unit_type_es: "Infantería",
+        armament_en: "Smoothbore Musket",
+        armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
+        hand_to_hand: "6",
+        shooting: "3",
+        morale: "3",
+        stamina: 4,
+        special_rules_en: "Reliable, Elite 4+, Rifle Mixed Formation, Light Infantry Mixed Formation, Skirmish, Sharpshooter, Lie Down, Must Form Square, Close Column, Column of Companies",
+        special_rules_es: "Fiables, Élite 4+, Formación Mixta de Rifles, Formación Mixta de Infantería Ligera, Hostigador, Tirador Certero, Tumbarse, Debe Formar Cuadro, Columna Cerrada, Columna de Compañías",
+      },
+      base_points: 59,
+      options: [...SIZE_OPTIONS],
+    },
+    {
+      code: "grenadiers",
+      name_en: "Grenadier",
+      name_es: "Granadero",
+      stats: {
+        category: "FOOT",
+        move_range: 12,
+        unit_type_en: "Infantry",
+        unit_type_es: "Infantería",
+        armament_en: "Smoothbore Musket",
+        armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
+        hand_to_hand: "7",
+        shooting: "3",
+        morale: "4",
+        stamina: 4,
+        special_rules_en: "Tough Fighter, Elite 4+, Lacking Initiative, Lie Down, Must Form Square, Column of Companies, Close Column, Poor Mixed Formation",
+        special_rules_es: "Luchador Aguerrido, Élite 4+, Falta de Iniciativa, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta Deficiente",
+      },
+      base_points: 48,
+      options: [...SIZE_OPTIONS],
+    },
+    {
+      code: "combined_grenadiers",
+      name_en: "Combined Grenadier",
+      name_es: "Granadero Combinado",
+      stats: {
+        category: "FOOT",
+        move_range: 12,
+        unit_type_en: "Infantry",
+        unit_type_es: "Infantería",
+        armament_en: "Smoothbore Musket",
+        armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
+        hand_to_hand: "6",
+        shooting: "3",
+        morale: "4",
+        stamina: 4,
+        special_rules_en: "Tough Fighter, Poor Skirmisher, Lacking Initiative, Lie Down, Must Form Square, Column of Companies, Close Column, Poor Mixed Formation",
+        special_rules_es: "Luchador Aguerrido, Hostigador Deficiente, Falta de Iniciativa, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta Deficiente",
+      },
+      base_points: 41,
+      options: [...SIZE_OPTIONS],
+    },
+    {
       code: "line_infantry",
-      name_en: "Infantry",
-      name_es: "Infantería",
+      name_en: "Musketeer / Line Infantry",
+      name_es: "Mosquetero / Infantería de Línea",
       stats: {
         category: "FOOT",
         move_range: 12,
@@ -1235,16 +1385,17 @@ export const russianCustomFaction: FactionSeed = {
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
-        stamina: 3,
-        special_rules_en: "Mixed Formation, Must Form Square, Fierce Fighters",
-        special_rules_es: "Formación Mixta, Debe Formar Cuadro, Combatientes Aguerridos",
+        stamina: 4,
+        special_rules_en: "Tough Fighter, Lacking Initiative, Lie Down, Must Form Square, Column of Companies, Close Column, Poor Mixed Formation",
+        special_rules_es: "Luchador Aguerrido, Falta de Iniciativa, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta Deficiente",
       },
-      base_points: 37,
+      base_points: 41,
       options: [...SIZE_OPTIONS],
-    },    {
-      code: "jager_rifles",
-      name_en: "Jäger Rifles",
-      name_es: "Jägers",
+    },
+    {
+      code: "jagers",
+      name_en: "Jäger",
+      name_es: "Jäger",
       stats: {
         category: "FOOT",
         move_range: 12,
@@ -1256,37 +1407,48 @@ export const russianCustomFaction: FactionSeed = {
         hand_to_hand: "6",
         shooting: "3",
         morale: "4",
-        stamina: 3,
-        special_rules_en: "Mixed Rifle Formation, Must Form Square, Seasoned Marksmen, Fierce Fighters, Skirmishers",
-        special_rules_es: "Formación Mixta de Rifles, Debe Formar Cuadro, Tiradores Curtidos, Combatientes Aguerridos, Hostigadores",
+        stamina: 4,
+        special_rules_en: "Tough Fighter, Sharpshooter, Skirmish, Lacking Initiative, Lie Down, Must Form Square, Column of Companies, Close Column, Rifle Mixed Formation, Light Infantry Mixed Formation",
+        special_rules_es: "Luchador Aguerrido, Tirador Certero, Hostigador, Falta de Iniciativa, Tumbarse, Debe Formar Cuadro, Columna de Compañías, Columna Cerrada, Formación Mixta de Rifles, Formación Mixta de Infantería Ligera",
       },
-      base_points: 40,
+      base_points: 45,
       options: [...SIZE_OPTIONS],
-    },    {
-      code: "jager_volunteers",
-      name_en: "Volunteer Jägers",
-      name_es: "Jägers Voluntarios",
-      stats: {
-        category: "FOOT",
-        move_range: 12,
-        unit_type_en: "Infantry",
-        unit_type_es: "Infantería",
-        armament_en: "Smoothbore Musket",
-        armament_es: "Mosquete de Ánima Lisa",
-        weapon_range: 18,
-        hand_to_hand: "6",
-        shooting: "3",
-        morale: "4",
-        stamina: 3,
-        special_rules_en: "Mixed Formation, Unreliable, Must Form Square, Skirmishers",
-        special_rules_es: "Formación Mixta, Poco Fiables, Debe Formar Cuadro, Hostigadores",
-      },
-      base_points: 33,
-      options: [...SIZE_OPTIONS],
-    },    {
+    },
+    {
       code: "opolchenie",
       name_en: "Opolchenie",
       name_es: "Opolchenie",
+      stats: {
+        category: "FOOT",
+        move_range: 12,
+        unit_type_en: "Infantry",
+        unit_type_es: "Infantería",
+        armament_en: "Pike",
+        armament_es: "Pica",
+        weapon_range: 18,
+        hand_to_hand: "5",
+        shooting: "0",
+        morale: "5",
+        stamina: 3,
+        special_rules_en: "Militia, Untested, Unreliable, Lacking Initiative",
+        special_rules_es: "Milicia, Sin Experiencia, Poco Fiables, Falta de Iniciativa",
+      },
+      base_points: 19,
+      options: [
+        ...SIZE_OPTIONS,
+        {
+          code: "muskets",
+          description_en: "Muskets",
+          description_es: "Mosquetes",
+          point_delta: 4,
+          stat_overrides: { shooting: "2" },
+        },
+      ],
+    },
+    {
+      code: "opolchenie_jagers",
+      name_en: "Opolchenie Jägers",
+      name_es: "Jägers de Opolchenie",
       stats: {
         category: "FOOT",
         move_range: 12,
@@ -1297,17 +1459,18 @@ export const russianCustomFaction: FactionSeed = {
         weapon_range: 18,
         hand_to_hand: "5",
         shooting: "2",
-        morale: "5",
+        morale: "4",
         stamina: 3,
-        special_rules_en: "Mixed Formation, Unreliable, Must Form Square, Raw Recruits",
-        special_rules_es: "Formación Mixta, Poco Fiables, Debe Formar Cuadro, Recién Reclutados",
+        special_rules_en: "Poor Skirmisher, Militia, Lacking Initiative",
+        special_rules_es: "Hostigador Deficiente, Milicia, Falta de Iniciativa",
       },
-      base_points: 23,
+      base_points: 30,
       options: [...SIZE_OPTIONS],
-    },    {
-      code: "grenadiers",
-      name_en: "Grenadiers",
-      name_es: "Granaderos",
+    },
+    {
+      code: "volunteer_jager",
+      name_en: "Volunteer Jäger",
+      name_es: "Jäger Voluntario",
       stats: {
         category: "FOOT",
         move_range: 12,
@@ -1316,57 +1479,25 @@ export const russianCustomFaction: FactionSeed = {
         armament_en: "Smoothbore Musket",
         armament_es: "Mosquete de Ánima Lisa",
         weapon_range: 18,
-        hand_to_hand: "7",
+        hand_to_hand: "6",
         shooting: "3",
         morale: "4",
-        stamina: 3,
-        special_rules_en: "Mixed Formation, Must Form Square, Reliable, Elite 4+, Fierce Fighters",
-        special_rules_es: "Formación Mixta, Debe Formar Cuadro, Fiables, Élite 4+, Combatientes Aguerridos",
+        stamina: 4,
+        special_rules_en: "Poor Skirmisher, Militia, Lacking Initiative",
+        special_rules_es: "Hostigador Deficiente, Milicia, Falta de Iniciativa",
       },
-      base_points: 48,
-      options: [...SIZE_OPTIONS],
-    },    {
-      code: "life_guard",
-      name_en: "Life Guard",
-      name_es: "Life Guard",
-      stats: {
-        category: "FOOT",
-        move_range: 12,
-        unit_type_en: "Infantry",
-        unit_type_es: "Infantería",
-        armament_en: "Smoothbore Musket",
-        armament_es: "Mosquete de Ánima Lisa",
-        weapon_range: 18,
-        hand_to_hand: "7",
-        shooting: "3",
-        morale: "3",
-        stamina: 3,
-        special_rules_en: "Mixed Formation, Must Form Square, Reliable, Elite 3+, Fierce Fighters, Brave",
-        special_rules_es: "Formación Mixta, Debe Formar Cuadro, Fiables, Élite 3+, Combatientes Aguerridos, Valiente",
-      },
-      base_points: 57,
-      options: [...SIZE_OPTIONS],
-    },    {
-      code: "dragoons",
-      name_en: "Dragoons",
-      name_es: "Dragones",
-      stats: {
-        category: "HORSE",
-        move_range: 18,
-        unit_type_en: "Cavalry",
-        unit_type_es: "Caballería",
-        armament_en: "Saber",
-        armament_es: "Sable",
-        hand_to_hand: "8",
-        shooting: "–",
-        morale: "4",
-        stamina: 3,
-        special_rules_en: "Heavy Cavalry +1",
-        special_rules_es: "Caballería Pesada +1",
-      },
-      base_points: 44,
-      options: [...SIZE_OPTIONS],
-    },    {
+      base_points: 37,
+      options: [
+        ...SIZE_OPTIONS,
+        {
+          code: "rifled_muskets",
+          description_en: "Rifled Muskets (Sharpshooter)",
+          description_es: "Mosquetes Rayados (Tirador Certero)",
+          point_delta: 3,
+        },
+      ],
+    },
+    {
       code: "cuirassiers",
       name_en: "Cuirassiers",
       name_es: "Coraceros",
@@ -1375,18 +1506,62 @@ export const russianCustomFaction: FactionSeed = {
         move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
-        armament_en: "Saber",
+        armament_en: "Sabre",
         armament_es: "Sable",
         hand_to_hand: "9",
         shooting: "–",
         morale: "3",
         stamina: 3,
-        special_rules_en: "Heavy Cavalry D3, Reliable",
-        special_rules_es: "Caballería Pesada D3, Fiables",
+        special_rules_en: "Reliable, Heavy Cavalry D3",
+        special_rules_es: "Fiables, Caballería Pesada D3",
       },
       base_points: 58,
       options: [...SIZE_OPTIONS],
-    },    {
+    },
+    {
+      code: "dragoons",
+      name_en: "Dragoons",
+      name_es: "Dragones",
+      stats: {
+        category: "HORSE",
+        move_range: 18,
+        unit_type_en: "Cavalry",
+        unit_type_es: "Caballería",
+        armament_en: "Sabre",
+        armament_es: "Sable",
+        hand_to_hand: "8",
+        shooting: "–",
+        morale: "4",
+        stamina: 3,
+        special_rules_en: "Heavy Cavalry D1",
+        special_rules_es: "Caballería Pesada D1",
+      },
+      base_points: 44,
+      options: [...SIZE_OPTIONS],
+    },
+    {
+      code: "dragoons_foot",
+      name_en: "Dragoons on Foot",
+      name_es: "Dragones a Pie",
+      stats: {
+        category: "FOOT",
+        move_range: 12,
+        unit_type_en: "Infantry",
+        unit_type_es: "Infantería",
+        armament_en: "Smoothbore Musket",
+        armament_es: "Mosquete de Ánima Lisa",
+        weapon_range: 18,
+        hand_to_hand: "4",
+        shooting: "2",
+        morale: "4",
+        stamina: 2,
+        special_rules_en: "Skirmish",
+        special_rules_es: "Hostigador",
+      },
+      base_points: 28,
+      options: [...SIZE_OPTIONS],
+    },
+    {
       code: "uhlans",
       name_en: "Uhlans",
       name_es: "Ulanos",
@@ -1401,12 +1576,13 @@ export const russianCustomFaction: FactionSeed = {
         shooting: "–",
         morale: "4",
         stamina: 3,
-        special_rules_en: "Lancers, Raiders",
-        special_rules_es: "Lanceros, Incursores",
+        special_rules_en: "Lancer, Marauder",
+        special_rules_es: "Lanceros, Merodeador",
       },
       base_points: 48,
       options: [...SIZE_OPTIONS],
-    },    {
+    },
+    {
       code: "hussars",
       name_en: "Hussars",
       name_es: "Húsares",
@@ -1415,48 +1591,70 @@ export const russianCustomFaction: FactionSeed = {
         move_range: 18,
         unit_type_en: "Cavalry",
         unit_type_es: "Caballería",
-        armament_en: "Saber",
-        armament_es: "Sable",
+        armament_en: "Lance",
+        armament_es: "Lanza",
         hand_to_hand: "6",
         shooting: "–",
         morale: "4",
         stamina: 3,
-        special_rules_en: "Raiders",
-        special_rules_es: "Incursores",
+        special_rules_en: "Lancer, Marauder",
+        special_rules_es: "Lanceros, Merodeador",
       },
-      base_points: 41,
+      base_points: 46,
       options: [...SIZE_OPTIONS],
-    },    {
-      code: "foot_artillery",
-      name_en: "Foot Artillery",
-      name_es: "Artillería a Pie",
+    },
+    {
+      code: "cossacks_regular",
+      name_en: "Mounted Cossacks",
+      name_es: "Cosacos Montados",
+      stats: {
+        category: "HORSE",
+        move_range: 18,
+        unit_type_en: "Cavalry",
+        unit_type_es: "Caballería",
+        armament_en: "Lance",
+        armament_es: "Lanza",
+        hand_to_hand: "5",
+        shooting: "0",
+        morale: "5",
+        stamina: 3,
+        special_rules_en: "Lancer, Marauder, Unreliable",
+        special_rules_es: "Lanceros, Merodeador, Poco Fiables",
+      },
+      base_points: 34,
+      options: [...SIZE_OPTIONS],
+    },
+    {
+      code: "cossacks_irregular",
+      name_en: "Irregular Mounted Cossacks",
+      name_es: "Cosacos Montados Irregulares",
+      stats: {
+        category: "HORSE",
+        move_range: 18,
+        unit_type_en: "Cavalry",
+        unit_type_es: "Caballería",
+        armament_en: "Lance",
+        armament_es: "Lanza",
+        hand_to_hand: "5",
+        shooting: "0",
+        morale: "5",
+        stamina: 3,
+        special_rules_en: "Lancer, Marauder, Unreliable, Skirmish",
+        special_rules_es: "Lanceros, Merodeador, Poco Fiables, Hostigador",
+      },
+      base_points: 32,
+      options: [...SIZE_OPTIONS],
+    },
+    {
+      code: "light_battery_artillery",
+      name_en: "Light Company",
+      name_es: "Compañía Ligera",
       stats: {
         category: "ORDNANCE",
         move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
-        armament_en: "Smoothbore Ordnance",
-        armament_es: "Artillería de Ánima Lisa",
-        weapon_range: 48,
-        hand_to_hand: "1",
-        shooting: "3-2-1",
-        morale: "4",
-        stamina: 2,
-        special_rules_en: "–",
-        special_rules_es: "–",
-      },
-      base_points: 27,
-      options: [...SIZE_OPTIONS],
-    },    {
-      code: "foot_battery_artillery",
-      name_en: "Foot Battery Artillery",
-      name_es: "Artillería en Batería a Pie",
-      stats: {
-        category: "ORDNANCE",
-        move_range: 12,
-        unit_type_en: "Artillery",
-        unit_type_es: "Artillería",
-        armament_en: "Smoothbore Ordnance",
+        armament_en: "Smoothbore Artillery",
         armament_es: "Artillería de Ánima Lisa",
         weapon_range: 48,
         hand_to_hand: "2",
@@ -1468,51 +1666,195 @@ export const russianCustomFaction: FactionSeed = {
       },
       base_points: 36,
       options: [...SIZE_OPTIONS],
-    },    {
-      code: "horse_artillery",
-      name_en: "Horse Artillery",
-      name_es: "Artillería a Caballo",
+    },
+    {
+      code: "position_battery_artillery",
+      name_en: "Heavy / Position Company",
+      name_es: "Compañía Pesada / de Posición",
       stats: {
         category: "ORDNANCE",
         move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
-        armament_en: "Smoothbore Ordnance",
+        armament_en: "Smoothbore Artillery",
         armament_es: "Artillería de Ánima Lisa",
-        weapon_range: 36,
-        hand_to_hand: "1",
-        shooting: "3-2-1",
+        weapon_range: 48,
+        hand_to_hand: "2",
+        shooting: "4-2-2",
         morale: "4",
-        stamina: 1,
-        special_rules_en: "Raiders",
-        special_rules_es: "Incursores",
+        stamina: 3,
+        special_rules_en: "Siege Artillery",
+        special_rules_es: "Artillería de Asedio",
       },
-      base_points: 26,
+      base_points: 40,
       options: [...SIZE_OPTIONS],
-    },    {
+    },
+    {
       code: "horse_battery_artillery",
-      name_en: "Horse Battery Artillery",
-      name_es: "Artillería en Batería a Caballo",
+      name_en: "Horse Company",
+      name_es: "Compañía a Caballo",
       stats: {
         category: "ORDNANCE",
         move_range: 12,
         unit_type_en: "Artillery",
         unit_type_es: "Artillería",
-        armament_en: "Smoothbore Ordnance",
+        armament_en: "Smoothbore Artillery",
         armament_es: "Artillería de Ánima Lisa",
         weapon_range: 36,
         hand_to_hand: "2",
         shooting: "4-2-2",
         morale: "4",
         stamina: 2,
-        special_rules_en: "Raiders",
-        special_rules_es: "Incursores",
+        special_rules_en: "Marauder",
+        special_rules_es: "Merodeador",
       },
       base_points: 39,
       options: [...SIZE_OPTIONS],
     },
+    {
+      code: "unicorn_battery_10pdr",
+      name_en: "Unicorn Company (10-pdr)",
+      name_es: "Compañía de Unicornios (10 libras)",
+      stats: {
+        category: "ORDNANCE",
+        move_range: 12,
+        unit_type_en: "Artillery",
+        unit_type_es: "Artillería",
+        armament_en: "Smoothbore Gun (Howitzer)",
+        armament_es: "Cañón de Ánima Lisa (Obús)",
+        weapon_range: 36,
+        hand_to_hand: "2",
+        shooting: "4-2-2",
+        morale: "4",
+        stamina: 3,
+        special_rules_en: "Gun (Howitzer)",
+        special_rules_es: "Cañón (Obús)",
+      },
+      base_points: 23,
+      options: [...SIZE_OPTIONS],
+    },
+    {
+      code: "unicorn_battery_20pdr",
+      name_en: "Unicorn Company (20-pdr)",
+      name_es: "Compañía de Unicornios (20 libras)",
+      stats: {
+        category: "ORDNANCE",
+        move_range: 12,
+        unit_type_en: "Artillery",
+        unit_type_es: "Artillería",
+        armament_en: "Smoothbore Gun (Howitzer)",
+        armament_es: "Cañón de Ánima Lisa (Obús)",
+        weapon_range: 48,
+        hand_to_hand: "2",
+        shooting: "4-2-2",
+        morale: "4",
+        stamina: 3,
+        special_rules_en: "Gun (Howitzer)",
+        special_rules_es: "Cañón (Obús)",
+      },
+      base_points: 27,
+      options: [...SIZE_OPTIONS],
+    },
   ],
 };
+
+// ---------------------------------------------------------------------------
+// Reglamentos "pendientes de enviar": el usuario quiere poder elegir, para algunas
+// naciones de Black Powder, entre varios reglamentos distintos (Reglas Personalizadas /
+// Clash of Eagles / Waterloo), no solo uno. Estas entradas son el hueco visible ya en el
+// selector (Paso 4, tarjeta deshabilitada "Próximamente") para reglamentos que se van a
+// rellenar mas adelante: se marcan available:false y sin comandantes/unidades todavia.
+// - Waterloo: pendiente para las 4 naciones que combatieron alli (Gran Bretaña, Francia,
+//   Prusia, Austria). Rusia no estuvo en Waterloo, así que no lleva esta variante.
+// - Clash of Eagles: pendiente para Francia/Prusia/Austria (mismo libro que Rusia, ver
+//   russianCustomFaction mas arriba); se ira sustituyendo available:true + comandantes/
+//   unidades reales a medida que se revise cada ejercito con el usuario, un ejercito a la
+//   vez (igual que se hizo con Rusia). Gran Bretaña no lleva esta variante: el libro no
+//   incluye su ejercito (es el suplemento de la campaña de Rusia de 1812).
+function placeholderFaction(
+  code: string,
+  name_en: string,
+  name_es: string,
+  group_code: string,
+  ruleset_name_en: string,
+  ruleset_name_es: string
+): FactionSeed {
+  return {
+    code,
+    name_en,
+    name_es,
+    is_official: true,
+    group_code,
+    ruleset_name_en,
+    ruleset_name_es,
+    available: false,
+    commanders: [],
+    units: [],
+  };
+}
+
+export const britishWaterlooFaction = placeholderFaction(
+  "british_waterloo",
+  "Great Britain",
+  "Gran Bretaña",
+  "british",
+  "Waterloo",
+  "Waterloo"
+);
+
+export const frenchClashOfEaglesFaction = placeholderFaction(
+  "french_clash_of_eagles",
+  "France",
+  "Francia",
+  "french",
+  "Clash of Eagles",
+  "Clash of Eagles"
+);
+
+export const frenchWaterlooFaction = placeholderFaction(
+  "french_waterloo",
+  "France",
+  "Francia",
+  "french",
+  "Waterloo",
+  "Waterloo"
+);
+
+export const prussianClashOfEaglesFaction = placeholderFaction(
+  "prussian_clash_of_eagles",
+  "Prussia",
+  "Prusia",
+  "prussian",
+  "Clash of Eagles",
+  "Clash of Eagles"
+);
+
+export const prussianWaterlooFaction = placeholderFaction(
+  "prussian_waterloo",
+  "Prussia",
+  "Prusia",
+  "prussian",
+  "Waterloo",
+  "Waterloo"
+);
+
+export const austrianClashOfEaglesFaction = placeholderFaction(
+  "austrian_clash_of_eagles",
+  "Austria",
+  "Austria",
+  "austrian",
+  "Clash of Eagles",
+  "Clash of Eagles"
+);
+
+export const austrianWaterlooFaction = placeholderFaction(
+  "austrian_waterloo",
+  "Austria",
+  "Austria",
+  "austrian",
+  "Waterloo",
+  "Waterloo"
+);
 
 // ---------------------------------------------------------------------------
 // Reglas nacionales opcionales ("Manual del General"), aplicadas por categoria de unidad

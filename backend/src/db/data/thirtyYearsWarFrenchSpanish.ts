@@ -93,6 +93,9 @@ export const frenchFaction: FactionSeed = {
   // de Suecia/Imperio que si son del reglamento oficial. is_official ya no oculta la
   // faccion (el checkbox se quito), solo decide la etiqueta que se ve en su tarjeta.
   is_official: false,
+  group_code: "french",
+  ruleset_name_en: "Custom Rules",
+  ruleset_name_es: "Reglas Personalizadas",
   commanders: STANDARD_COMMANDERS,
   units: [
     {
@@ -525,6 +528,9 @@ export const spanishFaction: FactionSeed = {
   name_es: "Ejército Español",
   // Reglas personalizadas (ver comentario identico en frenchFaction, arriba).
   is_official: false,
+  group_code: "spanish",
+  ruleset_name_en: "Custom Rules",
+  ruleset_name_es: "Reglas Personalizadas",
   commanders: STANDARD_COMMANDERS,
   units: [
     {

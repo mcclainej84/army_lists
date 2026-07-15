@@ -40,6 +40,9 @@ interface FactionSummaryDTO {
   code: string;
   name: string;
   isOfficial: boolean;
+  groupCode: string;
+  rulesetName: string;
+  available: boolean;
 }
 
 interface CommanderDTO {
@@ -158,6 +161,9 @@ function buildFactionSummaryDTO(idFactory: () => number, faction: FactionSeed, l
     code: faction.code,
     name: locale === "en" ? faction.name_en : faction.name_es,
     isOfficial: faction.is_official,
+    groupCode: faction.group_code,
+    rulesetName: locale === "en" ? faction.ruleset_name_en : faction.ruleset_name_es,
+    available: faction.available ?? true,
   };
 }
 

@@ -17,6 +17,15 @@ export interface FactionSummaryDTO {
   code: string;
   name: string;
   isOfficial: boolean;
+  // Agrupa variantes de reglamento de una misma nacion (p.ej. Francia: Reglas
+  // Personalizadas / Clash of Eagles / Waterloo comparten groupCode "french"). El Paso 3
+  // del selector muestra una sola tarjeta por groupCode; el Paso 4 lista sus variantes.
+  groupCode: string;
+  // Nombre de este reglamento en concreto, ya resuelto por idioma (p.ej. "Clash of
+  // Eagles", "Reglas Personalizadas", "Waterloo").
+  rulesetName: string;
+  // false = reglamento "pendiente de enviar": se muestra deshabilitado en el Paso 4.
+  available: boolean;
 }
 
 export type CommanderRole = 'army_general' | 'battalia_leader';

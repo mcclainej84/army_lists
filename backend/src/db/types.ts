@@ -82,6 +82,21 @@ export interface FactionSeed {
   name_en: string;
   name_es: string;
   is_official: boolean;
+  // Agrupa varios reglamentos seleccionables de una misma nacion (p.ej. Francia:
+  // "french_custom" / "french_clash_of_eagles" / "french_waterloo" comparten
+  // group_code "french"). El Paso 3 del selector muestra una sola tarjeta por
+  // group_code; el Paso 4 lista todas las variantes de ese grupo para elegir
+  // reglamento. Si una faccion no tiene mas variantes, group_code puede coincidir
+  // con su propio code (grupo de 1).
+  group_code: string;
+  // Nombre de ESTE reglamento en concreto (distinto del nombre de la nacion), p.ej.
+  // "Reglas Personalizadas", "Clash of Eagles", "Waterloo", "Reglamento Oficial
+  // Pike & Shotte". Se muestra tal cual en el Paso 4, ya resuelto por idioma.
+  ruleset_name_en: string;
+  ruleset_name_es: string;
+  // false = reglamento "pendiente de enviar": aparece en el Paso 4 pero
+  // deshabilitado, sin comandantes/unidades todavia. Por defecto true.
+  available?: boolean;
   commanders: CommanderSeed[];
   units: FactionUnitSeed[];
 }

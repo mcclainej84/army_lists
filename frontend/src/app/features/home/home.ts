@@ -73,9 +73,26 @@ export class Home {
   }
 
   // Ya no hay checkbox de "incluir personalizadas" ni facciones "anfitrionas": se muestran
-  // siempre todas las facciones que devuelva la API tal cual.
+  // siempre todas las facciones que devuelva la API tal cual, pero agrupadas por
+  // groupCode: una misma nacion puede tener varias variantes de reglamento (Reglas
+  // Personalizadas / Clash of Eagles / Waterloo...) y solo debe aparecer una vez en el
+  // Paso 3 (la primera variante de cada grupo sirve de representante para el icono/nombre,
+  // que son iguales en todas las variantes de un mismo grupo).
   visibleFactions(): FactionSummaryDTO[] {
-    return this.factions() ?? [];
+    const list = this.factions() ?? [];
+    const seen = new Set<string>();
+    const result: FactionSummaryDTO[] = [];
+    for (const faction of list) {
+      if (seen.has(faction.groupCode)) continue;
+      seen.add(faction.groupCode);
+      result.push(faction);
+    }
+    return result;
+  }
+
+  /** Todas las variantes de reglamento del mismo grupo que `faction` (para el Paso 4). */
+  rulesetVariants(faction: FactionSummaryDTO): FactionSummaryDTO[] {
+    return (this.factions() ?? []).filter((f) => f.groupCode === faction.groupCode);
   }
 
   /**
@@ -92,18 +109,6 @@ export class Home {
 
   showRulesetStep(): boolean {
     return !GAMES_WITHOUT_RULESET_STEP.includes(this.selectedGame()?.code ?? '');
-  }
-
-  /**
-   * Texto del reglamento a mostrar en el paso 4. Por ahora cada facción tiene un unico
-   * reglamento posible (no hay eleccion real todavia), pero se muestra igualmente como
-   * paso propio: deja sitio a que en el futuro una facción pueda tener mas de una opcion,
-   * y aqui mismo se resuelve el caso especial de Epic Pike & Shotte (que nombra el
-   * reglamento oficial explicitamente, a diferencia del resto de juegos).
-   */
-  rulesetTitleKey(faction: FactionSummaryDTO): string {
-    if (!faction.isOfficial) return 'factions.ruleset.custom';
-    return this.selectedGame()?.code === 'epic_pike_and_shotte' ? 'factions.ruleset.officialPikeShotte' : 'factions.ruleset.official';
   }
 
   chooseGame(game: GameDTO): void {
@@ -145,6 +150,9 @@ export class Home {
   }
 
   goToFaction(faction: FactionSummaryDTO): void {
+    // Reglamentos "pendientes de enviar" (p.ej. Waterloo) se muestran pero no se pueden
+    // elegir todavia: no tienen comandantes/unidades cargados.
+    if (!faction.available) return;
     const game = this.selectedGame();
     const conflict = this.selectedConflict();
     if (!game || !conflict) return;

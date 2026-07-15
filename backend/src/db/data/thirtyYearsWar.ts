@@ -401,6 +401,9 @@ export const thirtyYearsWar: ConflictSeed = {
       name_en: "Imperial Army",
       name_es: "Ejército Imperial",
       is_official: true,
+      group_code: "imperial",
+      ruleset_name_en: "Official Pike & Shotte Rules",
+      ruleset_name_es: "Reglamento Oficial Pike & Shotte",
       commanders: [
         { code: "army_general", name_en: "Army General", name_es: "General en Jefe", command_rating: 8, points: 40, role: "army_general", move_range: 27 },
         { code: "battalia_commander", name_en: "Battalia Commander", name_es: "Comandante de Batalla", command_rating: 8, points: 40, role: "battalia_leader", move_range: 27 },
@@ -587,6 +590,9 @@ export const thirtyYearsWar: ConflictSeed = {
       name_en: "Swedish Army",
       name_es: "Ejército Sueco",
       is_official: true,
+      group_code: "swedish",
+      ruleset_name_en: "Official Pike & Shotte Rules",
+      ruleset_name_es: "Reglamento Oficial Pike & Shotte",
       commanders: [
         { code: "army_general", name_en: "Army General", name_es: "General en Jefe", command_rating: 8, points: 40, role: "army_general", move_range: 27 },
         { code: "battalia_commander", name_en: "Battalia Commander", name_es: "Comandante de Batalla", command_rating: 8, points: 40, role: "battalia_leader", move_range: 27 },

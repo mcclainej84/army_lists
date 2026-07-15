@@ -248,8 +248,10 @@
 
 .ruleset-card {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.3rem;
   padding: 1.1rem 1.25rem;
   text-align: center;
   background: #f6efd9;
@@ -270,10 +272,30 @@
   box-shadow: 0 6px 18px rgba(47, 122, 63, 0.25);
 }
 
+.ruleset-card.disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  filter: grayscale(0.4);
+}
+
+.ruleset-card.disabled:hover {
+  border-color: #b8944f;
+  box-shadow: none;
+  transform: none;
+}
+
 .ruleset-name {
   font-size: 1rem;
   font-weight: 700;
   color: #2b1d14;
+}
+
+.coming-soon-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #6b5b4b;
 }
 
 .coming-soon,
