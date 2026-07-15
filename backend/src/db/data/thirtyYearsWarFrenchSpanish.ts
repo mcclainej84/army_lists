@@ -124,7 +124,7 @@ export const frenchFaction: FactionSeed = {
     {
       code: "cuirassiers_gendarmes",
       name_en: "Cuirassiers (Gendarmes)",
-      name_es: "Corazas (Gendarmes)",
+      name_es: "Coraceros (Gendarmes)",
       stats: {
         category: "HORSE",
         unit_type_en: "Heavy Cavalry",
@@ -536,7 +536,7 @@ export const spanishFaction: FactionSeed = {
     {
       code: "royal_guard_cuirassiers",
       name_en: "Royal Guard Cuirassiers",
-      name_es: "Corazas de la Guardia Real",
+      name_es: "Coraceros de la Guardia Real",
       stats: {
         category: "HORSE",
         unit_type_en: "Heavy Cavalry",
@@ -559,7 +559,7 @@ export const spanishFaction: FactionSeed = {
     {
       code: "cuirassiers",
       name_en: "Cuirassiers",
-      name_es: "Corazas",
+      name_es: "Coraceros",
       stats: {
         category: "HORSE",
         unit_type_en: "Heavy Cavalry",

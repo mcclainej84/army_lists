@@ -412,7 +412,7 @@ export const thirtyYearsWar: ConflictSeed = {
         {
           code: "cuirassiers",
           name_en: "Cuirassiers",
-          name_es: "Corazas",
+          name_es: "Coraceros",
           stats: STATS.cuirassiers,
           base_points: 53,
           options: [
@@ -601,7 +601,7 @@ export const thirtyYearsWar: ConflictSeed = {
         {
           code: "cuirassiers",
           name_en: "Cuirassiers",
-          name_es: "Corazas",
+          name_es: "Coraceros",
           stats: STATS.cuirassiers,
           base_points: 53,
           constraints: { maxUnitsPerArmy: 2 },
