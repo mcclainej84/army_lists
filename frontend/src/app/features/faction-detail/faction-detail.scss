@@ -122,14 +122,44 @@ h2.catalog-frame-title {
   color: var(--color-surface-card);
 }
 
-// Iconos "pixel art" (rejilla 16x16, colores fijos tipo insignia/miniatura, no currentColor):
-// se ven igual este o no activa la pestaña, por eso llevan algo mas de tamaño que un icono de
-// linea simple, para que el detalle se aprecie.
+// Iconos de Mando/Infanteria/Caballeria/Artilleria: siluetas negras sobre fondo transparente
+// aportadas por el usuario (frontend/public/img/icons/), aplicadas como mask-image en vez de
+// <img> para poder "teñirlas" via background-color: en vez de fijar un color propio, se usa
+// currentColor - asi el icono siempre lleva el mismo color que el texto del boton en cada
+// estado (marron apagado en reposo, granate al pasar el raton, crema sobre fondo granate
+// cuando la pestaña esta activa), sin tener que repetir esos 3 colores aqui.
 .tab-icon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   flex: 0 0 auto;
-  image-rendering: pixelated;
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  transition: background-color var(--transition-fast);
+}
+
+.icon-command {
+  mask-image: url('../../../../public/img/icons/command.png');
+  -webkit-mask-image: url('../../../../public/img/icons/command.png');
+}
+
+.icon-infantry {
+  mask-image: url('../../../../public/img/icons/infantry.png');
+  -webkit-mask-image: url('../../../../public/img/icons/infantry.png');
+}
+
+.icon-cavalry {
+  mask-image: url('../../../../public/img/icons/cavalry.png');
+  -webkit-mask-image: url('../../../../public/img/icons/cavalry.png');
+}
+
+.icon-artillery {
+  mask-image: url('../../../../public/img/icons/artillery.png');
+  -webkit-mask-image: url('../../../../public/img/icons/artillery.png');
 }
 
 .catalog-group {
