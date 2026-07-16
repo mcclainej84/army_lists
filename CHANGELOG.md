@@ -4,6 +4,11 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.52 — 2026-07-16
+
+- Logo de French Indian War (`img/FIWLogo.png`): recentrado dentro de su lienzo 1200x800 (estaba desplazado hacia arriba, con mucho más margen vacío debajo que encima).
+- Logo de Black Powder (`img/BPlogo.png`): el texto en script dorado "Black Powder" ampliado un 20% para que se lea mejor a tamaño pequeño (poca definición antes), manteniendo el mismo centro y sin invadir la ilustración del arcabuz de debajo.
+
 ## 0.51 — 2026-07-16
 
 - Iconos de las pestañas del catálogo (Mando/Infantería/Caballería/Artillería) sustituidos por las siluetas que aportó el usuario (`img/official.png`, `infantry.png`, `cavalry.png`, `artillery.png`), en vez de los iconos "pixel art" dibujados a mano anteriores. Se aplican como `mask-image` (no `<img>`) para que su color siga el mismo estado que el texto del botón (marrón apagado en reposo, granate al pasar el ratón, crema sobre fondo granate cuando la pestaña está activa).
