@@ -6,7 +6,7 @@
 
 .selector-hero {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .selector-hero h1 {
@@ -25,13 +25,19 @@
 //
 // Se fija por ALTURA (no por ancho) para controlar directamente cuanto alto ocupa en la
 // pantalla: el sello es practicamente cuadrado, asi que el ancho resultante es similar.
-// clamp() en vez de un valor fijo: crece con el ancho de pantalla disponible (mas grande
-// en escritorio, nunca mas pequeño que antes en movil) sin tener que tocar esto a mano
-// cada vez que cambie el contenido de alrededor.
+//
+// El clamp() anterior solo miraba el ANCHO de ventana (18vw): en un portatil normal
+// (p.ej. 1366x768, poco alto) eso daba un logo de ~245px, que entre el logo + la frase +
+// margenes ya ocupaba mas de un tercio del alto de pantalla, empujando el paso 1 (elegir
+// juego) fuera de la vista sin hacer scroll. Ahora se limita tambien por ALTO de ventana
+// (18vh) y se toma el mas pequeño de los dos (min()): en pantallas anchas pero bajas el
+// alto manda y el logo se queda compacto; en pantallas altas y estrechas (moviles en
+// vertical) el ancho manda y el logo puede crecer mas. El limite inferior (90px) evita
+// que se quede diminuto en viewports muy bajos.
 .hero-logo {
   display: block;
   margin: 0 auto;
-  height: clamp(170px, 18vw, 280px);
+  height: clamp(90px, min(14vw, 18vh), 220px);
   width: auto;
   max-width: 100%;
 }

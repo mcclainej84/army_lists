@@ -48,9 +48,6 @@
           @for (item of filteredLists(); track item.id) {
             <article class="list-card" [class]="accentClassFor(item)">
               <div class="list-card-top">
-                @if (logoFor(item); as logo) {
-                  <img [src]="logo" [alt]="item.gameName" class="list-card-logo" />
-                }
                 <span class="list-card-game">{{ item.gameName || item.gameCode }}</span>
               </div>
 

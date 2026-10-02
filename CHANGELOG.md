@@ -4,6 +4,11 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.57 — 2026-10-02
+
+- "Mis Listas": quitado el logo del juego en cada tarjeta (quedaba raro); solo se muestra el nombre del juego en texto.
+- Logo de la portada: el `clamp()` anterior solo tenía en cuenta el ancho de ventana (18vw), así que en portátiles normales (pantalla ancha pero no muy alta) el logo salía enorme (~245px) y el paso 1 (elegir juego) quedaba fuera de la vista sin hacer scroll. Ahora el tamaño también se limita por alto de ventana (`min(14vw, 18vh)`), así se queda compacto en pantallas bajas y puede crecer más en pantallas altas y estrechas (móvil vertical).
+
 ## 0.56 — 2026-10-02
 
 - Rediseño a fondo de "Mis Listas": la tabla plana de 8 columnas (con scroll horizontal en móvil) se sustituye por una rejilla de tarjetas tipo "legajo de campaña", una por lista guardada. Cada tarjeta lleva una cinta de color por juego (bronce para Pike & Shotte, azul casaca para Black Powder, verde bosque para French Indian War), el nombre de la lista en tipografía de cabecera (Cinzel), una pastilla con el reglamento y una barra de progreso de puntos (en rojo si se supera el límite).

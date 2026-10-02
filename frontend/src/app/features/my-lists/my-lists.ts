@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { AuthService } from '../../core/auth.service';
-import { GAME_LOGOS } from '../../core/game-assets';
 import { SavedListSummary } from '../../core/saved-list.model';
 import { SavedListsService } from '../../core/saved-lists.service';
 
@@ -94,10 +93,6 @@ export class MyLists {
 
   routeFor(list: SavedListSummary): unknown[] {
     return ['/juegos', list.gameCode, 'conflictos', list.conflictCode, 'facciones', list.factionCode];
-  }
-
-  logoFor(list: SavedListSummary): string | null {
-    return GAME_LOGOS[list.gameCode] ?? null;
   }
 
   accentClassFor(list: SavedListSummary): string {
