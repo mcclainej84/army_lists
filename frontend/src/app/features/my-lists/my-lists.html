@@ -26,7 +26,10 @@
             <thead>
               <tr>
                 <th>{{ 'myLists.name' | transloco }}</th>
+                <th>{{ 'myLists.game' | transloco }}</th>
+                <th>{{ 'myLists.conflict' | transloco }}</th>
                 <th>{{ 'myLists.faction' | transloco }}</th>
+                <th>{{ 'myLists.ruleset' | transloco }}</th>
                 <th>{{ 'myLists.points' | transloco }}</th>
                 <th>{{ 'myLists.updated' | transloco }}</th>
                 <th></th>
@@ -36,7 +39,10 @@
               @for (item of list; track item.id) {
                 <tr>
                   <td>{{ item.name }}</td>
+                  <td>{{ item.gameName || '–' }}</td>
+                  <td>{{ item.conflictName || '–' }}</td>
                   <td>{{ item.factionName }}</td>
+                  <td>{{ item.rulesetName || '–' }}</td>
                   <td>{{ item.totalPoints }} / {{ item.pointsLimit }}</td>
                   <td>{{ item.updatedAt ? (item.updatedAt | date: 'short') : '–' }}</td>
                   <td class="my-lists-actions">

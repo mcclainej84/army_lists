@@ -101,7 +101,7 @@
   cursor: not-allowed;
 }
 
-// En movil no hay sitio para 5 columnas: en vez de amontonar el contenido (que es lo que
+// En movil no hay sitio para 8 columnas: en vez de amontonar el contenido (que es lo que
 // causaba el descuadre original), se deja la tabla con su ancho natural y se permite
 // scroll horizontal dentro de su propio recuadro.
 @media (max-width: 720px) {
@@ -110,6 +110,6 @@
   }
 
   .my-lists-table {
-    min-width: 640px;
+    min-width: 860px;
   }
 }

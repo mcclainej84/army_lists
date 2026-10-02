@@ -4,7 +4,7 @@ import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { Observable, switchMap, tap } from 'rxjs';
+import { firstValueFrom, Observable, switchMap, tap } from 'rxjs';
 import { AuthService } from '../../core/auth.service';
 import { CatalogService } from '../../core/catalog.service';
 import { CommanderDTO, FactionDetailDTO, UnitDTO, UnitOptionDTO } from '../../core/models';
@@ -27,10 +27,9 @@ import { exportListToPdf } from './pdf-export';
 type Category = 'HORSE' | 'FOOT' | 'ORDNANCE';
 // Orden pedido para el catalogo: Mando (aparte, son comandantes) / Infanteria / Caballeria / Artilleria.
 const CATEGORY_ORDER: Category[] = ['FOOT', 'HORSE', 'ORDNANCE'];
-// Mismo orden, pero como rango numerico: se usa para decidir donde insertar una unidad
-// nueva dentro de "Mi Lista" por defecto (comandantes ya van aparte, por encima, asi que
-// aqui solo hace falta Infanteria/Caballeria/Artilleria). Dentro de una misma categoria,
-// se ordena despues por Aguante (stamina) de menor a mayor.
+// Rango por categoria (Infanteria/Caballeria/Artilleria), como numero: desde que el orden
+// de insercion por defecto pasa a ser por coste (ver sortRank), esto ya solo se usa como
+// desempate entre unidades con el mismo coste, para que no queden mezcladas al azar.
 const CATEGORY_SORT_RANK: Record<Category, number> = { FOOT: 0, HORSE: 1, ORDNANCE: 2 };
 
 @Component({
@@ -48,6 +47,12 @@ export class FactionDetail {
 
   gameCode = '';
   conflictCode = '';
+  // Nombre (ya resuelto por idioma) del juego/conflicto actuales: no vienen en la ruta
+  // (solo el codigo) ni en FactionDetailDTO, asi que se piden aparte a games.json/
+  // conflicts.json (ver loadGameAndConflictNames) solo para poder guardarlos junto a la
+  // lista - no hace falta esperarlos para pintar el catalogo.
+  gameName = signal('');
+  conflictName = signal('');
   categoryOrder = CATEGORY_ORDER;
   unassignedId = UNASSIGNED_BATTALIA_ID;
 
@@ -90,6 +95,9 @@ export class FactionDetail {
       this.currentListId.set(null);
       this.saveListName.set('');
       this.saveError.set('');
+      this.gameName.set('');
+      this.conflictName.set('');
+      this.loadGameAndConflictNames();
       return this.catalogService.getFactionDetail(this.gameCode, this.conflictCode, factionCode).pipe(
         tap((faction) => {
           // Pestaña por defecto del catalogo: Mando si la faccion tiene comandantes, si no
@@ -117,6 +125,26 @@ export class FactionDetail {
       );
     })
   );
+
+  /**
+   * Nombre (ya traducido) del juego y el conflicto actuales, solo para poder guardarlos
+   * junto a la lista (ver confirmSave). No bloquea el pintado del catalogo si tarda o
+   * falla: si no llegan a tiempo, se guardan como cadena vacia (ver "?? ''" en
+   * SavedListsService al leerlas de vuelta).
+   */
+  private async loadGameAndConflictNames(): Promise<void> {
+    try {
+      const [games, conflicts] = await Promise.all([
+        firstValueFrom(this.catalogService.listGames()),
+        firstValueFrom(this.catalogService.listConflicts(this.gameCode)),
+      ]);
+      this.gameName.set(games.find((g) => g.code === this.gameCode)?.name ?? '');
+      this.conflictName.set(conflicts.find((c) => c.code === this.conflictCode)?.name ?? '');
+    } catch {
+      // Sin nombres no se puede mostrar bien en "Mis Listas", pero no es motivo para
+      // romper la pantalla: se guardaria con gameName/conflictName vacios.
+    }
+  }
 
   private async loadSavedList(listId: string): Promise<void> {
     try {
@@ -175,6 +203,7 @@ export class FactionDetail {
   savingInProgress = signal(false);
   saveError = signal('');
   private saveFactionName = '';
+  private saveRulesetName = '';
 
   totalPoints = computed(() => {
     const commanderPoints = this.listCommanders().reduce((sum, c) => sum + c.commander.points, 0);
@@ -419,9 +448,18 @@ export class FactionDetail {
     }
   }
 
-  /** Rango de orden por defecto: [categoria (Infanteria/Caballeria/Artilleria), Aguante efectivo]. */
+  /** Coste en puntos de una unidad con unas opciones dadas (base + deltas de las opciones marcadas). */
+  private unitCost(unit: UnitDTO, selectedOptionCodes: string[]): number {
+    const optionPoints = selectedOptionCodes.reduce((s, code) => {
+      const option = unit.options.find((o) => o.code === code);
+      return s + (option?.pointDelta ?? 0);
+    }, 0);
+    return unit.basePoints + optionPoints;
+  }
+
+  /** Rango de orden por defecto: [coste descendente, categoria como desempate si el coste coincide]. */
   private sortRank(unit: UnitDTO, selectedOptionCodes: string[]): [number, number] {
-    return [CATEGORY_SORT_RANK[unit.category] ?? 99, effectiveUnitStats(unit, selectedOptionCodes).stamina ?? 0];
+    return [this.unitCost(unit, selectedOptionCodes), CATEGORY_SORT_RANK[unit.category] ?? 99];
   }
 
   addUnit(unit: UnitDTO): void {
@@ -430,18 +468,19 @@ export class FactionDetail {
     const battaliaId = this.activeBattaliaId();
     const newEntry: ListUnitEntry = { instanceId: nextInstanceId('unit'), unit, selectedOptionCodes, battaliaId };
 
-    // Insercion por defecto ordenada (categoria, luego Aguante). No se reordena la lista
-    // entera en cada render para no pelearse con el reordenado manual por arrastre: solo
-    // se decide la posicion de entrada al anadir la unidad.
+    // Insercion por defecto ordenada por coste (mayor arriba, menor abajo). No se reordena
+    // la lista entera en cada render para no pelearse con el reordenado manual por
+    // arrastre (onDrop): solo se decide la posicion de entrada al anadir la unidad: una vez
+    // dentro, el usuario puede arrastrarla a donde quiera y se queda ahi.
     this.listUnits.update((list) => {
       const outside = list.filter((e) => e.battaliaId !== battaliaId);
       const within = list.filter((e) => e.battaliaId === battaliaId);
 
-      const [newCategoryRank, newStamina] = this.sortRank(unit, selectedOptionCodes);
+      const [newCost, newCategoryRank] = this.sortRank(unit, selectedOptionCodes);
       let insertAt = within.length;
       for (let i = 0; i < within.length; i++) {
-        const [categoryRank, stamina] = this.sortRank(within[i].unit, within[i].selectedOptionCodes);
-        if (newCategoryRank < categoryRank || (newCategoryRank === categoryRank && newStamina < stamina)) {
+        const [cost, categoryRank] = this.sortRank(within[i].unit, within[i].selectedOptionCodes);
+        if (newCost > cost || (newCost === cost && newCategoryRank < categoryRank)) {
           insertAt = i;
           break;
         }
@@ -465,11 +504,7 @@ export class FactionDetail {
   }
 
   entryPoints(entry: ListUnitEntry): number {
-    const optionPoints = entry.selectedOptionCodes.reduce((s, code) => {
-      const option = entry.unit.options.find((o) => o.code === code);
-      return s + (option?.pointDelta ?? 0);
-    }, 0);
-    return entry.unit.basePoints + optionPoints;
+    return this.unitCost(entry.unit, entry.selectedOptionCodes);
   }
 
   // --- Drag & drop de unidades ---
@@ -582,11 +617,23 @@ export class FactionDetail {
     return '';
   }
 
-  openSaveDialog(factionName: string): void {
+  /** Fecha de hoy en dd-mm-aaaa, para el nombre por defecto al guardar una lista nueva. */
+  private todayFormatted(): string {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    return `${dd}-${mm}-${yyyy}`;
+  }
+
+  openSaveDialog(factionName: string, rulesetName: string): void {
     if (!this.canSaveList()) return;
     this.saveFactionName = factionName;
+    this.saveRulesetName = rulesetName;
+    // Solo se rellena si esta vacio: una lista ya guardada (o ya renombrada por el
+    // usuario en este mismo dialogo) conserva su nombre tal cual, no se pisa con la fecha.
     if (!this.saveListName().trim()) {
-      this.saveListName.set(factionName);
+      this.saveListName.set(`${factionName} ${this.todayFormatted()}`);
     }
     this.saveError.set('');
     this.saveDialogOpen.set(true);
@@ -603,9 +650,12 @@ export class FactionDetail {
     const input: SavedListInput = {
       name,
       gameCode: this.gameCode,
+      gameName: this.gameName(),
       conflictCode: this.conflictCode,
+      conflictName: this.conflictName(),
       factionCode: this.route.snapshot.paramMap.get('factionCode') ?? '',
       factionName: this.saveFactionName,
+      rulesetName: this.saveRulesetName,
       pointsLimit: this.pointsLimit(),
       totalPoints: this.totalPoints(),
       battalias: this.battalias(),

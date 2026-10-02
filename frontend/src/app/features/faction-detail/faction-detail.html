@@ -35,7 +35,7 @@
         class="save-list-btn"
         [disabled]="!canSaveList()"
         [title]="saveBlockedReason()"
-        (click)="openSaveDialog(faction.name)"
+        (click)="openSaveDialog(faction.name, faction.rulesetName)"
       >
         {{ (currentListId() ? 'factionDetail.save.updateButton' : 'factionDetail.save.button') | transloco }}
       </button>

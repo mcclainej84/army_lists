@@ -4,6 +4,12 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.53 — 2026-10-02
+
+- Orden por defecto de las unidades en "Mi Lista": ahora se insertan ordenadas por coste (mayor arriba, menor abajo) en vez de por categoría/Aguante. El reordenado manual por arrastre sigue funcionando igual una vez añadidas.
+- "Mis Listas": la tabla ahora muestra también Juego, Conflicto y Reglamento de cada lista guardada (antes solo Facción), para poder identificarlas bien cuando hay varios reglamentos por nación. Las listas guardadas antes de este cambio muestran un guion en esas columnas nuevas.
+- Al guardar una lista nueva, el nombre por defecto pasa a ser "{Facción} {fecha dd-mm-aaaa}" (p.ej. "Francia 02-10-2026") en vez de solo el nombre de la facción; el usuario puede seguir renombrándola como quiera.
+
 ## 0.52 — 2026-07-16
 
 - Logo de French Indian War (`img/FIWLogo.png`): recentrado dentro de su lienzo 1200x800 (estaba desplazado hacia arriba, con mucho más margen vacío debajo que encima).

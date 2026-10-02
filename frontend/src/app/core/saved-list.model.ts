@@ -10,9 +10,15 @@ export interface SavedListDoc {
   ownerEmail: string | null;
   name: string;
   gameCode: string;
+  gameName: string;
   conflictCode: string;
+  conflictName: string;
   factionCode: string;
   factionName: string;
+  // Nombre del reglamento de esta variante (p.ej. "Clash of Eagles", "Reglas
+  // Personalizadas"): una misma facción/nacion puede tener varios, asi que hace falta
+  // guardarlo para poder distinguir listas en "Mis Listas" (ver FactionSummaryDTO.rulesetName).
+  rulesetName: string;
   pointsLimit: number;
   totalPoints: number;
   battalias: Battalia[];
@@ -32,9 +38,15 @@ export interface SavedListSummary {
   id: string;
   name: string;
   gameCode: string;
+  // gameName/conflictName/rulesetName: vacios ('') en listas guardadas antes de añadir
+  // estos campos (documentos antiguos en Firestore que no los tienen) - ver el "?? ''" al
+  // leerlos en SavedListsService. La tabla de "Mis Listas" los muestra con un guion en ese caso.
+  gameName: string;
   conflictCode: string;
+  conflictName: string;
   factionCode: string;
   factionName: string;
+  rulesetName: string;
   pointsLimit: number;
   totalPoints: number;
   updatedAt: Date | null;
