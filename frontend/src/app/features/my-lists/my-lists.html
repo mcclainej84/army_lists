@@ -1,71 +1,122 @@
-<section class="wizard-step my-lists-page">
+<section class="my-lists-page">
   <a class="back-link" routerLink="/">
     ← {{ 'factionDetail.back' | transloco }}
   </a>
 
-  <h1>{{ 'myLists.title' | transloco }}</h1>
+  <div class="my-lists-header">
+    <h1>{{ 'myLists.title' | transloco }}</h1>
+    @if (showSearch()) {
+      <input
+        type="text"
+        class="my-lists-search-input"
+        [ngModel]="searchTerm()"
+        (ngModelChange)="searchTerm.set($event)"
+        [placeholder]="'myLists.searchPlaceholder' | transloco"
+      />
+    }
+  </div>
 
   @if (!authService.isConfigured) {
     <p class="my-lists-hint">{{ 'myLists.notConfigured' | transloco }}</p>
   } @else if (!authService.authReady()) {
     <p class="my-lists-hint">{{ 'myLists.loading' | transloco }}</p>
   } @else if (!authService.currentUser()) {
-    <p class="my-lists-hint">{{ 'myLists.signInHint' | transloco }}</p>
-    <button type="button" class="save-list-btn" (click)="signIn()">{{ 'auth.signIn' | transloco }}</button>
+    <div class="my-lists-empty-state">
+      <p class="my-lists-hint">{{ 'myLists.signInHint' | transloco }}</p>
+      <button type="button" class="save-list-btn" (click)="signIn()">{{ 'auth.signIn' | transloco }}</button>
+    </div>
   } @else {
     @if (loadError()) {
       <p class="my-lists-error">{{ loadError() | transloco }}</p>
     }
 
-    @if (lists(); as list) {
-      @if (list.length === 0) {
-        <p class="my-lists-hint">{{ 'myLists.empty' | transloco }}</p>
+    @if (lists(); as allLists) {
+      @if (allLists.length === 0) {
+        <div class="my-lists-empty-state">
+          <p class="my-lists-hint">{{ 'myLists.empty' | transloco }}</p>
+          <a class="my-lists-cta" routerLink="/">{{ 'myLists.emptyCta' | transloco }}</a>
+        </div>
+      } @else if (filteredLists().length === 0) {
+        <div class="my-lists-empty-state">
+          <p class="my-lists-hint">{{ 'myLists.noResults' | transloco: { term: searchTerm() } }}</p>
+          <button type="button" class="my-lists-clear-btn" (click)="searchTerm.set('')">
+            {{ 'myLists.clearSearch' | transloco }}
+          </button>
+        </div>
       } @else {
-        <div class="my-lists-table-wrap">
-          <table class="my-lists-table">
-            <thead>
-              <tr>
-                <th>{{ 'myLists.name' | transloco }}</th>
-                <th>{{ 'myLists.game' | transloco }}</th>
-                <th>{{ 'myLists.conflict' | transloco }}</th>
-                <th>{{ 'myLists.faction' | transloco }}</th>
-                <th>{{ 'myLists.ruleset' | transloco }}</th>
-                <th>{{ 'myLists.points' | transloco }}</th>
-                <th>{{ 'myLists.updated' | transloco }}</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (item of list; track item.id) {
-                <tr>
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.gameName || '–' }}</td>
-                  <td>{{ item.conflictName || '–' }}</td>
-                  <td>{{ item.factionName }}</td>
-                  <td>{{ item.rulesetName || '–' }}</td>
-                  <td>{{ item.totalPoints }} / {{ item.pointsLimit }}</td>
-                  <td>{{ item.updatedAt ? (item.updatedAt | date: 'short') : '–' }}</td>
-                  <td class="my-lists-actions">
-                    <a class="my-lists-load-btn" [routerLink]="routeFor(item)" [queryParams]="{ listId: item.id }">
-                      {{ 'myLists.loadEdit' | transloco }}
-                    </a>
-                    <button
-                      type="button"
-                      class="my-lists-delete-btn"
-                      [disabled]="deletingId() === item.id"
-                      (click)="deleteList(item)"
-                    >
-                      {{ 'myLists.delete' | transloco }}
-                    </button>
-                  </td>
-                </tr>
-              }
-            </tbody>
-          </table>
+        <div class="my-lists-grid">
+          @for (item of filteredLists(); track item.id) {
+            <article class="list-card" [class]="accentClassFor(item)">
+              <div class="list-card-top">
+                @if (logoFor(item); as logo) {
+                  <img [src]="logo" [alt]="item.gameName" class="list-card-logo" />
+                }
+                <span class="list-card-game">{{ item.gameName || item.gameCode }}</span>
+              </div>
+
+              <h2 class="list-card-name">{{ item.name }}</h2>
+
+              <p class="list-card-path">
+                <span>{{ item.conflictName || '—' }}</span>
+                <span class="list-card-sep">›</span>
+                <span>{{ item.factionName }}</span>
+                @if (item.rulesetName) {
+                  <span class="list-card-ruleset-badge">{{ item.rulesetName }}</span>
+                }
+              </p>
+
+              <div class="list-card-points">
+                <div class="list-card-points-bar">
+                  <div
+                    class="list-card-points-fill"
+                    [class.over]="isOverLimit(item)"
+                    [style.width.%]="pointsRatio(item) * 100"
+                  ></div>
+                </div>
+                <span class="list-card-points-text" [class.over]="isOverLimit(item)">
+                  {{ item.totalPoints }} / {{ item.pointsLimit }} {{ 'myLists.points' | transloco }}
+                </span>
+              </div>
+
+              <div class="list-card-footer">
+                <span class="list-card-updated">{{ item.updatedAt ? (item.updatedAt | date: 'short') : '–' }}</span>
+                <div class="list-card-actions">
+                  <a class="my-lists-load-btn" [routerLink]="routeFor(item)" [queryParams]="{ listId: item.id }">
+                    {{ 'myLists.loadEdit' | transloco }}
+                  </a>
+                  <button
+                    type="button"
+                    class="my-lists-delete-btn"
+                    [disabled]="deletingId() === item.id"
+                    (click)="requestDelete(item)"
+                  >
+                    {{ deletingId() === item.id ? ('myLists.deleting' | transloco) : ('myLists.delete' | transloco) }}
+                  </button>
+                </div>
+              </div>
+            </article>
+          }
         </div>
       }
     } @else {
       <p class="my-lists-hint">{{ 'myLists.loading' | transloco }}</p>
     }
+  }
+
+  @if (pendingDelete(); as toDelete) {
+    <div class="my-lists-modal-backdrop" (click)="cancelDelete()">
+      <div class="my-lists-modal" (click)="$event.stopPropagation()">
+        <h3>{{ 'myLists.deleteModalTitle' | transloco }}</h3>
+        <p class="my-lists-modal-hint">{{ 'myLists.confirmDelete' | transloco: { name: toDelete.name } }}</p>
+        <div class="my-lists-modal-actions">
+          <button type="button" class="my-lists-modal-cancel-btn" (click)="cancelDelete()">
+            {{ 'myLists.cancel' | transloco }}
+          </button>
+          <button type="button" class="my-lists-modal-delete-btn" (click)="confirmDelete()">
+            {{ 'myLists.deleteConfirmButton' | transloco }}
+          </button>
+        </div>
+      </div>
+    </div>
   }
 </section>

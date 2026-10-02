@@ -4,6 +4,15 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.56 — 2026-10-02
+
+- Rediseño a fondo de "Mis Listas": la tabla plana de 8 columnas (con scroll horizontal en móvil) se sustituye por una rejilla de tarjetas tipo "legajo de campaña", una por lista guardada. Cada tarjeta lleva una cinta de color por juego (bronce para Pike & Shotte, azul casaca para Black Powder, verde bosque para French Indian War), el nombre de la lista en tipografía de cabecera (Cinzel), una pastilla con el reglamento y una barra de progreso de puntos (en rojo si se supera el límite).
+- Buscador por nombre/facción/juego/conflicto/reglamento, que solo aparece cuando hay más de 3 listas guardadas (para no añadir ruido si hay pocas).
+- El `confirm()` nativo del navegador al eliminar una lista se sustituye por un modal propio, coherente con el resto de la app.
+- Estado vacío mejorado: si no hay listas guardadas, se ofrece un enlace directo para crear la primera; si el buscador no encuentra nada, se ofrece quitar el filtro.
+- Corregido: la página no centraba su contenido ni tenía márgenes laterales en pantallas anchas (solo tenía un `max-width` sin `margin:auto` ni `padding`); y el enlace "volver" y el botón de "iniciar sesión" se renderizaban sin estilo porque reusaban nombres de clase definidos únicamente en otro componente (los estilos de Angular no se heredan entre componentes). Ambos corregidos.
+- Los mapas de logos/iconos de juego y facción (antes duplicados dentro de `home.ts`) se extraen a un módulo compartido `core/game-assets.ts`, reutilizado también desde "Mis Listas".
+
 ## 0.55 — 2026-10-02
 
 - Logo de la portada más grande: altura con `clamp(170px, 18vw, 280px)` en vez de un fijo de 150px, así crece con el ancho de pantalla (hasta 280px en escritorio) sin quedar nunca más pequeño que antes en móvil. Assets `logo-hero.png`/`@2x` regenerados a mayor resolución (350x350 / 700x700) para que no se pixele al verse más grande.

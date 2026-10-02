@@ -1,5 +1,70 @@
+// Antes esta pagina solo tenia "max-width: 900px" (sin margin:auto ni padding): en pantallas
+// anchas el contenido quedaba pegado al borde izquierdo en vez de centrado, a diferencia de
+// home.scss (.selector) y faction-detail.scss (.wizard-step). Se alinea con ese mismo patron.
 .my-lists-page {
-  max-width: 900px;
+  max-width: 1100px;
+  margin: 1.5rem auto;
+  padding: 0 1.5rem 3rem;
+}
+
+// .back-link y .save-list-btn ya existen en faction-detail.scss, pero los estilos de
+// Angular estan encapsulados por componente y no se heredan de una pagina a otra: aqui se
+// reusaban esos nombres de clase sin definirlos, asi que el enlace de "volver" y el boton
+// de "iniciar sesion" se veian sin estilo (texto azul de enlace por defecto del navegador y
+// un boton gris de sistema). Se definen aqui en paralelo con el mismo aspecto.
+.back-link {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.save-list-btn {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--color-success);
+  border-radius: var(--radius-md);
+  background: var(--color-success);
+  color: var(--color-surface-card);
+  font-weight: 600;
+  font-size: 0.78rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.save-list-btn:hover {
+  opacity: 0.9;
+}
+
+.save-list-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.my-lists-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.my-lists-header h1 {
+  margin: 0;
+}
+
+.my-lists-search-input {
+  min-width: 240px;
+  flex: 0 1 320px;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-panel);
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--color-ink);
 }
 
 .my-lists-hint {
@@ -12,55 +77,227 @@
   font-weight: 600;
 }
 
-// Tabla HTML real en vez de "filas" con CSS grid independientes: con grid, cada fila era
-// su propio contenedor con sus propias columnas, asi que el ancho de cada columna se
-// calculaba por separado por fila (segun su contenido) y la cabecera no quedaba alineada
-// con los datos de abajo en cuanto una fila tenia contenido mas ancho (p.ej. los botones de
-// Cargar/Eliminar). Con <table> el navegador alinea las columnas de verdad entre todas las
-// filas, que es justamente lo que hace falta aqui.
-.my-lists-table-wrap {
-  margin-top: 1rem;
+.my-lists-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.5rem;
+  background: var(--color-surface-card);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-2xl);
+}
+
+.my-lists-cta,
+.my-lists-clear-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+  background: var(--color-accent);
+  color: var(--color-surface-card);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.my-lists-cta:hover,
+.my-lists-clear-btn:hover {
+  background: var(--color-accent-hover);
+}
+
+.my-lists-cta:active,
+.my-lists-clear-btn:active {
+  transform: translateY(1px);
+}
+
+// --- Rejilla de tarjetas ----------------------------------------------------------------
+// Sustituye a la tabla HTML de antes: con 5 campos de texto por lista (nombre, juego,
+// conflicto, facción, reglamento) mas puntos/fecha/acciones, una tabla de 8 columnas se
+// quedaba sin sitio en movil (scroll horizontal) y no daba pie a ninguna jerarquia visual.
+// Una tarjeta por lista, en rejilla, se adapta sola a cualquier ancho sin scroll y deja
+// tratar el nombre de la lista como titulo en vez de una celda mas.
+.my-lists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.1rem;
+}
+
+// Cada tarjeta es un "legajo de campaña": una cinta de color en la parte de arriba
+// identifica el juego de un vistazo (ver .accent-* mas abajo), antes de leer una sola
+// palabra. display:flex + footer con margin-top:auto para que las acciones queden
+// siempre pegadas abajo aunque el resto del contenido varie de longitud entre tarjetas.
+.list-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.1rem 1.25rem 0.9rem;
+  background: var(--color-surface-card);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-xs);
+  overflow: hidden;
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.list-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--color-accent);
+}
+
+.list-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+// Colores de "cinta" por juego: un gesto deliberadamente mas vistoso que el resto de la
+// app (pedido explicito del usuario de explorar paleta/composicion aqui), pero manteniendo
+// tonos de epoca - bronce para Pike & Shotte, azul casaca napoleonico para Black Powder,
+// verde bosque de frontera para French Indian War - en vez de colores saturados modernos.
+.list-card.accent-eps::before {
+  background: var(--color-bronze-hover);
+}
+
+.list-card.accent-bp::before {
+  background: #2c3a63;
+}
+
+.list-card.accent-fiw::before {
+  background: #3f5d3a;
+}
+
+.list-card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0.35rem 0 0.6rem;
+}
+
+.list-card-logo {
+  width: 42px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  flex: 0 0 auto;
+}
+
+.list-card-game {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+}
+
+// Nombre de la lista como un titulo real (tipografia "de placa" Cinzel, igual que el resto
+// de cabeceras de la app) en vez de una celda de tabla mas: es el dato que mas importa
+// identificar de un vistazo.
+.list-card-name {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+.list-card-path {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0 0 0.85rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.list-card-sep {
+  color: var(--color-muted-light);
+}
+
+.list-card-ruleset-badge {
+  margin-left: auto;
+  padding: 0.1rem 0.55rem;
+  border: 1px solid var(--color-bronze);
+  border-radius: 999px;
+  background: var(--color-bronze-bg);
+  color: var(--color-bronze-hover);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.list-card-points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: 0 0 0.9rem;
+}
+
+.list-card-points-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-border);
   overflow: hidden;
 }
 
-.my-lists-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.85rem;
-  background: var(--color-surface-card);
+.list-card-points-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-success);
+  transition: width var(--transition-base);
 }
 
-.my-lists-table th,
-.my-lists-table td {
-  padding: 0.6rem 0.85rem;
-  text-align: left;
-  border-bottom: 1px solid var(--color-border);
+.list-card-points-fill.over {
+  background: var(--color-danger);
 }
 
-.my-lists-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.my-lists-table th {
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 0.65rem;
-  letter-spacing: 0.02em;
+.list-card-points-text {
+  font-size: 0.78rem;
+  font-weight: 600;
   color: var(--color-muted);
-  background: var(--color-surface-base);
 }
 
-.my-lists-actions {
+.list-card-points-text.over {
+  color: var(--color-danger);
+}
+
+.list-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--color-border);
+}
+
+.list-card-updated {
+  font-size: 0.72rem;
+  font-style: italic;
+  color: var(--color-muted-light);
+  white-space: nowrap;
+}
+
+.list-card-actions {
   display: flex;
   gap: 0.5rem;
-  justify-content: flex-end;
-  text-align: right;
 }
 
 .my-lists-load-btn {
+  display: inline-flex;
+  align-items: center;
   padding: 0.3rem 0.7rem;
   border: 1px solid var(--color-accent);
   border-radius: var(--radius-md);
@@ -101,15 +338,88 @@
   cursor: not-allowed;
 }
 
-// En movil no hay sitio para 8 columnas: en vez de amontonar el contenido (que es lo que
-// causaba el descuadre original), se deja la tabla con su ancho natural y se permite
-// scroll horizontal dentro de su propio recuadro.
-@media (max-width: 720px) {
-  .my-lists-table-wrap {
-    overflow-x: auto;
+// --- Modal de confirmacion de borrado ---------------------------------------------------
+// Sustituye al confirm() nativo del navegador de antes (rompia la ambientacion ilustrada
+// con un dialogo del sistema operativo). Mismo patron que el modal de exportar/guardar de
+// faction-detail.scss, pero con clases propias de este componente (los estilos de Angular
+// estan encapsulados por componente, no se heredan entre ellos).
+.my-lists-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 29, 20, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.my-lists-modal {
+  width: 100%;
+  max-width: 380px;
+  background: var(--color-surface-panel);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: 1.1rem 1.25rem 1.25rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.my-lists-modal h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  color: var(--color-danger);
+}
+
+.my-lists-modal-hint {
+  margin: 0 0 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+
+.my-lists-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.my-lists-modal-cancel-btn {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-muted);
+  font-weight: 600;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.my-lists-modal-delete-btn {
+  padding: 0.4rem 0.85rem;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--color-danger);
+  color: var(--color-surface-card);
+  font-weight: 600;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.my-lists-modal-delete-btn:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 480px) {
+  .my-lists-grid {
+    grid-template-columns: 1fr;
   }
 
-  .my-lists-table {
-    min-width: 860px;
+  .my-lists-header {
+    align-items: stretch;
+  }
+
+  .my-lists-search-input {
+    flex: 1 1 auto;
   }
 }
