@@ -4,6 +4,10 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.54 — 2026-10-02
+
+- Logo de la portada (`frontend/public/img/logo-hero.png`/`@2x`) sustituido por el nuevo sello circular ilustrado que aportó el usuario (los 3 soldados con las hojas de ejército y el rótulo "Army List Generator"). La imagen original traía un fondo "a cuadros" simulando transparencia pero en realidad eran píxeles sólidos sin canal alfa; se limpió con flood-fill desde las esquinas para dejarlo con transparencia real antes de integrarlo.
+
 ## 0.53 — 2026-10-02
 
 - Orden por defecto de las unidades en "Mi Lista": ahora se insertan ordenadas por coste (mayor arriba, menor abajo) en vez de por categoría/Aguante. El reordenado manual por arrastre sigue funcionando igual una vez añadidas.

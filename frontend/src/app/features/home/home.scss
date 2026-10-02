@@ -14,14 +14,15 @@
   line-height: 0;
 }
 
-// Logo principal en vez del texto "List Generator": el propio emblema (mosquete +
-// bicornio + laurel) ya incluye el nombre y hace de adorno, asi que no hace falta la
-// linea decorativa que llevaba el texto antes.
+// Logo principal en vez del texto "List Generator": el propio emblema (sello circular con
+// los 3 soldados y el nombre "Army List Generator") ya incluye el nombre y hace de adorno,
+// asi que no hace falta la linea decorativa que llevaba el texto antes.
 //
-// La imagen fuente tenia mucho margen transparente (sobre todo abajo); se recorto en
-// origen (frontend/public/img/logo-hero.png), y aqui se fija por ALTURA (no por ancho)
-// para controlar directamente cuanto alto ocupa en la pantalla: es lo que hacia que
-// sobrara tanto hueco antes de la frase "Elige tu juego...".
+// La imagen fuente (aportada por el usuario) traia un fondo "a cuadros" simulando
+// transparencia pero en realidad pixeles solidos (sin canal alfa real); se limpio con
+// flood-fill desde las esquinas antes de guardarla en frontend/public/img/logo-hero.png.
+// Se fija por ALTURA (no por ancho) para controlar directamente cuanto alto ocupa en la
+// pantalla: el sello es practicamente cuadrado, asi que el ancho resultante es similar.
 .hero-logo {
   display: block;
   margin: 0 auto;
