@@ -427,7 +427,7 @@
               [disabled]="!saveListName().trim() || savingInProgress()"
               (click)="confirmSave()"
             >
-              {{ (savingInProgress() ? 'factionDetail.save.saving' : 'factionDetail.export.confirm') | transloco }}
+              {{ (savingInProgress() ? 'factionDetail.save.saving' : (currentListId() ? 'factionDetail.save.updateConfirm' : 'factionDetail.save.confirm')) | transloco }}
             </button>
           </div>
         </div>

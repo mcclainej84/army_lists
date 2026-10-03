@@ -45,39 +45,32 @@
         </div>
       } @else {
         <div class="my-lists-grid">
-          @for (item of filteredLists(); track item.id; let i = $index) {
-            <article class="list-card" [class]="accentClassFor(item)" [style.--i]="i">
-              <div class="list-card-top">
-                <span class="list-card-game">{{ item.gameName || item.gameCode }}</span>
-              </div>
+          @for (item of filteredLists(); track item.id) {
+            <article class="list-card">
+              <span class="list-card-game">{{ item.gameName || item.gameCode }}</span>
 
-              <div class="list-card-main">
-                <div class="list-card-info">
-                  <h2 class="list-card-name">{{ item.name }}</h2>
+              <h2 class="list-card-name">{{ item.name }}</h2>
 
-                  <p class="list-card-path">
-                    <span>{{ item.conflictName || '—' }}</span>
-                    <span class="list-card-sep">›</span>
-                    <span>{{ item.factionName }}</span>
-                  </p>
+              <p class="list-card-path">
+                <span>{{ item.conflictName || '—' }}</span>
+                <span class="list-card-sep">›</span>
+                <span>{{ item.factionName }}</span>
+                @if (item.rulesetName) {
+                  <span class="list-card-ruleset-badge">{{ item.rulesetName }}</span>
+                }
+              </p>
 
-                  @if (item.rulesetName) {
-                    <span class="list-card-ruleset-badge">{{ item.rulesetName }}</span>
-                  }
+              <div class="list-card-points">
+                <div class="list-card-points-bar">
+                  <div
+                    class="list-card-points-fill"
+                    [class.over]="isOverLimit(item)"
+                    [style.width.%]="pointsRatio(item) * 100"
+                  ></div>
                 </div>
-
-                <!-- Sello de lacre: anillo = % de puntos usados, centro = total / limite. -->
-                <div
-                  class="list-card-seal"
-                  [class.over]="isOverLimit(item)"
-                  [style.--ratio]="pointsRatio(item) * 100"
-                  [attr.title]="item.totalPoints + ' / ' + item.pointsLimit + ' ' + ('myLists.points' | transloco)"
-                >
-                  <div class="list-card-seal-inner">
-                    <strong>{{ item.totalPoints }}</strong>
-                    <small>/ {{ item.pointsLimit }}</small>
-                  </div>
-                </div>
+                <span class="list-card-points-text" [class.over]="isOverLimit(item)">
+                  {{ item.totalPoints }} / {{ item.pointsLimit }} {{ 'myLists.points' | transloco }}
+                </span>
               </div>
 
               <div class="list-card-footer">

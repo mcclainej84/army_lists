@@ -123,6 +123,8 @@
     "save": {
       "button": "Save list",
       "updateButton": "Update list",
+      "confirm": "Save",
+      "updateConfirm": "Update",
       "notConfigured": "List saving not available yet",
       "signInRequired": "Sign in to save your list",
       "guestNotice": "You can build your list without signing in, but you won't be able to save it. Sign in to save, load and edit your lists.",

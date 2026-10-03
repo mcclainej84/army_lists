@@ -7,15 +7,6 @@ import { AuthService } from '../../core/auth.service';
 import { SavedListSummary } from '../../core/saved-list.model';
 import { SavedListsService } from '../../core/saved-lists.service';
 
-// Codigo de juego -> clase CSS de acento: cada juego tiene su propio color de "carpeta de
-// campaña" (ver my-lists.scss) para poder distinguirlas de un vistazo en la rejilla de
-// tarjetas, igual que unos legajos de archivo militar con cintas de colores distintos.
-const GAME_ACCENT_CLASS: Record<string, string> = {
-  epic_pike_and_shotte: 'accent-eps',
-  black_powder: 'accent-bp',
-  french_indian_war: 'accent-fiw',
-};
-
 // Pagina "Mis Listas": solo tiene sentido con sesion iniciada (las listas viven en
 // Firestore, ligadas al usuario), pero la ruta en si es visible sin iniciar sesion (se
 // puede navegar sin registrarse por toda la app) y simplemente muestra una invitacion a
@@ -93,10 +84,6 @@ export class MyLists {
 
   routeFor(list: SavedListSummary): unknown[] {
     return ['/juegos', list.gameCode, 'conflictos', list.conflictCode, 'facciones', list.factionCode];
-  }
-
-  accentClassFor(list: SavedListSummary): string {
-    return GAME_ACCENT_CLASS[list.gameCode] ?? 'accent-default';
   }
 
   /** Fraccion 0-1 de puntos usados, para la barra de progreso de la tarjeta (nunca pasa de 1 aunque se exceda el limite). */

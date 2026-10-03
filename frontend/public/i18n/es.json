@@ -123,6 +123,8 @@
     "save": {
       "button": "Guardar lista",
       "updateButton": "Actualizar lista",
+      "confirm": "Guardar",
+      "updateConfirm": "Actualizar",
       "notConfigured": "Guardado de listas no disponible todavía",
       "signInRequired": "Inicia sesión para guardar tu lista",
       "guestNotice": "Puedes construir tu lista sin iniciar sesión, pero no podrás guardarla. Inicia sesión para guardar, cargar y editar tus listas.",
