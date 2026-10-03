@@ -4,6 +4,13 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.58 — 2026-10-03
+
+- "Mis Listas", rediseño intensificado ("mesa de guerra"): la página pasa a un tablero oscuro de cuero/tinta con título grabado en Cinzel (mayúsculas, espaciado, filete dorado con rombo) sobre el que se reparten "despachos" de pergamino con marco doble, sombra profunda y animación de reparto escalonada al entrar (respeta `prefers-reduced-motion`).
+- Cada despacho: cinta con el nombre del juego colgando del borde (cola de golondrina, color por juego), reglamento como sello de tinta rotado, y un sello de lacre con los puntos totales cuyo anillo muestra el % del límite usado (rojo vivo si se supera). Botón "Cargar" relleno con el color del juego; "Eliminar" discreto.
+- Buscador, estados vacíos, botones y modal de borrado adaptados al nuevo estilo.
+- Versión anterior (0.57) guardada en el tag de git `v0.57`; para volver: `git checkout v0.57 -- frontend/src/app/features/my-lists`.
+
 ## 0.57 — 2026-10-02
 
 - "Mis Listas": quitado el logo del juego en cada tarjeta (quedaba raro); solo se muestra el nombre del juego en texto.
