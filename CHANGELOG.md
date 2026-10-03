@@ -8,7 +8,7 @@ Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de c
 
 - "Mis Listas" vuelve a un estilo sobrio, coherente con el resto de la app (pergamino, bordes y acentos estándar); se conserva el marco interior doble de las tarjetas. Eliminados el tablero oscuro, la cinta, el sello de lacre, las rotaciones y la animación de la 0.58.
 - Modal de guardar lista: el botón decía "Exportar"; ahora dice "Guardar" (o "Actualizar" si se está editando una lista ya guardada).
-- Portada: tarjetas de juego más grandes (contenedor de 960px a 1240px).
+- Portada: tarjetas de juego algo más grandes (contenedor de 960px a 1120px; 1240px se probó y era demasiado).
 
 ## 0.58 — 2026-10-03
 

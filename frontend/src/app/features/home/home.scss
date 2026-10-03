@@ -1,7 +1,8 @@
-// 1240px (antes 960): ensancha el contenedor para que las 4 tarjetas de juego (una sola
-// fila, ver .game-grid) salgan mas grandes; el resto de pasos solo ganan aire.
+// 1120px (antes 960): ensancha el contenedor para que las 4 tarjetas de juego (una sola
+// fila, ver .game-grid) salgan algo mas grandes; el resto de pasos solo ganan aire.
+// (Se probo 1240px y al usuario le parecio demasiado grande.)
 .selector {
-  max-width: 1240px;
+  max-width: 1120px;
   margin: 0 auto;
   padding: 1.5rem 1.5rem 2.5rem;
 }
