@@ -19,14 +19,23 @@ import {
 
 // Vistas editables: igual que los DTO, mas el texto JSON de "constraints" (campo avanzado:
 // reglas de maximos/proporciones) mientras se edita. Al guardar se vuelve a parsear.
-type EditableOption = UnitOptionDTO & { constraintsText: string };
-type EditableUnit = Omit<UnitDTO, 'options'> & { constraintsText: string; options: EditableOption[] };
+// Las restricciones mas comunes (maximo por ejercito / por battalia) se editan como campos
+// numericos; el resto de claves (proporciones, grupos...) van en un JSON "avanzado".
+type ConstraintFields = { maxArmy: number | null; maxBattalia: number | null; constraintsText: string };
+type EditableOption = UnitOptionDTO & ConstraintFields;
+type EditableUnit = Omit<UnitDTO, 'options'> & ConstraintFields & { options: EditableOption[] };
 type EditableDetail = Omit<FactionDetailDTO, 'units'> & { units: EditableUnit[] };
 
 const ROLES: Array<CommanderDTO['role']> = [null, 'army_general', 'battalia_leader'];
 
-function toText(value: Record<string, unknown> | null): string {
-  return value ? JSON.stringify(value, null, 2) : '';
+/** Separa las restricciones en los dos campos numericos comunes + el JSON del resto de claves. */
+function splitConstraints(value: Record<string, unknown> | null): ConstraintFields {
+  const { maxUnitsPerArmy, maxPerBattalia, ...rest } = value ?? {};
+  return {
+    maxArmy: typeof maxUnitsPerArmy === 'number' ? maxUnitsPerArmy : null,
+    maxBattalia: typeof maxPerBattalia === 'number' ? maxPerBattalia : null,
+    constraintsText: Object.keys(rest).length ? JSON.stringify(rest, null, 2) : '',
+  };
 }
 
 /**
@@ -160,8 +169,8 @@ export class DataEditor {
       ...copy,
       units: copy.units.map((u) => ({
         ...u,
-        constraintsText: toText(u.constraints),
-        options: u.options.map((o) => ({ ...o, constraintsText: toText(o.constraints) })),
+        ...splitConstraints(u.constraints),
+        options: u.options.map((o) => ({ ...o, ...splitConstraints(o.constraints) })),
       })),
     };
   }
@@ -204,6 +213,8 @@ export class DataEditor {
       specialRules: null,
       basePoints: 0,
       constraints: null,
+      maxArmy: null,
+      maxBattalia: null,
       constraintsText: '',
       options: [],
       moveRange: null,
@@ -226,6 +237,8 @@ export class DataEditor {
       pointDelta: 0,
       constraints: null,
       statOverrides: null,
+      maxArmy: null,
+      maxBattalia: null,
       constraintsText: '',
     });
     this.markDirty();
@@ -243,21 +256,27 @@ export class DataEditor {
   }
 
   // --- Guardar / descartar / restaurar ---
-  private parseConstraints(text: string, label: string): Record<string, unknown> | null {
-    const trimmed = text.trim();
-    if (!trimmed) return null;
-    try {
-      const parsed = JSON.parse(trimmed);
-      if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) throw new Error('not an object');
-      return parsed as Record<string, unknown>;
-    } catch {
-      throw new Error(label);
+  /** Une los campos numericos y el JSON avanzado en un unico objeto de restricciones (null si queda vacio). */
+  private buildConstraints(fields: ConstraintFields, label: string): Record<string, unknown> | null {
+    let result: Record<string, unknown> = {};
+    const trimmed = fields.constraintsText.trim();
+    if (trimmed) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) throw new Error('not an object');
+        result = parsed as Record<string, unknown>;
+      } catch {
+        throw new Error(label);
+      }
     }
+    if (fields.maxArmy !== null && fields.maxArmy !== undefined) result['maxUnitsPerArmy'] = Number(fields.maxArmy);
+    if (fields.maxBattalia !== null && fields.maxBattalia !== undefined) result['maxPerBattalia'] = Number(fields.maxBattalia);
+    return Object.keys(result).length ? result : null;
   }
 
   private toDto(editable: EditableDetail): FactionDetailDTO {
     const units: UnitDTO[] = editable.units.map((u) => {
-      const { constraintsText, options, ...rest } = u;
+      const { constraintsText, maxArmy, maxBattalia, options, ...rest } = u;
       const blankToNull = (v: string | null): string | null => (v && v.trim() ? v : null);
       return {
         ...rest,
@@ -268,13 +287,13 @@ export class DataEditor {
         morale: blankToNull(u.morale),
         specialRules: blankToNull(u.specialRules),
         basePoints: Number(u.basePoints) || 0,
-        constraints: this.parseConstraints(constraintsText, u.name || u.code),
+        constraints: this.buildConstraints(u, u.name || u.code),
         options: options.map((o) => {
-          const { constraintsText: optionText, ...optionRest } = o;
+          const { constraintsText: optionText, maxArmy: optionMaxArmy, maxBattalia: optionMaxBattalia, ...optionRest } = o;
           return {
             ...optionRest,
             pointDelta: Number(o.pointDelta) || 0,
-            constraints: this.parseConstraints(optionText, `${u.name || u.code} › ${o.description || o.code}`),
+            constraints: this.buildConstraints(o, `${u.name || u.code} › ${o.description || o.code}`),
           };
         }),
       };

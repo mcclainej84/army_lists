@@ -169,42 +169,52 @@
             <label class="span-4">{{ 'factionDetail.table.specialRules' | transloco }}
               <input type="text" [(ngModel)]="u.specialRules" (ngModelChange)="markDirty()" />
             </label>
-            <label class="span-4">{{ 'dataEditor.constraints' | transloco }}
-              <textarea rows="2" [(ngModel)]="u.constraintsText" (ngModelChange)="markDirty()" placeholder='{"maxUnitsPerArmy": 2}'></textarea>
+            <label>{{ 'dataEditor.maxArmy' | transloco }}
+              <input type="number" min="0" [(ngModel)]="u.maxArmy" (ngModelChange)="markDirty()" />
             </label>
+            <label>{{ 'dataEditor.maxBattalia' | transloco }}
+              <input type="number" min="0" [(ngModel)]="u.maxBattalia" (ngModelChange)="markDirty()" />
+            </label>
+            <details class="advanced span-2">
+              <summary>{{ 'dataEditor.advanced' | transloco }}</summary>
+              <textarea rows="3" [(ngModel)]="u.constraintsText" (ngModelChange)="markDirty()" placeholder='{"maxRatioTo": {"unitCode": "...", "ratio": 2}}'></textarea>
+            </details>
           </div>
 
           <h4>{{ 'factionDetail.options' | transloco }}</h4>
-          @for (o of u.options; track o.id; let oi = $index) {
-            <div class="option-editor">
-              <div class="option-row">
-                <input type="text" class="wide" [(ngModel)]="o.description" (ngModelChange)="markDirty()" [placeholder]="'dataEditor.optionDescription' | transloco" />
-                <label class="inline">
-                  Δ {{ 'factionDetail.table.points' | transloco }}
-                  <input type="number" [(ngModel)]="o.pointDelta" (ngModelChange)="markDirty()" />
-                </label>
-                <label class="inline">
-                  <input type="checkbox" [checked]="!!o.statOverrides" (change)="toggleOverrides(o, $any($event.target).checked)" />
-                  {{ 'dataEditor.ownStats' | transloco }}
-                </label>
-                <button type="button" class="row-remove" (click)="removeOption(u, oi)">✕</button>
-              </div>
-              @if (o.statOverrides; as ov) {
-                <div class="option-row stats">
-                  <label class="inline">{{ 'factionDetail.table.bases' | transloco }}
-                    <input type="number" [(ngModel)]="ov.bases" (ngModelChange)="markDirty()" /></label>
-                  <label class="inline">{{ 'factionDetail.table.handToHand' | transloco }}
-                    <input type="text" [(ngModel)]="ov.handToHand" (ngModelChange)="markDirty()" /></label>
-                  <label class="inline">{{ 'factionDetail.table.shooting' | transloco }}
-                    <input type="text" [(ngModel)]="ov.shooting" (ngModelChange)="markDirty()" /></label>
-                  <label class="inline">{{ 'factionDetail.table.stamina' | transloco }}
-                    <input type="number" [(ngModel)]="ov.stamina" (ngModelChange)="markDirty()" /></label>
-                </div>
-              }
-              <label class="constraints-label">{{ 'dataEditor.constraints' | transloco }}
-                <textarea rows="1" [(ngModel)]="o.constraintsText" (ngModelChange)="markDirty()" placeholder='{"maxPerBattalia": 1}'></textarea>
-              </label>
+          @if (u.options.length) {
+            <div class="option-head">
+              <span>{{ 'dataEditor.optionDescription' | transloco }}</span>
+              <span>Δ {{ 'factionDetail.table.points' | transloco }}</span>
+              <span>{{ 'dataEditor.maxArmy' | transloco }}</span>
+              <span>{{ 'dataEditor.maxBattalia' | transloco }}</span>
+              <span></span>
+              <span></span>
             </div>
+          }
+          @for (o of u.options; track o.id; let oi = $index) {
+            <div class="option-line">
+              <input type="text" [(ngModel)]="o.description" (ngModelChange)="markDirty()" />
+              <input type="number" [(ngModel)]="o.pointDelta" (ngModelChange)="markDirty()" />
+              <input type="number" min="0" [(ngModel)]="o.maxArmy" (ngModelChange)="markDirty()" />
+              <input type="number" min="0" [(ngModel)]="o.maxBattalia" (ngModelChange)="markDirty()" />
+              <button
+                type="button"
+                class="stats-toggle"
+                [class.on]="!!o.statOverrides"
+                [title]="'dataEditor.ownStats' | transloco"
+                (click)="toggleOverrides(o, !o.statOverrides)"
+              >📊</button>
+              <button type="button" class="row-remove" (click)="removeOption(u, oi)">✕</button>
+            </div>
+            @if (o.statOverrides; as ov) {
+              <div class="option-stats">
+                <label>{{ 'factionDetail.table.bases' | transloco }}<input type="number" [(ngModel)]="ov.bases" (ngModelChange)="markDirty()" /></label>
+                <label>{{ 'factionDetail.table.handToHand' | transloco }}<input type="text" [(ngModel)]="ov.handToHand" (ngModelChange)="markDirty()" /></label>
+                <label>{{ 'factionDetail.table.shooting' | transloco }}<input type="text" [(ngModel)]="ov.shooting" (ngModelChange)="markDirty()" /></label>
+                <label>{{ 'factionDetail.table.stamina' | transloco }}<input type="number" [(ngModel)]="ov.stamina" (ngModelChange)="markDirty()" /></label>
+              </div>
+            }
           }
           <div class="unit-actions">
             <button type="button" class="editor-btn" (click)="addOption(u)">+ {{ 'dataEditor.addOption' | transloco }}</button>

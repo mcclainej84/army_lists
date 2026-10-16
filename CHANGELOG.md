@@ -4,6 +4,11 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.61 — 2026-10-16
+
+- Editor de datos: las opciones de cada unidad pasan a una sola línea compacta (descripción, Δ puntos, máx. por ejército, máx. por battalia, valores propios y borrar) con cabecera común, en vez de un bloque grande por opción.
+- Las restricciones más comunes (máximo por ejército / por battalia) se editan ahora con campos numéricos en unidades y opciones. El JSON queda solo como "Otras restricciones" plegado en cada unidad (proporciones, grupos...); las claves que no se editan se conservan al guardar.
+
 ## 0.60 — 2026-10-16
 
 - Mi Lista: cada battalia/brigada (y "Sin asignar") se puede minimizar/expandir con su flecha (con resumen de nº de unidades y puntos en la cabecera), más botones "Minimizar todo / Expandir todo".
