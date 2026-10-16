@@ -6,7 +6,37 @@
   "nav": {
     "games": "Juegos",
     "myLists": "Mis Listas",
+    "data": "Datos",
     "language": "Idioma"
+  },
+  "dataEditor": {
+    "title": "Datos maestros",
+    "intro": "Edita las unidades, comandantes y opciones de cualquier ejército. Los cambios solo afectan a los ejércitos nuevos que se creen a partir de ahora; las listas ya guardadas no se modifican.",
+    "language": "Idioma que estás editando",
+    "languageHint": "cada idioma se edita por separado (cambia el idioma en la cabecera para editar el otro).",
+    "notConfigured": "La edición de datos no está disponible todavía en esta app.",
+    "signInHint": "Inicia sesión para editar los datos maestros.",
+    "edited": "Modificado",
+    "save": "Guardar cambios",
+    "discard": "Descartar cambios",
+    "restore": "Restaurar original",
+    "saved": "Cambios guardados. Se aplicarán a los ejércitos nuevos.",
+    "restored": "Datos originales restaurados.",
+    "saveError": "No se han podido guardar los cambios. Inténtalo de nuevo.",
+    "loadError": "No se han podido cargar los datos de este ejército.",
+    "invalidJson": "Restricciones con JSON no válido en",
+    "name": "Nombre",
+    "role": "Rol",
+    "roleGeneral": "General en Jefe",
+    "roleLeader": "Líder de battalia/brigada",
+    "category": "Categoría",
+    "constraints": "Restricciones (JSON, avanzado)",
+    "optionDescription": "Descripción de la opción",
+    "ownStats": "Valores propios",
+    "addCommander": "Añadir comandante",
+    "addUnit": "Añadir unidad",
+    "addOption": "Añadir opción",
+    "removeUnit": "Eliminar unidad"
   },
   "auth": {
     "signIn": "Iniciar sesión",
@@ -84,7 +114,21 @@
       "maxRatioToOwnLightOrdnance": "Necesitas más unidades de Artillería Ligera primero (máx. {{max}})",
       "notEnoughPoints": "No quedan puntos suficientes (cuesta {{cost}}, quedan {{remaining}})"
     },
+    "selection": {
+      "count": "{{count}} seleccionadas",
+      "moveTo": "Mover a...",
+      "move": "Mover",
+      "clear": "Quitar selección",
+      "selectAll": "Seleccionar todas"
+    },
     "battalias": {
+      "collapse": "Minimizar",
+      "expand": "Expandir",
+      "collapseAll": "Minimizar todo",
+      "expandAll": "Expandir todo",
+      "moveUp": "Subir",
+      "moveDown": "Bajar",
+      "unitsCount": "{{count}} unidades",
       "add": "+ Nueva {{group}}",
       "unassigned": "Sin asignar",
       "namePlaceholder": "Nombre de la {{groupLower}}"

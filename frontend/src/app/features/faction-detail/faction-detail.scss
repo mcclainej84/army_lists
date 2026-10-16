@@ -777,15 +777,139 @@ h2.catalog-frame-title {
   text-align: center;
 }
 
+// Toda la fila es arrastrable (ya no solo el icono). En tactil, [cdkDragStartDelay] exige
+// una pulsacion larga antes de arrastrar, para no confundirlo con el scroll normal.
 .drag-col {
   text-align: center;
-  cursor: grab;
   color: var(--color-muted-light);
-  // El drag ahora se activa solo desde este icono (cdkDragHandle), no desde toda la fila:
-  // asi el resto de la fila deja pasar el scroll tactil normal en movil en vez de
-  // interpretarlo como un intento de arrastre. touch-action:none aqui es lo que le dice al
-  // navegador que este icono en concreto lo gestiona el propio drag-and-drop, no el scroll.
-  touch-action: none;
+}
+
+.row-check {
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--color-accent);
+}
+
+.unit-row.selected {
+  background: var(--color-accent-tint);
+  box-shadow: inset 3px 0 0 var(--color-accent);
+}
+
+// --- Cabecera de battalia: plegar, resumen, reordenar ---
+.collapse-btn {
+  border: none;
+  background: transparent;
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 0.1rem 0.25rem;
+  cursor: pointer;
+}
+
+.battalia-summary {
+  margin-left: auto;
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.battalia-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.move-btn {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-card);
+  color: var(--color-muted);
+  font-size: 0.6rem;
+  line-height: 1;
+  padding: 0.2rem 0.3rem;
+  cursor: pointer;
+}
+
+.move-btn:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.move-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.battalia-body.collapsed {
+  display: none;
+}
+
+.my-list-header-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.list-tool-btn {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-muted);
+  font-weight: 600;
+  font-size: 0.72rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.list-tool-btn:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.list-tool-btn.primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-surface-card);
+}
+
+.list-tool-btn.primary:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+  color: var(--color-surface-card);
+}
+
+.list-tool-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.selection-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  padding: 0.4rem 0.6rem;
+  background: var(--color-accent-tint);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+}
+
+.selection-count {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.selection-target {
+  padding: 0.25rem 0.4rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-panel);
+  font-family: inherit;
+  font-size: 0.75rem;
+  color: var(--color-ink);
 }
 
 .points-col {

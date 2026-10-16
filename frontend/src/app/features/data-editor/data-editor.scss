@@ -1,0 +1,333 @@
+// Editor de datos maestros: mismo pergamino y acentos que el resto de la app, denso y
+// funcional (es una herramienta de administracion, no una pantalla de cara al jugador).
+
+.data-editor {
+  max-width: 1100px;
+  margin: 1.5rem auto;
+  padding: 0 1.5rem 3rem;
+}
+
+// .back-link vive en faction-detail.scss; los estilos de Angular no se heredan entre componentes.
+.back-link {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.editor-intro,
+.editor-lang {
+  margin: 0 0 0.4rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.editor-notice {
+  padding: 1rem 1.25rem;
+  background: var(--color-surface-card);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-2xl);
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.selector-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.selector-row label,
+.field-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-muted);
+}
+
+input[type='text'],
+input[type='number'],
+select,
+textarea {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-panel);
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--color-ink);
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+textarea {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  resize: vertical;
+}
+
+.editor-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1rem 0 0.5rem;
+  padding: 0.6rem 0;
+  background: var(--color-surface-base);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.editor-toolbar h2 {
+  margin: 0;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.edited-badge {
+  padding: 0.1rem 0.6rem;
+  border: 1px solid var(--color-bronze);
+  border-radius: 999px;
+  background: var(--color-bronze-bg);
+  color: var(--color-bronze-hover);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.editor-btn {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-card);
+  color: var(--color-ink);
+  font-weight: 600;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.editor-btn:hover:not(:disabled) {
+  border-color: var(--color-accent);
+}
+
+.editor-btn.primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-surface-card);
+}
+
+.editor-btn.primary:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+}
+
+.editor-btn.danger {
+  color: var(--color-danger);
+  border-color: var(--color-danger-border);
+}
+
+.editor-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.editor-message {
+  margin: 0.4rem 0;
+  padding: 0.45rem 0.7rem;
+  background: var(--color-success-bg);
+  border: 1px solid var(--color-success);
+  border-radius: var(--radius-md);
+  color: var(--color-success);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.editor-message.error {
+  background: var(--color-danger-bg);
+  border-color: var(--color-danger-border);
+  color: var(--color-danger);
+}
+
+.editor-section {
+  margin: 1.5rem 0 0.5rem;
+  font-family: var(--font-display);
+  color: var(--color-accent);
+}
+
+.table-scroll {
+  overflow-x: auto;
+  margin-bottom: 0.6rem;
+}
+
+.editor-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+}
+
+.editor-table th {
+  padding: 0.4rem 0.5rem;
+  text-align: left;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-muted);
+  background: var(--color-surface-base);
+}
+
+.editor-table td {
+  padding: 0.3rem 0.4rem;
+  border-top: 1px solid var(--color-border-soft);
+}
+
+.editor-table input[type='number'] {
+  width: 5rem;
+}
+
+.wide {
+  width: 100%;
+  min-width: 10rem;
+}
+
+.row-remove {
+  border: none;
+  background: transparent;
+  color: var(--color-danger);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.unit-editor {
+  margin-bottom: 0.5rem;
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+}
+
+.unit-editor[open] {
+  border-color: var(--color-bronze);
+}
+
+.unit-editor summary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.55rem 0.8rem;
+  cursor: pointer;
+  list-style-position: inside;
+}
+
+.unit-summary-name {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.unit-summary-meta {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+  padding: 0.4rem 0.8rem 0.8rem;
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+.span-4 {
+  grid-column: span 4;
+}
+
+.unit-editor h4 {
+  margin: 0.2rem 0.8rem 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+}
+
+.option-editor {
+  margin: 0 0.8rem 0.5rem;
+  padding: 0.5rem;
+  background: var(--color-surface-panel);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-md);
+}
+
+.option-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.option-row .wide {
+  flex: 1 1 14rem;
+}
+
+.inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  color: var(--color-muted);
+}
+
+.inline input[type='number'],
+.inline input[type='text'] {
+  width: 4.5rem;
+}
+
+.constraints-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.unit-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0 0.8rem 0.8rem;
+}
+
+@media (max-width: 720px) {
+  .field-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .span-4 {
+    grid-column: span 2;
+  }
+}

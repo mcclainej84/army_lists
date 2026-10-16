@@ -795,7 +795,7 @@ export const spanishFaction: FactionSeed = {
         armament_es: "Mosquetes de Mecha",
         weapon_range: 18,
         hand_to_hand: "4",
-        shooting: "2",
+        shooting: "3", // corregido (antes 2) a peticion del usuario
         morale: "4+",
         stamina: 3,
         special_rules_en: "Elite 4+, First Fire",

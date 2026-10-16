@@ -61,16 +61,53 @@
       <section class="my-list">
         <div class="my-list-header">
           <h2>{{ 'factionDetail.myList' | transloco }}</h2>
-          @if (gameCode !== 'french_indian_war') {
-            <button type="button" class="add-battalia-btn" (click)="addBattalia()">
-              {{ 'factionDetail.battalias.add' | transloco: { group: groupNoun(true) } }}
+          <div class="my-list-header-actions">
+            <button type="button" class="list-tool-btn" (click)="collapseAll()">
+              {{ 'factionDetail.battalias.collapseAll' | transloco }}
             </button>
-          }
+            <button type="button" class="list-tool-btn" (click)="expandAll()">
+              {{ 'factionDetail.battalias.expandAll' | transloco }}
+            </button>
+            @if (gameCode !== 'french_indian_war') {
+              <button type="button" class="add-battalia-btn" (click)="addBattalia()">
+                {{ 'factionDetail.battalias.add' | transloco: { group: groupNoun(true) } }}
+              </button>
+            }
+          </div>
         </div>
 
-        @for (col of columns(); track col.id) {
+        <!-- Barra de seleccion multiple: aparece solo cuando hay unidades marcadas. -->
+        @if (selectedCount() > 0) {
+          <div class="selection-bar">
+            <span class="selection-count">{{ 'factionDetail.selection.count' | transloco: { count: selectedCount() } }}</span>
+            <select class="selection-target" [ngModel]="moveTargetId()" (ngModelChange)="moveTargetId.set($event)">
+              <option value="" disabled>{{ 'factionDetail.selection.moveTo' | transloco }}</option>
+              <option [value]="unassignedId">{{ 'factionDetail.battalias.unassigned' | transloco }}</option>
+              @for (b of battalias(); track b.id) {
+                <option [value]="b.id">{{ b.name || groupNoun(true) }}</option>
+              }
+            </select>
+            <button type="button" class="list-tool-btn primary" [disabled]="!moveTargetId()" (click)="moveSelectedToTarget()">
+              {{ 'factionDetail.selection.move' | transloco }}
+            </button>
+            <button type="button" class="list-tool-btn" (click)="clearSelection()">
+              {{ 'factionDetail.selection.clear' | transloco }}
+            </button>
+          </div>
+        }
+
+        @for (col of columns(); track col.id; let colIndex = $index) {
           <div class="battalia-block" [class.active]="activeBattaliaId() === col.id" (click)="setActiveBattalia(col.id)">
             <div class="battalia-header">
+              <button
+                type="button"
+                class="collapse-btn"
+                [attr.aria-expanded]="!isCollapsed(col.id)"
+                [title]="(isCollapsed(col.id) ? 'factionDetail.battalias.expand' : 'factionDetail.battalias.collapse') | transloco"
+                (click)="toggleCollapsed(col.id); $event.stopPropagation()"
+              >
+                {{ isCollapsed(col.id) ? '▸' : '▾' }}
+              </button>
               @if (col.removable) {
                 <input
                   class="battalia-name-input"
@@ -80,14 +117,38 @@
                   (ngModelChange)="renameBattalia(col.id, $event)"
                   (click)="$event.stopPropagation()"
                 />
-                @if (gameCode !== 'french_indian_war') {
-                  <button type="button" class="remove-btn" (click)="removeBattalia(col.id); $event.stopPropagation()">✕</button>
-                }
               } @else {
                 <span class="battalia-name">{{ 'factionDetail.battalias.unassigned' | transloco }}</span>
               }
+
+              <span class="battalia-summary">
+                {{ 'factionDetail.battalias.unitsCount' | transloco: { count: unitsInBattalia(col.id).length } }} · {{ battaliaPoints(col.id) }} {{ 'factionDetail.table.points' | transloco }}
+              </span>
+
+              @if (col.removable) {
+                <div class="battalia-tools">
+                  @if (gameCode !== 'french_indian_war') {
+                    <button
+                      type="button"
+                      class="move-btn"
+                      [disabled]="colIndex <= 1"
+                      [title]="'factionDetail.battalias.moveUp' | transloco"
+                      (click)="moveBattalia(col.id, -1); $event.stopPropagation()"
+                    >▲</button>
+                    <button
+                      type="button"
+                      class="move-btn"
+                      [disabled]="colIndex >= columns().length - 1"
+                      [title]="'factionDetail.battalias.moveDown' | transloco"
+                      (click)="moveBattalia(col.id, 1); $event.stopPropagation()"
+                    >▼</button>
+                    <button type="button" class="remove-btn" (click)="removeBattalia(col.id); $event.stopPropagation()">✕</button>
+                  }
+                </div>
+              }
             </div>
 
+            <div class="battalia-body" [class.collapsed]="isCollapsed(col.id)">
             @for (warning of warningsForBattalia(col.id); track $index) {
               <p class="battalia-warning">{{ warningMessage(warning) }}</p>
             }
@@ -109,8 +170,8 @@
               (click)="$event.stopPropagation()"
             >
               @for (entry of commandersInBattalia(col.id); track entry.instanceId) {
-                <div class="commander-entry" cdkDrag [cdkDragData]="entry">
-                  <span class="drag-col" cdkDragHandle>⠿</span>
+                <div class="commander-entry" cdkDrag [cdkDragData]="entry" [cdkDragStartDelay]="dragStartDelay">
+                  <span class="drag-col">⠿</span>
                   <span>{{ entry.commander.name }}</span>
                   <span class="entry-points">{{ entry.commander.points }} pts</span>
                   <button type="button" class="remove-btn" (click)="removeCommander(entry.instanceId)">✕</button>
@@ -130,7 +191,15 @@
             >
               @if (unitsInBattalia(col.id).length) {
                 <div class="unit-row unit-row-header">
-                  <span class="drag-col"></span>
+                  <span class="drag-col">
+                    <input
+                      type="checkbox"
+                      class="row-check"
+                      [checked]="allSelectedIn(col.id)"
+                      [title]="'factionDetail.selection.selectAll' | transloco"
+                      (change)="toggleSelectAll(col.id)"
+                    />
+                  </span>
                   <span>{{ 'factionDetail.table.unit' | transloco }}</span>
                   <span>{{ 'factionDetail.table.type' | transloco }}</span>
                   <span class="num-col">{{ 'factionDetail.table.move' | transloco }}</span>
@@ -149,8 +218,21 @@
 
                 @for (entry of unitsInBattalia(col.id); track entry.instanceId) {
                   @let stats = entryStats(entry);
-                  <div class="unit-row" cdkDrag [cdkDragData]="entry">
-                    <span class="drag-col" cdkDragHandle>⠿</span>
+                  <div
+                    class="unit-row"
+                    [class.selected]="isSelected(entry.instanceId)"
+                    cdkDrag
+                    [cdkDragData]="entry"
+                    [cdkDragStartDelay]="dragStartDelay"
+                  >
+                    <span class="drag-col">
+                      <input
+                        type="checkbox"
+                        class="row-check"
+                        [checked]="isSelected(entry.instanceId)"
+                        (change)="toggleSelected(entry.instanceId)"
+                      />
+                    </span>
                     <span>{{ entry.unit.name }}</span>
                     <span>{{ entry.unit.unitType }}</span>
                     <span class="num-col">{{ moveRangeText(entry.unit.moveRange) }}</span>
@@ -173,6 +255,7 @@
             @if (!col.removable && unitsInBattalia(col.id).length === 0 && commandersInBattalia(col.id).length === 0) {
               <p class="empty-column">{{ 'factionDetail.emptyColumn' | transloco: { groupLower: groupNoun(false) } }}</p>
             }
+            </div>
           </div>
         }
       </section>

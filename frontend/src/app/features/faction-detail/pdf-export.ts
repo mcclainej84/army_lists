@@ -1,5 +1,5 @@
 import { jsPDF } from 'jspdf';
-import autoTable from 'jspdf-autotable';
+import autoTable, { RowInput } from 'jspdf-autotable';
 import {
   Battalia,
   effectiveUnitStats,
@@ -10,12 +10,12 @@ import {
   UNASSIGNED_BATTALIA_ID,
 } from './list-builder.model';
 
-// Exportacion de la lista en curso a PDF, con un estilo visual inspirado en la hoja de
-// referencia que aporto el usuario: una tabla por Battalia (Unidad / Tipo / Peanas /
-// Armamento / C.a C. / Disparo / Moral / Aguante / Reglas Especiales / Puntos), sobre un
-// fondo tipo pergamino. Se sustituyen los campos "Army Commander" y "Command Rating" de la
-// hoja original por la Faccion (a peticion del usuario), y se pide un nombre para la lista
-// antes de exportar (se usa como titulo del documento y como nombre de archivo).
+// Exportacion de la lista en curso a PDF. Diseño sobrio tipo "hoja de ejercito": membrete
+// con el nombre de la lista y los puntos, y un bloque por Battalia/Brigada con su mando y
+// una tabla de unidades de tipografia pequeña. Cada bloque se mantiene entero en una sola
+// pagina siempre que cabe (si no cabe en lo que queda de pagina, salta a la siguiente en
+// vez de partirse por la mitad); solo un bloque mas largo que una pagina entera se divide,
+// repitiendo la cabecera de la tabla en cada pagina.
 
 export interface PdfTableLabels {
   unit: string;
@@ -64,20 +64,24 @@ export interface PdfExportOptions {
   labels: PdfExportLabels;
 }
 
-// Paleta calcada de faction-detail.scss para que el PDF encaje con el resto de la app.
-const COLOR_ACCENT: [number, number, number] = [122, 31, 31]; // #7a1f1f
-const COLOR_CREAM: [number, number, number] = [251, 246, 238]; // #fbf6ee
-const COLOR_PAPER: [number, number, number] = [255, 253, 249]; // #fffdf9
-const COLOR_BORDER: [number, number, number] = [216, 200, 176]; // #d8c8b0
-const COLOR_MUTED: [number, number, number] = [107, 91, 75]; // #6b5b4b
-const COLOR_DARK: [number, number, number] = [43, 29, 20]; // #2b1d14
-const COLOR_HEADROW: [number, number, number] = [236, 224, 207]; // #ece0cf
+type RGB = [number, number, number];
 
-// Serif en toda la hoja: da un aire mas "documento/manual militar" (como la referencia)
-// que el sans-serif de la propia app, que esta pensado para pantalla, no para imprimir.
-const FONT = 'times';
+// Paleta calcada de la app (pergamino / granate / bronce), con un gris-tinta mas neutro
+// para el texto de las tablas.
+const COLOR_ACCENT: RGB = [122, 31, 31]; // #7a1f1f
+const COLOR_BRONZE: RGB = [184, 148, 79]; // #b8944f
+const COLOR_CREAM: RGB = [250, 246, 239];
+const COLOR_BORDER: RGB = [222, 210, 190];
+const COLOR_MUTED: RGB = [120, 105, 90];
+const COLOR_DARK: RGB = [43, 29, 20]; // #2b1d14
 
-const PAGE_MARGIN = 12;
+const FONT_DISPLAY = 'times'; // titulos y nombres de battalia
+const FONT_TABLE = 'helvetica'; // cuerpo de las tablas: mas legible a cuerpo pequeño
+
+const PAGE_MARGIN = 14;
+const FOOTER_SPACE = 10;
+const GROUP_HEADER_HEIGHT = 11;
+const GROUP_GAP = 6;
 
 function slugify(text: string): string {
   const normalized = text
@@ -123,60 +127,30 @@ function entryPoints(entry: ListUnitEntry): number {
   return entry.unit.basePoints + optionPoints;
 }
 
-function ensureSpace(doc: jsPDF, y: number, needed: number): number {
-  const pageHeight = doc.internal.pageSize.getHeight();
-  if (y + needed > pageHeight - PAGE_MARGIN) {
-    doc.addPage();
-    return PAGE_MARGIN;
-  }
-  return y;
+function groupPoints(group: PdfExportGroup): number {
+  return (
+    group.units.reduce((sum, u) => sum + entryPoints(u), 0) +
+    group.commanders.reduce((sum, c) => sum + c.commander.points, 0)
+  );
 }
 
-export function exportListToPdf(options: PdfExportOptions): void {
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const contentWidth = pageWidth - PAGE_MARGIN * 2;
-  const labels = options.labels;
+function commanderLine(group: PdfExportGroup, labels: PdfExportLabels): string {
+  if (!group.commanders.length) return '';
+  const text = group.commanders
+    .map((c) =>
+      c.commander.commandRating !== null
+        ? `${c.commander.name} (${labels.commandRating}: ${c.commander.commandRating})`
+        : c.commander.name
+    )
+    .join('  ·  ');
+  return `${labels.commander}: ${text}`;
+}
 
-  // --- Cabecera: titulo de la lista a modo de membrete, con una linea fina debajo en vez
-  // de una caja rellena (menos "banner", mas documento formal). Faccion / Puntos sustituyen
-  // a los campos "Army Commander" / "Command Rating" de la hoja de referencia original.
-  doc.setTextColor(...COLOR_ACCENT);
-  doc.setFont(FONT, 'bold');
-  doc.setFontSize(18);
-  doc.text(options.listName, PAGE_MARGIN, PAGE_MARGIN + 4);
+// Anchos de columna (mm). Suman exactamente el ancho util (210 - 2 * 14 = 182 mm).
+const COLUMN_WIDTHS = [33, 15, 9, 11, 21, 9, 9, 11, 10, 11, 31, 12];
 
-  doc.setDrawColor(...COLOR_BORDER);
-  doc.setLineWidth(0.3);
-  doc.line(PAGE_MARGIN, PAGE_MARGIN + 7, PAGE_MARGIN + contentWidth, PAGE_MARGIN + 7);
-
-  doc.setFontSize(10);
-  doc.setFont(FONT, 'normal');
-  doc.setTextColor(...COLOR_MUTED);
-  doc.text(`${labels.faction}: `, PAGE_MARGIN, PAGE_MARGIN + 13.5);
-  const factionLabelWidth = doc.getTextWidth(`${labels.faction}: `);
-  doc.setFont(FONT, 'bold');
-  doc.setTextColor(...COLOR_DARK);
-  doc.text(options.factionName, PAGE_MARGIN + factionLabelWidth, PAGE_MARGIN + 13.5);
-
-  const pointsText = `${labels.points}: ${options.totalPoints} / ${options.pointsLimit}`;
-  doc.setFont(FONT, 'bold');
-  doc.setTextColor(...COLOR_ACCENT);
-  const pointsWidth = doc.getTextWidth(pointsText);
-  doc.text(pointsText, PAGE_MARGIN + contentWidth - pointsWidth, PAGE_MARGIN + 13.5);
-
-  let y = PAGE_MARGIN + 13.5 + 6;
-
-  const groups = buildGroups(options);
-
-  if (!groups.length) {
-    doc.setFont(FONT, 'italic');
-    doc.setFontSize(10);
-    doc.setTextColor(...COLOR_MUTED);
-    doc.text(labels.noUnits, PAGE_MARGIN, y + 4);
-  }
-
-  const head = [
+function tableHead(labels: PdfExportLabels): RowInput[] {
+  return [
     [
       labels.table.unit,
       labels.table.type,
@@ -192,129 +166,208 @@ export function exportListToPdf(options: PdfExportOptions): void {
       labels.table.points,
     ],
   ];
+}
+
+function tableBody(group: PdfExportGroup, options: PdfExportOptions): RowInput[] {
+  return group.units.map((entry) => {
+    const stats = effectiveUnitStats(entry.unit, entry.selectedOptionCodes);
+    return [
+      entry.unit.name,
+      entry.unit.unitType ?? '–',
+      formatDistance(scaleDistance(entry.unit.moveRange, options.reducedDistances)),
+      stats.bases !== null ? String(stats.bases) : '–',
+      entry.unit.armament ?? '–',
+      formatDistance(scaleDistance(entry.unit.weaponRange, options.reducedDistances)),
+      stats.handToHand ?? '–',
+      stats.shooting ?? '–',
+      entry.unit.morale ?? '–',
+      stats.stamina !== null ? String(stats.stamina) : '–',
+      specialRulesCell(entry),
+      String(entryPoints(entry)),
+    ];
+  });
+}
+
+/** Opciones de autoTable compartidas entre la medicion (en un documento de prueba) y el dibujo real. */
+function tableOptions(head: RowInput[], body: RowInput[]) {
+  const columnStyles: Record<number, object> = {};
+  COLUMN_WIDTHS.forEach((w, i) => {
+    const centered = [2, 3, 5, 6, 7, 8, 9, 11].includes(i);
+    columnStyles[i] = { cellWidth: w, ...(centered ? { halign: 'center' } : {}) };
+  });
+  columnStyles[0] = { cellWidth: COLUMN_WIDTHS[0], fontStyle: 'bold' };
+  columnStyles[11] = { cellWidth: COLUMN_WIDTHS[11], halign: 'center', fontStyle: 'bold', textColor: COLOR_ACCENT };
+
+  return {
+    head,
+    body,
+    theme: 'plain' as const,
+    showHead: 'everyPage' as const,
+    rowPageBreak: 'avoid' as const,
+    styles: {
+      font: FONT_TABLE,
+      fontSize: 6.8,
+      cellPadding: { top: 1.3, bottom: 1.3, left: 1.2, right: 1.2 },
+      textColor: COLOR_DARK,
+      lineColor: COLOR_BORDER,
+      lineWidth: { top: 0, right: 0, bottom: 0.15, left: 0 },
+      valign: 'middle' as const,
+    },
+    headStyles: {
+      fontStyle: 'bold' as const,
+      fontSize: 6,
+      textColor: COLOR_MUTED,
+      halign: 'center' as const,
+      lineColor: COLOR_BRONZE,
+      lineWidth: { top: 0, right: 0, bottom: 0.4, left: 0 },
+    },
+    alternateRowStyles: { fillColor: COLOR_CREAM },
+    columnStyles,
+  };
+}
+
+/** Alto (mm) que ocupara la tabla de un bloque, medido en un documento de prueba muy alto para que no haga saltos de pagina. */
+function measureTableHeight(head: RowInput[], body: RowInput[]): number {
+  const probe = new jsPDF({ orientation: 'portrait', unit: 'mm', format: [210, 4000] });
+  autoTable(probe, {
+    ...tableOptions(head, body),
+    startY: 0,
+    margin: { left: PAGE_MARGIN, right: PAGE_MARGIN, top: 0, bottom: 0 },
+  });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (probe as any).lastAutoTable.finalY as number;
+}
+
+export function exportListToPdf(options: PdfExportOptions): void {
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const contentWidth = pageWidth - PAGE_MARGIN * 2;
+  const usableHeight = pageHeight - PAGE_MARGIN - FOOTER_SPACE;
+  const labels = options.labels;
+
+  // --- Membrete: nombre de la lista a la izquierda, puntos a la derecha, linea doble fina debajo.
+  doc.setTextColor(...COLOR_ACCENT);
+  doc.setFont(FONT_DISPLAY, 'bold');
+  doc.setFontSize(16);
+  doc.text(options.listName, PAGE_MARGIN, PAGE_MARGIN + 3);
+
+  const pointsText = `${options.totalPoints} / ${options.pointsLimit}`;
+  doc.setFontSize(16);
+  const pointsWidth = doc.getTextWidth(pointsText);
+  doc.text(pointsText, PAGE_MARGIN + contentWidth - pointsWidth, PAGE_MARGIN + 3);
+  doc.setFont(FONT_DISPLAY, 'normal');
+  doc.setFontSize(7.5);
+  doc.setTextColor(...COLOR_MUTED);
+  const pointsLabelWidth = doc.getTextWidth(labels.points.toUpperCase());
+  doc.text(labels.points.toUpperCase(), PAGE_MARGIN + contentWidth - pointsLabelWidth, PAGE_MARGIN + 7);
+
+  doc.setFont(FONT_DISPLAY, 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(...COLOR_MUTED);
+  doc.text(`${labels.faction}: `, PAGE_MARGIN, PAGE_MARGIN + 8);
+  const factionLabelWidth = doc.getTextWidth(`${labels.faction}: `);
+  doc.setFont(FONT_DISPLAY, 'bold');
+  doc.setTextColor(...COLOR_DARK);
+  doc.text(options.factionName, PAGE_MARGIN + factionLabelWidth, PAGE_MARGIN + 8);
+
+  doc.setDrawColor(...COLOR_BRONZE);
+  doc.setLineWidth(0.5);
+  doc.line(PAGE_MARGIN, PAGE_MARGIN + 10.5, PAGE_MARGIN + contentWidth, PAGE_MARGIN + 10.5);
+  doc.setDrawColor(...COLOR_BORDER);
+  doc.setLineWidth(0.15);
+  doc.line(PAGE_MARGIN, PAGE_MARGIN + 11.4, PAGE_MARGIN + contentWidth, PAGE_MARGIN + 11.4);
+
+  let y = PAGE_MARGIN + 11.4 + 6;
+
+  const groups = buildGroups(options);
+
+  if (!groups.length) {
+    doc.setFont(FONT_DISPLAY, 'italic');
+    doc.setFontSize(10);
+    doc.setTextColor(...COLOR_MUTED);
+    doc.text(labels.noUnits, PAGE_MARGIN, y + 4);
+  }
+
+  const head = tableHead(labels);
 
   for (const group of groups) {
-    y = ensureSpace(doc, y, 16);
+    const body = tableBody(group, options);
+    const tableHeight = body.length ? measureTableHeight(head, body) : 6;
+    const blockHeight = GROUP_HEADER_HEIGHT + tableHeight;
 
-    // Barra de la battalia/brigada: sin relleno ni recuadro (solo texto + una linea fina
-    // de separacion), mas sobria que una caja de color solida. Incluye el Valor de Mando
-    // del/de los comandante(s) asignados junto al nombre.
-    const commanderText = group.commanders.length
-      ? group.commanders
-          .map((c) =>
-            c.commander.commandRating !== null
-              ? `${c.commander.name} (${labels.commandRating}: ${c.commander.commandRating})`
-              : c.commander.name
-          )
-          .join(', ')
-      : '–';
+    // Bloque entero en la misma pagina: si no cabe en lo que queda pero si cabe en una
+    // pagina nueva, se salta de pagina antes de empezar (no se parte por la mitad).
+    const remaining = pageHeight - FOOTER_SPACE - y;
+    if (blockHeight > remaining && blockHeight <= usableHeight) {
+      doc.addPage();
+      y = PAGE_MARGIN;
+    } else if (remaining < GROUP_HEADER_HEIGHT + 14) {
+      // Bloque mas largo que una pagina: al menos que la cabecera no quede huerfana abajo.
+      doc.addPage();
+      y = PAGE_MARGIN;
+    }
 
-    doc.setFont(FONT, 'bold');
-    doc.setFontSize(10);
-    doc.setTextColor(...COLOR_ACCENT);
-    doc.text(`${labels.battalia}: ${group.name}`, PAGE_MARGIN, y + 4);
+    // Cabecera del bloque: barra vertical granate + nombre; mando en una linea fina debajo;
+    // puntos del bloque a la derecha.
+    doc.setFillColor(...COLOR_ACCENT);
+    doc.rect(PAGE_MARGIN, y, 1.2, 8, 'F');
 
-    doc.setFont(FONT, 'normal');
-    doc.setFontSize(9);
+    doc.setFont(FONT_DISPLAY, 'bold');
+    doc.setFontSize(11);
     doc.setTextColor(...COLOR_DARK);
-    const commanderLabelText = `${labels.commander}: ${commanderText}`;
-    const commanderTextWidth = doc.getTextWidth(commanderLabelText);
-    doc.text(commanderLabelText, PAGE_MARGIN + contentWidth - commanderTextWidth, y + 4);
+    doc.text(group.name, PAGE_MARGIN + 3.2, y + 3.6);
 
-    y += 6;
-    doc.setDrawColor(...COLOR_BORDER);
-    doc.setLineWidth(0.2);
-    doc.line(PAGE_MARGIN, y, PAGE_MARGIN + contentWidth, y);
-    y += 2.5;
+    const subtotal = `${groupPoints(group)} ${labels.points}`;
+    doc.setFont(FONT_DISPLAY, 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(...COLOR_ACCENT);
+    const subtotalWidth = doc.getTextWidth(subtotal);
+    doc.text(subtotal, PAGE_MARGIN + contentWidth - subtotalWidth, y + 3.6);
+
+    const commanders = commanderLine(group, labels);
+    if (commanders) {
+      doc.setFont(FONT_DISPLAY, 'italic');
+      doc.setFontSize(8);
+      doc.setTextColor(...COLOR_MUTED);
+      doc.text(commanders, PAGE_MARGIN + 3.2, y + 7.4, { maxWidth: contentWidth - 3.2 });
+    }
+
+    y += GROUP_HEADER_HEIGHT;
 
     if (group.units.length === 0) {
-      doc.setFont(FONT, 'italic');
+      doc.setFont(FONT_DISPLAY, 'italic');
       doc.setFontSize(8.5);
       doc.setTextColor(...COLOR_MUTED);
-      doc.text(labels.noUnits, PAGE_MARGIN, y + 4);
-      y += 9;
+      doc.text(labels.noUnits, PAGE_MARGIN + 3.2, y);
+      y += 6 + GROUP_GAP;
       continue;
     }
 
-    const body = group.units.map((entry) => {
-      const stats = effectiveUnitStats(entry.unit, entry.selectedOptionCodes);
-      return [
-        entry.unit.name,
-        entry.unit.unitType ?? '–',
-        formatDistance(scaleDistance(entry.unit.moveRange, options.reducedDistances)),
-        stats.bases !== null ? String(stats.bases) : '–',
-        entry.unit.armament ?? '–',
-        formatDistance(scaleDistance(entry.unit.weaponRange, options.reducedDistances)),
-        stats.handToHand ?? '–',
-        stats.shooting ?? '–',
-        entry.unit.morale ?? '–',
-        stats.stamina !== null ? String(stats.stamina) : '–',
-        specialRulesCell(entry),
-        String(entryPoints(entry)),
-      ];
-    });
-
     autoTable(doc, {
+      ...tableOptions(head, body),
       startY: y,
-      margin: { left: PAGE_MARGIN, right: PAGE_MARGIN, bottom: PAGE_MARGIN },
-      head,
-      body,
-      theme: 'grid',
-      styles: {
-        font: FONT,
-        fontSize: 7.5,
-        cellPadding: 1.3,
-        textColor: COLOR_DARK,
-        lineColor: COLOR_BORDER,
-        lineWidth: 0.15,
-        fillColor: COLOR_PAPER,
-      },
-      headStyles: {
-        fillColor: COLOR_HEADROW,
-        textColor: COLOR_MUTED,
-        fontStyle: 'bold',
-        fontSize: 7.5,
-        halign: 'center',
-        lineWidth: 0.15,
-      },
-      alternateRowStyles: { fillColor: COLOR_CREAM },
-      // Anchos ajustados para que las cabeceras quepan en una sola linea y para que la
-      // suma coincida exactamente con contentWidth (si no, la tabla queda mas estrecha
-      // que la linea/cabecera de arriba y se ve desalineada).
-      // Se inserto la columna de Alcance (arma) restando espacio a Armamento y a Reglas
-      // Especiales para que la suma siga cuadrando exactamente con contentWidth (186mm).
-      columnStyles: {
-        0: { cellWidth: 34 }, // Unidad
-        1: { cellWidth: 13 }, // Tipo
-        2: { cellWidth: 10, halign: 'center' }, // Movimiento
-        3: { cellWidth: 13, halign: 'center' }, // Peanas
-        4: { cellWidth: 22 }, // Armamento
-        5: { cellWidth: 10, halign: 'center' }, // Alcance (arma)
-        6: { cellWidth: 10, halign: 'center' }, // CaC
-        7: { cellWidth: 13, halign: 'center' }, // Disparo
-        8: { cellWidth: 11, halign: 'center' }, // Moral
-        9: { cellWidth: 13, halign: 'center' }, // Aguante
-        10: { cellWidth: 25 }, // Reglas Especiales
-        11: { cellWidth: 12, halign: 'center', fontStyle: 'bold', textColor: COLOR_ACCENT }, // Puntos
-      },
+      margin: { left: PAGE_MARGIN, right: PAGE_MARGIN, top: PAGE_MARGIN, bottom: FOOTER_SPACE },
     });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    y = (doc as any).lastAutoTable.finalY + 5;
+    y = (doc as any).lastAutoTable.finalY + GROUP_GAP;
   }
 
-  // --- Pie de pagina: numero de pagina + marca de la app ---
+  // --- Pie de pagina: marca discreta a la izquierda, numero de pagina a la derecha ---
   const pageCount = doc.getNumberOfPages();
   for (let i = 1; i <= pageCount; i++) {
     doc.setPage(i);
-    const pageHeight = doc.internal.pageSize.getHeight();
-    doc.setFont(FONT, 'normal');
-    doc.setFontSize(7.5);
+    doc.setDrawColor(...COLOR_BORDER);
+    doc.setLineWidth(0.15);
+    doc.line(PAGE_MARGIN, pageHeight - 9, pageWidth - PAGE_MARGIN, pageHeight - 9);
+    doc.setFont(FONT_DISPLAY, 'italic');
+    doc.setFontSize(7);
     doc.setTextColor(...COLOR_MUTED);
-    doc.text(labels.generatedWith, PAGE_MARGIN, pageHeight - 6);
+    doc.text(`${options.listName}  ·  ${labels.generatedWith}`, PAGE_MARGIN, pageHeight - 5.5);
     const pageLabel = `${labels.page} ${i} / ${pageCount}`;
     const pageLabelWidth = doc.getTextWidth(pageLabel);
-    doc.text(pageLabel, pageWidth - PAGE_MARGIN - pageLabelWidth, pageHeight - 6);
+    doc.text(pageLabel, pageWidth - PAGE_MARGIN - pageLabelWidth, pageHeight - 5.5);
   }
 
   doc.save(`${slugify(options.listName)}.pdf`);

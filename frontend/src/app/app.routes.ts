@@ -15,6 +15,11 @@ export const routes: Routes = [
     loadComponent: () => import('./features/my-lists/my-lists').then((m) => m.MyLists),
   },
   {
+    // Editor de datos maestros (unidades/comandantes de cualquier ejercito).
+    path: 'datos',
+    loadComponent: () => import('./features/data-editor/data-editor').then((m) => m.DataEditor),
+  },
+  {
     // Cualquier enlace antiguo de un paso intermedio vuelve al selector.
     path: '**',
     redirectTo: '',

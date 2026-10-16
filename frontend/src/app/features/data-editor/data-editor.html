@@ -1,0 +1,218 @@
+<section class="data-editor">
+  <a class="back-link" routerLink="/">← {{ 'factionDetail.back' | transloco }}</a>
+
+  <h1>{{ 'dataEditor.title' | transloco }}</h1>
+  <p class="editor-intro">{{ 'dataEditor.intro' | transloco }}</p>
+  <p class="editor-lang">
+    {{ 'dataEditor.language' | transloco }}: <strong>{{ localeService.current() === 'es' ? 'Español' : 'English' }}</strong>
+    — {{ 'dataEditor.languageHint' | transloco }}
+  </p>
+
+  @if (!authService.isConfigured) {
+    <p class="editor-notice">{{ 'dataEditor.notConfigured' | transloco }}</p>
+  } @else if (!authService.authReady()) {
+    <p class="editor-notice">{{ 'myLists.loading' | transloco }}</p>
+  } @else if (!canEdit()) {
+    <div class="editor-notice">
+      <p>{{ 'dataEditor.signInHint' | transloco }}</p>
+      <button type="button" class="editor-btn primary" (click)="signIn()">{{ 'auth.signIn' | transloco }}</button>
+    </div>
+  } @else {
+    <!-- Selector Juego > Conflicto > Facción -->
+    <div class="selector-row">
+      <label>
+        {{ 'games.title' | transloco }}
+        <select [ngModel]="gameCode()" (ngModelChange)="onGameChange($event)">
+          <option value="" disabled>—</option>
+          @for (g of games(); track g.code) {
+            <option [value]="g.code">{{ g.name }}</option>
+          }
+        </select>
+      </label>
+      <label>
+        {{ 'conflicts.title' | transloco }}
+        <select [ngModel]="conflictCode()" (ngModelChange)="onConflictChange($event)" [disabled]="!gameCode()">
+          <option value="" disabled>—</option>
+          @for (c of conflicts(); track c.code) {
+            <option [value]="c.code">{{ c.name }}</option>
+          }
+        </select>
+      </label>
+      <label>
+        {{ 'factions.title' | transloco }}
+        <select [ngModel]="factionCode()" (ngModelChange)="onFactionChange($event)" [disabled]="!conflictCode()">
+          <option value="" disabled>—</option>
+          @for (f of factions(); track f.code) {
+            <option [value]="f.code">{{ f.name }}{{ f.rulesetName ? ' · ' + f.rulesetName : '' }}</option>
+          }
+        </select>
+      </label>
+    </div>
+
+    @if (loading()) {
+      <p class="editor-notice">{{ 'myLists.loading' | transloco }}</p>
+    }
+
+    @if (detail(); as d) {
+      <div class="editor-toolbar">
+        <h2>{{ d.name }}</h2>
+        @if (isEdited()) {
+          <span class="edited-badge">{{ 'dataEditor.edited' | transloco }}</span>
+        }
+        <div class="toolbar-actions">
+          @if (isEdited()) {
+            <button type="button" class="editor-btn" [disabled]="saving()" (click)="restoreOriginal()">
+              {{ 'dataEditor.restore' | transloco }}
+            </button>
+          }
+          <button type="button" class="editor-btn" [disabled]="!dirty() || saving()" (click)="discard()">
+            {{ 'dataEditor.discard' | transloco }}
+          </button>
+          <button type="button" class="editor-btn primary" [disabled]="!dirty() || saving()" (click)="save()">
+            {{ (saving() ? 'factionDetail.save.saving' : 'dataEditor.save') | transloco }}
+          </button>
+        </div>
+      </div>
+
+      @if (message(); as msg) {
+        <p class="editor-message" [class.error]="msg.kind === 'error'">
+          {{ msg.text | transloco }}{{ jsonErrorDetail() && msg.kind === 'error' ? ': ' + jsonErrorDetail() : '' }}
+        </p>
+      }
+
+      <!-- COMANDANTES -->
+      <h3 class="editor-section">{{ 'factionDetail.commanders' | transloco }}</h3>
+      <div class="table-scroll">
+        <table class="editor-table">
+          <thead>
+            <tr>
+              <th>{{ 'dataEditor.name' | transloco }}</th>
+              <th>{{ 'factionDetail.commandRating' | transloco }}</th>
+              <th>{{ 'factionDetail.table.points' | transloco }}</th>
+              <th>{{ 'factionDetail.table.move' | transloco }}</th>
+              <th>{{ 'dataEditor.role' | transloco }}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (c of d.commanders; track c.id; let i = $index) {
+              <tr>
+                <td><input type="text" class="wide" [(ngModel)]="c.name" (ngModelChange)="markDirty()" /></td>
+                <td><input type="number" [(ngModel)]="c.commandRating" (ngModelChange)="markDirty()" /></td>
+                <td><input type="number" [(ngModel)]="c.points" (ngModelChange)="markDirty()" /></td>
+                <td><input type="number" [(ngModel)]="c.moveRange" (ngModelChange)="markDirty()" /></td>
+                <td>
+                  <select [(ngModel)]="c.role" (ngModelChange)="markDirty()">
+                    <option [ngValue]="null">—</option>
+                    <option value="army_general">{{ 'dataEditor.roleGeneral' | transloco }}</option>
+                    <option value="battalia_leader">{{ 'dataEditor.roleLeader' | transloco }}</option>
+                  </select>
+                </td>
+                <td><button type="button" class="row-remove" (click)="removeCommander(i)">✕</button></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <button type="button" class="editor-btn" (click)="addCommander()">+ {{ 'dataEditor.addCommander' | transloco }}</button>
+
+      <!-- UNIDADES -->
+      <h3 class="editor-section">{{ 'factionDetail.units' | transloco }}</h3>
+      @for (u of d.units; track u.id; let i = $index) {
+        <details class="unit-editor">
+          <summary>
+            <span class="unit-summary-name">{{ u.name || '(sin nombre)' }}</span>
+            <span class="unit-summary-meta">{{ 'factionDetail.category.' + u.category | transloco }} · {{ u.basePoints }} {{ 'factionDetail.table.points' | transloco }}</span>
+          </summary>
+
+          <div class="field-grid">
+            <label class="span-2">{{ 'dataEditor.name' | transloco }}
+              <input type="text" [(ngModel)]="u.name" (ngModelChange)="markDirty()" />
+            </label>
+            <label>{{ 'dataEditor.category' | transloco }}
+              <select [(ngModel)]="u.category" (ngModelChange)="markDirty()">
+                <option value="FOOT">{{ 'factionDetail.category.FOOT' | transloco }}</option>
+                <option value="HORSE">{{ 'factionDetail.category.HORSE' | transloco }}</option>
+                <option value="ORDNANCE">{{ 'factionDetail.category.ORDNANCE' | transloco }}</option>
+              </select>
+            </label>
+            <label>{{ 'factionDetail.table.type' | transloco }}
+              <input type="text" [(ngModel)]="u.unitType" (ngModelChange)="markDirty()" />
+            </label>
+            <label>{{ 'factionDetail.table.points' | transloco }}
+              <input type="number" [(ngModel)]="u.basePoints" (ngModelChange)="markDirty()" />
+            </label>
+            <label>{{ 'factionDetail.table.bases' | transloco }}
+              <input type="number" [(ngModel)]="u.bases" (ngModelChange)="markDirty()" />
+            </label>
+            <label>{{ 'factionDetail.table.move' | transloco }}
+              <input type="number" [(ngModel)]="u.moveRange" (ngModelChange)="markDirty()" />
+            </label>
+            <label>{{ 'factionDetail.table.armament' | transloco }}
+              <input type="text" [(ngModel)]="u.armament" (ngModelChange)="markDirty()" />
+            </label>
+            <label>{{ 'factionDetail.table.weaponRange' | transloco }}
+              <input type="number" [(ngModel)]="u.weaponRange" (ngModelChange)="markDirty()" />
+            </label>
+            <label>{{ 'factionDetail.table.handToHand' | transloco }}
+              <input type="text" [(ngModel)]="u.handToHand" (ngModelChange)="markDirty()" />
+            </label>
+            <label>{{ 'factionDetail.table.shooting' | transloco }}
+              <input type="text" [(ngModel)]="u.shooting" (ngModelChange)="markDirty()" />
+            </label>
+            <label>{{ 'factionDetail.table.morale' | transloco }}
+              <input type="text" [(ngModel)]="u.morale" (ngModelChange)="markDirty()" />
+            </label>
+            <label>{{ 'factionDetail.table.stamina' | transloco }}
+              <input type="number" [(ngModel)]="u.stamina" (ngModelChange)="markDirty()" />
+            </label>
+            <label class="span-4">{{ 'factionDetail.table.specialRules' | transloco }}
+              <input type="text" [(ngModel)]="u.specialRules" (ngModelChange)="markDirty()" />
+            </label>
+            <label class="span-4">{{ 'dataEditor.constraints' | transloco }}
+              <textarea rows="2" [(ngModel)]="u.constraintsText" (ngModelChange)="markDirty()" placeholder='{"maxUnitsPerArmy": 2}'></textarea>
+            </label>
+          </div>
+
+          <h4>{{ 'factionDetail.options' | transloco }}</h4>
+          @for (o of u.options; track o.id; let oi = $index) {
+            <div class="option-editor">
+              <div class="option-row">
+                <input type="text" class="wide" [(ngModel)]="o.description" (ngModelChange)="markDirty()" [placeholder]="'dataEditor.optionDescription' | transloco" />
+                <label class="inline">
+                  Δ {{ 'factionDetail.table.points' | transloco }}
+                  <input type="number" [(ngModel)]="o.pointDelta" (ngModelChange)="markDirty()" />
+                </label>
+                <label class="inline">
+                  <input type="checkbox" [checked]="!!o.statOverrides" (change)="toggleOverrides(o, $any($event.target).checked)" />
+                  {{ 'dataEditor.ownStats' | transloco }}
+                </label>
+                <button type="button" class="row-remove" (click)="removeOption(u, oi)">✕</button>
+              </div>
+              @if (o.statOverrides; as ov) {
+                <div class="option-row stats">
+                  <label class="inline">{{ 'factionDetail.table.bases' | transloco }}
+                    <input type="number" [(ngModel)]="ov.bases" (ngModelChange)="markDirty()" /></label>
+                  <label class="inline">{{ 'factionDetail.table.handToHand' | transloco }}
+                    <input type="text" [(ngModel)]="ov.handToHand" (ngModelChange)="markDirty()" /></label>
+                  <label class="inline">{{ 'factionDetail.table.shooting' | transloco }}
+                    <input type="text" [(ngModel)]="ov.shooting" (ngModelChange)="markDirty()" /></label>
+                  <label class="inline">{{ 'factionDetail.table.stamina' | transloco }}
+                    <input type="number" [(ngModel)]="ov.stamina" (ngModelChange)="markDirty()" /></label>
+                </div>
+              }
+              <label class="constraints-label">{{ 'dataEditor.constraints' | transloco }}
+                <textarea rows="1" [(ngModel)]="o.constraintsText" (ngModelChange)="markDirty()" placeholder='{"maxPerBattalia": 1}'></textarea>
+              </label>
+            </div>
+          }
+          <div class="unit-actions">
+            <button type="button" class="editor-btn" (click)="addOption(u)">+ {{ 'dataEditor.addOption' | transloco }}</button>
+            <button type="button" class="editor-btn danger" (click)="removeUnit(i)">{{ 'dataEditor.removeUnit' | transloco }}</button>
+          </div>
+        </details>
+      }
+      <button type="button" class="editor-btn" (click)="addUnit()">+ {{ 'dataEditor.addUnit' | transloco }}</button>
+    }
+  }
+</section>

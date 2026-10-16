@@ -17,5 +17,14 @@ service cloud.firestore {
       allow read, update, delete: if request.auth != null && request.auth.uid == resource.data.ownerId;
       allow create: if request.auth != null && request.auth.uid == request.resource.data.ownerId;
     }
+
+    // Datos maestros editados desde la seccion "Datos" de la app (una version completa de
+    // cada faccion e idioma, que sustituye al catalogo estatico). Cualquiera puede LEERLOS
+    // (tambien quien no ha iniciado sesion, porque el catalogo lo usan todos al construir
+    // ejercitos); solo usuarios con sesion iniciada pueden crearlos, modificarlos o borrarlos.
+    match /catalogOverrides/{overrideId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
   }
 }

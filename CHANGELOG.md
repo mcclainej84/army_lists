@@ -4,6 +4,18 @@ Registro de versiones de ListGenerator. La versión se muestra en el header de l
 
 Convención: empezamos en **0.1**; el decimal sube de 1 en 1 con cada tanda de cambios (0.1 → 0.2 → 0.3 … → 0.10 → 0.11 …), sin saltar nunca a 1.0 hasta que se decida explícitamente.
 
+## 0.60 — 2026-10-16
+
+- Mi Lista: cada battalia/brigada (y "Sin asignar") se puede minimizar/expandir con su flecha (con resumen de nº de unidades y puntos en la cabecera), más botones "Minimizar todo / Expandir todo".
+- Mi Lista: las battalias/brigadas se pueden reordenar con las flechas ▲▼ de su cabecera (el orden se respeta en el PDF).
+- Mi Lista: selección múltiple de unidades (casilla en cada fila y en la cabecera para marcar todas) con barra para moverlas juntas a una battalia/brigada o a "Sin asignar"; arrastrar una fila marcada arrastra todas las marcadas.
+- Mi Lista: las unidades y comandantes se arrastran desde cualquier punto de la fila (no solo desde el icono). En táctil hace falta una pulsación larga breve para no confundirlo con el scroll.
+- Ahora se puede guardar la lista aunque queden unidades sin asignar (exportar a PDF sigue exigiéndolo).
+- Nueva sección "Datos" (visible con sesión iniciada): editor de datos maestros de todos los ejércitos de todos los juegos (comandantes, unidades, opciones y restricciones). Las ediciones se guardan en Firestore (colección `catalogOverrides`, una versión completa por facción e idioma), se aplican solo a ejércitos NUEVOS (las listas guardadas llevan su propia copia de las unidades) y se pueden restaurar al original. Requiere publicar el `firestore.rules` actualizado.
+- Exportar PDF rediseñado: tipografía más pequeña y sobria, membrete con puntos, bloque de cada battalia/brigada con barra granate, mando y subtotal de puntos; tablas con líneas finas. Cada battalia/brigada se mantiene entera en una página (salta a la siguiente si no cabe) y solo se divide si es más larga que una página.
+- Pike & Shotte: Mosqueteros de Élite Españoles con Disparo 3 (antes 2).
+- Pike & Shotte: el General en Jefe cuenta como líder de la battalia en la que se coloque (ya no avisa de "falta líder" y no caben dos líderes juntos).
+
 ## 0.59 — 2026-10-03
 
 - "Mis Listas" vuelve a un estilo sobrio, coherente con el resto de la app (pergamino, bordes y acentos estándar); se conserva el marco interior doble de las tarjetas. Eliminados el tablero oscuro, la cinta, el sello de lacre, las rotaciones y la animación de la 0.58.

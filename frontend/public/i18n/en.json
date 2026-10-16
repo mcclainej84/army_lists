@@ -6,7 +6,37 @@
   "nav": {
     "games": "Games",
     "myLists": "My Lists",
+    "data": "Data",
     "language": "Language"
+  },
+  "dataEditor": {
+    "title": "Master data",
+    "intro": "Edit the units, commanders and options of any army. Changes only affect new armies created from now on; lists you already saved are not modified.",
+    "language": "Language being edited",
+    "languageHint": "each language is edited separately (switch the language in the header to edit the other one).",
+    "notConfigured": "Data editing isn't available in this app yet.",
+    "signInHint": "Sign in to edit the master data.",
+    "edited": "Modified",
+    "save": "Save changes",
+    "discard": "Discard changes",
+    "restore": "Restore original",
+    "saved": "Changes saved. They will apply to new armies.",
+    "restored": "Original data restored.",
+    "saveError": "Couldn't save the changes. Please try again.",
+    "loadError": "Couldn't load this army's data.",
+    "invalidJson": "Invalid constraints JSON in",
+    "name": "Name",
+    "role": "Role",
+    "roleGeneral": "Army General",
+    "roleLeader": "Battalia/brigade leader",
+    "category": "Category",
+    "constraints": "Constraints (JSON, advanced)",
+    "optionDescription": "Option description",
+    "ownStats": "Own stats",
+    "addCommander": "Add commander",
+    "addUnit": "Add unit",
+    "addOption": "Add option",
+    "removeUnit": "Delete unit"
   },
   "auth": {
     "signIn": "Sign in",
@@ -84,7 +114,21 @@
       "maxRatioToOwnLightOrdnance": "You need more Light Ordnance units first (max {{max}})",
       "notEnoughPoints": "Not enough points left (costs {{cost}}, {{remaining}} remaining)"
     },
+    "selection": {
+      "count": "{{count}} selected",
+      "moveTo": "Move to...",
+      "move": "Move",
+      "clear": "Clear selection",
+      "selectAll": "Select all"
+    },
     "battalias": {
+      "collapse": "Collapse",
+      "expand": "Expand",
+      "collapseAll": "Collapse all",
+      "expandAll": "Expand all",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "unitsCount": "{{count}} units",
       "add": "+ New {{group}}",
       "unassigned": "Unassigned",
       "namePlaceholder": "{{group}} name"

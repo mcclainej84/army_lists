@@ -54,6 +54,7 @@
         </a>
         @if (authService.authReady()) {
           @if (authService.currentUser(); as user) {
+            <a class="header-action-btn" routerLink="/datos">{{ 'nav.data' | transloco }}</a>
             <span class="account-name" [title]="user.email || ''">{{ user.displayName || user.email }}</span>
             <button type="button" class="header-action-btn" (click)="signOut()">
               {{ 'auth.signOut' | transloco }}

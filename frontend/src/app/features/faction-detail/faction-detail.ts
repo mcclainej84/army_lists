@@ -91,6 +91,8 @@ export class FactionDetail {
       this.listUnits.set([]);
       this.battalias.set([]);
       this.pendingSelections.set({});
+      this.selectedUnitIds.set(new Set());
+      this.collapsedIds.set(new Set());
       this.activeBattaliaId.set(UNASSIGNED_BATTALIA_ID);
       this.currentListId.set(null);
       this.saveListName.set('');
@@ -239,11 +241,22 @@ export class FactionDetail {
     return this.listCommanders().filter((c) => c.battaliaId === battaliaId);
   }
 
+  /**
+   * ¿Este comandante ocupa el puesto de "lider" de una battalia/brigada? Siempre los
+   * 'battalia_leader'; ademas, en Pike & Shotte el General en Jefe tambien cuenta como
+   * lider de la battalia en la que se coloque (peticion del usuario): no hace falta otro
+   * lider y tampoco caben dos.
+   */
+  private isLeaderRole(commander: CommanderDTO): boolean {
+    if (commander.role === 'battalia_leader') return true;
+    return commander.role === 'army_general' && this.gameCode === 'epic_pike_and_shotte';
+  }
+
   /** Avisa si esta battalia/brigada ya tiene unidades pero todavia no tiene un lider asignado. */
   missingLeader(battaliaId: string): boolean {
     if (battaliaId === UNASSIGNED_BATTALIA_ID) return false;
     if (this.unitsInBattalia(battaliaId).length === 0) return false;
-    return !this.commandersInBattalia(battaliaId).some((c) => c.commander.role === 'battalia_leader');
+    return !this.commandersInBattalia(battaliaId).some((c) => this.isLeaderRole(c.commander));
   }
 
   warningsForBattalia(battaliaId: string): BattaliaWarning[] {
@@ -269,6 +282,111 @@ export class FactionDetail {
     this.activeBattaliaId.set(id);
   }
 
+  // --- Minimizar / expandir battalias ---
+  /** Ids de battalias (y de "sin asignar") plegadas: solo se ve su cabecera con un resumen. */
+  collapsedIds = signal<ReadonlySet<string>>(new Set());
+
+  isCollapsed(id: string): boolean {
+    return this.collapsedIds().has(id);
+  }
+
+  toggleCollapsed(id: string): void {
+    this.collapsedIds.update((set) => {
+      const next = new Set(set);
+      if (!next.delete(id)) next.add(id);
+      return next;
+    });
+  }
+
+  collapseAll(): void {
+    this.collapsedIds.set(new Set(this.allDropListIds()));
+  }
+
+  expandAll(): void {
+    this.collapsedIds.set(new Set());
+  }
+
+  /** Puntos de unidades + comandantes de una battalia, para el resumen de la cabecera plegada. */
+  battaliaPoints(battaliaId: string): number {
+    const units = this.unitsInBattalia(battaliaId).reduce((sum, e) => sum + this.entryPoints(e), 0);
+    const commanders = this.commandersInBattalia(battaliaId).reduce((sum, c) => sum + c.commander.points, 0);
+    return units + commanders;
+  }
+
+  // --- Reordenar battalias ---
+  /** Sube (-1) o baja (+1) una battalia/brigada en la lista (el orden se respeta en el PDF). */
+  moveBattalia(id: string, direction: -1 | 1): void {
+    this.battalias.update((list) => {
+      const index = list.findIndex((b) => b.id === id);
+      const target = index + direction;
+      if (index < 0 || target < 0 || target >= list.length) return list;
+      const next = [...list];
+      [next[index], next[target]] = [next[target], next[index]];
+      return next;
+    });
+  }
+
+  // --- Seleccion multiple de unidades ---
+  /**
+   * Retraso antes de empezar a arrastrar: 0 con raton, 180 ms en tactil. Ahora toda la fila
+   * es arrastrable (no solo el icono), asi que sin este retraso en movil un deslizamiento de
+   * scroll se interpretaria como arrastre.
+   */
+  readonly dragStartDelay = { touch: 180, mouse: 0 };
+
+  selectedUnitIds = signal<ReadonlySet<string>>(new Set());
+  selectedCount = computed(() => this.selectedUnitIds().size);
+  /** Destino elegido en el desplegable "Mover seleccionadas a...". */
+  moveTargetId = signal<string>('');
+
+  isSelected(instanceId: string): boolean {
+    return this.selectedUnitIds().has(instanceId);
+  }
+
+  toggleSelected(instanceId: string): void {
+    this.selectedUnitIds.update((set) => {
+      const next = new Set(set);
+      if (!next.delete(instanceId)) next.add(instanceId);
+      return next;
+    });
+  }
+
+  allSelectedIn(battaliaId: string): boolean {
+    const entries = this.unitsInBattalia(battaliaId);
+    return entries.length > 0 && entries.every((e) => this.isSelected(e.instanceId));
+  }
+
+  toggleSelectAll(battaliaId: string): void {
+    const entries = this.unitsInBattalia(battaliaId);
+    const selectAll = !this.allSelectedIn(battaliaId);
+    this.selectedUnitIds.update((set) => {
+      const next = new Set(set);
+      for (const e of entries) {
+        if (selectAll) next.add(e.instanceId);
+        else next.delete(e.instanceId);
+      }
+      return next;
+    });
+  }
+
+  clearSelection(): void {
+    this.selectedUnitIds.set(new Set());
+    this.moveTargetId.set('');
+  }
+
+  /** Mueve todas las unidades marcadas al final de la battalia elegida (o a "sin asignar"). */
+  moveSelectedToTarget(): void {
+    const target = this.moveTargetId();
+    const selected = this.selectedUnitIds();
+    if (!target || selected.size === 0) return;
+    this.listUnits.update((all) => {
+      const moving = all.filter((u) => selected.has(u.instanceId)).map((u) => ({ ...u, battaliaId: target }));
+      const rest = all.filter((u) => !selected.has(u.instanceId));
+      return [...rest, ...moving];
+    });
+    this.clearSelection();
+  }
+
   // --- Comandantes ---
   /**
    * Como mucho un lider (role "battalia_leader") por battalia/brigada, sea cual sea su
@@ -278,10 +396,10 @@ export class FactionDetail {
    * tarifa de Valor de Mando es un codigo distinto.
    */
   canAssignCommanderToBattalia(commander: CommanderDTO, battaliaId: string, excludeInstanceId?: string): boolean {
-    if (commander.role !== 'battalia_leader') return true;
+    if (!this.isLeaderRole(commander)) return true;
     if (battaliaId === UNASSIGNED_BATTALIA_ID) return true;
     return !this.listCommanders().some(
-      (c) => c.battaliaId === battaliaId && c.commander.role === 'battalia_leader' && c.instanceId !== excludeInstanceId
+      (c) => c.battaliaId === battaliaId && this.isLeaderRole(c.commander) && c.instanceId !== excludeInstanceId
     );
   }
 
@@ -326,6 +444,11 @@ export class FactionDetail {
       list.map((c) => (c.battaliaId === id ? { ...c, battaliaId: UNASSIGNED_BATTALIA_ID } : c))
     );
     this.battalias.update((list) => list.filter((b) => b.id !== id));
+    this.collapsedIds.update((set) => {
+      const next = new Set(set);
+      next.delete(id);
+      return next;
+    });
     if (this.activeBattaliaId() === id) {
       this.activeBattaliaId.set(UNASSIGNED_BATTALIA_ID);
     }
@@ -494,6 +617,7 @@ export class FactionDetail {
 
   removeUnit(instanceId: string): void {
     this.listUnits.update((list) => list.filter((u) => u.instanceId !== instanceId));
+    if (this.selectedUnitIds().has(instanceId)) this.toggleSelected(instanceId);
   }
 
   optionLabels(entry: ListUnitEntry): string {
@@ -510,6 +634,22 @@ export class FactionDetail {
   // --- Drag & drop de unidades ---
   onDrop(event: CdkDragDrop<ListUnitEntry[]>, targetBattaliaId: string): void {
     const movedEntry = event.item.data as ListUnitEntry;
+
+    // Si la fila arrastrada forma parte de una seleccion multiple, se mueven todas juntas.
+    const selected = this.selectedUnitIds();
+    if (selected.size > 1 && selected.has(movedEntry.instanceId)) {
+      this.listUnits.update((all) => {
+        const moving = all.filter((u) => selected.has(u.instanceId)).map((u) => ({ ...u, battaliaId: targetBattaliaId }));
+        const withoutMoving = all.filter((u) => !selected.has(u.instanceId));
+        const destinationOthers = withoutMoving.filter((u) => u.battaliaId === targetBattaliaId);
+        const rest = withoutMoving.filter((u) => u.battaliaId !== targetBattaliaId);
+        const index = Math.min(event.currentIndex, destinationOthers.length);
+        destinationOthers.splice(index, 0, ...moving);
+        return [...rest, ...destinationOthers];
+      });
+      this.clearSelection();
+      return;
+    }
 
     this.listUnits.update((all) => {
       const withoutMoved = all.filter((u) => u.instanceId !== movedEntry.instanceId);
@@ -602,18 +742,19 @@ export class FactionDetail {
   }
 
   // --- Guardado de listas (Firebase) ---
-  /** true si se puede intentar guardar ahora mismo: hay sesion iniciada y no quedan unidades sin asignar. */
+  /**
+   * true si se puede intentar guardar ahora mismo: solo hace falta sesion iniciada. Se
+   * puede guardar aunque queden unidades sin asignar (a diferencia de exportar a PDF, que
+   * sigue exigiendo que todas esten en una battalia/brigada).
+   */
   canSaveList(): boolean {
-    return this.authService.isConfigured && !!this.authService.currentUser() && !this.hasUnassignedUnits();
+    return this.authService.isConfigured && !!this.authService.currentUser();
   }
 
   /** Motivo por el que el boton de guardar esta desactivado, para el tooltip. */
   saveBlockedReason(): string {
     if (!this.authService.isConfigured) return this.transloco.translate('factionDetail.save.notConfigured');
     if (!this.authService.currentUser()) return this.transloco.translate('factionDetail.save.signInRequired');
-    if (this.hasUnassignedUnits()) {
-      return this.transloco.translate('factionDetail.export.blockedUnassigned', { group: this.groupNoun(true) });
-    }
     return '';
   }
 
